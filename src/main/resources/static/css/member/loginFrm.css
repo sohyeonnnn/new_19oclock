@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'Arita-dotum-Medium';
+    src:
+        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.background-screen {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.2;
+    z-index: 10000;
+}
+
+.login-form-container {
+    font-family: 'Arita-dotum-Medium';
+    display: none;
+    position: absolute;
+    top: calc(50% - 250px);
+    left: calc(50% - 325px);
+    width: 650px;
+    height: 500px;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid #314C83;
+    box-shadow: 1px 1px 12px 1px gray;
+    z-index: 10001;
+}
+
+.login-form-close {
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+
+.login-form-close:hover {
+    cursor: pointer;
+}
+
+.login-form {
+    margin: 0 auto;
+    width: 90%;
+    height: 100%;
+    text-align: center;
+}
+
+.login-form .login-form-top {
+    height: 20%;
+    margin: 15px 0;
+}
+
+.login-form .login-form-top>img {
+    height: 100%;
+}
+
+.login-title {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.login-inputs {}
+
+.login-inputs input {
+    margin: 7px 0;
+    width: 300px;
+    height: 40px;
+    border: 1px solid gray;
+    border-radius: 5px;
+
+}
+
+.login-inputs input[type=submit] {
+    background-color: lightgray;
+    color: gray;
+    border: none;
+    font-weight: bold;
+    outline: none;
+}
+.login-inputs input[type=submit]:hover{
+    cursor: not-allowed;
+}
+.login-inputs a {
+    display: block;
+    width: fit-content;
+    text-decoration: none;
+    color: #282828;
+    font-weight: bold;
+    margin:0 auto;
+    margin-top: 15px;
+}
+.login-inputs a:hover{
+    text-decoration: underline;
+}
+
+.login-form-center {
+    height: 53%;
+    border-bottom: 1px solid gray;
+}
+
+.login-form-bottom {
+    height: 27%;
+}
+
+.login-form-bottom>a {
+    margin: 0 auto;
+    margin-top: 30px;
+    display: block;
+    border: 2px solid #314C83;
+    border-radius: 5px;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    color: #314C83;
+    font-weight: bold;
+    text-decoration: none;
+
+}

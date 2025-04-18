@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/member/searchPw.css">
+    <script type="text/javascript" src="/js/member/searchPw.js"></script>
+    <title>19시 :: pw찾기</title>
+</head>
+
+<body>
+<section>
+    <div class="title">
+        비밀번호 변경
+    </div>
+    <div class="form-container">
+        <form action="/searchChangePw.do" method="post">
+            <input type="password" name="mPw" id="pw1" placeholder="비밀번호를 입력해주세요.">
+            <div id="pw1_validation">* 비밀번호는 4글자 이상 입력해주세요.</div>
+            <input type="password" id="pw2" placeholder="비밀번호 재확인.">
+            <div id="pw2_validation">* 입력하신 비밀번호와 동일하게 입력해주세요.</div>
+            <input type="submit" value="변경">
+        </form>
+    </div>
+</section>
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+
+body{
+    font-family: "Arita-dotum-Medium";
+}
+section {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.join-container {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.join-center div {
+    margin-top: 5px;
+}
+
+.form-title {
+    font-weight: bold;
+    color: #282828;
+}
+
+.join-center>div:not(.phone-form) input {
+    display: block;
+    width: 350px;
+    height: 45px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    outline: none;
+    font-size: medium;
+}
+
+.join-center>div:not(.phone-form) input:focus {
+    border-color: #314C83;
+}
+
+.join-center>div:last-child input {
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    outline: none;
+    font-size: medium;
+}
+
+.join-center>div:last-child input:focus {
+    border-color: #314C83;
+}
+
+.terms-checkbox {
+    width: 350px;
+    height: 200px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+.terms-top {
+    width: 90%;
+    margin: 5px auto;
+    border-bottom: 1px solid black;
+}
+
+.terms-bottom {
+    width: 90%;
+    margin: 5px auto;
+}
+
+.terms-bottom label {
+    font-size: small;
+}
+
+.terms-bottom label>input[type=button] {
+    border: none;
+    outline: none;
+    background-color: white;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.terms-bottom label>input[type=button]:hover {
+    cursor: pointer;
+}
+
+.submit>button {
+    margin-top: 10px;
+    width: 350px;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.151);
+    color: gray;
+    outline: none;
+    font-weight: bold;
+}
+
+.submit>button:hover {
+    cursor: not-allowed;
+}
+
+.background-screen {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.2;
+}
+
+.service-terms-container,
+.privacy-terms-container {
+    padding: 0;
+    display: none;
+    position: absolute;
+    left: calc(50% - 275px);
+    top: calc(50% - 350px);
+    width: 550px;
+    height: 600px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 12px 1px gray;
+    border: 2px solid #314C83;
+}
+
+.terms-title {
+    position: relative;
+    top: -2px;
+    width: 100%;
+    height: 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #314C83;
+    color: white;
+    text-align: center;
+    padding-left: 20px;
+    box-sizing: border-box;
+    font-size: small;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.terms-close {
+    float: right;
+    width: 20px;
+    height: 100%;
+}
+
+.terms-close:hover {
+    cursor: pointer;
+}
+
+.service-terms-bottom,
+.privacy-terms-bottom {
+    font-size: smaller;
+    padding: 10% 20%;
+    overflow: auto;
+    height: calc(100% - 30px);
+    box-sizing: border-box;
+}
+
+.service-terms-bottom>pre,
+.privacy-terms-bottom>pre {
+    white-space: pre-wrap;
+}
+
+/* validation box(유효성 검사) 부분  */
+#id_validation,
+#pw1_validation,
+#pw2_validation,
+#name_validation,
+#email_validation,
+#phone_validation {
+    display: none;
+    font-size: 11px;
+    color: red;
+    margin: 0;
+    margin-bottom: 10px;
+}

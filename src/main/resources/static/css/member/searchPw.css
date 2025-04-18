@@ -1,0 +1,54 @@
+section {
+    width: 480px;
+    height: 320px;
+}
+
+.title {
+    width: 120px;
+    margin: 0 auto;
+    padding-top: 30px;
+    font-weight: bold;
+    font-size: medium;
+
+}
+
+.form-container {
+    width: 250px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+input {
+    margin-top: 5px;
+    display: block;
+    width: 250px;
+    height: 35px;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+}
+
+input:not([type=submit]):focus {
+    border: 1px solid #314C83;
+}
+
+input[type=submit] {
+    border: none;
+    background-color: lightgray;
+    color: white;
+    font-weight: bold;
+
+}
+input[type=submit]:hover{
+    cursor:not-allowed;
+}
+
+#pw1_validation,
+#pw2_validation {
+    display: none;
+    font-size: 11px;
+    color: red;
+    margin: 0;
+    margin-bottom: 10px;
+}

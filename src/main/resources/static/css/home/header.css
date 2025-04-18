@@ -1,0 +1,266 @@
+@font-face {
+    font-family: 'Arita-dotum-Medium';
+    src:
+            url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    font-family: 'Arita-dotum-Medium';
+}
+.dh-header-container {
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    z-index: 100;
+    font-family: "Arita-dotum-Medium";
+}
+
+header.dh-header {
+    width: 1200px;
+    height: 175px;
+    margin: 0 auto;
+
+}
+
+.dh-header .header-top {
+    width: 100%;
+    height: 65%;
+}
+
+.dh-header .header-top-left {
+    float: left;
+    width: 15%;
+}
+
+.dh-header .header-top-left img {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.dh-header .header-top-center {
+    float: left;
+    width: 60%;
+    text-align: center;
+}
+
+.dh-header .header-top-center>.header-search {
+    margin-top: 50px;
+    text-align: right;
+}
+
+.dh-header .header-top-center>.header-search input {
+    transition: 0.3s;
+    border: 1px solid lightgray;
+    height: 40px;
+    width: 200px;
+    border-radius: 4px;
+}
+.dh-header .header-top-center>.header-search input:focus {
+    width: 310px;
+}
+.dh-header .header-top-center>.header-search button{
+    height: 40px;
+    width: 50px;
+    background-color: #314c83;
+    color: white;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+.dh-header .header-top-right {
+    float: right;
+    width: fit-content;
+    height: 100%;
+    text-align: center;
+}
+
+.dh-header .header-top-right>.header-menu {
+    margin-top: 50px;
+}
+
+.dh-header .header-bottom {
+    width: 100%;
+    height: 35%;
+}
+
+.dh-header .header-bottom>.nav {
+    width: 100%;
+    height: 100%;
+}
+
+.dh-header .header-bottom>.nav>ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+}
+
+.dh-header .header-bottom>.nav>ul>li {
+    float: left;
+}
+
+
+.dh-header .header-bottom>.nav>ul>li>a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    padding: 16px 35px;
+}
+
+.dh-header .header-bottom>.nav>ul>li>a:hover,
+.dh-header .header-bottom>.nav>ul>li:hover>a {
+    border-bottom: 4px solid #314C83;
+    color: black;
+}
+
+.dh-header .header-bottom>.nav>ul ul {
+    display: none;
+    position: absolute;
+    border: 1px solid lightgray;
+    border-top-color: gray;
+    box-shadow: 1px 1px 6px 0px lightgray;
+    background-color: white;
+    list-style: none;
+    padding: 0;
+}
+
+.dh-header .header-bottom>.nav>ul ul>li {}
+
+.dh-header .header-bottom>.nav>ul ul>li>a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+    padding: 0 35px;
+    margin-top: 20px;
+}
+
+.dh-header .header-bottom>.nav>ul ul>li>a:last-child {
+    margin-bottom: 20px;
+}
+
+.dh-header .header-bottom>.nav>ul ul>li>a:hover {
+    text-decoration: underline;
+}
+
+.dh-header .header-bottom>.nav>ul>li:hover ul {
+    display: block;
+}
+
+.header-menu {
+    margin-left: 50px;
+    line-height: 40px;
+}
+
+.header-menu span {
+    font-size: 15px;
+}
+
+.header-menu span:hover {
+    cursor: pointer;
+}
+
+.btn-deepblue {
+    outline: none;
+    background-color: #314C83;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+#join-btn {
+    display: inline-block;
+    width: 110px;
+    height: 35px;
+    line-height: 35px;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+#join-btn:hover {
+    color: lightgray;
+    background-color: #15377c;
+}
+
+#c-center {
+    display: block;
+    float: left;
+}
+
+.ul-user {
+    float: left;
+    position: relative;
+    display: block;
+    padding: 0;
+    margin: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    list-style: none;
+}
+
+#login {
+    display: block;
+    float: left;
+    margin-left: 10px;
+}
+
+.ul-user:hover ul {
+    display: block;
+}
+
+.ul-user ul {
+    display: none;
+    position: absolute;
+    width: 120px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-shadow: 1px 1px 6px 0px lightgray;
+    background-color: white;
+    list-style: none;
+    padding: 0;
+    margin-right: 0;
+    left: -40px;
+}
+
+.ul-user li a {
+    display: block;
+    text-decoration: none;
+    color: #282828;
+    font-size: medium;
+    padding: 10px 10px;
+}
+
+.ul-user>li a:hover {
+    background-color: whitesmoke;
+}
+
+#user_name {
+    font-size: 15px;
+}
+
+.chat-remocon {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    box-shadow: 1px 1px 7px 0px gray;
+    border-radius: 5px;
+}
+
+.chat-remocon>a {
+    text-align: center;
+    line-height: 46px;
+    text-decoration: none;
+    color: white;
+    background-color: #FF8F3F;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    width: 130px;
+    height: 45px;
+    border-radius: 5px;
+
+}
