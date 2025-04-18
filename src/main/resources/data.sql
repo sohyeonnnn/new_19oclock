@@ -1,10 +1,10 @@
 -- 사용자 데이터 삽입
 INSERT INTO MEMBER (ENROLL_DATE, M_EMAIL, M_GRADE, M_ID, M_NAME, M_PHONE, M_PW)
-SELECT '20250411', 'admin@gmail.com', 'ADMIN', 'admin', '관리자', '01027388240', '1234'
+SELECT '20250411', 'admin@gmail.com', 'ADMIN', 'admin', '관리자', '010-2738-8240', '1234'
     WHERE NOT EXISTS (SELECT 1 FROM MEMBER WHERE M_ID = 'admin');
 
 INSERT INTO MEMBER (ENROLL_DATE, M_EMAIL, M_GRADE, M_ID, M_NAME, M_PHONE, M_PW)
-SELECT '20250411', 'shlim@gmail.com', 'USER', 'shlim', '임소현', '01027388240', '1234'
+SELECT '20250411', 'shlim@gmail.com', 'USER', 'shlim', '임소현', '010-2738-8240', '1234'
     WHERE NOT EXISTS (SELECT 1 FROM MEMBER WHERE M_ID = 'shlim');
 
 -- 카테고리 데이터 삽입

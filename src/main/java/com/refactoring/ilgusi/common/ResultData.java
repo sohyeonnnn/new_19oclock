@@ -34,6 +34,10 @@ public class ResultData<T> {
                 .build();
     }
 
+    public static ResultData<Void> voidSuccess(String message) {
+        return ResultData.success(null, message);
+    }
+
     @JsonProperty("result")
     public String getResult() {
         return String.valueOf(isSuccess);
