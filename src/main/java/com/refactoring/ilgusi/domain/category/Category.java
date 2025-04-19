@@ -11,9 +11,22 @@ import javax.persistence.*;
 @Entity
 public class Category {
 	@Id
+	@Column(name = "C_NO")
 	private Integer cNo;
-	@Column
+	@Column(name = "C_NAME")
 	private String cName;
-	@Column
+	@Column(name = "C_DIVISION_NO")
 	private Integer cDivisionNo;
+	@Column(name = "IMG_URL")
+	private String imgUrl;
+
+	@Override
+	public String toString() {
+		return "Category{" +
+				"cNo=" + cNo +
+				", cName='" + cName + '\'' +
+				", cDivisionNo=" + cDivisionNo +
+				", imgUrl='" + imgUrl + '\'' +
+				'}';
+	}
 }

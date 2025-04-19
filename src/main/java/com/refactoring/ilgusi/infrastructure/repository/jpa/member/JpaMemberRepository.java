@@ -1,14 +1,14 @@
 package com.refactoring.ilgusi.infrastructure.repository.jpa.member;
 
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.member.MemberRepository;
+import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 
 import java.util.Optional;
 
 // 🔸 공통 인터페이스를 구현하고 내부에서 Spring Data JPA를 사용
 
 //@Repository
-public class JpaMemberRepository  implements MemberRepository {
+public class JpaMemberRepository implements MemberRepository {
 
     private final SpringDataMemberRepository jpaRepository;
 

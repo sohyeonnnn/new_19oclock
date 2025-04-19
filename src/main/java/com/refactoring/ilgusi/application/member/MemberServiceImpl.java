@@ -5,9 +5,9 @@ import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.EmailService;
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.member.MemberRepository;
+import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 
-import com.refactoring.ilgusi.domain.member.MemberService;
+import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
 import com.refactoring.ilgusi.domain.service.ServiceTradeRepository;
 import com.refactoring.ilgusi.exception.CustomException;

@@ -1,10 +1,10 @@
 package com.refactoring.ilgusi.config;
 
-import com.refactoring.ilgusi.domain.category.CategoryRepository;
+import com.refactoring.ilgusi.domain.category.interfaces.CategoryRepository;
 import com.refactoring.ilgusi.domain.chat.ChatRepository;
 import com.refactoring.ilgusi.domain.favorite.FavoriteRepository;
-import com.refactoring.ilgusi.domain.member.AdminRepository;
-import com.refactoring.ilgusi.domain.member.MemberRepository;
+import com.refactoring.ilgusi.domain.member.interfaces.AdminRepository;
+import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 import com.refactoring.ilgusi.domain.notice.NoticeRepository;
 import com.refactoring.ilgusi.domain.question.QuestionRepository;
 import com.refactoring.ilgusi.domain.request.RequestRepository;

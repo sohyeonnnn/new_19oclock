@@ -1,6 +1,6 @@
-package com.refactoring.ilgusi.domain.member;
+package com.refactoring.ilgusi.domain.member.interfaces;
 
-import java.util.Optional;
+import com.refactoring.ilgusi.domain.member.Member;
 
 public interface MemberService {
     int selectBuyingCount(int mNo);

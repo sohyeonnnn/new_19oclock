@@ -1,5 +1,6 @@
-package com.refactoring.ilgusi.domain.member;
+package com.refactoring.ilgusi.domain.member.interfaces;
 
+import com.refactoring.ilgusi.domain.member.Member;
 
 import java.util.Optional;
 

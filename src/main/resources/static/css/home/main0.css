@@ -1,0 +1,305 @@
+
+.main-section {
+    width: 1200px;
+    margin: 0 auto;
+    font-family: "Arita-dotum-Medium";
+}
+
+.famous-category-slider {
+    width: 100%;
+    margin: 60px 0;
+}
+
+.famous-category-list {
+    width: 100%;
+    height: 100%;
+}
+
+.category-item {
+    position: relative;
+    outline: none;
+    border-radius: 4px;
+}
+
+.category-item img {
+    width: 230px;
+    border-radius: 4px;
+}
+
+/* 아이템 효과 */
+.category-title-background {
+    transition: 0.3s;
+    position: absolute;
+    width: 230px;
+    height: 50%;
+    top: 50%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+}
+
+.cate-hover {
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0));
+    top: 0%;
+}
+
+.category-title-background:hover,
+.category-item:hover>a>.category-title-background {
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0));
+    top: 0%;
+}
+
+.category-title-background:hover~.category-title,
+.category-item>a:hover~.category-title,
+.category-title:hover {
+    transition: 0.3s;
+    color: #FF8F3F;
+}
+
+.category-title {
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    color: white;
+    font-size: 15px;
+
+}
+
+.category-title:hover {
+    cursor: pointer;
+}
+
+.slider-top {
+    height: 27px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.slider-title {
+    height: 100%;
+    width: 90%;
+    float: left;
+    font-size: 17px;
+}
+
+.slider-title>span {
+    font-weight: bold;
+}
+
+.arrowSlider {
+    width: 5%;
+    float: right;
+    margin-right: 5px;
+}
+
+.prev,
+.next {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 1px;
+    transition: 0.3s;
+    color: rgba(0, 0, 0, 0.555);
+    font-weight: bold;
+}
+
+.prev:hover,
+.next:hover {
+    cursor: pointer;
+    background-color: #FF8F3F;
+    border-color: transparent;
+}
+
+/* 랭킹관련 css */
+
+.rank-description {
+    margin-bottom: 20px;
+}
+
+.rank-description>div:first-child {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.rank-container {
+    height: 500px;
+    width: 100%;
+    margin-top: 100px;
+}
+.rank-content {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.rank-list {
+    transition: 0.3s;
+    float: left;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.rank-list:not(:nth-child(1)) {
+    margin-left: 20px;
+}
+.rank-list:hover{
+    border: 1px solid #ff8f3f73;
+}
+.rank-top-background {
+    background-color: #62A6A9;
+    width: 380px;
+    height: 170px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.rank-category-title {
+    height: 35%;
+    width: fit-content;
+    margin: 0 auto;
+    font-size: large;
+    font-weight: bold;
+    line-height: 310%;
+    /* border: 1px solid; */
+}
+
+.rank-1th-container {
+    margin: 0 auto;
+    width: 85%;
+    height: 65%;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0px -3px 6px 0px rgba(0, 0, 0, 0.24);
+}
+
+.rank-1th-col1 {
+    font-size: x-large;
+    font-weight: bold;
+    width: 30%;
+    height: 100%;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.rank-1th-col2 {
+    height: 100%;
+    padding: 30px 0;
+}
+
+.sumPrice {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4D4D4D;
+}
+
+.free-id {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    text-align: center;
+    width: fit-content;
+    color: gray;
+    padding: 0 10px;
+}
+
+.free-id>a {
+    color: gray;
+    text-decoration: none;
+}
+
+.free-id>a:hover {
+    color: gray;
+}
+
+.rank-row {
+    margin: 0 auto;
+    height: 60px;
+    width: 350px;
+    line-height: 60px;
+    border-bottom: 1px solid lightgray;
+}
+.rank-row:last-child{
+    border: none;
+}
+
+.rank-col-1 {
+    width: 10%;
+    text-align: center;
+    font-size: medium;
+    color: gray;
+}
+
+.rank-col-2 {
+    width: 45%;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: #4D4D4D;
+}
+
+.rank-col-3 {
+    width: 45%;
+    text-align: right;
+    padding-right: 20px;
+    color: gray;
+}
+.rank-col-3>a{
+    color: gray;
+}
+.rank-col-3>a:hover{
+    color: gray;
+}
+.r-col {
+    float: left;
+}
+
+/* 배너 부분 css */
+.banner-container{
+    margin: 40px 0;
+    margin-bottom: 80px;
+    position: relative;
+    height: fit-content;
+}
+.bannerArrow{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+.banner-slider {
+    width: 100%;
+}
+.banner-prev,
+.banner-next {
+    display: inline-block;
+    width: 100px;
+    height: 100%;
+    line-height: 540px;
+    text-align: center;
+    /* border: 1px solid lightgray; */
+    border-radius: 1px;
+    transition: 0.3s;
+    color: #314C83;
+    font-weight: bold;
+    font-size: x-large;
+}
+.banner-prev{
+    float: left;
+}
+.banner-next{
+    float: right;
+}
+
+.banner-prev:hover,
+.banner-next:hover {
+    cursor: pointer;
+}
+.banner-prev:hover{
+    background:linear-gradient(to left,transparent,rgba(0, 0, 0, 0.125));
+}
+.banner-next:hover{
+    background:linear-gradient(to right,transparent,rgba(0, 0, 0, 0.125));
+}

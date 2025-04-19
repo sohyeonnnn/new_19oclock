@@ -4,7 +4,7 @@ import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.member.MemberService;
+import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
 import com.refactoring.ilgusi.domain.member.dto.MemberJoinDto;
 import com.refactoring.ilgusi.domain.member.dto.MemberSearchIdPwDto;
@@ -72,12 +72,13 @@ public class MemberController {
 
     // 로그아웃
     @PostMapping("/logout")
-    public String login(HttpServletRequest req, Model model) {
-        req.getSession().removeAttribute("loginMember");
+    public void logout(HttpServletRequest req, Model model) {
+        req.getSession().setAttribute("loginMember", null);
+/*
         String msg = CommonEnum.LOGOUT.getVal();
         String loc = CommonEnum.HOME_URL.getVal();
 
-        return MsgRedirectHelper.success(model,msg,loc);
+        return MsgRedirectHelper.success(model,msg,loc);*/
     }
 
     // 아이디 찾기

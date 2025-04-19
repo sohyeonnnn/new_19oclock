@@ -22,7 +22,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable() // CSRF 보호 해제
                 .authorizeRequests()
-                .anyRequest().permitAll(); // 모든 요청 허용 (로그인 없이 접근 가능)
+                .anyRequest().permitAll() // 모든 요청 허용 (로그인 없이 접근 가능)
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")  // 로그아웃 성공 후 이동할 경로
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
     }
+
+
 
 }
