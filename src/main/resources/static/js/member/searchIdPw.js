@@ -3,9 +3,9 @@ $(document).ready(function () {
         $("#mIdHidden").val($("#mId").val());
         let number = $("#mPhone2").val();
         $("#mPhoneHidden").val(number);
-        let left = Math.ceil((window.screen.width-400)/2);
-        let top = Math.ceil((window.screen.height-350)/2);
-        window.open('', 'popup', 'width=500px, height=350px, left='+left+', top='+top)
+        //let left = Math.ceil((window.screen.width-400)/2);
+        //let top = Math.ceil((window.screen.height-350)/2);
+        //window.open('', 'popup', 'width=500px, height=350px, left='+left+', top='+top)
         $("#pop-form").submit();
     });
     $("form").submit(function (e) {

@@ -66,7 +66,6 @@ $(document).ready(function () {
         // m_id             VARCHAR2(20)
         let regExp = /^\w{3,20}$/;
         if (regExp.exec($(this).val())) {
-            console.log("조건 통과함: " + $(this).val())
             $("#id_validation").hide();
             $(this).removeAttr("style");
             idAllowed = true;
@@ -85,7 +84,6 @@ $(document).ready(function () {
     $("#pw").on("keyup", (function (e) {
         let regExp = /^[a-zA-z0-9_!@#$%^]{4,}$/;
         if (regExp.exec($(this).val())) {
-            console.log("비번조건 통과함: " + $(this).val())
             $("#pw1_validation").hide();
             $(this).removeAttr("style");
             pwAllowed = true;
@@ -105,18 +103,14 @@ $(document).ready(function () {
         if ($("#id").val() == '' || $("#pw").val() == '') {
             $("#btnLogin").prop("disabled", true);
             $("#btnLogin").removeAttr("style");
-            console.log("if");
         } else if (idAllowed == false || pwAllowed == false) {
             $("#btnLogin").prop("disabled", true);
             $("#btnLogin").removeAttr("style");
-            console.log("elseif");
         } else {
             $("#btnLogin").prop("disabled", false);
             $("#btnLogin").css("background-color", "#314C83");
             $("#btnLogin").css("color", "white");
             $("#btnLogin").css("cursor", "pointer");
-
-            console.log("else");
         }
 
     }

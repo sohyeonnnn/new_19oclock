@@ -17,6 +17,7 @@ public enum CommonEnum {
     ID("ID"),
     PW("비밀번호"),
     UPDATE_SUCCESS("변경 성공"),
+    CHANGE_PW_SUBJECT("[19시] 비밀번호 리셋"),
 
     ALREADY_USED_ID("이미 사용중인 아이디입니다."),
     NOT_VALID_ID("일치하는 id가 없습니다."),

@@ -5,11 +5,23 @@ import org.springframework.stereotype.Component;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.SecureRandom;
 
 @Component
 @RequiredArgsConstructor
 public class CommonUtil {
 
+	private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	private static final SecureRandom random = new SecureRandom();
+
+	public static String generateTempPassword(int length) {
+		StringBuilder sb = new StringBuilder(length);
+		for (int i = 0; i < length; i++) {
+			int idx = random.nextInt(CHARACTERS.length());
+			sb.append(CHARACTERS.charAt(idx));
+		}
+		return sb.toString();
+	}
 
 	public static <T> boolean isNull (T param){
 		if(param == null){

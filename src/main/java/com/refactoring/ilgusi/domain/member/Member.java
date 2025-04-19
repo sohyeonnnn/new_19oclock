@@ -1,15 +1,14 @@
 package com.refactoring.ilgusi.domain.member;
 
 import com.refactoring.ilgusi.common.BaseEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @Entity
 public class Member extends BaseEntity {
@@ -45,9 +44,36 @@ public class Member extends BaseEntity {
 	private Integer buyingCount;
 	@Column
 	private Integer sellingCount;
+
 	// 줄바꿈
 	public String getIntroduceBr() {
 		return introduce.replaceAll("\r\n", "<br>");
+	}
+
+	@Builder
+	public Member(String mId, String mPw, String mName, String mEmail, String mPhone, RoleEnum mGrade) {
+		this.mId = mId;
+		this.mPw = mPw;
+		this.mName = mName;
+		this.mEmail = mEmail;
+		this.mPhone = mPhone;
+		this.mGrade = mGrade;
+	}
+
+	public void changePw(String newPw){
+		mPw = newPw;
+	}
+
+	public void changeGrade(RoleEnum newGrade){
+		mGrade = newGrade;
+	}
+
+	public void changeBuyingCount(int newBuyingCount){
+		buyingCount = newBuyingCount;
+	}
+
+	public void changeSellingCount(int newSellingCount){
+		sellingCount = newSellingCount;
 	}
 
 	@Override

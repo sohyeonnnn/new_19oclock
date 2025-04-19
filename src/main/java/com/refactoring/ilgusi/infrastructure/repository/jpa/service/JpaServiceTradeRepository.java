@@ -1,10 +1,8 @@
 package com.refactoring.ilgusi.infrastructure.repository.jpa.service;
 
-import com.refactoring.ilgusi.domain.service.Service;
-import com.refactoring.ilgusi.domain.service.ServiceTrade;
 import com.refactoring.ilgusi.domain.service.ServiceTradeRepository;
 
-import java.util.ArrayList;
+
 
 
 public class JpaServiceTradeRepository implements ServiceTradeRepository {
@@ -14,4 +12,13 @@ public class JpaServiceTradeRepository implements ServiceTradeRepository {
         this.jpaRepository = jpaRepository;
     }
 
+    @Override
+    public int selectBuyingCount(int mNo) {
+        return 0;
+    }
+
+    @Override
+    public int selectSellingCount(String mId) {
+        return 0;
+    }
 }

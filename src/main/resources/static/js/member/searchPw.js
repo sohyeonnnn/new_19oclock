@@ -13,7 +13,6 @@ $(document).ready(function () {
     $("#pw1").on("keyup", (function (e) {
         let regExp = /^[a-zA-z0-9_!@#$%^]{4,}$/;
         if (regExp.exec($(this).val())) {
-            console.log("비번조건 통과함: " + $(this).val())
             $("#pw1_validation").hide();
             $(this).removeAttr("style");
         } else {
@@ -29,7 +28,6 @@ $(document).ready(function () {
     //pw 재확인
     $("#pw2").on("keyup", (function (e) {
         if ($("#pw1").val() == $(this).val()) {
-            console.log("비번 확인조건 통과함: " + $(this).val())
             $("#pw2_validation").hide();
             $(this).removeAttr("style");
         } else {
@@ -46,19 +44,16 @@ $(document).ready(function () {
         if ($("#pw1").val() == '' || $("#pw2").val() == '') {
             $("input:submit").prop("disabled", true);
             $("input:submit").removeAttr("style");
-            console.log("if");
         } else if ($("#pw1_validation").css("display") == "block" ||
             $("#pw2_validation").css("display") == "block") {
             $("input:submit").prop("disabled", true);
             $("input:submit").removeAttr("style");
-            console.log("elseif");
         } else {
             $("input:submit").prop("disabled", false);
             $("input:submit").css("background-color", "#314C83");
             $("input:submit").css("color", "white");
             $("input:submit").css("cursor", "pointer");
 
-            console.log("else");
         }
 
     }

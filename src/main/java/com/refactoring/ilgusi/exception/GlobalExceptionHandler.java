@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
     // 그 외의 예외 발생 시
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e, Model model) {
-        model.addAttribute("msg", "알 수 없는 오류 발생");
+        model.addAttribute("msg", "알 수 없는 오류 발생 : "+e.getMessage());
         model.addAttribute("loc", "/");
         return "common/msg";
     }

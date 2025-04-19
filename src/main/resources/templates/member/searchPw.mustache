@@ -2,6 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="/css/member/searchPw.css">
     <script type="text/javascript" src="/js/member/searchPw.js"></script>
     <title>19시 :: pw찾기</title>
@@ -13,7 +17,7 @@
         비밀번호 변경
     </div>
     <div class="form-container">
-        <form action="/searchChangePw.do" method="post">
+        <form action="/searchChangePw" method="post">
             <input type="password" name="mPw" id="pw1" placeholder="비밀번호를 입력해주세요.">
             <div id="pw1_validation">* 비밀번호는 4글자 이상 입력해주세요.</div>
             <input type="password" id="pw2" placeholder="비밀번호 재확인.">
