@@ -1,6 +1,7 @@
 package com.refactoring.ilgusi.presentation.home;
 
 
+import com.refactoring.ilgusi.common.GlobalModelAttributeAdvice;
 import com.refactoring.ilgusi.domain.category.interfaces.CategoryService;
 import com.refactoring.ilgusi.domain.member.Member;
 import lombok.RequiredArgsConstructor;
@@ -24,13 +25,6 @@ public class HomeController {
         /*List<MainCategoryDto> categoryList = categoryService.selectCategoryList();
         model.addAttribute("categoryList", categoryList);*/
 
-        Optional.ofNullable((Member) httpsession.getAttribute("loginMember"))
-                .map(member -> {
-                    model.addAttribute("loginMember", member);
-                    model.addAttribute("isAdmin", member.isAdmin());
-                    return member;
-                })
-                .orElse(null);
 
         return "home";
     }

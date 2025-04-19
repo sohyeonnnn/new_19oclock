@@ -1,0 +1,113 @@
+.page-wrap {
+    width: 911px;
+    height:1200px;
+    margin: 0 auto;
+    margin-top: 45px;
+}
+
+.text-box {
+    height: 332px;
+    padding-left: 30px;
+    background-image: url(img/notice/notice.jpg);
+    background-size: 910px;
+    color: white;
+}
+
+.text-box>div:first-child {
+    height: 30px;
+    padding-top: 30px;
+}
+
+.text-box>div:last-child {
+    padding-top: 70px;
+    font-size: 30px;
+}
+
+
+.btn {
+    background-color: black;
+}
+
+.board-box {
+    height: 40px;
+    margin-top: 30px;
+
+
+}
+
+.btn-right {
+    float: right;
+    margin-bottom: 100px;
+
+}
+.btn-left{
+
+    float: left;
+}
+
+.table {
+    text-align: left;
+    text-indent: 20px;
+    border-bottom: 2px solid rgb(49, 76, 131);
+}
+
+.btn-custom {
+    width: 120px;
+    height: 35px;
+    color: white;
+    border-radius: 5px;
+    background-color: rgb(49, 76, 131);
+    border: 1px solid rgb(49, 76, 131);
+    font-weight: bold;
+}
+
+
+
+.btn-emp {
+    width: 120px;
+    height: 35px;
+    color: rgb(49, 76, 131);
+    border-radius: 5px;
+    background-color : transparent;
+    border: 2px solid rgb(49, 76, 131);
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    line-height: 35px;
+}
+
+
+.btn-file{
+    color: white;
+    border-radius: 5px;
+    background-color: rgb(49, 76, 131);
+    border: 1px solid rgb(49, 76, 131);
+    font-weight: bold;
+    font-size: 10pt;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.btn-custom:hover {
+    border: 2px solid rgb(49, 76, 131);
+    background-color: transparent;
+    color: rgb(49, 76, 131);
+    font-weight: bold;
+}
+
+.btn-emp:hover{
+    text-decoration: none;
+    color: white;
+    background-color: rgb(49, 76, 131);
+    border: 1px solid rgb(49, 76, 131);
+
+}
+
+
+.write-box{
+    border-top: 2px solid rgb(49, 76, 131);
+}
+
+.noticeContent{
+    height: 500px;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="favicon_io/favicon-16x16.png">
+
+    <link rel="stylesheet" href="/css/notice/noticeList.css">
+    <script type="text/javascript" src="/js/notice/noticeList.js"></script>
+<title>19시 :: 공지사항</title>
+
+</head>
+<body>
+	<div class="header">
+        {{>common/header}}
+	</div>
+	<div class="page-wrap">
+        <div class="text-box">
+            <div>홈 > 게시판 > 공지사항</div>
+            <div>공지사항</div>
+        </div> 
+        <br>
+        <br>
+
+        <div class="search-box">
+            <div class="search-container" style="margin: 0 auto;">
+                <input type="text" class="form-control word searchInput keyword" placeholder="검색어를 입력해주세요" name="word" style="width:377px;">
+                <input type="submit" class="btn btn-md btn-search" value="검색">
+            </div>
+        </div>
+
+        <div class="board-box">
+            <br>
+            <br>
+            <table class="table table-hover">
+                <tr style="background-color: rgba(224, 224, 224, 0.5);">
+                    <th style="width: 100px;">글번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th style="width: 200px;">작성일</th>
+                </tr>
+                {{#noticeList}}
+                	<tr>
+                		<td>{{NNo}} </td>
+                		<td><a href="/noticeView?nNo={{NNo}}" class = "table-title" style="display: block; height: 100%; width: 100%;">{{NTitle}} </a> </td>
+                		<td>일.구.시 </td>
+                		<td> {{writeDate}} </td>
+                	</tr>
+                {{/noticeList}}
+                <tr>
+                	<td colspan="4" class="pageNavi" style="text-align: center;"> {{pageNavi}} </td>
+                </tr>
+                
+            </table>
+            <div>
+            {{#loginMember}}
+                {{#isAdmin}}
+	            	<button class="btn-custom" onclick="location.href='/noticeWriteFrm'">글쓰기</button>
+                {{/isAdmin}}
+            {{/loginMember}}
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        {{>common/footer}}
+    </footer>
+ 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

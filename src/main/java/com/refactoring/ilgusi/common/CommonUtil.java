@@ -23,14 +23,6 @@ public class CommonUtil {
 		return sb.toString();
 	}
 
-	public static <T> boolean isNull (T param){
-		if(param == null){
-			return true;
-		}else {
-			return false;
-		}
-	}
-
 	//파일 중복체크
 	public static String fileRename(String dir, String filename) {
 		Path directory = Paths.get(dir);

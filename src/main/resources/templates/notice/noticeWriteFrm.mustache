@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="favicon_io/favicon-16x16.png">
+
+
+    <script type="text/javascript" src="/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <link rel="stylesheet" href="/css/notice/noticeWriteFrm.css">
+    <script type="text/javascript" src="/js/notice/noticeWriteFrm.js"></script>
+
+    <title>19시 :: 공지사항등록</title>
+</head>
+<body>
+<div class="header">
+    {{>common/header}}
+	</div>
+	 <div class="page-wrap">
+        <div class="text-box">
+            <div>홈 > 게시판 > 공지사항 > 글쓰기</div>
+            <div>공지사항</div>
+        </div>
+         <div class="board-box">
+        <form id="reqForm" action="/insertNotice.do" method="post" enctype="multipart/form-data">
+            <table class="table title-box">
+                <tr>
+                    <th style="width: 10%;border-top: 2px solid rgb(49, 76, 131);text-align: center;line-height: 31px;">제목</th>
+                    <th style="width: 75%;border-top: 2px solid rgb(49, 76, 131);">
+                        <input type="text" name="nTitle" id="title" placeholder="제목을 입력해주세요.">
+                    </th>
+                    <th style="width: 15%;border-top: 2px solid rgb(49, 76, 131);text-align: center;"></th>
+                </tr>
+                <tr>
+                    <th style="border-top: 0px;text-align: center;">첨부파일</th>
+                    <th style="border-top: 0px">
+                    	<input type="file" name="filename" value="찾기" multiple>
+                    </th>
+                    <th style="border-top: 0px"></th>
+                </tr>
+            </table>
+            <div>
+				<table style="width:100%;height:500px;">
+			        <tr>
+			            <td>
+			                <textarea id="smartEditor" name="nContent" style=" height:500px; "></textarea>
+			            </td>
+			        </tr>
+				</table>
+            </div>
+         
+            <div>
+            	<button class="back-btn save" id="savebutton">작성완료</button>
+            	<a href="/noticeList.do?reqPage=1&keyword=" class="Listbtn">목록으로</a>
+            </div>
+            </form>
+        </div>
+         <br><br><br>
+
+         {{>common/footer}}
+        
+	</div>
+</body>
+</html>
