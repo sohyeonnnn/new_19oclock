@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NoticeResponseDto {
+public class NoticePageResponseDto {
 	private List<Notice> noticeList;
 	private int reqPage;
 	private int totalCount;

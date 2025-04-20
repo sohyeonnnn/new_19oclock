@@ -1,15 +1,17 @@
 package com.refactoring.ilgusi.domain.notice;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.refactoring.ilgusi.common.BaseEntity;
+import lombok.*;
+
 import javax.persistence.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
-public class Notice {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Notice extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer nNo;
@@ -21,9 +23,7 @@ public class Notice {
 	private String filename;
 	@Column
 	private String filepath;
-	@Column
-	private String writeDate;
-	
+
 	//줄바꿈
 	public String getNContentBr() {
 		return nContent.replaceAll("\r\n", "<br>");

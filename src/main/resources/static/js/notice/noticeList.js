@@ -41,7 +41,7 @@ function generateTable(noticeList) {
             <td>${notice.nno}</td>
             <td><a href="/noticeView?nNo=${notice.nno}" class="table-title" style="display: block; height: 100%; width: 100%;">${notice.ntitle}</a></td>
             <td>일.구.시</td>
-            <td>${notice.writeDate}</td>
+            <td>${notice.createdDate}</td>
         `;
         tableBody.appendChild(row);
     });

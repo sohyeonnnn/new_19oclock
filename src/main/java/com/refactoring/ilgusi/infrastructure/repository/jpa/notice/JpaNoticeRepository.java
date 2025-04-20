@@ -25,6 +25,8 @@ public class JpaNoticeRepository implements NoticeRepository {
 
     @Override
     public void insertNotice(Notice n) {
+        System.out.println("repository");
+        System.out.println(jpaRepository.save(n).toString());
         jpaRepository.save(n);
     }
 

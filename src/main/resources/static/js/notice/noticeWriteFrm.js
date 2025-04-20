@@ -1,42 +1,51 @@
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-    oAppRef : oEditors, elPlaceHolder : "smartEditor",
-    sSkinURI : "SE2/SmartEditor2Skin.html",
-    fCreator : "createSEditor2",
-    htParams : {
-        bUseToolbar : true,
-        bUseVerticalResizer : false,
-        bUseModeChanger : false
-    }
-});
+$(document).ready(function () {
+    // SmartEditor2 초기화
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "smartEditor",
+        sSkinURI: "/SE2/SmartEditor2Skin.html",
+        fCreator: "createSEditor2",
+        htParams: {
+            bUseToolbar: true,
+            bUseVerticalResizer: false,
+            bUseModeChanger: false
+        }
+    });
 
-$(function() {
-    $("#savebutton").click(function() {
+    // 작성완료 버튼 클릭 시
+    $("#savebutton").click(function (e) {
+        console.log("@@@@@@@@@@@@");
+      /*  e.preventDefault();
+
+        // 에디터 내용 textarea에 반영
         oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
 
-        var title = $("#title").val();
-        var content = document.getElementById("smartEditor").value;
-        if (title == null || title == "") {
+        const title = $("#title").val().trim();
+        const content = $("#smartEditor").val().trim();
+
+        if (title === "") {
             alert("제목을 입력해주세요.");
             $("#title").focus();
             return;
         }
-        if(content == "" || content == null || content == '&nbsp;' || content == '<br>' || content == '<br/>' || content == '<p>&nbsp;</p>'){
-            alert("본문을 작성해주세요.");
+
+        if (
+            content === "" ||
+            content === "&nbsp;" ||
+            content === "<br>" ||
+            content === "<p>&nbsp;</p>" ||
+            content === "<p><br></p>"
+        ) {
+            alert("본문을 입력해주세요.");
             oEditors.getById["smartEditor"].exec("FOCUS");
             return;
         }
 
-        var result = confirm("등록 하시겠습니까?");
-        if(result){
+        if (confirm("공지사항을 등록하시겠습니까?")) {
             $("#reqForm").submit();
-        }
-        else{
-            return;
-        }
+        }*/
     });
-})
-
+});
 
 /*     $(".save").click(function () {
         oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FILED",[]);
