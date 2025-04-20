@@ -10,6 +10,11 @@
     <link rel="icon" type="image/png" sizes="16x16"
           href="favicon_io/favicon-16x16.png">
 
+    <!-- jQuery  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
     <link rel="stylesheet" href="/css/notice/noticeList.css">
     <script type="text/javascript" src="/js/notice/noticeList.js"></script>
 <title>19시 :: 공지사항</title>
@@ -19,6 +24,7 @@
 	<div class="header">
         {{>common/header}}
 	</div>
+
 	<div class="page-wrap">
         <div class="text-box">
             <div>홈 > 게시판 > 공지사항</div>
@@ -37,6 +43,7 @@
         <div class="board-box">
             <br>
             <br>
+
             <table class="table table-hover">
                 <tr style="background-color: rgba(224, 224, 224, 0.5);">
                     <th style="width: 100px;">글번호</th>
@@ -44,19 +51,18 @@
                     <th>작성자</th>
                     <th style="width: 200px;">작성일</th>
                 </tr>
-                {{#noticeList}}
-                	<tr>
-                		<td>{{NNo}} </td>
-                		<td><a href="/noticeView?nNo={{NNo}}" class = "table-title" style="display: block; height: 100%; width: 100%;">{{NTitle}} </a> </td>
-                		<td>일.구.시 </td>
-                		<td> {{writeDate}} </td>
-                	</tr>
-                {{/noticeList}}
+
+                <tbody id="noticeTableBody">
+                <!-- JS에서 동적으로 렌더링될 자리 -->
+                </tbody>
+
                 <tr>
-                	<td colspan="4" class="pageNavi" style="text-align: center;"> {{pageNavi}} </td>
+                	<td colspan="4" class="pageNavi" style="text-align: center;">
+                    </td>
                 </tr>
-                
+
             </table>
+
             <div>
             {{#loginMember}}
                 {{#isAdmin}}
@@ -67,8 +73,10 @@
             <div>
             </div>
         </div>
+
+
     </div>
-    
+
     <footer>
         {{>common/footer}}
     </footer>

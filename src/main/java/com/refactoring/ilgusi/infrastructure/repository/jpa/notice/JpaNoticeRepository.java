@@ -3,7 +3,7 @@ package com.refactoring.ilgusi.infrastructure.repository.jpa.notice;
 import com.refactoring.ilgusi.domain.notice.Notice;
 import com.refactoring.ilgusi.domain.notice.NoticeRepository;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class JpaNoticeRepository implements NoticeRepository {
@@ -13,34 +13,33 @@ public class JpaNoticeRepository implements NoticeRepository {
         this.jpaRepository = jpaRepository;
     }
 
-
     @Override
-    public ArrayList<Notice> selectNoticeList(int start, int end, String keyword) {
-        return null;
+    public List<Notice> selectNoticeList(int offset, int limit, String keyword) {
+        return jpaRepository.findByKeywordWithRange(offset, limit, keyword);
     }
 
     @Override
     public Optional<Notice> selectNoticeView(int nNo) {
-        return Optional.empty();
+        return jpaRepository.findById(nNo);
     }
 
     @Override
     public void insertNotice(Notice n) {
-
+        jpaRepository.save(n);
     }
 
     @Override
     public void deleteNotice(int nNo) {
-
+        jpaRepository.deleteById(nNo);
     }
 
     @Override
     public void updateNotice(Notice n) {
-
+        jpaRepository.save(n);
     }
 
     @Override
-    public int totalCount() {
-        return 0;
+    public int totalCount(String keyword) {
+        return (int) jpaRepository.countByKeyword(keyword);
     }
 }
