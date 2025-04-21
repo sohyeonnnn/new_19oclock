@@ -29,40 +29,40 @@
             <div>공지사항_수정</div>
         </div>
          <div class="board-box">
-        <form id="reqForm" action="/updateNotice.do?nNo=${n.NNo }" method="post" enctype="multipart/form-data">
-            <table class="table title-box">
-                <tr>
-                    <th style="width: 10%;border-top: 2px solid rgb(49, 76, 131);text-align: center;line-height: 31px;">제목</th>
-                    <th style="width: 75%;border-top: 2px solid rgb(49, 76, 131);">
-                    	<%-- <input type="hidden" name="nNo" value="${n.NNo }"> --%>
-                        <input type="text" name="nTitle" id="title" value="${n.NTitle }">
-                    </th>
-                    <th style="width: 15%;border-top: 2px solid rgb(49, 76, 131);text-align: center;"></th>
-                </tr>
-                <tr>
-                    <th style="border-top: 0px;text-align: center;">첨부파일</th>
-                    <th style="border-top: 0px">
-                    	<input type="file" name="filename" value="찾기" multiple> 
-                    </th>
-                    <th style="border-top: 0px"></th>
-                </tr>
-            </table>
-            <div>
-				<table style="width:100%;height:500px;">
-			        <tr>
-			            <td>
-			                <textarea id="smartEditor" name="nContent" style=" height:500px; ">
-			                	 ${n.NContent }
-			                </textarea>
-			            </td>
-			        </tr>
-				</table>
-            </div>
-         
-            <div>
-            	<button class="back-btn save" id="savebutton">수정완료</button>
-            	<a href="/noticeList.do?reqPage=1&keyword=" class="Listbtn">수정취소</a>
-            </div>
+            <form id="reqForm" action="/updateNotice?nNo={{n.NNo}}" method="post" enctype="multipart/form-data">
+                <table class="table title-box">
+                    <tr>
+                        <th style="width: 10%;border-top: 2px solid rgb(49, 76, 131);text-align: center;line-height: 31px;">제목</th>
+                        <th style="width: 75%;border-top: 2px solid rgb(49, 76, 131);">
+                            <input type="hidden" name="nNo" value="{{n.NNo}}">
+                            <input type="text" name="nTitle" id="title" value="{{n.NTitle}}">
+                        </th>
+                        <th style="width: 15%;border-top: 2px solid rgb(49, 76, 131);text-align: center;"></th>
+                    </tr>
+                    <tr>
+                        <th style="border-top: 0px;text-align: center;">첨부파일</th>
+                        <th style="border-top: 0px">
+                            <input type="file" name="filename" value="찾기" multiple>
+                        </th>
+                        <th style="border-top: 0px"></th>
+                    </tr>
+                </table>
+                <div>
+                    <table style="width:100%;height:500px;">
+                        <tr>
+                            <td>
+                                <textarea id="smartEditor" name="nContent" style=" height:500px; ">
+                                     {{n.NContent}}
+                                </textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <button class="back-btn save" id="savebutton">수정완료</button>
+                    <button class="back-btn save" id="Listbtn">수정취소</button>
+                </div>
             </form>
         </div>
          <br><br><br>

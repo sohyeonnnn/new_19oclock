@@ -2,6 +2,7 @@ package com.refactoring.ilgusi.infrastructure.repository.jpa.notice;
 
 import com.refactoring.ilgusi.domain.notice.Notice;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -18,5 +19,17 @@ public interface SpringDataNoticeRepository extends JpaRepository<Notice, Intege
     @Query("SELECT COUNT(n) FROM Notice n WHERE n.nTitle LIKE %:keyword%")
     int countByKeyword(@Param("keyword") String keyword);
 
+    void deleteBynNo(int nNo);
+
+
+    @Modifying
+    @Query("UPDATE Notice n SET n.nTitle = :nTitle, n.nContent = :nContent, n.filename = :filename, n.filepath = :filepath WHERE n.nNo = :nNo")
+    void updateNotice(
+            @Param("nNo") int nNo,
+            @Param("nTitle") String nTitle,
+            @Param("nContent") String nContent,
+            @Param("filename") String filename,
+            @Param("filepath") String filepath
+    );
 
 }

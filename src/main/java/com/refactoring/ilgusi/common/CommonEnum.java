@@ -19,12 +19,15 @@ public enum CommonEnum {
     UPDATE_SUCCESS("변경 성공"),
     CHANGE_PW_SUBJECT("[19시] 비밀번호 리셋"),
     NOTICE_INSERT("공지사항 등록"),
+    NOTICE_DELETE("공지사항 삭제"),
+    NOTICE_UPDATE("공지사항 수정"),
 
     ALREADY_USED_ID("이미 사용중인 아이디입니다."),
     NOT_VALID_ID("일치하는 id가 없습니다."),
     NOT_VALID_USER("일치하는 회원 정보가 없습니다."),
     LOGIN_FAIL("아이디 또는 비밀번호가 잘못되었습니다."),
     JOIN_FAIL("아이디가 중복되었거나 필수값이 누락되었습니다."),
+    NOT_VALID_NOTICE("해당 글이 존재하지 않습니다."),
 
 
     ID_IS("ID : "),

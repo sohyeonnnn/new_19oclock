@@ -1,14 +1,18 @@
 package com.refactoring.ilgusi.application.notice;
 
+import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.domain.notice.Notice;
 import com.refactoring.ilgusi.domain.notice.NoticeRepository;
 import com.refactoring.ilgusi.domain.notice.NoticeService;
 import com.refactoring.ilgusi.domain.notice.dto.NoticePageResponseDto;
+import com.refactoring.ilgusi.domain.notice.dto.NoticeViewDto;
+import com.refactoring.ilgusi.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @RequiredArgsConstructor
@@ -76,13 +80,21 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public void insertNotice(Notice n) {
-        System.out.println("service!!!");
         noticeRepository.insertNotice(n);
     }
 
     @Override
-    public Notice selectNoticeView(int nNo) {
-        return noticeRepository.selectNoticeView(nNo).get();
+    public NoticeViewDto selectNoticeView(int nNo) {
+        return noticeRepository.selectNoticeView(nNo)
+                .map(notice -> NoticeViewDto.builder()
+                        .nNo(notice.getNNo())
+                        .nTitle(notice.getNTitle())
+                        .nContent(notice.getNContent())
+                        .filename(notice.getFilename())
+                        .filepath(notice.getFilepath())
+                        .writeDate(notice.getWriteDate())
+                        .build())
+                .orElseThrow((() -> new CustomException(CommonEnum.NOT_VALID_NOTICE.getVal(),"/",true)));
     }
 
     @Override

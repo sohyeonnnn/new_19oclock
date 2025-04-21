@@ -18,6 +18,7 @@ public class Notice extends BaseEntity {
 	private Integer nNo;
 	@Column(nullable=false)
 	private String nTitle;
+	@Lob
 	@Column(nullable=false)
 	private String nContent;
 	@Column
