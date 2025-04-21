@@ -156,17 +156,6 @@ public class NoticeController {
             filepath = uploadResult[1];
         }
 
-        System.out.println("------------------------------------------------");
-        System.out.println(NoticeInsertDto.builder()
-                .nNo(notice.getNNo())
-                .nTitle(notice.getNTitle())
-                .nContent(notice.getNContent())
-                .filename(filename)
-                .filepath(filepath)
-                .build()
-                .toEntity().toString());
-        System.out.println("------------------------------------------------");
-
         noticeService.updateNotice(NoticeInsertDto.builder()
                 .nNo(notice.getNNo())
                 .nTitle(notice.getNTitle())
@@ -175,7 +164,6 @@ public class NoticeController {
                 .filepath(filepath)
                 .build()
                 .toEntity());
-
 
         String msg = CommonEnum.NOTICE_UPDATE.getVal();
         String loc = "/noticeListPage";

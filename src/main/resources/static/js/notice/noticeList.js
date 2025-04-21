@@ -38,10 +38,10 @@ function generateTable(noticeList) {
     noticeList.forEach(notice => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${notice.nno}</td>
-            <td><a href="/noticeView?nNo=${notice.nno}" class="table-title" style="display: block; height: 100%; width: 100%;">${notice.ntitle}</a></td>
-            <td>일.구.시</td>
-            <td>${notice.writeDate}</td>
+            <td style="text-align: center;">${notice.nno}</td>
+            <td style="text-align: left;"><a href="/noticeView?nNo=${notice.nno}" class="table-title" style="display: block; height: 100%; width: 100%;">${notice.ntitle}</a></td>
+            <td style="text-align: center;">일.구.시</td>
+            <td style="text-align: center;">${notice.writeDate}</td>
         `;
         tableBody.appendChild(row);
     });
