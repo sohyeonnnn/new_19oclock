@@ -3,7 +3,6 @@ package com.refactoring.ilgusi.presentation.notice;
 import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
-import com.refactoring.ilgusi.domain.notice.Notice;
 import com.refactoring.ilgusi.domain.notice.NoticeService;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeInsertDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticePageResponseDto;
@@ -52,25 +51,25 @@ public class NoticeController {
     }
 
     //공지사항 등록
-    @RequestMapping("/insertNotice")
+    @PostMapping("/insertNotice")
     public String insertNotice(NoticeInsertDto notice, MultipartHttpServletRequest mRequest, Model model, HttpServletRequest request) {
-        System.out.println("controller!!!");
-        MultipartFile file = mRequest.getFile("filename");
+        MultipartFile file = mRequest.getFile("file");
         String uploadDir = request.getSession().getServletContext().getRealPath("/upload/notice/");
 
-        // 파일 업로드 분리된 메서드 호출
+        // 파일 업로드
         String[] uploadResult = fileUpload(file, uploadDir);
 
         noticeService.insertNotice(new NoticeInsertDto().builder()
-                .title(notice.getTitle())
-                .content(notice.getContent())
+                .nTitle(notice.getNTitle())
+                .nContent(notice.getNContent())
                 .filename(uploadResult[0])
                 .filepath(uploadResult[1])
                 .build()
                 .toEntity());
 
         String msg = CommonEnum.NOTICE_INSERT.getVal();
-        String loc = "/noticeList?reqPage=1&keyword=";
+        String loc = "/noticeListPage";
+        //String loc = CommonEnum.HOME_URL.getVal();
 
         return MsgRedirectHelper.success(model,msg,loc);
     }
@@ -90,6 +89,7 @@ public class NoticeController {
             try (BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(fullPath))) {
                 bos.write(file.getBytes());
             }
+
 
             return new String[]{filename, filepath};
 

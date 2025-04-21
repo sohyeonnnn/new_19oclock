@@ -4,6 +4,7 @@ import com.refactoring.ilgusi.common.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -27,5 +28,13 @@ public class Notice extends BaseEntity {
 	//줄바꿈
 	public String getNContentBr() {
 		return nContent.replaceAll("\r\n", "<br>");
+	}
+
+	@Transient
+	public String getWriteDate() {
+		if (getLastModifiedDate() != null) {
+			return getLastModifiedDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		}
+		return "";
 	}
 }

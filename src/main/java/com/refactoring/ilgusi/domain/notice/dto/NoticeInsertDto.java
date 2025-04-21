@@ -1,24 +1,24 @@
 package com.refactoring.ilgusi.domain.notice.dto;
 
-import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.notice.Notice;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class NoticeInsertDto {
-	private String title;
-	private String content;
+	private String nTitle;
+	private String nContent;
+	private MultipartFile file;
 	private String filename;
 	private String filepath;
 
 	public Notice toEntity() {
 		return Notice.builder()
-				.nTitle(title)
-				.nContent(content)
+				.nTitle(nTitle)
+				.nContent(nContent)
 				.filename(filename)
 				.filepath(filepath)
 				.build();

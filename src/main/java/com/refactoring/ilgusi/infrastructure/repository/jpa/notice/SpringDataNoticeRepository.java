@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SpringDataNoticeRepository extends JpaRepository<Notice, Integer> {
 
-    @Query(value = "SELECT * FROM notice WHERE (:keyword IS NULL OR n_title LIKE %:keyword%) ORDER BY n_no LIMIT :limit OFFSET :offset", nativeQuery = true)
+    @Query(value = "SELECT * FROM notice WHERE (:keyword IS NULL OR n_title LIKE %:keyword%) ORDER BY n_no DESC LIMIT :limit OFFSET :offset", nativeQuery = true)
     List<Notice> findByKeywordWithRange(
             @Param("offset") int offset,
             @Param("limit") int limit,
