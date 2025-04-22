@@ -2,13 +2,14 @@ package com.refactoring.ilgusi.presentation.member;
 
 import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
-import com.refactoring.ilgusi.common.ResultData;
+import com.refactoring.ilgusi.common.ResultData2;
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
 import com.refactoring.ilgusi.domain.member.dto.MemberJoinDto;
 import com.refactoring.ilgusi.domain.member.dto.MemberSearchIdPwDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -37,10 +38,8 @@ public class MemberController {
     // 아이디 중복검사
     @ResponseBody
     @GetMapping("/checkDupId")
-    public ResultData<Void> checkDuplicateId(@RequestParam String id) {
-        return memberService.checkDupId(id)
-                ? ResultData.success(null, CommonEnum.ALREADY_USED_ID.getVal())
-                : ResultData.fail(null, null);
+    public ResponseEntity<?> checkDuplicateId(@RequestParam String id) {
+        return ResponseEntity.ok(ResultData2.builder().isSuccess(memberService.checkDupId(id)).build());
     }
 
     // 회원가입 기능
@@ -115,23 +114,18 @@ public class MemberController {
         return MsgRedirectHelper.close(model,msg,loc, true);
     }
 
-
+    // 사용자 마이페이지 이동
+    @GetMapping("/userMypage")
+    public String userMypage(@ModelAttribute("loginMember")Member m) {
+        if (m.getMGrade().equals(RoleEnum.USER)) {
+            return "member/userMypage";
+        } else if (m.getMGrade().equals(RoleEnum.FREELANCER)) {
+            return "redirect:/freelancerMypage?MNo=" + m.getMNo();
+        }
+        return "/";
+    }
 
 /*
-
-
-    // 사용자 마이페이지 이동
-    @RequestMapping("/userMypage.do")
-    public String userMypage(HttpServletRequest req) {
-        HttpSession session = req.getSession();
-        Member m = (Member) session.getAttribute("loginMember");
-        if (m.getMGrade() == 1) {
-            return "member/userMypage";
-        } else if (m.getMGrade() == 2) {
-            return "redirect:/freelancerMypage.do?MNo=" + m.getMNo();
-        }
-        return "";
-    }
 
     // 사용자 마이페이지-이메일, 폰번호 변경
     @ResponseBody

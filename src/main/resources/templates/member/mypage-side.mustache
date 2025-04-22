@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="favicon_io/favicon-16x16.png">
+
+    <!-- jQuery  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/member/mypage-side.css">
+    <script type="text/javascript" src="/js/member/mypage-side.js"></script>
+
+</head>
+<body>
+<div class="profile-box">
+    <div>
+        <img src="/img/icon/mypage_person.png" style="width: 147px; height: 147px">
+    </div>
+    <div style="margin-top: 10px;">{{loginMember.MId }}님</div>
+    <div style="margin-top: 5px;">
+        <input type="hidden" value="${loginMember.MPw }">
+        <input type="hidden" value="${loginMember.MId }">
+        <input type="hidden" value="${loginMember.MGrade }">
+        <button class="switch">프리랜서로 전환</button>
+    </div>
+    <p>MY PAGE</p>
+    <hr>
+    <ul class="menu">
+        <li><img src="/img/icon/circle_navy.png"><a href="/userMypage">나의 프로필</a></li>
+        <li><img src="/img/icon/circle_navy.png"><a href="/userHeartList?mNo={{loginMember.MNo}}&order=all">찜한 내역</a></li>
+        <li><img src="/img/icon/circle_navy.png"><a href="/userTradeHistory?mNo={{loginMember.MNo}}">거래 내역</a></li>
+        <li><img src="/img/icon/circle_navy.png"><a href="/userRequestHistory?reqPage=1">작성한 의뢰글</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

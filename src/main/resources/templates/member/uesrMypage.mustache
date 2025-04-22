@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>19시 :: 마이페이지</title>
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+
+    <!-- jQuery  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="/css/member/userMypage.css">
+    <script type="text/javascript" src="/js/member/userMypage.js"></script>
+</head>
+<body>
+<div class="header">
+    {{>common/header}}
+</div>
+<div class="page-wrap">
+    <!-- 사이드메뉴 -->
+    {{>member/mypage-side}}
+    <div class="board-box">
+        <p>나의 프로필</p>
+        <div>
+            <div class="form-group">
+                <label for="id-label">아이디</label><br>
+                <input type="text" class="form-box" id="id-label" value="{{loginMember.MId}}" readonly>
+                <input type="text" style="display:none;" id="pw-label" value="{{loginMember.MPw}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name-label">이름</label><br>
+                <input type="text" class="form-box" id="name-label" value="{{loginMember.MName}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="email-label">이메일</label><br>
+                <input type="email" class="form-box" id="email-label" value="{{loginMember.MEmail}}" readonly>&nbsp;&nbsp;
+                <a href='javascript:void(0);' onclick='emailEdit(this);' id="email-btn">수정</a>
+                <span id="email-check">정상적으로 수정되었습니다.</span>
+            </div>
+            <div class="form-group">
+                <label for="tel-label">연락처</label><br>
+                <input type="text" style="display:none;" value="{{loginMember.MPhone}}" id="phone">
+                <input type="tel" class="form-box tel" id="tel-label" value="010"  readonly> -
+                <input type="tel" class="form-box tel"  value="" readonly id="phone1"> -
+                <input type="tel" class="form-box tel"  value="" readonly id="phone2">&nbsp;&nbsp;
+                <a href='javascript:void(0);' onclick='phoneEdit(this);' id="phone-btn">수정</a>
+                <span id="phone-check">정상적으로 수정되었습니다.</span>
+            </div>
+        </div>
+        <div>
+            <button class="btn2 change" onclick="pwChange()">비밀번호 변경하기</button>&nbsp;&nbsp;
+            <button class="btn2 delete" onclick="deleteMember()">회원 탈퇴하기</button>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+{{>common/footer}}
+
+
+<!-- 모달 -->
+<div id="modal">
+    <div class="modal_content">
+        <h2>회원탈퇴</h2>
+        <h5>아래 비밀번호를 입력하시면 탈퇴가 진행됩니다.</h5>
+        <hr>
+        <span style="color:#314C83">비밀번호 입력 </span>
+        <input type="password" style="display:none" id="id-check" value="${loginMember.MId }">
+        <input type="password" class="form-box pw" id="pw-check">
+        <div>
+            <button class="btn2 delete" id="modal_confirm_btn">탈퇴하기</button>
+            <button class="btn2 change" id="modal_close_btn">닫기</button>
+        </div>
+    </div>
+    <div class="modal_layer"></div>
+</div>
+
+<div id="modal_pwChange">
+    <div class="modal_content">
+        <h2>비밀번호 변경</h2>
+        <h5>현재 비밀번호와 변경할 비밀번호를 입력해주세요.</h5>
+        <h6>비밀번호는 영문, 숫자, 특수문자를 포함하여 4글자 이상으로 작성해야합니다.</h6>
+        <hr>
+        <div>
+            <span style="color:#314C83">현재 비밀번호 입력 </span>
+            <input type="password" class="form-box pw2" style="background-color:#fff" id="pw-current">
+            <div style="height:15px;"><div class="notice-text"></div></div>
+        </div>
+        <div>
+            <span style="color:#314C83">변경할 비밀번호 입력 </span>
+            <input type="text" style="display:none;" id="reg-check" value="false">
+            <input type="password" class="form-box pw2" id="pw-check1" readonly>
+            <div style="height:15px;"><div class="notice-text"></div></div>
+        </div>
+        <div>
+            <span style="color:#314C83">변경할 비밀번호 다시 입력 </span>
+            <input type="password" class="form-box pw2" id="pw-check2"readonly>
+            <div style="height:15px;"><div class="notice-text"></div></div>
+        </div>
+        <div>
+            <button class="btn2 change" id="modal_pwChange_confirm_btn">변경저장</button>
+            <button class="btn2 delete" id="modal_pwChange_close_btn">닫기</button>
+        </div>
+    </div>
+    <div class="modal_layer"></div>
+</div>
+</body>
+</html>
