@@ -13,7 +13,7 @@ public interface MemberService {
     void changePw(Member m, String newPw);
     void changeMypage(String mId, String data, String object);
     void deleteMember(String mId);
-    void changeGrade(String mId, int grade);
+    Member changeGrade(String mId);
     void settingMemberGrade(Member m);
     void tradeStatus(int mNo);
     void setDeleteStatusY(String mId);

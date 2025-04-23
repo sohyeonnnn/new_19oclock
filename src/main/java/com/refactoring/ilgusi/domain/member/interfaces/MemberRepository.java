@@ -1,6 +1,7 @@
 package com.refactoring.ilgusi.domain.member.interfaces;
 
 import com.refactoring.ilgusi.domain.member.Member;
+import com.refactoring.ilgusi.domain.member.RoleEnum;
 
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ public interface MemberRepository  {
     void deleteMember(String mId);
 
     // 마이페이지에서 사용자-프리랜서 전환
-    void changeGrade(String mId, int grade);
+    Optional<Member> changeGrade(String mId, RoleEnum user, RoleEnum free);
 
     // 로그인하면 grade를 1로 셋팅
     void settingMemberGrade(Member m);

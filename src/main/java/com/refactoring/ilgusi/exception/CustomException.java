@@ -1,8 +1,10 @@
 package com.refactoring.ilgusi.exception;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class CustomException extends RuntimeException {
     private String url;
     private boolean close;

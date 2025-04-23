@@ -24,7 +24,7 @@ $(document).ready(function () {
     // 랭크 ajax 부분
     $.ajax({
         type: "post",
-        url: "/rankAjax.do",
+        url: "/rankAjax",
         data: {
             cateNum: 20
         },
@@ -35,14 +35,14 @@ $(document).ready(function () {
             $(".sumPrice:eq(0)").empty
             console.log(response["sump"]);
             $(".sumPrice:eq(0)").text(response[0].sumPrice + "원");
-            $(".free-id:eq(0)").append("<a href='/introduceFrm.do?mId=" + response[0].mId +
+            $(".free-id:eq(0)").append("<a href='/introduceFrm?mId=" + response[0].mId +
                 "&reqPage=1'>" +
                 response[0].mId + "</a>");
             for (let i = 1; i < response.length; i++) {
                 $(".rank-list:eq(0)").find(".rank-col-2:eq(" + (i-1) + ")").text(response[i]
                     .sumPrice + "원");
                 $(".rank-list:eq(0) .rank-col-3:eq(" + (i-1) + ")").append(
-                    "<a href='/introduceFrm.do?mId=" + response[i].mId +
+                    "<a href='/introduceFrm?mId=" + response[i].mId +
                     "&reqPage=1'>" +
                     response[i].mId + "</a>");
             }
@@ -50,7 +50,7 @@ $(document).ready(function () {
     });
     $.ajax({
         type: "post",
-        url: "/rankAjax.do",
+        url: "/rankAjax",
         data: {
             cateNum: 40
         },
@@ -61,14 +61,14 @@ $(document).ready(function () {
             $(".sumPrice:eq(1)").empty
             console.log(response["sump"]);
             $(".sumPrice:eq(1)").text(response[0].sumPrice + "원");
-            $(".free-id:eq(1)").append("<a href='/introduceFrm.do?mId=" + response[0].mId +
+            $(".free-id:eq(1)").append("<a href='/introduceFrm?mId=" + response[0].mId +
                 "&reqPage=1'>" +
                 response[0].mId + "</a>");
             for (let i = 1; i < response.length; i++) {
                 $(".rank-list:eq(1)").find(".rank-col-2:eq(" + (i-1) + ")").text(response[i]
                     .sumPrice + "원");
                 $(".rank-list:eq(1) .rank-col-3:eq(" + (i-1) + ")").append(
-                    "<a href='/introduceFrm.do?mId=" + response[i].mId +
+                    "<a href='/introduceFrm?mId=" + response[i].mId +
                     "&reqPage=1'>" +
                     response[i].mId + "</a>");
             }
@@ -76,7 +76,7 @@ $(document).ready(function () {
     });
     $.ajax({
         type: "post",
-        url: "/rankAjax.do",
+        url: "/rankAjax",
         data: {
             cateNum: 70
         },
@@ -87,14 +87,14 @@ $(document).ready(function () {
             $(".sumPrice:eq(2)").empty
             console.log(response["sump"]);
             $(".sumPrice:eq(2)").text(response[0].sumPrice + "원");
-            $(".free-id:eq(2)").append("<a href='/introduceFrm.do?mId=" + response[0].mId +
+            $(".free-id:eq(2)").append("<a href='/introduceFrm?mId=" + response[0].mId +
                 "&reqPage=1'>" +
                 response[0].mId + "</a>");
             for (let i = 1; i < response.length; i++) {
                 $(".rank-list:eq(2)").find(".rank-col-2:eq(" + (i-1) + ")").text(response[i]
                     .sumPrice + "원");
                 $(".rank-list:eq(2) .rank-col-3:eq(" + (i-1) + ")").append(
-                    "<a href='/introduceFrm.do?mId=" + response[i].mId +
+                    "<a href='/introduceFrm?mId=" + response[i].mId +
                     "&reqPage=1'>" +
                     response[i].mId + "</a>");
             }

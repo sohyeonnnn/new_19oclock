@@ -2,7 +2,7 @@ package com.refactoring.ilgusi.presentation.member;
 
 import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
-import com.refactoring.ilgusi.common.ResultData2;
+import com.refactoring.ilgusi.common.ResultData;
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
@@ -39,7 +39,7 @@ public class MemberController {
     @ResponseBody
     @GetMapping("/checkDupId")
     public ResponseEntity<?> checkDuplicateId(@RequestParam String id) {
-        return ResponseEntity.ok(ResultData2.builder().isSuccess(memberService.checkDupId(id)).build());
+        return ResponseEntity.ok(ResultData.builder().isSuccess(memberService.checkDupId(id)).build());
     }
 
     // 회원가입 기능
@@ -125,6 +125,23 @@ public class MemberController {
         return "/";
     }
 
+    //  마이페이지에서 사용자-프리랜서 전환
+    @PostMapping("/changeGrade")
+    public String changeGrade(@ModelAttribute("loginMember")Member m, HttpServletRequest req) {
+        System.out.println("@@2222222222222222222222222222222222222");
+        Member member = memberService.changeGrade(m.getMId());
+        req.getSession().setAttribute("loginMember", member);
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!! 전환");
+        if(member.getMGrade().equals(RoleEnum.USER)) {
+            return "member/userMypage";
+        }else{
+            System.out.println("#################################");
+            return "/";
+            //return "redirect:/freelancerMypage?MNo=" + m.getMNo();
+        }
+    }
+
+
 /*
 
     // 사용자 마이페이지-이메일, 폰번호 변경
@@ -202,28 +219,7 @@ public class MemberController {
         }
     }
 
-    //  마이페이지에서 사용자-프리랜서 전환
-    @RequestMapping("/changeGrade.do")
-    public String changeGrade(String mId, String mPw, int grade, Model model, HttpServletRequest req) {
-        HttpSession session = req.getSession();
-        Member m = (Member) session.getAttribute("loginMember");
 
-        // 프리랜서로 전환한 적이 없으면 -> db에 2를 넣어줌
-        if (grade == 1) {
-            int result = service.changeGrade(mId, grade);
-            if (result > 0)
-                System.out.println("프리랜서로 잘 바꿈");
-            m.setMGrade(2);
-            session.setAttribute("loginMember", m);
-            return "redirect:/freelancerMypage.do?MNo=" + m.getMNo();
-        } else {
-            // 프리랜서 -> 사용자로 전환하면(session만 바꿔줌)
-            System.out.println("사용자로 sessio만 바꿈");
-            m.setMGrade(1);
-            session.setAttribute("loginMember", m);
-            return "member/userMypage";
-        }
-    }
 
     // 마이페이지 - 의뢰내역 확인하기
     @RequestMapping("/userRequestHistory.do")

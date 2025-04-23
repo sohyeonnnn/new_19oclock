@@ -3,9 +3,11 @@ $(".switch").click(function(){
     var mId = $(this).prev().prev().val();
     var mPw = $(this).prev().prev().prev().val();
 
+    console.log(mPw, mId, grade);
+
     //post로 넘기기
     var form = document.createElement("form");
-    form.action = "/changeGrade.do";
+    form.action = "/changeGrade";
     form.method = "post";
 
     //id 추가

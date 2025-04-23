@@ -1,6 +1,7 @@
 package com.refactoring.ilgusi.infrastructure.repository.jpa.member;
 
 import com.refactoring.ilgusi.domain.member.Member;
+import com.refactoring.ilgusi.domain.member.RoleEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,5 +26,12 @@ public interface SpringDataMemberRepository extends JpaRepository<Member, Intege
     @Transactional
     @Query("UPDATE Member m SET m.mPw = :mPw WHERE m.mId = :mId")
     int changePw(@Param("mPw") String mPw, @Param("mId") String mId);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Member m SET m.mGrade = CASE WHEN m.mGrade = :user THEN :freelancer ELSE :user END  WHERE m.mId = :mId")
+    int changeGrade(@Param("mId") String mId,
+                    @Param("user") RoleEnum user,
+                    @Param("freelancer") RoleEnum freelancer);
 
 }

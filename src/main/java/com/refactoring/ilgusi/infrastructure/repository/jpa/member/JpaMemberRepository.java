@@ -1,6 +1,7 @@
 package com.refactoring.ilgusi.infrastructure.repository.jpa.member;
 
 import com.refactoring.ilgusi.domain.member.Member;
+import com.refactoring.ilgusi.domain.member.RoleEnum;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 
 import java.util.Optional;
@@ -45,7 +46,9 @@ public class JpaMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void changeGrade(String mId, int grade) {
+    public Optional<Member> changeGrade(String mId, RoleEnum user, RoleEnum free) {
+        jpaRepository.changeGrade(mId, RoleEnum.USER, RoleEnum.FREELANCER);
+        return findBymId(mId);
     }
 
     @Override

@@ -23,7 +23,7 @@ function emailEdit(obj){
         $('#email-btn').html('저장');
     }else{
         $.ajax({
-            url : "/changeMypage.do",
+            url : "/changeMypage",
             type : "get",
             data : {"mId":mId,"mPw":mPw,"data":mEmail,"object":"email" },
             success : function(data){
@@ -54,7 +54,7 @@ function phoneEdit(obj){
         var reg = /^[0-9]{4}$/;
         if(reg.test(phone1) && reg.test(phone2)){
             $.ajax({
-                url : "/changeMypage.do",
+                url : "/changeMypage",
                 type : "get",
                 data : {"mId":mId,"mPw":mPw,"data":phone,"object":"phone" },
                 success : function(data){
@@ -90,7 +90,7 @@ $("#modal_pwChange_confirm_btn").click(function(){
 
     if(pwCheck1 == pwCheck2 &&  pwCheck2 != '' && regCheck == 'true' ){
         alert('비밀번호가 변경되었습니다.');
-        location.href="/changePw.do?mId="+mId+"&mPw="+mPw+"&data="+pwCheck2+"&object=pw";
+        location.href="/changePw?mId="+mId+"&mPw="+mPw+"&data="+pwCheck2+"&object=pw";
     }else{
         alert('다시 한 번 확인해주세요');
     }

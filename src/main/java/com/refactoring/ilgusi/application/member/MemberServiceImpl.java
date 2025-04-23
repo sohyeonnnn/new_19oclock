@@ -119,7 +119,16 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public void changeGrade(String mId, int grade) {
+    public Member changeGrade(String mId) {
+
+        System.out.println("33333333333333333333333333333");
+
+
+        RoleEnum user = RoleEnum.USER;
+        RoleEnum free = RoleEnum.FREELANCER;
+        return memberRepository.changeGrade(mId, user, free)
+                .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/userMypage", true));
+
     }
 
     @Override
