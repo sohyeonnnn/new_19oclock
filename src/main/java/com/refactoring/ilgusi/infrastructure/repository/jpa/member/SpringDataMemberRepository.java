@@ -35,4 +35,12 @@ public interface SpringDataMemberRepository extends JpaRepository<Member, Intege
                     @Param("user") RoleEnum user,
                     @Param("freelancer") RoleEnum freelancer);
 
+    @Modifying
+    @Transactional
+    @Query("UPDATE Member m SET m.brandName = :brandName, m.contactTime = :contactTime, m.introduce = :introduce WHERE m.mId = :mId")
+    int updateFreelancer(@Param("mId") String mId,
+                    @Param("brandName") String brandName,
+                    @Param("contactTime") String contactTime,
+                    @Param("introduce") String introduce);
+
 }

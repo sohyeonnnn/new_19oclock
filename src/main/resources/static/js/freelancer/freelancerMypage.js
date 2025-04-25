@@ -7,11 +7,12 @@
 		 //높이 조절
 		 var containerHeight = $(".board-box").height();
 		 $(".page-wrap").height(containerHeight+300);
+
+		//소개글로 이동
+		$(".introduce-btn").click(function(){
+			var mId = $("#mId").val();
+			location.href = "/introduceFrm?mId="+mId+"&reqPage=1";
+		});
+
 	});
 	
-	//소개글로 이동
-	/*$(".introduce-btn").click(function(){
-		var mId = $("#mId").val();
-		location.href = "/introduceFrm?mId="+mId+"&reqPage=1";
-	});
-*/

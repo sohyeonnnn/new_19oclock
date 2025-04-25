@@ -18,4 +18,5 @@ public interface MemberService {
     void settingMemberGrade(Member m);
     void tradeStatus(int mNo);
     void setDeleteStatusY(String mId);
+    Member updateFreelancer(Member m);
 }

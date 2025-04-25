@@ -40,4 +40,5 @@ public interface MemberRepository  {
     // 탈퇴하기전 delete_status = 'y' 셋팅
     void setDeleteStatusY(String mId);
 
+    Optional<Member> updateFreelancer(Member m);
 }

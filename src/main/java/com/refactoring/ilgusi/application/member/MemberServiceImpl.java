@@ -145,5 +145,11 @@ public class MemberServiceImpl implements MemberService {
     public void setDeleteStatusY(String mId) {
     }
 
+    @Override
+    public Member updateFreelancer(Member m) {
+        return memberRepository.updateFreelancer(m)
+                .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
+    }
+
 
 }

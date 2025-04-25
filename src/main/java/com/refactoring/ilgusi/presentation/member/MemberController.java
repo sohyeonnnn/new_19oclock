@@ -147,21 +147,7 @@ public class MemberController {
         }
     }
 
-    @RequestMapping("/freelancerMypage")
-    public String selectfreelancerMypage(int MNo, Model model) {
-        Member m = memberService.selectOneMember(MNo);
-        //int serviceCount = service.selectFreeServiceCount(m.getMId());
-        model.addAttribute("m", m);
-        if(m.getBrandName()!= null){
-            System.out.println("111");
-            model.addAttribute("hasBrandAndService", true);
-        }else{
-            System.out.println("222");
-            model.addAttribute("hasBrandAndService", null);
-        }
-        //model.addAttribute("serviceCount", serviceCount);
-        return "freelancer/freelancerMypage";
-    }
+
 
 /*
 

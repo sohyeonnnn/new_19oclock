@@ -67,4 +67,10 @@ public class JpaMemberRepository implements MemberRepository {
     @Override
     public void setDeleteStatusY(String mId) {
     }
+
+    @Override
+    public Optional<Member> updateFreelancer(Member m) {
+        jpaRepository.updateFreelancer(m.getMId(), m.getBrandName(), m.getContactTime(), m.getIntroduce());
+        return findBymId(m.getMId());
+    }
 }
