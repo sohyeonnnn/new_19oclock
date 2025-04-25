@@ -1,4 +1,4 @@
-$(document).ready(function () {
+
     $(".switch").click(function(){
         var grade = $(this).prev().val();
         var mId = $(this).prev().prev().val();
@@ -32,9 +32,25 @@ $(document).ready(function () {
         form.submit();
     });
 
-
     function errorMsg(){
         alert('프리랜서 프로필을 작성해주세요');
     }
 
-});
+    //생성된 서비스가 5개면 더이상 생성할 수 없게 함.(승인되고 삭제안된 개수)
+    function isPossibleMakeService(){
+        var mId = $("#memberId").val();
+        $.ajax({
+            url : "/isPossibleMakeService",
+            type : "post",
+            data : {"mId":mId},
+            success : function(result){
+                if(result <5){
+                    location.href = "/serviceJoinFrm?MId="+mId;
+                }else{
+                    alert('서비스를 생성할 수 있는 개수를 초과했습니다. \n현재 서비스 개수 : 5개');
+                }
+            },error : function(){
+                console.log("오류");
+            }
+        });
+    }

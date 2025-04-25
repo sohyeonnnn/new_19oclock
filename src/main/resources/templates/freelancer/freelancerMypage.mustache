@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>19시 :: 프리랜서 프로필</title>
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+
+    <link rel="stylesheet" href="/css/freelancer/freelancerMypage.css">
+    <script type="text/javascript" src="/js/freelancer/freelancerMypage.js"></script>
+</head>
+<body>
+<div class="header">
+    {{>common/header}}
+</div>
+
+<div class="page-wrap">
+
+    <!-- 사이드메뉴 -->
+    {{>freelancer/freelancer-side}}
+
+    <div class="board-box">
+        <p>프리랜서의 프로필 <span class="noticeTxt">※아래 정보를 입력해야 서비스를 등록할 수 있습니다.</span></p>
+
+        {{#hasBrandAndService}}
+            <button class="introduce-btn">나의 소개페이지 보기</button>
+        {{/hasBrandAndService}}
+
+        <div>
+            <form action="/updateFreelancer?" method="post">
+                <div class="form-group brand">
+                    <label for="tel-label">브랜드 명</label><br>
+                    <input type="hidden" value="{{loginMember.MId}}" name="mId" id="mId">
+                    <input type="hidden" value="{{loginMember.MPw}}" name="mPw">
+                    <input type="text" class="form-box" placeholder="브랜드명을 입력해주세요."
+                           value="{{#loginMember.brandName}}{{loginMember.brandName}}{{/loginMember.brandName}}"
+                           name="brandName" maxlength="10" required="required">
+                </div>
+
+                <div class="form-group">
+                    <label for="tel-label">연락 가능한 시간</label><br>
+                    <input type="text" class="form-box" placeholder="ex)16:00~20:00"
+                           name="contactTime" maxlength="20" required="required"
+                           value="{{#loginMember.contactTime}}{{loginMember.contactTime}}{{/loginMember.contactTime}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="tel-label">소개</label><br>
+                    <textarea rows="17" cols="93" class="form-text" name="introduce" maxlength="1333" required="required">
+                        {{#loginMember.introduce}}{{loginMember.introduce}}{{/loginMember.introduce}}</textarea>
+                </div>
+                <div class="btn-box">
+                    <button class="btn2 change" type="submit">
+                        {{^loginMember.brandName}}프로필 등록하기{{/loginMember.brandName}}
+                        {{#loginMember.brandName}}수정하기{{/loginMember.brandName}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{>common/footer}}
+</body>
+</html>

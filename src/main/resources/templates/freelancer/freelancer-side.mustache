@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/freelancer/freelancer-side.css">
+    <script type="text/javascript" src="/js/freelancer/freelancer-side.js"></script>
+    <title>Insert title here</title>
+</head>
+
+<body>
+<!-- 마이페이지 사이드 메뉴 -->
+<div class="profile-box">
+    <div>
+        <img src="/img/icon/mypage_freelancer.png" style="width: 147px; height: 147px">
+    </div>
+    <div style="margin-top: 10px;">{{loginMember.MId}}님</div>
+    <div style="margin-top: 5px;">
+        <input type="hidden" value="{{loginMember.MPw}}">
+        <input type="hidden" value="{{loginMember.MId}}" id="memberId">
+        <input type="hidden" value="{{loginMember.MGrade}}">
+        <button class="switch">사용자로 전환</button>
+    </div>
+    <p>FREELANCER PAGE</p>
+    <hr>
+    <ul class="menu">
+        <li>
+            <img src="/img/icon/circle_navy.png">
+            <a href="/freelancerMypage?MNo={{loginMember.MNo}}">프리랜서의 프로필</a>
+        </li>
+
+        <li>
+            <img src="/img/icon/circle_navy.png">
+            {{^loginMember.brandName}}
+                <a href="javascript:errorMsg();">서비스 등록</a>
+            {{/loginMember.brandName}}
+            {{#loginMember.brandName}}
+                <a href="javascript:isPossibleMakeService();">서비스 등록</a>
+            {{/loginMember.brandName}}
+        </li>
+
+        <li>
+            <img src="/img/icon/circle_navy.png">
+            {{^loginMember.brandName}}
+                <a href="javascript:errorMsg();">등록한 서비스 확인</a>
+            {{/loginMember.brandName}}
+            {{#loginMember.brandName}}
+                <a href="/freelancerServiceList?mId={{loginMember.MId}}&order=agree">등록한 서비스 확인</a>
+            {{/loginMember.brandName}}
+        </li>
+
+        <li>
+            <img src="/img/icon/circle_navy.png">
+            {{^loginMember.brandName}}
+                <a href="javascript:errorMsg();">거래 내역</a>
+            {{/loginMember.brandName}}
+            {{#loginMember.brandName}}
+                <a href="/freelancerTradeHistory?mNo={{loginMember.MNo}}">거래 내역</a>
+            {{/loginMember.brandName}}
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

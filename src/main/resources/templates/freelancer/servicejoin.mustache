@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+
+    <link rel="stylesheet" href="/css/freelancer/servicejoin.css">
+    <script type="text/javascript" src="/js/freelancer/servicejoin.js"></script>
+    <title>19시 :: 서비스 등록</title>
+</head>
+<body>
+{{> common/header}}
+	<br>
+	<br>
+	<br>
+	<div class="inner">
+		<div class="top">
+			<div class="toptext">
+				<h2>서비스 등록하기 (안전거래)</h2>
+				<br> <br>
+				<h3>서비스 등록시 승인이 거부되는 서비스 안내</h3>
+				<p style="font-size: 15px;">1. 등록한 서비스의 내용이 부실한 경우(내용이 성의 없거나, 목록 이미지가 적절치 않은 경우)</p>
+				<p style="font-size: 15px;">2. 등록한 서비스의 내용에 연락처 등 직거래를 유발할 수 있는 문구가 들어갈 경우(홈페이지, 이메일, 전화번호 등등)</p>
+				<p style="font-size: 15px;">3. 등록한 서비스의 가격이 정확하게 표시되지 않거나, 적절한 가격으로 입력이 되지 않는 경우</p>
+				<p style="font-size: 15px;">4. 등록한 서비스의 전문성이 다른 재능에 비해 확연히 떨어진다고 판단될 경우</p>
+				<p style="font-size: 15px;">5. 등록한 서비스의 내용이 재능넷의 성격에 부합되지 않는 성격의 재능일 경우</p>
+				<br> <br>
+				<h3>※서비스 등록 후부터 성실한 판매에 임할 것을 동의하는 것으로 간주하며, 불성실한 판매 행위가 발견될 시에 판매정지 처리 될 수있습니다.</h3>
+			</div>
+		</div>
+		<br> <br> <br> <br>
+		<div class="bottom">
+			<div class="inner2">
+				<form action="/serviceJoin" method="post" autocomplete="off" enctype="multipart/form-data" id="joinForm">
+					<table  style="border-collapse: collapse;" class="table">
+						<tr>
+							<td class="table-title" style="border:0;"><p>*서비스 제목</p></td>
+							<td style="width: 800px;border:0;"><input type="text" name="sTitle" class="input-box" placeholder="제목을 입력하세요" maxlength="300" style="margin-left: 30px;width: 90%; height: 30px;float:left"  required="required"></td>
+						</tr>
+						<tr>
+							<td class="table-title"><p>*카테고리 선택</p></td>
+							<td style="width: 400px;">
+								<input type="hidden" name="mId" value="${loginMember.MId}">
+								<select class="input-box" name="mainCategory" style="width: 150px; float: left; margin-left: 30px; height: 30px;" id="mainCategory"  required="required">	
+										<option value="0">메인 카테고리 선택</option>
+										<option value="10">디자인</option>
+										<option value="20">IT/프로그래밍</option>
+										<option value="30">영상/사진/음향</option>
+										<option value="40">교육</option>
+										<option value="50">문서/글쓰기</option>
+										<option value="60">비즈니스컨설팅</option>
+										<option value="70">주문제작</option>
+								</select>
+								 <div style="float:left;line-height:50px;width:30px;font-align:center;margin-left: 30px;color: gray">>></div>
+								 <select class="input-box" name="subCategory" style="width: 200px; float: left; margin-left: 30px; height: 30px;"  required="required">
+									<option value="">서브 카테고리 선택</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="table-title"><p>*서비스 지역</p></td>
+							<td style="width: 400px;">
+							<select  class="input-box" name="sArea" style="width: 150px; float: left; margin-left: 30px; height: 30px;"  required="required">
+									<option value='서울'>서울</option>
+									<option value='부산'>부산</option>
+									<option value='대구'>대구</option>
+									<option value='인천'>인천</option>
+									<option value='광주'>광주</option>
+									<option value='대전'>대전</option>
+									<option value='울산'>울산</option>
+									<option value='강원'>강원</option>
+									<option value='경기'>경기</option>
+									<option value='경남'>경남</option>
+									<option value='경북'>경북</option>
+									<option value='전남'>전남</option>
+									<option value='전북'>전북</option>
+									<option value='제주'>제주</option>
+									<option value='충남'>충남</option>
+									<option value='충북'>충북</option>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="table-title"><p>*서비스 가격</p></td>
+							<td style="width: 400px;">
+								<input type="text"  class="input-box" name="sPrice" style="float: left; margin-left: 30px; height: 30px; width: 150px;" placeholder="5,000원 이상 입력" maxlength="10"  required="required">
+								<h5 class="won" style="float: left; margin-left: 10px; margin-top: 20px;">원</h5>
+								<span style="float: left; color: gray; font-size: 13px; margin-left: 10px; margin-top: 18px;"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="table-title"><p>*휴대폰 번호</p></td>
+							<td style="width: 400px;">
+								<input type="text" class="input-noLine" name="mPhone" style="width: 200px; height: 23px; float: left; margin-left: 30px; margin-top: 10px;" value="${loginMember.MPhone }" readonly="readonly">
+							</td>
+						</tr>
+						<tr>
+							<td class="table-title"><p>*작업 기간</p></td>
+							<td style="width: 400px;">
+								<input type="text" class="input-box" name="workingDate" style="float: left; margin-left: 30px; height: 30px; width: 60px; max-height: 10000"  required="required">
+								<h5 class="won" style="float: left; margin-left: 10px; margin-top: 20px;">일</h5>
+								<span style="float: left; color: gray; font-size: 13px; margin-left: 10px; margin-top: 18px;"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="table-title"><p>*이미지등록</p></td>
+							<td style="width: 400px;">
+								<input type="file"  multiple name="ssImg" accept="image/*" id="gdsImg" value="파일첨부" style=" margin-left: 30px;margin-top:10px; color: gray; font-size: 15px;float:left" required="required">
+								<p style="font-size: 8px; color: gray;  margin-top: 45px; text-align:left;margin-left: 30px;">이미지는 jpg,gif,png 만 등록할수 있습니다.(이미지 용량 2MG이하)</p> 
+								<div class="select_img"><img src="" alt="썸네일사진" style="display:none;float:right; margin-top:-70px;border-radius:5px;"/></div>
+								<p style="font-size: 8px;  color: gray;text-align:left;margin-left: 30px;">※여러파일 첨부가능합니다.</p>
+								<p style="font-size: 8px; color: red; font-weight: bolder; margin-left: 30px;text-align:left;float:left">※첫번째 선택된 이미지가 썸네일 이미지로 등록됩니다.</p>
+								
+							</td>
+						</tr>
+						<tr>
+							<td class="table-title" colspan="2""><p style="height:20px;text-align:left;">*서비스내용</p></td>
+						</tr>
+						<tr>
+							<td colspan="2" style="border:0;" >
+								<div  style="margin-left:-13px;">
+									<textarea name="sContent" id="smartEditor" cols="50" rows="19"></textarea>
+								</div>
+								
+							</td>
+						</tr>
+				</table>
+			</div>
+		</div>
+		<div class="bottom2">
+			<input type="button" value="등록 완료" style="width: 260px; height: 40px; margin-left: 450px; margin-top: 60px;">
+		</div>
+	</div>
+	</form>
+{{> common/footer}}
+
+</body>
+</html>

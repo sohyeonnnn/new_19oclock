@@ -14,6 +14,7 @@ import java.util.Optional;
 // MemberRepository를 extends하지 않음
 public interface SpringDataMemberRepository extends JpaRepository<Member, Integer>{
     Optional<Member> findBymId(String mId);
+    Optional<Member> findBymNo(Integer mNo);
 
     @Query("SELECT m FROM Member m " +
             "WHERE (m.mName = :mName AND m.mPhone = :mPhone) " +

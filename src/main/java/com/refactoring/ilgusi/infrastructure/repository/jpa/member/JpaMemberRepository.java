@@ -28,6 +28,11 @@ public class JpaMemberRepository implements MemberRepository {
     }
 
     @Override
+    public Optional<Member> findBymNo(Integer mNo) {
+        return jpaRepository.findBymNo(mNo);
+    }
+
+    @Override
     public Optional<Member> searchIdPw(Member m) {
         return jpaRepository.findBymNameAndmPhoneOrmIdAndmPhone(m.getMName(), m.getMPhone(), m.getMId());
     }

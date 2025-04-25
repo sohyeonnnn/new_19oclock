@@ -1,0 +1,180 @@
+
+/* div {
+	border: 0.5px solid black;
+} */
+.tabcontent {
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	padding: 20px;
+	font-size: 8pt;
+}
+
+div.tabContent .serviceBox {
+	width: 150px;
+	/* height: 300px; */
+	float: left;
+	margin-left: 15px;
+}
+
+.noList {
+	margin-top: 5px;
+	text-align: center;
+	line-height: 185px;
+	color: rgb(224, 224, 224);
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.content {
+	height: 2500px;
+}
+
+body, hr, p, ul {
+	margin: 0;
+}
+
+p.tt {
+	margin-left: 100px;
+	font-size:18px;
+}
+
+a {
+	color: black;
+}
+
+li.ac {
+	list-style: none;
+	float: left;
+	width: 100px;
+	line-height:50px;
+	text-align:center;
+	margin-left: -30px;
+	margin-right: 30px;
+	font-size: 20px;
+	/* background-color: #314C83; */
+	font-weight: bold;
+	box-sizing: border-box;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border: 2px solid #314C83;
+	border-bottom: none;
+}
+
+li.ac a{
+color: #314C83;
+display:block;}
+
+div.inner {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+div.title {
+	width: 100%;
+	height: 300px;
+	margin-bottom:30px;
+	padding:30px;
+	text-align: right;
+	background-image: url("/img/free/free_banner.jpeg");
+	background-size:cover;
+	background-repeat: no-repeat;
+}
+
+
+div.menu {
+	width: 100%;
+	height: 50px;
+}
+
+div.middleleft {
+	width: 70%; /* 
+	height: 750px; */
+	float: left;
+}
+
+div.middleright {
+	float: left;
+	width: 300px;
+	/* border: 1px solid black; */
+	margin-left: 60px;
+	margin-top: 80px;
+	padding-left: 20px;
+	padding-bottom: 50px;
+	background-color:#f5f5f5;
+}
+
+div.boxinner {
+	width: 280px;
+	margin: 0 auto;
+}
+
+div.box {
+	/* width: 300px;
+	/* height: 550px; */
+	border: 1px solid black;
+	margin-left: 60px;
+	margin-top: 120px;
+
+}
+
+div.middle2left {
+	width: 70%;
+	float: left;
+}
+
+div.middle2list {
+	width: 100%; /* 
+	height: 300px; */
+}
+
+div.middle2right {
+	width: 30%; /* 
+	height: 1150px; */
+	float: left;
+}
+
+div.middle3 {
+	width: 70%;;
+	float: left;
+	height:600px;
+}
+
+div.middle4 {
+	width: 70%;
+	/* height: 300px; */
+	float: left;
+}
+
+#topBtn {
+	position: fixed;
+	right: 90px;
+	bottom: 13%;
+	z-index: 9;
+	color:white;
+	font-weight: bold;
+}
+
+.reviewBox {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	/* background-color: yellow; */
+}
+
+#reviewStar {
+	/* background-color: blue; */
+	width: 10%;
+	height: 100%;
+	float: left;
+}
+
+#reviewContentBox {
+	/* background-color: green; */
+	margin-left: 20px;
+	padding-left: 10px;
+	margin-top: 15px;
+	width: 80%;
+	height: 100%;
+	float: left;
+}

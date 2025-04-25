@@ -6,6 +6,7 @@ public interface MemberService {
     int selectBuyingCount(int mNo);
     int selectSellingCount(String mId);
     Member loginMember(String id, String pw);
+    Member selectOneMember(Integer no);
     void registerMember(Member m);
     boolean checkDupId(String id);
     Member searchId(Member m);

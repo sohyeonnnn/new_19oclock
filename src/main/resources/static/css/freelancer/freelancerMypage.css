@@ -1,0 +1,88 @@
+
+    .page-wrap{
+        width: 1104px;
+        margin: 0 auto;
+        margin-top:50px;
+    }
+    .board-box{
+        width: 800px;
+        height:750px;
+        float: left;
+        margin-top: 40px;
+        margin-left: 30px;
+        border: 1px solid rgb(224, 224, 224);
+    }
+    .board-box>p{
+        font-size: 18px;
+        font-weight: bold;
+        color: rgb(49, 76, 131);
+        margin-top: 20px;
+        margin-left: 30px;
+        float:left;
+        height:20px;
+    }
+    .board-box>div{
+        margin-top: 30px;
+        margin-left: 50px;
+    }
+    .board-box>div>div{
+        margin-bottom: 40px;
+    }
+    .btn-box{
+        text-align: center;
+    }
+    .form-box{
+        width: 300px;
+        height: 31px;
+        border-radius: 3px;
+        border: 1px solid rgb(204, 204, 204);
+    }
+    .form-text{
+    	border-radius: 3px;
+    	border: 1px solid rgb(204, 204, 204);
+    }
+    .tel{
+        width: 90px;
+    }
+    .btn2{
+        width: 135px;
+        height: 31px;
+        border-radius: 5px;
+    }
+    .btn2:hover{
+        border: 2px solid black;
+    }
+    .change{
+        color: white;
+        border: 1px solid rgb(49, 76, 131);
+        background-color: rgb(49, 76, 131);
+    }
+    .form-group{
+    	margin-top: 40px;
+    }
+    .noticeTxt{
+    	color:#c22517;
+    	font-size: 12px;
+    }
+    .brand{
+    	margin-top: 70px;
+    }
+    .introduce-btn:focus { 
+    	outline:none; 
+    }
+    .introduce-btn{
+        width: 150px;
+        height: 27px;
+    	float:right;
+    	font-size:12px;
+    	line-height:27px;
+    	font-weight:bold;
+    	color:rgb(49, 76, 131);
+    	margin : 15px 15px 0 0;
+    	background-color: white;
+    	border-radius:15px;
+    	border: 1px solid rgb(49, 76, 131);
+    }
+    .introduce-btn:hover{
+    	box-shadow: 1px 1px 5px 1px #e8e8e8;
+    }

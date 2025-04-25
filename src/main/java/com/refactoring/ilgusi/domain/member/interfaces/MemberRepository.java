@@ -14,6 +14,8 @@ public interface MemberRepository  {
     // 아이디 중복검사 기능
     Optional<Member> findBymId(String id);
 
+    Optional<Member> findBymNo(Integer no);
+
     // 아이디/비밀번호 찾기 기능
     Optional<Member> searchIdPw(Member m);
 

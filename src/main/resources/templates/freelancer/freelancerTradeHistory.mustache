@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>19시 :: 프리랜서 거래 내역</title>
+ <!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+
+    <link rel="stylesheet" href="/css/freelancer/freelancerTradeHistory.css">
+    <script type="text/javascript" src="/js/freelancer/freelancerTradeHistory.js"></script>
+
+</head>
+<body>
+	<div class="header">
+        {{>common/header}}
+	</div>
+	<div class="page-wrap">
+		<!-- 사이드메뉴 -->
+        {{>freelancer/freelancer-side}}
+		<div class="board-wrap">
+			<div class="board-box">
+				<span>거래 내역</span>
+			</div>
+			<div class="container-box">
+				<div>
+					<ul>
+						<li style="width: 70%">거래 내역</li>
+						<li style="width: 15%">진행 상태</li>
+						<li style="width: 15%">작업 완료</li>
+					</ul>
+				</div>
+
+				<c:if test="${tradeList.size() == 0}">
+					<div class="noList">진행한 거래가 없습니다</div>
+				</c:if>
+				<c:if test="${tradeList.size() != 0 }">
+					<c:forEach items="${tradeList}" var="t" varStatus="status">
+						<div class="content-box">
+							<div>
+								<div style="color: rgb(51, 51, 51); font-size: 15px;">거래번호</div>
+								<div style="color: rgb(51, 51, 51); font-size: 15px; margin-top: 5px; font-weight: bold;">
+									<a href="javascript:void(0)" onclick="trade_open(this)">${t.TNo}</a>
+								</div>
+								<div style="color: rgb(51, 51, 51); font-size: 15px; margin-top: 20px;">거래금액</div>
+								<div style="color: rgb(255, 143, 63); font-size: 20px; margin-top: 5px; font-weight: bold;">${t.TPriceTxt }</div>
+							</div>
+							<div>
+								<div>
+									<div>
+										<a href="/serviceView?sNo=${serviceList[status.index].SNo}&reqPage=1&mNo=${loginMember.MNo}"><img src="/upload/service/${ serviceList[status.index].SImg}" width="175px" height="103px" style="border-radius:5px;"></a>
+									</div>
+									<div style="color: #8a8a8a;">
+										사용자 ID
+										<div>
+											<div>
+												<c:choose>
+													<c:when test="${t.MId == null }">
+														<a href="#" style="text-decoration:none">탈퇴한 회원</a>
+													</c:when>
+													<c:otherwise>
+														<a href="#" style="text-decoration:none">${t.MId }</a>
+													</c:otherwise>
+												</c:choose>
+												
+												<div></div>
+											</div>
+										</div>
+									</div>
+									<div>
+										<a href="/serviceView?sNo=${serviceList[status.index].SNo }&reqPage=1&mNo=${loginMember.MNo}">${serviceList[status.index].STitle }</a>
+									</div>
+								</div>
+							</div>
+							<div>
+								<c:choose>
+									<c:when test="${t.TStatus == 0 }">
+										<div style="color: rgb(255, 143, 63); font-size: 20px; margin-top: 5px; font-weight: bold;">결제 전</div>
+										<div style="color: rgb(51, 51, 51); font-size: 15px;"></div>
+										<div style="color: rgb(51, 51, 51); font-size: 15px; margin-top: 20px;">예상 마감일</div>
+										<div style="color: rgb(51, 51, 51); font-size: 15px; margin-top: 5px; font-weight: bold;">${t.endDate }</div>
+									</c:when>
+									<c:when test="${t.TStatus == 1 }">
+										<div style="color: rgb(255, 143, 63); font-size: 20px; margin-top: 5px; font-weight: bold;">결제 완료</div>
+										<div style="color: rgb(51, 51, 51); font-size: 15px;">${payDate[status.index] }</div>
+										<div style="color: rgb(51, 51, 51); font-size: 15px; margin-top: 20px;">예상 마감일</div>
+										<div style="color: rgb(51, 51, 51); font-size: 15px; margin-top: 5px; font-weight: bold;">${t.endDate }</div>
+									</c:when>
+									<c:otherwise>
+										<div style="color: rgb(224, 224, 224); font-size: 20px; margin-top: 5px; font-weight: bold;">작업 완료</div>
+										<div style="color: rgb(51, 51, 51); font-size: 15px;">${payDate[status.index] }</div>
+										<div style="color: rgb(51, 51, 51); font-size: 15px; margin-top: 20px;">작업 종료일</div>
+										<div style="color: rgb(51, 51, 51); font-size: 15px; margin-top: 5px; font-weight: bold;">${t.endDate }</div>
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<div>
+								<c:choose>
+									<c:when test="${t.TStatus == 0 }">작업전</c:when>
+									<c:when test="${t.TStatus == 1 }">
+										<input type="hidden" value="${t.MNo}" />
+										<input id="tnoId" type="hidden" value="${t.TNo}" />
+										<button class="review-btn " onclick="workDone_btn(this)">작업 완료</button>
+									</c:when>
+									<c:otherwise>작업 완료</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
+					</c:forEach>
+				</c:if>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+    {{>common/footer}}
+	
+	<!-- 블랙컨슈머 등록 -->
+	<div id="modal">
+	    <div class="modal_content">
+			<h4><strong>거래 의뢰자</strong>는 어떠셨나요?</h4>
+			<div style="margin-top:-10px"">의뢰자에 대한 평가는 다른 프리랜서들에게 도움이 됩니다.</div>
+			<ul>
+			 	<li>
+			 		
+			 		<a href="#hate" style="color:#d10606; ">다신 보고싶지 않아요</a>
+			 	</li>
+			 	<li><a href="#close" class="modal_close" style="color:#807e7e; ">그저 그랬어요</a></li>
+			 	<li><a href=#close" class="modal_close"  style="color:#00cc25; ">매우 좋았어요</a></li>
+			</ul>
+	    </div>
+	    <div class="modal_layer"></div>
+	</div>
+</body>
+
+
+</html>

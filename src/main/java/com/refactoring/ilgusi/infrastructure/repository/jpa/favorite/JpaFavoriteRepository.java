@@ -1,6 +1,7 @@
 package com.refactoring.ilgusi.infrastructure.repository.jpa.favorite;
 
 
+import com.refactoring.ilgusi.domain.favorite.Favorite;
 import com.refactoring.ilgusi.domain.favorite.FavoriteRepository;
 import com.refactoring.ilgusi.domain.service.Service;
 
@@ -13,4 +14,8 @@ public class JpaFavoriteRepository implements FavoriteRepository {
         this.jpaRepository = jpaRepository;
     }
 
+    @Override
+    public Favorite searchFavorite(int mNo, int sNo) {
+        return null;
+    }
 }

@@ -43,6 +43,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Member selectOneMember(Integer no) {
+        return memberRepository.findBymNo(no)
+                .orElseThrow(() -> new CustomException("전환실패", "member/userMypage"));
+    }
+
+    @Override
     public void registerMember(Member m) {
         m.changePw(encoder.encode(m.getMPw()));
         m.changeGrade(RoleEnum.USER);
@@ -120,14 +126,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member changeGrade(String mId) {
-
-        System.out.println("33333333333333333333333333333");
-
-
         RoleEnum user = RoleEnum.USER;
         RoleEnum free = RoleEnum.FREELANCER;
         return memberRepository.changeGrade(mId, user, free)
-                .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/userMypage", true));
+                .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
 
     }
 

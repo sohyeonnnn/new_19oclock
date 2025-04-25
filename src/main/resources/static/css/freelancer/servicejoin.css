@@ -1,0 +1,85 @@
+
+	.select_img img{
+		width:50px;
+		height:50px;	
+	}
+	h3.won {
+		margin: 0;
+		padding: 0;
+	}
+	
+	div.inner {
+		width: 1200px;
+		margin: 0 auto;
+	}
+	
+	div.top {
+		width: 80%;
+		margin: 0 auto;
+		border-radius:10px;
+		border: 2px dashed #e6e6e6;
+		background-color: #f5faff;
+	}
+	
+	div.toptext {
+		margin-left: 40px;
+	}
+	
+	div.bottom {
+		width: 80%;
+		height: 1100px;
+		margin: 0 auto;
+		border-top: 3px solid rgb(49, 76, 131);
+		border-bottom: 3px solid rgb(49, 76, 131);
+		text-align: center;
+	}
+	
+	div.inner2 {
+		width: 910px;
+		margin: 0 auto;
+		margin-top:5px;
+	}
+	
+	div.bottom2 {
+		width: 100%;
+		height: 200px;
+	}
+	div.bottom2>input{
+		color:white;
+		font-size:17px;
+		font-weight:bold;
+		border-radius: 5px;
+		background-color: rgb(49, 76, 131);
+	}
+	div.bottom2>input:hover{
+		box-shadow: 1px 1px 5px 1px gray;
+	}
+	.toptext>h3 {
+		color:rgb(49, 76, 131);
+	}
+	.toptext>h3:last-child {
+		color:#b52700;
+		font-size: 14px;	
+		font-weight: bold;
+	}
+	.toptext>h2{
+		color:rgb(49, 76, 131);
+		font-weight: bold;
+	}
+	.table-title>p{
+		width:200px;
+		height:50px;
+		color:#403e3e;
+		text-align:right;
+		line-height:40px;
+		font-weight: bold;
+	}
+	.input-noLine{
+		outline: none;
+		border:0;
+	}
+	.input-box{
+		margin-top:10px;
+        border-radius: 3px;
+        border: 1px solid rgb(204, 204, 204);
+	}

@@ -61,7 +61,7 @@ public class MemberController {
 
         HttpSession session = req.getSession();
         session.setAttribute("loginMember", m);
-
+        System.err.println("logimMember : "+m.toString());
         if (m.getMGrade().equals(RoleEnum.ADMIN)) {
             loc = "/manageMember?reqPage=1&grade=all&keyword=&order=new";
         }
@@ -115,7 +115,7 @@ public class MemberController {
     }
 
     // 사용자 마이페이지 이동
-    @GetMapping("/userMypage")
+    @RequestMapping("/userMypage")
     public String userMypage(@ModelAttribute("loginMember")Member m) {
         if (m.getMGrade().equals(RoleEnum.USER)) {
             return "member/userMypage";
@@ -126,21 +126,42 @@ public class MemberController {
     }
 
     //  마이페이지에서 사용자-프리랜서 전환
-    @PostMapping("/changeGrade")
+    @RequestMapping("/changeGrade")
     public String changeGrade(@ModelAttribute("loginMember")Member m, HttpServletRequest req) {
-        System.out.println("@@2222222222222222222222222222222222222");
+        if (m == null) {
+            return "redirect:/login";
+        }
+
         Member member = memberService.changeGrade(m.getMId());
+        System.out.println("전환 후 멤버정보 : "+member.toString());
+        if (member == null || member.getMGrade() == null) {
+            throw new IllegalStateException("회원 등급 변경 실패 또는 등급 정보 없음");
+        }
+
         req.getSession().setAttribute("loginMember", member);
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!! 전환");
-        if(member.getMGrade().equals(RoleEnum.USER)) {
+
+        if (member.getMGrade() == RoleEnum.USER) {
             return "member/userMypage";
-        }else{
-            System.out.println("#################################");
-            return "/";
-            //return "redirect:/freelancerMypage?MNo=" + m.getMNo();
+        } else {
+            return "redirect:/freelancerMypage?MNo=" + member.getMNo();
         }
     }
 
+    @RequestMapping("/freelancerMypage")
+    public String selectfreelancerMypage(int MNo, Model model) {
+        Member m = memberService.selectOneMember(MNo);
+        //int serviceCount = service.selectFreeServiceCount(m.getMId());
+        model.addAttribute("m", m);
+        if(m.getBrandName()!= null){
+            System.out.println("111");
+            model.addAttribute("hasBrandAndService", true);
+        }else{
+            System.out.println("222");
+            model.addAttribute("hasBrandAndService", null);
+        }
+        //model.addAttribute("serviceCount", serviceCount);
+        return "freelancer/freelancerMypage";
+    }
 
 /*
 

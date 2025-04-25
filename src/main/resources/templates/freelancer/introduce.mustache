@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>19시 :: [${j.brandName}] 소개</title>
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180"
+   href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+   href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+   href="favicon_io/favicon-16x16.png">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <link rel="stylesheet" href="/css/freelancer/introduce.css">
+    <script type="text/javascript" src="/js/freelancer/introduce.js"></script>
+
+</head>
+<body>
+{{>common/header}}
+	<br>
+	<br>
+	<br>
+	<div class="content">
+		<div class="inner" >
+			<div class="title"><br><br><br><br><br><br>
+				<p class="tt"><h1>${j.brandName}<span style="font-size:30px;">(${j.MId})</span></h1></p>
+				<p class="tt" id="listSize">${list}</p>
+				<p class="tt" id="sRate">평균 평점 : ${avg }</p>
+
+			</div>
+			<div class="menu">
+				<ul>
+					<li class="ac" style="height: 50px;"><a href="#one"
+						style="text-decoration: none;">소개</a></li>
+					<li class="ac" style="height: 50px;"><a href="#two"
+						style="text-decoration: none;">평가</a></li>
+					<li class="ac" style="height: 50px;"><a href="#three"
+						style="text-decoration: none;">서비스</a></li>
+				</ul>
+			</div>
+			<hr>
+			<div class="middleleft">
+				<br>
+				<div id="one">
+					<br>
+					<h2>소개</h2>
+				</div>
+				<br>
+				<p style="margin-left:20px;">${j.introduceBr}</p>
+			</div>
+
+			<div class="middleright">
+
+				<h2>활동정보</h2>
+				<br> <span style="float: left;"><b>등록된 서비스</b></span> <span
+					style="float: right; padding-right: 40px;"><b>${j.serviceList.size()}</b>개</span>
+
+				<br> <br> <span style="float: left;"><b>평균 평점</b></span> <span
+					style="float: right; padding-right: 40px;">${avg }</span> <br>
+				<br>
+				<h2>전문가 정보</h2>
+
+				<br> <span style="float: left;"><b>연락처</b></span> <span
+					style="float: right; padding-right: 40px;">${j.MPhone }</span> <br>
+				<br> <span style="float: left;"><b>연락가능시간</b></span> <span
+					style="float: right; padding-right: 40px;">${j.contactTime }</span>
+				<br> <br> <span style="float: left;"><b>이메일</b></span> <span
+					style="float: right; padding-right: 40px;">${j.MEmail }</span>
+
+			</div>
+
+			<div class="middle2left">
+				<br> <br>
+				<div id="two">
+					<br>
+					<h2>평가</h2>
+				</div>
+				<br>
+				<p class="tt"  id="sRate2">
+					<c:choose>
+						<c:when test="${avg  == 5}">
+							<p>
+								★★★★★ <b> ${avg }</b> /5.0점
+							</p>
+						</c:when>
+						<c:when test="${avg  gt 4}">
+							<p>
+								★★★★☆ <b> ${avg }</b> /5.0점
+							</p>
+						</c:when>
+						<c:when test="${avg  gt 3}">
+							<p>
+								★★★☆☆ <b> ${avg }</b> /5.0점
+							</p>
+						</c:when>
+						<c:when test="${avg  gt 2}">
+							<p>
+								★★☆☆☆ <b> ${avg }</b> /5.0점
+							</p>
+						</c:when>
+						<c:when test="${avg  gt 1}">
+							<p>
+								★☆☆☆☆ <b> ${avg }</b> /5.0점
+							</p>
+						</c:when>
+						<c:when test="${avg ==0}">
+							<p>
+								☆☆☆☆☆ <b> ${avg }</b> /5.0점
+							</p>
+						</c:when>
+					</c:choose>
+
+
+				</p>
+				<p class="tt" id="listSize2"></p>
+				<br>
+				<p>실제 구매한 이용자들이 남긴 평가입니다.</p>
+				<br>
+				<hr>
+				<c:choose>
+					<c:when test="${j.reviewList.size()==0}">
+						<div class="noList" style="width: 800px">등록된 평가가 없습니다.</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${j.reviewList}" var="r">
+							<div class="reviewBox">
+
+								<div id="reviewStar">
+									<img src="/img/test/icon_userProfile.svg" width="60px;">
+									<p class="date">${r.writeDate}</p>
+									<c:if test="${r.RRate ==0}">
+										<p>☆☆☆☆☆</p>
+										<p class="rate">평점 :${r.RRate}.0</p>
+									</c:if>
+									<c:if test="${r.RRate ==1}">
+										<p>★☆☆☆☆</p>
+										<p class="rate">평점 :${r.RRate}.0</p>
+									</c:if>
+									<c:if test="${r.RRate ==2}">
+										<p>★★☆☆☆</p>
+										<p class="rate">평점 :${r.RRate}.0</p>
+									</c:if>
+									<c:if test="${r.RRate ==3}">
+										<p>★★★☆☆</p>
+										<p class="rate">평점 :${r.RRate}.0</p>
+									</c:if>
+									<c:if test="${r.RRate ==4}">
+										<p>★★★★☆</p>
+										<p class="rate">평점 :${r.RRate}.0</p>
+									</c:if>
+									<c:if test="${r.RRate ==5}">
+										<p>★★★★★</p>
+										<p class="rate">평점 :${r.RRate}.0</p>
+									</c:if>
+									<hr>
+								</div>
+								<div id="reviewContentBox">
+									<p class="userId">
+										<b>작성자 :</b> ${r.MId}
+									</p>
+									<p class="serviceName">
+										<b>서비스 : </b>[${r.STitle}]
+									</p>
+									<hr>
+									<br>
+									<p class="reviewText">${r.RContent}</p>
+								</div>
+
+							</div>
+						</c:forEach>
+						<div class="pageNavi"
+							style="text-align: center; color: gray; letter-spacing: 10px; font-size: 15px; margin-top: 45px;">${pageNavi}</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+
+			<div class="middle2right"></div>
+			<br> <br>
+			<div class="middle3"">
+				<br> <br>
+				<div id="three">
+					<br>
+					<h2>서비스(${j.serviceList.size()}개)</h2>
+				</div>
+				<br> 
+				<div class="tabContent" style=";">
+					<c:choose>
+						<c:when test="${j.serviceList.size()==0}">
+							<div class="noList" style="width: 800px">등록된 서비스가 없습니다.</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${j.serviceList}" var="r">
+								<div class="serviceBox">
+									<img src="/upload/service/${r.SImg}" alt="없는이미지"
+										style="width: 150px; height: 150px;"><br> <span
+										class="preName">[<b>${r.STitle }</b>]
+									</span><br>
+									<p class="serviceCon" style="float: right;">${r.SPrice }원~</p>
+									<br>
+									<span style="float: right;">
+									<c:choose>
+									<c:when test="${r.SRate gt 4.9}">
+										<p class="score">
+											평점 ${r.SRate}점<span class="star"> ★★★★★</span>
+										</p>
+									</c:when>
+									<c:when test="${r.SRate gt 3.9}">
+										<p class="score">
+											평점 ${r.SRate}점<span class="star"> ★★★★☆</span>
+										</p>
+									</c:when>
+									<c:when test="${r.SRate gt 2.9}">
+										<p class="score">
+											평점 ${r.SRate}점<span class="star"> ★★★☆☆</span>
+										</p>
+									</c:when>
+									<c:when test="${r.SRate gt 1.9}">
+										<p class="score">
+											평점 ${r.SRate}점<span class="star"> ★★☆☆☆</span>
+										</p>
+									</c:when>
+									<c:when test="${r.SRate gt 0.9}">
+										<p class="score">
+											평점 ${r.SRate}점<span class="star"> ★☆☆☆☆</span>
+										</p>
+									</c:when>
+									<c:when test="${r.SRate ==0}">
+										<p class="score">
+											평점 ${r.SRate}점<span class="star"> ☆☆☆☆☆</span>
+										</p>
+									</c:when>
+									</c:choose>
+									
+									</span>
+									
+								</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="haha" value="${j.MId}">
+	</div>
+	<a id="topBtn" href="#"
+		style="width: 50px; height: 50px; line-height: 50px; background-color: orange; border-radius: 25%; text-decoration: none; text-align: center;">
+		TOP
+		</a>
+{{>common/footer}}
+</body>
+
+</body>
+</html>
