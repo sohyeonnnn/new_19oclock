@@ -26,7 +26,7 @@ public interface MemberRepository  {
     Optional<Member> changeMypage(String mId, String data, String object);
 
     // 사용자 마이페이지-회원탈퇴
-    void deleteMember(String mId);
+    Optional<Member> deleteMember(String mId);
 
     // 마이페이지에서 사용자-프리랜서 전환
     Optional<Member> changeGrade(String mId, RoleEnum user, RoleEnum free);

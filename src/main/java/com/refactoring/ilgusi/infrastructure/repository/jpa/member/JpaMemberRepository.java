@@ -55,7 +55,8 @@ public class JpaMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void deleteMember(String mId) {
+    public Optional<Member> deleteMember(String mId) {
+        return null;
     }
 
     @Override

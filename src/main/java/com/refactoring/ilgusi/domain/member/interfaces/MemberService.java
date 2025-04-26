@@ -13,10 +13,10 @@ public interface MemberService {
     String resetPw(Member m);
     void changePw(Member m, String newPw);
     Member changeMypage(String mId, String data, String object);
-    void deleteMember(String mId);
+    Member deleteMember(String mId);
     Member changeGrade(String mId);
     void settingMemberGrade(Member m);
     void tradeStatus(int mNo);
-    void setDeleteStatusY(String mId);
+    Member setDeleteStatusY(String mId);
     Member updateFreelancer(Member m);
 }

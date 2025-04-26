@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var phone_data = $("#phone").val();
     $("#phone1").val(phone_data.substring(4,8));
     $("#phone2").val(phone_data.substring(9));
+
+
 });
 
 //이메일 수정하기
@@ -141,7 +143,7 @@ $("#modal_confirm_btn").click(function(){
     var mPw = $('#pw-label').val();
     var mPw_check = $('#pw-check').val();
     if(mPw == mPw_check){
-        location.href="/deleteMember.do?mId="+mId;
+        location.href="/deleteMember?mId="+mId;
     }else{
         alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요');
     }

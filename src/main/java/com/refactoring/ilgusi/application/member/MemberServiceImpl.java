@@ -122,7 +122,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void deleteMember(String mId) {
+    public Member deleteMember(String mId) {
+        return null;
     }
 
 
@@ -143,7 +144,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void setDeleteStatusY(String mId) {
+    public Member setDeleteStatusY(String mId) {
+
+        return null;
     }
 
     @Override
