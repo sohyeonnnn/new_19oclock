@@ -51,13 +51,17 @@ public class Member extends BaseEntity {
 	}
 
 	@Builder
-	public Member(String mId, String mPw, String mName, String mEmail, String mPhone, RoleEnum mGrade) {
+	public Member(Integer mNo, String mId, String mPw, String mName, String mEmail, String mPhone, RoleEnum mGrade, String brandName, String contactTime, String introduce) {
+		this.mNo = mNo;
 		this.mId = mId;
 		this.mPw = mPw;
 		this.mName = mName;
 		this.mEmail = mEmail;
 		this.mPhone = mPhone;
 		this.mGrade = mGrade;
+		this.brandName = brandName;
+		this.contactTime = 	contactTime;
+		this.introduce = introduce;
 	}
 
 	public void changePw(String newPw){

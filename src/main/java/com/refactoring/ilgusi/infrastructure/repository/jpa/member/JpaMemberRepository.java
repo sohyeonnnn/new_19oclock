@@ -6,7 +6,7 @@ import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 
 import java.util.Optional;
 
-// 🔸 공통 인터페이스를 구현하고 내부에서 Spring Data JPA를 사용
+// 공통 인터페이스를 구현하고 내부에서 Spring Data JPA를 사용
 
 //@Repository
 public class JpaMemberRepository implements MemberRepository {
@@ -39,11 +39,19 @@ public class JpaMemberRepository implements MemberRepository {
 
     @Override
     public int changePw(Member m) {
-        return jpaRepository.changePw(m.getMPw(), m.getMId());
+        return jpaRepository.changePw(m.getMId(), m.getMPw());
     }
 
     @Override
-    public void changeMypage(String mId, String data, String object) {
+    public Optional<Member> changeMypage(String mId, String data, String object) {
+        if(object.equals("email")){
+            jpaRepository.changeMypageEmail(mId, data);
+        }else if(object.equals("phone")){
+            jpaRepository.changeMypagePhone(mId, data);
+        }else if(object.equals("pw")){
+            jpaRepository.changePw(mId, data);
+        }
+        return jpaRepository.findBymId(mId);
     }
 
     @Override

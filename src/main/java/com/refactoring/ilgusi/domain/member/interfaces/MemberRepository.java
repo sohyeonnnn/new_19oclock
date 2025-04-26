@@ -23,7 +23,7 @@ public interface MemberRepository  {
     int changePw(Member m);
 
     // 사용자 마이페이지-이메일, 폰번호, 비번 변경
-    void changeMypage(String mId, String data, String object);
+    Optional<Member> changeMypage(String mId, String data, String object);
 
     // 사용자 마이페이지-회원탈퇴
     void deleteMember(String mId);

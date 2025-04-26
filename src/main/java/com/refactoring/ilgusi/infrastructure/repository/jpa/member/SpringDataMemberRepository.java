@@ -16,9 +16,7 @@ public interface SpringDataMemberRepository extends JpaRepository<Member, Intege
     Optional<Member> findBymId(String mId);
     Optional<Member> findBymNo(Integer mNo);
 
-    @Query("SELECT m FROM Member m " +
-            "WHERE (m.mName = :mName AND m.mPhone = :mPhone) " +
-            "OR (m.mId = :mId AND m.mPhone = :mPhone)")
+    @Query("SELECT m FROM Member m WHERE (m.mName = :mName AND m.mPhone = :mPhone) OR (m.mId = :mId AND m.mPhone = :mPhone)")
     Optional<Member> findBymNameAndmPhoneOrmIdAndmPhone(@Param("mName") String mName,
                                                     @Param("mPhone") String mPhone,
                                                     @Param("mId") String mId);
@@ -26,7 +24,7 @@ public interface SpringDataMemberRepository extends JpaRepository<Member, Intege
     @Modifying
     @Transactional
     @Query("UPDATE Member m SET m.mPw = :mPw WHERE m.mId = :mId")
-    int changePw(@Param("mPw") String mPw, @Param("mId") String mId);
+    int changePw(@Param("mId") String mId, @Param("mPw") String mPw);
 
     @Modifying
     @Transactional
@@ -34,6 +32,18 @@ public interface SpringDataMemberRepository extends JpaRepository<Member, Intege
     int changeGrade(@Param("mId") String mId,
                     @Param("user") RoleEnum user,
                     @Param("freelancer") RoleEnum freelancer);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Member m SET m.mEmail = :data WHERE m.mId = :mId")
+    int changeMypageEmail(@Param("mId") String mId,
+                     @Param("data") String data);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Member m SET m.mPhone = :data WHERE m.mId = :mId")
+    int changeMypagePhone(@Param("mId") String mId,
+                          @Param("data") String data);
 
     @Modifying
     @Transactional

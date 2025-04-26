@@ -4,6 +4,7 @@ import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
 import com.refactoring.ilgusi.domain.member.Member;
+import com.refactoring.ilgusi.domain.member.dto.MemberUpdateDto;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
 import com.refactoring.ilgusi.domain.member.dto.MemberJoinDto;
@@ -103,9 +104,7 @@ public class MemberController {
     // 비번 찾기 (비번 변경)
     @PostMapping("/searchChangePw")
     public String searchPw(HttpServletRequest req, String mPw, Model model) {
-        HttpSession session = req.getSession();
-
-        Member m = (Member) session.getAttribute("loginMember");
+        Member m = (Member) req.getSession().getAttribute("loginMember");
         memberService.changePw(m, mPw);
 
         String msg = CommonEnum.UPDATE_SUCCESS.getVal();
@@ -128,18 +127,8 @@ public class MemberController {
     //  마이페이지에서 사용자-프리랜서 전환
     @RequestMapping("/changeGrade")
     public String changeGrade(@ModelAttribute("loginMember")Member m, HttpServletRequest req) {
-        if (m == null) {
-            return "redirect:/login";
-        }
-
         Member member = memberService.changeGrade(m.getMId());
-        System.out.println("전환 후 멤버정보 : "+member.toString());
-        if (member == null || member.getMGrade() == null) {
-            throw new IllegalStateException("회원 등급 변경 실패 또는 등급 정보 없음");
-        }
-
         req.getSession().setAttribute("loginMember", member);
-
         if (member.getMGrade() == RoleEnum.USER) {
             return "member/userMypage";
         } else {
@@ -147,25 +136,16 @@ public class MemberController {
         }
     }
 
-
-
-/*
-
     // 사용자 마이페이지-이메일, 폰번호 변경
     @ResponseBody
-    @RequestMapping("/changeMypage.do")
-    public String changeMypage(String mId, String mPw, String data, String object, HttpServletRequest req) {
-        int result = service.changeMypage(mId, data, object);
-        if (result > 0) {
-            Member m = service.loginMember(mId, mPw);
-            if (m != null) {
-                HttpSession session = req.getSession();
-                session.setAttribute("loginMember", m);
-            }
-        }
+    @RequestMapping("/changeMypage")
+    public String changeMypage(MemberUpdateDto m, HttpServletRequest req) {
+        Member updatedMember = memberService.changeMypage(m.getMId(), m.getData(), m.getObject());
+        req.getSession().setAttribute("loginMember", updatedMember);
         return "";
     }
 
+/*
     // 사용자 마이페이지-비밀번호 변경
     @RequestMapping("/changePw.do")
     public String changePw(String mId, String mPw, String data, String object, HttpServletRequest req) {

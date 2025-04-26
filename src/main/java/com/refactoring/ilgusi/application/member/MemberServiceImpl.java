@@ -116,7 +116,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void changeMypage(String mId, String data, String object) {
+    public Member changeMypage(String mId, String data, String object) {
+        return memberRepository.changeMypage(mId, data, object)
+                .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
     }
 
     @Override
@@ -130,7 +132,6 @@ public class MemberServiceImpl implements MemberService {
         RoleEnum free = RoleEnum.FREELANCER;
         return memberRepository.changeGrade(mId, user, free)
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
-
     }
 
     @Override

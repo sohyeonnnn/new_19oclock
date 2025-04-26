@@ -12,7 +12,7 @@ public interface MemberService {
     Member searchId(Member m);
     String resetPw(Member m);
     void changePw(Member m, String newPw);
-    void changeMypage(String mId, String data, String object);
+    Member changeMypage(String mId, String data, String object);
     void deleteMember(String mId);
     Member changeGrade(String mId);
     void settingMemberGrade(Member m);
