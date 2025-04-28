@@ -1,0 +1,88 @@
+
+     @font-face {
+         font-family: 'Arita-dotum-Medium';
+         src:
+             url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
+         font-weight: normal;
+         font-style: normal;
+     }
+    * {
+        font-family: 'Arita-dotum-Medium';
+    }
+	.wrap{
+		padding : 20px;
+	}
+	h2{
+		color:rgb(49, 76, 131);
+		margin:-10px 0 5px;
+	}
+
+	#gray-text{
+		font-size:12px;
+		font-weight:bold;
+		color:rgb(158, 158, 158);
+	}
+	.sContent{
+		height:100px;
+	}
+	.sContent>div{
+		float:left;
+	}
+	.sContent>div:first-child{
+		width:30%;
+	}
+	.sContent>div:last-child {
+		width:65%;
+		height:35px;
+		font-size:13px;
+		overflow: hidden;	
+		margin:20px 0  0 10px;
+	}
+	.heart-box{
+		height:37px;
+		margin-bottom:15px;
+		border:1px solid rgb(158, 158, 158);
+	}
+	.heart-box>div{
+		width:100%;
+		height:100%;
+		text-align:center;
+	}
+	.heart-box>div>img{
+		width:30px;
+		height:30px;
+		margin-top:5px;
+	}
+	.heart-box>div>div{
+		line-height:35px;
+		float:right;
+		
+	}
+	.sub-title{
+		font-size:17px;
+		font-weight: bold;
+		color:rgb(49, 76, 131);
+		margin-bottom:10px;
+	}
+	.btn-wrap{
+		margin-top:20px;
+		text-align: center;
+	}
+    .btn2{
+        width: 135px;
+        height: 31px;
+        border-radius: 5px;
+    }
+    .btn2:hover{
+        border: 2px solid black;
+    }
+    .change{
+        color: white;
+        border: 1px solid rgb(49, 76, 131);
+        background-color: rgb(49, 76, 131);
+    }
+    .delete{
+        color: rgb(49, 76, 131);
+        border: 1px solid rgb(49, 76, 131);
+        background-color: white;
+    }

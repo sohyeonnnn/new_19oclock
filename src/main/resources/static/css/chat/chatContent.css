@@ -1,0 +1,56 @@
+
+.messages .date {
+	border: 1px solid orange;
+	border-radius: 30px;
+	width: 150px;
+	align-self: center;
+	text-align: center;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.messages .read {
+	width: 5px;
+	height: 5px;
+	background-color: orange;
+	border-radius: 20px;
+	display: inline-block;
+	opacity: 1;
+}
+
+.messages .adminBox {
+	text-align: center;
+	align-self: center;
+}
+
+.adminBox .adminMsg {
+	padding: 10px;
+	border: 2px solid #6A85C3;
+	border-radius: 10px;
+	width: 80%;
+	margin: 8px;
+}
+
+#message-input .wrap .bigBtn {
+	width: 100%;
+	height: 100%;
+	background-color: orange;
+	display: block;
+	text-align: center;
+	line-height: 60px;
+	color: white;
+	font-size: 20px;
+}
+
+.bigBtn {
+	cursor: pointer;
+}
+
+.service-title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}

@@ -1,0 +1,31 @@
+
+     @font-face {
+         font-family: 'Arita-dotum-Medium';
+         src:
+             url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
+         font-weight: normal;
+         font-style: normal;
+     }
+    * {
+        font-family: 'Arita-dotum-Medium';
+    }
+	body{
+		text-align: center;
+		margin:0 auto;
+	}
+	h2{
+		margin-top:150px;
+	}
+	#cancel-btn{
+		width:100px;
+		height:50px;
+		border-radius:10px;
+		background-color: #801f1f;
+		font-size:20px;
+		color:white;
+	}
+	#cancel-btn:hover{
+		border:1px solid red;
+		background-color: white;
+		color:black;
+	}

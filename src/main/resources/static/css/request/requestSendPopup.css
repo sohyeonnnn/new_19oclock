@@ -1,0 +1,79 @@
+
+     @font-face {
+         font-family: 'Arita-dotum-Medium';
+         src:
+             url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
+         font-weight: normal;
+         font-style: normal;
+     }
+    * {
+        font-family: 'Arita-dotum-Medium';
+    }
+	body{
+		margin :0;
+		padding:0;
+	}
+    .wrap{
+    }
+    .wrap>div:first-child{
+    	padding:5px 15px 0;
+    	text-align:left;
+    	height:100px;
+    	color:white;
+    	background-color: rgb(49, 76, 131);
+    }
+    .wrap>div:first-child>div{
+    	margin:12px 10px 0;
+    	font-size: 23px;
+    }
+    table{
+        width: 80%;
+        border-bottom: 1px solid rgb(230, 230, 230);
+    }
+    .table-top{
+        height: 20px;
+        text-align: center;
+    }
+    .service-content>div{
+        float:left;
+    }
+    .service-content>div:last-child>div{
+        margin-left: 15px;
+    }
+    .title{
+        color: gray;
+        width: 250px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; 
+        -webkit-box-orient: vertical;
+    }
+    .wrap>div{
+        text-align: center;
+    }
+    .send-btn{
+    	left:35%;
+    	top:485px;
+        width: 145px;
+        height: 30px;
+        color: white;
+        font-size:11px;
+        position:absolute;
+        border-radius: 5px;
+        line-height: 25px;
+        background-color: rgb(49, 76, 131);
+        border: 2px solid rgb(49, 76, 131);
+    }
+    .send-btn:hover{
+        border: 2px solid black;
+    }
+    input[type=radio]{
+        width: 20px;
+        height: 20px;
+    }
+	.noList{
+	    margin-top: 5px;
+	    text-align: center;
+	   	color :rgb(224, 224, 224);
+	   	font-weight: bold; 
+	}

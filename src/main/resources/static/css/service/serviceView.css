@@ -1,0 +1,324 @@
+
+        @font-face {
+            font-family: 'Arita-dotum-Medium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            font-family: 'Arita-dotum-Medium';
+        }
+
+
+        .contentWrap {
+            width: 1200px;
+            height : 1800px;
+            margin: 0 auto;
+            display: block;
+        }
+
+       .crumb {
+            font-family: 'Arita-dotum-Medium';
+            color: dimgray;
+            font-size: 10pt;
+            padding: 20px;
+
+        }
+
+        .carousel {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .carousel-inner img {
+            width: 100%;
+            height: 500px;
+        }
+
+        .carousel-indicators li {
+            width: 10px;
+            margin: 5px;
+            border-radius: 10px;
+        }
+
+        /*.................... ▼ 왼쪽 컨텐츠...........................*/
+
+        .leftContent {
+            width: 57%;
+            float: left;
+        }
+
+        .outer>ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .outer>ul li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .tab {
+            margin: 0;
+            font-size: 7pt;
+            list-style-type: none;
+            display: inline-block;
+            background-color: rgba(224, 224, 224, 0.42);
+            width: 20%;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-top: 1px solid rgb(224, 224, 224);
+            border-bottom: 1px solid black;
+            border-right: 1px solid rgb(224, 224, 224);
+            border-left: 1px solid rgb(224, 224, 224);
+            float: left;
+            color: gray;
+        }
+
+        .clickTab {
+            background-color: transparent;
+            border-top: 1px solid black;
+            border-bottom: 1px solid transparent;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            font-weight: bold;
+        }
+
+        .tabcontent {
+            width: 100%;
+            height: 800px;
+            text-align: left;
+            padding: 20px;
+            font-size: 8pt;
+        }
+
+        .tabcontent>h2 {
+            font-size: 10pt;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        .priceInfo {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            height: 150px;
+            background-color: rgba(224, 224, 224, 0.42);
+            font-size: 8pt;
+            padding: 10px;
+
+        }
+
+        .priceContent {
+            float: left;
+            width: 40%;
+            height: 50px;
+            margin: 10px;
+        }
+
+        .realPrice {
+            float: right;
+            text-align: right;
+            margin: 10px;
+        }
+
+        .realPrice>p {
+            font-size: 12pt;
+            margin-bottom: 0;
+        }
+
+        .reviewBox {
+            margin: 0 auto;
+            border-bottom: 1px solid gray;
+            width: 640px;
+            padding: 10px;
+
+        }
+
+        .reviewBox p {
+            margin-bottom: 10px;
+        }
+
+        .profile-img {
+            float: left;
+        }
+
+        .reviewCon {
+            margin-left: 120px;
+        }
+
+        .star {
+            color: rgb(241, 196, 15);
+            font-size: 12pt;
+        }
+
+        .reviewText {
+            font-size: 10pt;
+        }
+        
+        .anotherService{
+        	border-radius:5px;
+        	width: 185px;
+        	height : 200px;
+        	float: left;
+        	margin: 5px;
+        	padding: 2px;
+        	box-shadow: 3px 3px 5px lightgray;
+        }
+        .anoImg{
+        	border-top-left-radius: 10px;
+        	border-top-right-radius: 10px;
+        	margin-left: 3px;
+        }
+
+		.anoCon{
+			
+		}
+		
+		.anCon>p{
+			font-size: 12pt;
+		}
+		.conView{
+			white-space: pre-line;
+		}
+		
+        /*.................... ▲ 왼쪽 컨텐츠...........................*/
+
+        /*.................... ▼ 오른쪽 컨텐츠...........................*/
+		 .rightContent {
+                    margin: 0;
+                    width: 478px;
+                    float: right;
+
+                }
+
+                .titleWrap {
+                    padding: 10px;
+                    width: 450px;
+
+                }
+
+                .heart {
+                    font-size: 11pt;
+                }
+
+                .rightInfo {
+                    width: 450px;
+                    height: 250px;
+                    border: 1px solid gray;
+                    margin: 0 auto;
+                    padding: 23px;
+
+                }
+
+                .titlePrice {
+                    font-size: 13pt;
+                    text-align: right;
+                    font-weight: bold;
+                }
+
+                .Infocon {
+                    height: 80px;
+
+                }
+
+                .Infocon>p {
+                    font-size: 11pt;
+                    font-weight: bold;
+                    margin-bottom: 2px;
+                }
+
+                .Infocon>span {
+                    font-size: 10pt;
+                }
+
+                .conFirst {
+                    width: 450px;
+                }
+
+                .othercon {
+                    width: 200px;
+                    float: left;
+                }
+
+                .centerBtn {
+                    margin-left: 10px;
+                    text-align: center;
+                    width: 380px;
+                    border: 1px solid #314C83;
+                    background-color: #314C83;
+                    color: white;
+                    border-radius: 5px;
+                    height: 35px;
+                    font-size: 10.5pt;
+                }
+
+                .secu {
+                    margin: 0 auto;
+                    width: 450px;
+                    border: 1px solid gray;
+                    font-size: 11pt;
+                    color: #282828;
+                    padding: 13px;
+                }
+
+                .preIntro {
+                    margin: 0 auto;
+                    width: 450px;
+                    border: 1px solid gray;
+                    padding: 20px;
+                }
+
+                .pre-profile {
+                    text-align: center;
+                    margin: 20px;
+                }
+
+                .emptyBtn {
+                    text-align: center;
+                    width: 380px;
+                    border: 3px solid #314C83;
+                    background-color: transparent;
+                    color: #314C83;
+                    border-radius: 5px;
+                    height: 35px;
+                    font-size: 10.5pt;
+                    font-weight: bold;
+                }
+
+                .bold-font {
+                    font-weight: bold;
+                }
+
+                .Intro-detail {
+                    font-size: 10pt;
+
+                }
+                .sIntro>pre,
+                .Intro-detail>pre{
+                	background-color: transparent;
+                	border: none;
+             
+                }
+                
+                .heart:hover{
+                	cursor: pointer;
+                }
+                
+                 .fas{
+			       	color: #ef4f4f;
+			     }
+				.contentTitle{
+					border-bottom: 2px solid #314C83; 
+					padding-bottom: 20px; 
+					margin-bottom: 20px;
+					font-size: 12pt;
+					width: 448px;
+					
+					
+				}
+
+
+        /*.................... ▲ 오른쪽 컨텐츠...........................*/

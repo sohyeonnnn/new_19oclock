@@ -1,0 +1,18 @@
+
+.green {
+	color: #3FC32C;
+}
+
+.blue {
+	color: #2C8BC3;
+}
+
+.red {
+	color: #B31E1E;
+}
+
+.service-title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

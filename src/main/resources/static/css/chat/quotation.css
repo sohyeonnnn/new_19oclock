@@ -1,0 +1,74 @@
+
+@font-face {
+	font-family: 'Arita-dotum-Medium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'Arita-dotum-Medium';
+}
+.q-wrap {
+	text-align: center;
+	margin: 10px auto;
+	width: 80%;
+	height: 80%;
+}
+
+#title {
+	font-size: 50px;
+	margin: 0 auto;
+}
+
+.table {
+	background-color: #314C83;
+	margin-top:10px;
+	margin-bottom:10px;
+	padding:10px;
+	width: 100%;
+	border-radius:10px;
+}
+
+table {
+	margin: 0 auto;
+	background-color: white;
+	border-radius:10px;
+}
+
+th {
+	width: 150px;
+}
+
+tr, th {
+	padding: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom:0.5px solid lightgray;
+}
+
+td {
+	width: 700px;
+	font-size: 15px;
+	border-bottom:0.5px solid lightgray;
+	border-left:0.5px solid lightgray;
+}
+
+.btn {
+	text-align: center;
+	width: 50px;
+	border: 3px solid #314C83;
+	background-color: transparent;
+	color: #314C83;
+	border-radius: 5px;
+	height: 35px;
+	font-size: 10.5pt;
+	font-weight: bold;
+}
+
+.color {
+	background-color: #314C83;
+	color: white;
+}

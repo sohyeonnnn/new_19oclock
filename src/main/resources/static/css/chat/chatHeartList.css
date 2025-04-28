@@ -1,0 +1,24 @@
+
+#name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.startChat, .deleteFavorite {
+	color: white;
+	display: inline-block;
+	width: 70px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 10px;
+}
+
+.navy {
+	background-color: #314C83;
+}
+
+.orange {
+	background-color: #FF8F3F;
+}

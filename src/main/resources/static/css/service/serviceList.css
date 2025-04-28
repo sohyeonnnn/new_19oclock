@@ -1,0 +1,190 @@
+
+@font-face {
+	font-family: 'Arita-dotum-Medium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.contentWrap {
+	width: 1200px;
+	margin: 0 auto;
+	height: 1600px;
+}
+
+.sideNavi {
+	color: #282828;
+	font-family: 'Arita-dotum-Medium';
+	/*border: 1px solid lightgray;*/
+	width: 200px;
+	float: left;
+}
+
+.serviceList {
+	width: 980px;
+	float: left;
+}
+
+.naviTitle {
+	padding-left: 10px;
+	font-size: 15pt;
+	margin: 15px;
+	border-left: 3px solid #314C83;
+}
+
+.menu ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+
+.menu li>a {
+	margin-left: 15px;
+	text-decoration: none;
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+	display: block;
+	text-indent: 10px;
+	color: #282828;
+	font-size: 11pt;
+}
+
+a:hover {
+	font-weight: bold;
+}
+
+.crumb {
+	font-family: 'Arita-dotum-Medium';
+	color: dimgray;
+	font-size: 10pt;
+	padding: 20px;
+}
+
+.selectBox {
+	height: 30px;
+	width: 70px;
+}
+
+.searchDiv {
+	width: 978px;
+	height: 50px;
+	float: right;
+}
+
+.searchBox {
+	font-family: 'Arita-dotum-Medium';	
+}
+
+.search-cover{
+	float: right;
+
+}
+
+
+.search-cover>button {
+	outline: none;
+	border: 1px solid #314C83;
+	background-color: #314C83;
+	color: white;
+	font-weight: bold;
+	border-radius: 3px;
+	height: 34px;
+	width: 55px;
+}
+
+.tableContainer {
+	margin: 0 auto;
+}
+
+.serviceBox {
+	color: #282828;
+	font-family: 'BBTreeGR';
+	margin: 10px;
+	/*border: 1px solid gray;*/
+	padding: 10px;
+	width: 225px;
+	height: 340px;
+	display: inline-block;
+	float: left;
+	overflow: hidden;
+}
+
+.serviceBox img {
+	border-radius: 5px;
+	width: 210px;
+	height: 150px;
+	transform: scale(1);
+    transition: transform 0.1s linear;
+}
+
+.imgBox{
+	overflow: hidden;
+	width: 210px;
+	height: 150px;
+	border-radius: 5px;
+}
+.serviceBox img:hover{
+	transform: scale(1.03);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.preName {
+	text-align: left;
+	font-size: 10pt;
+	font-weight: bold;
+	margin-bottom: px;
+}
+
+.serviceCon >a{
+	font-size: 11pt;
+	margin: 0;
+	color: gray;
+}
+.serviceCon>a:hover{
+	text-decoration: none;
+}
+
+.price {
+	text-align: right;
+	font-weight: bold;
+	font-size: 12pt;
+	margin: 0;
+}
+
+.score {
+	font-size: 8pt;
+	text-align: right;
+	color: gray;
+	margin: 0;
+	height: 15px;
+}
+
+.star {
+	color: rgb(241, 196, 15);
+	font-size: 14pt;
+}
+
+.pageNaviBox {
+	width: 1000px;
+	height: 40px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+/*.page-link : hover {
+	
+}*/
+
+.selectedPage {
+	color: rgb(255, 143, 63);
+	font-weight: bold;
+}
+
+.pagination>li>span {
+	color: transparent;
+}
