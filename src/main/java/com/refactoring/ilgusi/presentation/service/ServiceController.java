@@ -1,6 +1,6 @@
 package com.refactoring.ilgusi.presentation.service;
 
-import com.refactoring.ilgusi.domain.service.ServiceRepository;
+import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;

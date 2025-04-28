@@ -14,7 +14,7 @@ public class Service {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int sNo;			//서비스 번호
 	@Column
-	private String mId;			//회원 아이디(작성자
+	private int mNo;			//회원 아이디(작성자
 	@Column
 	private String sTitle;		//서비스 제목
 	@Column

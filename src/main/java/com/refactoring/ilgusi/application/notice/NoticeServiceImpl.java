@@ -2,8 +2,8 @@ package com.refactoring.ilgusi.application.notice;
 
 import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.domain.notice.Notice;
-import com.refactoring.ilgusi.domain.notice.NoticeRepository;
-import com.refactoring.ilgusi.domain.notice.NoticeService;
+import com.refactoring.ilgusi.domain.notice.interfaces.NoticeRepository;
+import com.refactoring.ilgusi.domain.notice.interfaces.NoticeService;
 import com.refactoring.ilgusi.domain.notice.dto.NoticePageResponseDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeViewDto;
 import com.refactoring.ilgusi.exception.CustomException;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 @RequiredArgsConstructor

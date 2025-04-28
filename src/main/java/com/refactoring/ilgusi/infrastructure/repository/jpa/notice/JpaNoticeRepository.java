@@ -1,7 +1,7 @@
 package com.refactoring.ilgusi.infrastructure.repository.jpa.notice;
 
 import com.refactoring.ilgusi.domain.notice.Notice;
-import com.refactoring.ilgusi.domain.notice.NoticeRepository;
+import com.refactoring.ilgusi.domain.notice.interfaces.NoticeRepository;
 
 import java.util.List;
 import java.util.Optional;

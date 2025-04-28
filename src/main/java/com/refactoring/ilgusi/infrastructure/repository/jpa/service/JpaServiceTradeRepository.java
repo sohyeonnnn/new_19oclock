@@ -1,6 +1,6 @@
 package com.refactoring.ilgusi.infrastructure.repository.jpa.service;
 
-import com.refactoring.ilgusi.domain.service.ServiceTradeRepository;
+import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
 
 
 

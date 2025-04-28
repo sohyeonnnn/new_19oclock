@@ -1,4 +1,4 @@
-package com.refactoring.ilgusi.domain.service;
+package com.refactoring.ilgusi.domain.service.interfaces;
 
 public interface ServiceTradeRepository {
     // 메인페이지에 판매진행,구매진행중 정보 전달

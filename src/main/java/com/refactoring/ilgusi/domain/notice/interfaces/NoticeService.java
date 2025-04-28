@@ -1,6 +1,7 @@
-package com.refactoring.ilgusi.domain.notice;
+package com.refactoring.ilgusi.domain.notice.interfaces;
 
 
+import com.refactoring.ilgusi.domain.notice.Notice;
 import com.refactoring.ilgusi.domain.notice.dto.NoticePageResponseDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeViewDto;
 

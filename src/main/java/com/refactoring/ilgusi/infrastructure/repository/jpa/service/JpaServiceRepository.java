@@ -3,10 +3,12 @@ package com.refactoring.ilgusi.infrastructure.repository.jpa.service;
 import com.refactoring.ilgusi.domain.category.Category;
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.service.*;
+import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class JpaServiceRepository implements ServiceRepository {
     private final SpringDataServiceRepository jpaRepository;
@@ -184,4 +186,10 @@ public class JpaServiceRepository implements ServiceRepository {
     public int selectFreeServiceCount(String mId) {
         return 0;
     }
+
+    @Override
+    public Optional<Service> tradeStatus(int mNo){
+        return jpaRepository.findBymNo(mNo);
+    }
+
 }

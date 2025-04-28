@@ -66,7 +66,6 @@ public class MemberController {
         if (m.getMGrade().equals(RoleEnum.ADMIN)) {
             loc = "/manageMember?reqPage=1&grade=all&keyword=&order=new";
         }
-
         return MsgRedirectHelper.success(model,msg,loc);
     }
 
@@ -146,47 +145,52 @@ public class MemberController {
     }
 
 
-    // 사용자 마이페이지 - 회원탈퇴(아이디로만)
+    // 사용자 마이페이지 - 회원탈퇴
     @RequestMapping("/deleteMember")
     public String deleteMember(String mId, HttpServletRequest req, Model model, String admin, String mNo) {
+        String msg = null;
+        String loc= "/";
+
+
+        //memberService.tradeStatus(m.getMNo());
+
+
+
         if (mNo == null) {
             // 회원번호 받아서 거래중인 것이 있는지 확인 -> 없어야만 삭제
-            int tradeStatus = 0;//memberService.tradeStatus(m.getMNo());
+            int tradeStatus = 0;//
 
             // 탈퇴 진행
             if (tradeStatus == 0) {
-               // Member deletedMember = serviceService.setDeleteStatusY(mId); // 서비스 delete_status = 'y'로 바꿈
-                Member deletedMember = memberService.deleteMember(mId);
-                model.addAttribute("loc", "/userMypage");
+               // Member deletedMember = memberService.setDeleteStatusY(mId); // 서비스 delete_status = 'y'로 바꿈
+                memberService.deleteMember(mId);
 
                 req.getSession().setAttribute("loginMember", null);
-                model.addAttribute("msg", "탈퇴 되었습니다.");
-                model.addAttribute("loc", "/");
+                msg = "탈퇴 되었습니다.";
+                loc = "/";
             }
             // 거래중인 서비스가 있어서 탈퇴 거절
             else {
-                model.addAttribute("msg", "거래 중인 서비스가 있기 때문에 탈퇴하실 수 없습니다.");
-                model.addAttribute("loc", "/userMypage.do");
+                msg = "거래 중인 서비스가 있기 때문에 탈퇴할 수 없습니다.";
+                loc = "/userMypage";
             }
-            return "common/msg";
+            return MsgRedirectHelper.build(model,msg,loc);
         } else {// 관리자가 삭제할때
             int mNoInt = Integer.parseInt(mNo);
             int tradeStatus = 0;//memberService.tradeStatus(mNoInt);
             // 탈퇴 진행
             if (tradeStatus == 0) {
-                /*int result = memberService.setDeleteStatusY(mId); // delete_status = 'y'로 바꿈
-                result = */memberService.deleteMember(mId);
-                System.out.println("관리자 탈퇴");
-                model.addAttribute("msg", "탈퇴 되었습니다.");
-                model.addAttribute("loc", "manageMember?reqPage=1&grade=black&keyword=&order=new");
+                /*int result = memberService.setDeleteStatusY(mId); // delete_status = 'y'로 바꿈*/
+                memberService.deleteMember(mId);
+                msg = "탈퇴 되었습니다.";
+                loc = "/manageMember?reqPage=1&grade=black&keyword=&order=new";
             }
             // 거래중인 서비스가 있어서 탈퇴 거절
             else {
-                model.addAttribute("msg", "거래 중인 서비스가 있기 때문에 탈퇴하실 수 없습니다.");
-                model.addAttribute("loc", "/manageMember?reqPage=1&grade=black&keyword=&order=new");
+                msg = "거래 중인 서비스가 있기 때문에 탈퇴하실 수 없습니다.";
+                loc = "/manageMember?reqPage=1&grade=black&keyword=&order=new";
             }
-            return "common/msg";
-
+            return MsgRedirectHelper.build(model,msg,loc);
         }
     }
 

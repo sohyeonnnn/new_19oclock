@@ -1,11 +1,13 @@
-package com.refactoring.ilgusi.domain.service;
+package com.refactoring.ilgusi.domain.service.interfaces;
 
 import com.refactoring.ilgusi.domain.category.Category;
 import com.refactoring.ilgusi.domain.member.Member;
+import com.refactoring.ilgusi.domain.service.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public interface ServiceRepository {
 
@@ -100,5 +102,8 @@ public interface ServiceRepository {
 
     // 프리랜서가 등록한 총 서비스 개수
     int selectFreeServiceCount(String mId);
+
+    // 거래중인 서비스가 있는지 확인
+    Optional<Service> tradeStatus(int mNo);
 
 }

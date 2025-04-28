@@ -26,16 +26,13 @@ public interface MemberRepository  {
     Optional<Member> changeMypage(String mId, String data, String object);
 
     // 사용자 마이페이지-회원탈퇴
-    Optional<Member> deleteMember(String mId);
+   void deleteMember(String mId);
 
     // 마이페이지에서 사용자-프리랜서 전환
     Optional<Member> changeGrade(String mId, RoleEnum user, RoleEnum free);
 
     // 로그인하면 grade를 1로 셋팅
     void settingMemberGrade(Member m);
-
-    // 거래중인 서비스가 있는지 확인
-    void tradeStatus(int mNo);
 
     // 탈퇴하기전 delete_status = 'y' 셋팅
     void setDeleteStatusY(String mId);
