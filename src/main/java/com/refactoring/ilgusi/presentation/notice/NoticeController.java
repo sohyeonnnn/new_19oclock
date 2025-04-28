@@ -4,7 +4,7 @@ import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.domain.notice.Notice;
-import com.refactoring.ilgusi.domain.notice.NoticeService;
+import com.refactoring.ilgusi.domain.notice.interfaces.NoticeService;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeInsertDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticePageResponseDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeViewDto;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -22,7 +21,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -171,17 +169,16 @@ public class NoticeController {
         return MsgRedirectHelper.success(model, msg, loc);
     }
 
-/*
     //관리자 공지사항리스트
-    @RequestMapping("/adminNoticeList.do")
+  /*  @RequestMapping("/adminNoticeList")
     public String adminNoticeList ( Model model, int reqPage, String keyword) {
-        *//*NoticePageData npd = service.selectNoticeList(reqPage,keyword);
+        NoticePageData npd = noticeService.selectNoticeList(reqPage,keyword);
         model.addAttribute("list", npd.getList());
-        model.addAttribute("pageNavi", npd.getPageNavi());*//*
+        model.addAttribute("pageNavi", npd.getPageNavi());
 
         return "admin/noticeList";
-    }
-*/
+    }*/
+
 
 }
 

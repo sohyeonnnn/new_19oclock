@@ -9,7 +9,7 @@ import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 
 import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
-import com.refactoring.ilgusi.domain.service.ServiceTradeRepository;
+import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
 import com.refactoring.ilgusi.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -45,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member selectOneMember(Integer no) {
         return memberRepository.findBymNo(no)
-                .orElseThrow(() -> new CustomException("전환실패", "member/userMypage"));
+                .orElseThrow(() -> new CustomException("사용자가 없습니다.", "member/userMypage"));
     }
 
     @Override
@@ -122,8 +122,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member deleteMember(String mId) {
-        return null;
+    public void deleteMember(String mId) {
+       memberRepository.deleteMember(mId);
     }
 
 
@@ -140,7 +140,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void tradeStatus(int mNo) {
+    public int tradeStatus(int mNo) {
+        return 0;
     }
 
     @Override
