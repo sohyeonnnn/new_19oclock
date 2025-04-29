@@ -145,6 +145,14 @@ public class MemberController {
         return "/";
     }
 
+    // 사용자 마이페이지-비밀번호 변경
+    @PostMapping("/changePw")
+    public String changePw(@RequestParam String mId,@RequestParam String mPw, @RequestParam String data, @RequestParam String object, HttpServletRequest req) {
+        System.out.println("object : "+object);
+        Member updatedMember = memberService.changeMypage(mId, data, object);
+        req.getSession().setAttribute("loginMember", updatedMember);
+        return "member/userMypage";
+    }
 
     // 사용자 마이페이지 - 회원탈퇴
     @RequestMapping("/deleteMember")
@@ -173,26 +181,10 @@ public class MemberController {
     }
 
 
-
 /*
-    // 사용자 마이페이지-비밀번호 변경
-    @RequestMapping("/changePw.do")
-    public String changePw(String mId, String mPw, String data, String object, HttpServletRequest req) {
-        int result = service.changeMypage(mId, data, object);
-        if (result > 0) {
-            Member m = service.loginMember(mId, data);
-            if (m != null) {
-                HttpSession session = req.getSession();
-                session.setAttribute("loginMember", m);
-            }
-        }
-        return "member/userMypage";
-    }
-
-
 
     // 마이페이지 - 의뢰내역 확인하기
-    @RequestMapping("/userRequestHistory.do")
+    @RequestMapping("/userRequestHistory")
     public String userRequestHistory( int reqPage, Model model) {
         RequestPageData rpd = reqService.selectRequestList(reqPage, "new", "all", null,"mypage");
         model.addAttribute("list", rpd.getList());

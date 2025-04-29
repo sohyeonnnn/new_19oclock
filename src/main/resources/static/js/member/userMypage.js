@@ -11,6 +11,82 @@ document.addEventListener('DOMContentLoaded', function() {
     $("#phone1").val(phone_data.substring(4,8));
     $("#phone2").val(phone_data.substring(9));
 
+    $("#modal_pwChange_close_btn").click(function(){
+        $('#modal_pwChange').toggle('slow');
+    });
+    $("#modal_pwChange_confirm_btn").click(function(){
+        var mId = $('#id-label').val();
+        var mPw = $('#pw-label').val();
+        var pwCheck1 = $("#pw-check1").val();
+        var pwCheck2 = $("#pw-check2").val();
+        var regCheck = $("#reg-check").val();
+        var object = 'pw';
+
+        if(pwCheck1 == pwCheck2 &&  pwCheck2 != '' && regCheck == 'true' ){
+            alert('비밀번호가 변경되었습니다.');
+            location.href="/changePw?mId="+mId+"&mPw="+mPw+"&data="+pwCheck2+"&object="+object;
+        }else{
+            alert('다시 한 번 확인해주세요');
+        }
+    });
+    $("#pw-current").keyup(function(){
+        console.log("key up!!!");
+        var mNo = $('#mNo').val();
+        var mId = $('#mId').val();
+        var mPw_input = $('#pw-current').val();
+        var mPw_current = $('#pw-label').val();
+        $.ajax({
+            url: '/checkPassword',
+            type: 'POST',
+            data: { mId: mId, mPw: mPw_input, mNo : mNo },
+            success: function (result) {
+                if (result.success) {
+                    console.log("성공!!!");
+                    // 서버에서 비밀번호 인증 성공 시
+                    $('#pw-current').attr('readonly', true).css({'background-color': 'rgba(224, 224, 224, 0.4)'});
+                    $('#pw-current').next().children().css({'color':'#008000'}).html('확인되셨습니다. 변경할 비밀번호를 입력해주세요').fadeIn(1000).delay(1000).fadeOut(1000);
+                    $('#pw-check1').attr('readonly', false).css({'background-color': 'white'}).focus()
+                    $('#pw-check2').attr('readonly', false).css({'background-color': 'white'});
+                } else {
+                    $('#pw-current').next().children().css({'color':'red'}).html('올바른 비밀번호를 입력해주세요');
+                }
+            },
+            error: function () {
+                alert('서버 오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        });
+
+        /*    if(mPw_input == mPw_current){
+                $('#pw-current').attr('readonly', true).css({'background-color': 'rgba(224, 224, 224, 0.4)'});
+                $('#pw-current').next().children().css({'color':'#008000'}).html('확인되셨습니다. 변경할 비밀번호를 입력해주세요').fadeIn(1000).delay(1000).fadeOut(1000);
+                $('#pw-check1').attr('readonly', false).css({'background-color': 'white'}).focus()
+                $('#pw-check2').attr('readonly', false).css({'background-color': 'white'});
+            }else{
+                $('#pw-current').next().children().css({'color':'red'}).html('올바른 비밀번호를 입력해주세요');
+            }*/
+    });
+    $("#pw-check1").keyup(function(){
+        var pwCheck1 = $("#pw-check1").val();
+        var reg = /^(?=.*?[A-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/.test(pwCheck1);
+        if(reg){
+            $('#reg-check').val('true');
+            $('#pw-check1').next().children().css({'color':'#008000'}).html('조건을 만족하였습니다').delay(1000).fadeOut(1000);
+        }else if(!reg && pwCheck1 != ''){
+            $('#reg-check').val('false');
+            $('#pw-check1').next().children().css({'color':'red'}).html('비밀번호 조건을 만족해주세요').show();
+
+        }
+    });
+    $("#pw-check2").keyup(function(){
+        var pwCheck1 = $("#pw-check1").val();
+        var pwCheck2 = $("#pw-check2").val();
+        if(pwCheck1 == pwCheck2 && pwCheck2 != ''){
+            $('#pw-check2').next().children().css({'color':'#008000'}).html('일치합니다').fadeOut(1000);
+        }else if(pwCheck1 != pwCheck2 && pwCheck2 != ''){
+            $('#pw-check2').next().children().css({'color':'red'}).html('일치하지 않습니다').show();
+        }
+    });
+
 
 });
 
@@ -79,57 +155,7 @@ function phoneEdit(obj){
 function pwChange(){
     $('#modal_pwChange').toggle('slow');
 }
-$("#modal_pwChange_close_btn").click(function(){
-    $('#modal_pwChange').toggle('slow');
-});
-$("#modal_pwChange_confirm_btn").click(function(){
-    var mId = $('#id-label').val();
-    var mPw = $('#pw-label').val();
-    var pwCheck1 = $("#pw-check1").val();
-    var pwCheck2 = $("#pw-check2").val();
-    var regCheck = $("#reg-check").val();
-    console.log(regCheck);
 
-    if(pwCheck1 == pwCheck2 &&  pwCheck2 != '' && regCheck == 'true' ){
-        alert('비밀번호가 변경되었습니다.');
-        location.href="/changePw?mId="+mId+"&mPw="+mPw+"&data="+pwCheck2+"&object=pw";
-    }else{
-        alert('다시 한 번 확인해주세요');
-    }
-});
-$("#pw-current").keyup(function(){
-    var mPw_input = $('#pw-current').val();
-    var mPw_current = $('#pw-label').val();
-    if(mPw_input == mPw_current){
-        $('#pw-current').attr('readonly', true).css({'background-color': 'rgba(224, 224, 224, 0.4)'});
-        $('#pw-current').next().children().css({'color':'#008000'}).html('확인되셨습니다. 변경할 비밀번호를 입력해주세요').fadeIn(1000).delay(1000).fadeOut(1000);
-        $('#pw-check1').attr('readonly', false).css({'background-color': 'white'}).focus()
-        $('#pw-check2').attr('readonly', false).css({'background-color': 'white'});
-    }else{
-        $('#pw-current').next().children().css({'color':'red'}).html('올바른 비밀번호를 입력해주세요');
-    }
-});
-$("#pw-check1").keyup(function(){
-    var pwCheck1 = $("#pw-check1").val();
-    var reg = /^(?=.*?[A-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/.test(pwCheck1);
-    if(reg){
-        $('#reg-check').val('true');
-        $('#pw-check1').next().children().css({'color':'#008000'}).html('조건을 만족하였습니다').delay(1000).fadeOut(1000);
-    }else if(!reg && pwCheck1 != ''){
-        $('#reg-check').val('false');
-        $('#pw-check1').next().children().css({'color':'red'}).html('비밀번호 조건을 만족해주세요').show();
-
-    }
-});
-$("#pw-check2").keyup(function(){
-    var pwCheck1 = $("#pw-check1").val();
-    var pwCheck2 = $("#pw-check2").val();
-    if(pwCheck1 == pwCheck2 && pwCheck2 != ''){
-        $('#pw-check2').next().children().css({'color':'#008000'}).html('일치합니다').fadeOut(1000);
-    }else if(pwCheck1 != pwCheck2 && pwCheck2 != ''){
-        $('#pw-check2').next().children().css({'color':'red'}).html('일치하지 않습니다').show();
-    }
-});
 
 //회원탈퇴 하기
 function deleteMember() {
