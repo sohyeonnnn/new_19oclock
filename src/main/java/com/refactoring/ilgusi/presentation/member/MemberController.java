@@ -4,6 +4,7 @@ import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
 import com.refactoring.ilgusi.domain.member.Member;
+import com.refactoring.ilgusi.domain.member.dto.MemberLoginDto;
 import com.refactoring.ilgusi.domain.member.dto.MemberUpdateDto;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
@@ -56,14 +57,14 @@ public class MemberController {
 
     // 로그인
     @PostMapping("/login")
-    public String login(HttpServletRequest req, String id, String pw, String loc, Model model) {
+    public String login(HttpServletRequest req, MemberLoginDto m, Model model) {
         String msg = CommonEnum.LOGIN.getVal();
-        Member m = memberService.loginMember(id, pw);
+        String loc = "/";
+        Member loginMember = memberService.loginMember(m.getMId(), m.getMPw());
 
         HttpSession session = req.getSession();
-        session.setAttribute("loginMember", m);
-        System.err.println("logimMember : "+m.toString());
-        if (m.getMGrade().equals(RoleEnum.ADMIN)) {
+        session.setAttribute("loginMember", loginMember);
+        if (loginMember.getMGrade().equals(RoleEnum.ADMIN)) {
             loc = "/manageMember?reqPage=1&grade=all&keyword=&order=new";
         }
         return MsgRedirectHelper.success(model,msg,loc);
@@ -141,58 +142,36 @@ public class MemberController {
     public String changeMypage(MemberUpdateDto m, HttpServletRequest req) {
         Member updatedMember = memberService.changeMypage(m.getMId(), m.getData(), m.getObject());
         req.getSession().setAttribute("loginMember", updatedMember);
-        return "";
+        return "/";
     }
 
 
     // 사용자 마이페이지 - 회원탈퇴
     @RequestMapping("/deleteMember")
-    public String deleteMember(String mId, HttpServletRequest req, Model model, String admin, String mNo) {
-        String msg = null;
+    public String deleteMember(@ModelAttribute("loginMember")Member sessionMember, Integer mNo, HttpServletRequest req, Model model) {
+        String msg = "탈퇴 되었습니다.";
         String loc= "/";
-
-
-        //memberService.tradeStatus(m.getMNo());
-
-
-
-        if (mNo == null) {
-            // 회원번호 받아서 거래중인 것이 있는지 확인 -> 없어야만 삭제
-            int tradeStatus = 0;//
-
-            // 탈퇴 진행
-            if (tradeStatus == 0) {
-               // Member deletedMember = memberService.setDeleteStatusY(mId); // 서비스 delete_status = 'y'로 바꿈
-                memberService.deleteMember(mId);
-
-                req.getSession().setAttribute("loginMember", null);
-                msg = "탈퇴 되었습니다.";
-                loc = "/";
-            }
-            // 거래중인 서비스가 있어서 탈퇴 거절
-            else {
-                msg = "거래 중인 서비스가 있기 때문에 탈퇴할 수 없습니다.";
-                loc = "/userMypage";
-            }
-            return MsgRedirectHelper.build(model,msg,loc);
+        memberService.tradeStatus(mNo);
+        if (!sessionMember.isAdmin()) {
+            memberService.setDeleteStatusY(mNo); // 서비스 delete_status = 'y'로 바꿈
+            memberService.deleteMember(mNo);
+            req.getSession().setAttribute("loginMember", null);
         } else {// 관리자가 삭제할때
-            int mNoInt = Integer.parseInt(mNo);
-            int tradeStatus = 0;//memberService.tradeStatus(mNoInt);
-            // 탈퇴 진행
-            if (tradeStatus == 0) {
-                /*int result = memberService.setDeleteStatusY(mId); // delete_status = 'y'로 바꿈*/
-                memberService.deleteMember(mId);
-                msg = "탈퇴 되었습니다.";
-                loc = "/manageMember?reqPage=1&grade=black&keyword=&order=new";
-            }
-            // 거래중인 서비스가 있어서 탈퇴 거절
-            else {
-                msg = "거래 중인 서비스가 있기 때문에 탈퇴하실 수 없습니다.";
-                loc = "/manageMember?reqPage=1&grade=black&keyword=&order=new";
-            }
-            return MsgRedirectHelper.build(model,msg,loc);
+            //memberService.setDeleteStatusY(mNo); // delete_status = 'y'로 바꿈*/
+            //memberService.deleteMember(mNo);
+            loc = "/manageMember?reqPage=1&grade=black&keyword=&order=new";
         }
+        return MsgRedirectHelper.build(model,msg,loc);
     }
+
+    @PostMapping("/checkPassword")
+    @ResponseBody
+    public ResponseEntity<?> checkPassword(@RequestParam String mId, @RequestParam String mPw) {
+        // DB에서 암호화된 비밀번호 가져오기
+        memberService.loginMember(mId, mPw);
+        return ResponseEntity.ok(ResultData.builder().isSuccess(true).build());
+    }
+
 
 
 /*

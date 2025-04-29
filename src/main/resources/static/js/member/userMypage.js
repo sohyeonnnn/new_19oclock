@@ -132,19 +132,33 @@ $("#pw-check2").keyup(function(){
 });
 
 //회원탈퇴 하기
-function deleteMember(){
+function deleteMember() {
     $('#modal').toggle('slow');
+
+    $("#modal_close_btn").off('click').on('click', function () {
+        $('#modal').toggle('slow');
+    });
+
+    $("#modal_confirm_btn").off('click').on('click', function () {
+        var mNo = $('#mNo').val();
+        var mId = $('#id-label').val();
+        var mPw_check = $('#pw-check').val();
+
+        $.ajax({
+            url: '/checkPassword',
+            type: 'POST',
+            data: { mId: mId, mPw: mPw_check, mNo : mNo },
+            success: function (result) {
+                if (result.success) {
+                    // 서버에서 비밀번호 인증 성공 시
+                    location.href = "/deleteMember?mNo=" + mNo;
+                } else {
+                    alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
+                }
+            },
+            error: function () {
+                alert('서버 오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        });
+    });
 }
-$("#modal_close_btn").click(function(){
-    $('#modal').toggle('slow');
-});
-$("#modal_confirm_btn").click(function(){
-    var mId = $('#id-label').val();
-    var mPw = $('#pw-label').val();
-    var mPw_check = $('#pw-check').val();
-    if(mPw == mPw_check){
-        location.href="/deleteMember?mId="+mId;
-    }else{
-        alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요');
-    }
-});

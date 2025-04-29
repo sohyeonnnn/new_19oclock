@@ -16,7 +16,7 @@ public interface SpringDataMemberRepository extends JpaRepository<Member, Intege
     Optional<Member> findBymId(String mId);
     Optional<Member> findBymNo(Integer mNo);
 
-    void deleteBymId(String mId);
+    void deleteBymNo(int mNo);
 
     @Query("SELECT m FROM Member m WHERE (m.mName = :mName AND m.mPhone = :mPhone) OR (m.mId = :mId AND m.mPhone = :mPhone)")
     Optional<Member> findBymNameAndmPhoneOrmIdAndmPhone(@Param("mName") String mName,

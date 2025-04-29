@@ -26,7 +26,7 @@ public interface MemberRepository  {
     Optional<Member> changeMypage(String mId, String data, String object);
 
     // 사용자 마이페이지-회원탈퇴
-   void deleteMember(String mId);
+   void deleteMember(int mNo);
 
     // 마이페이지에서 사용자-프리랜서 전환
     Optional<Member> changeGrade(String mId, RoleEnum user, RoleEnum free);
@@ -34,8 +34,6 @@ public interface MemberRepository  {
     // 로그인하면 grade를 1로 셋팅
     void settingMemberGrade(Member m);
 
-    // 탈퇴하기전 delete_status = 'y' 셋팅
-    void setDeleteStatusY(String mId);
 
     Optional<Member> updateFreelancer(Member m);
 }

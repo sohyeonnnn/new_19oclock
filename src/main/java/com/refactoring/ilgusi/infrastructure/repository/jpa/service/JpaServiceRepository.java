@@ -188,8 +188,9 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public Optional<Service> tradeStatus(int mNo){
-        return jpaRepository.findBymNo(mNo);
+    public void setDeleteStatusY(int mNo) {
+
     }
+
 
 }

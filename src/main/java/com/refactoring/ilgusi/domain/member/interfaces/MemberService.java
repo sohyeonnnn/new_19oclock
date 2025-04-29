@@ -6,17 +6,17 @@ public interface MemberService {
     int selectBuyingCount(int mNo);
     int selectSellingCount(String mId);
     Member loginMember(String id, String pw);
-    Member selectOneMember(Integer no);
+    Member selectOneMember(Integer mNo);
     void registerMember(Member m);
     boolean checkDupId(String id);
     Member searchId(Member m);
     String resetPw(Member m);
     void changePw(Member m, String newPw);
     Member changeMypage(String mId, String data, String object);
-    void deleteMember(String mId);
+    void deleteMember(int mNo);
     Member changeGrade(String mId);
     void settingMemberGrade(Member m);
-    int tradeStatus(int mNo);
-    Member setDeleteStatusY(String mId);
+    void tradeStatus(int mNo);
+    void setDeleteStatusY(Integer mNo);
     Member updateFreelancer(Member m);
 }

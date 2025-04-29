@@ -103,7 +103,6 @@ public interface ServiceRepository {
     // 프리랜서가 등록한 총 서비스 개수
     int selectFreeServiceCount(String mId);
 
-    // 거래중인 서비스가 있는지 확인
-    Optional<Service> tradeStatus(int mNo);
+    void setDeleteStatusY(int mNo);
 
 }

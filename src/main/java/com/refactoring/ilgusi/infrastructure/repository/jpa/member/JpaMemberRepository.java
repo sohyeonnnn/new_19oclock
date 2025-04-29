@@ -55,8 +55,8 @@ public class JpaMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void deleteMember(String mId) {
-        jpaRepository.deleteBymId(mId);
+    public void deleteMember(int mNo) {
+        jpaRepository.deleteBymNo(mNo);
     }
 
     @Override
@@ -67,10 +67,6 @@ public class JpaMemberRepository implements MemberRepository {
 
     @Override
     public void settingMemberGrade(Member m) {
-    }
-
-    @Override
-    public void setDeleteStatusY(String mId) {
     }
 
     @Override

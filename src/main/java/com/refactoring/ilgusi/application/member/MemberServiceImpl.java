@@ -9,6 +9,7 @@ import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 
 import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
+import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
 import com.refactoring.ilgusi.exception.CustomException;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Transactional
 @RequiredArgsConstructor
@@ -24,6 +26,7 @@ import javax.transaction.Transactional;
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final ServiceTradeRepository serviceTradeRepository;
+    private final ServiceRepository serviceRepository;
     private final BCryptPasswordEncoder encoder;
     private final EmailService emailService;
 
@@ -39,7 +42,7 @@ public class MemberServiceImpl implements MemberService {
                     member.changeSellingCount(selectSellingCount(member.getMId()));
                     return member;
                 })
-                .orElseThrow(() -> new CustomException(CommonEnum.LOGIN_FAIL.getVal(), CommonEnum.HOME_URL.getVal()));
+                .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(), CommonEnum.HOME_URL.getVal()));
     }
 
     @Override
@@ -106,24 +109,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int selectBuyingCount(int mNo) {
-        return serviceTradeRepository.selectBuyingCount(mNo);
-    }
-
-    @Override
-    public int selectSellingCount(String mId) {
-        return serviceTradeRepository.selectSellingCount(mId);
-    }
-
-    @Override
     public Member changeMypage(String mId, String data, String object) {
         return memberRepository.changeMypage(mId, data, object)
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
     }
 
     @Override
-    public void deleteMember(String mId) {
-       memberRepository.deleteMember(mId);
+    public void deleteMember(int mNo) {
+       memberRepository.deleteMember(mNo);
     }
 
 
@@ -140,20 +133,32 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int tradeStatus(int mNo) {
-        return 0;
-    }
-
-    @Override
-    public Member setDeleteStatusY(String mId) {
-
-        return null;
+    public void setDeleteStatusY(Integer mNo) {
+        serviceRepository.setDeleteStatusY(mNo);
     }
 
     @Override
     public Member updateFreelancer(Member m) {
         return memberRepository.updateFreelancer(m)
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
+    }
+
+
+    @Override
+    public void tradeStatus(int mNo) {
+        Optional.of(serviceTradeRepository.countBymNoAndtStatus(mNo, 1))
+                .filter(count -> count == 0)
+                .orElseThrow(() -> new CustomException("거래 중인 서비스가 있기 때문에 탈퇴할 수 없습니다", "/userMypage", true));
+    }
+
+    @Override
+    public int selectBuyingCount(int mNo) {
+        return serviceTradeRepository.selectBuyingCount(mNo);
+    }
+
+    @Override
+    public int selectSellingCount(String mId) {
+        return serviceTradeRepository.selectSellingCount(mId);
     }
 
 

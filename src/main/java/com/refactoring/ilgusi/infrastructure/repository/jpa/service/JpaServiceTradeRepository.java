@@ -2,7 +2,7 @@ package com.refactoring.ilgusi.infrastructure.repository.jpa.service;
 
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
 
-
+import java.util.Optional;
 
 
 public class JpaServiceTradeRepository implements ServiceTradeRepository {
@@ -20,5 +20,10 @@ public class JpaServiceTradeRepository implements ServiceTradeRepository {
     @Override
     public int selectSellingCount(String mId) {
         return 0;
+    }
+
+    @Override
+    public Integer countBymNoAndtStatus(int mNo, int tStatus) {
+        return jpaRepository.countBymNoAndtStatus(mNo, tStatus);
     }
 }
