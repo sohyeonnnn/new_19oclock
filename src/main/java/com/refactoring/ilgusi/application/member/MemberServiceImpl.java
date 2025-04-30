@@ -36,10 +36,10 @@ public class MemberServiceImpl implements MemberService {
                 .filter(member -> encoder.matches(pw, member.getMPw()))
                 .map(member -> {
                     if (member.getMGrade() != RoleEnum.ADMIN) {
-                        member.changeGrade(RoleEnum.USER);
+                        member.setGrade(RoleEnum.USER);
                     }
-                    member.changeBuyingCount(selectBuyingCount(member.getMNo()));
-                    member.changeSellingCount(selectSellingCount(member.getMId()));
+                    member.setBuyingCount(selectBuyingCount(member.getMNo()));
+                    member.setSellingCount(selectSellingCount(member.getMId()));
                     return member;
                 })
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(), CommonEnum.HOME_URL.getVal()));
@@ -53,8 +53,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void registerMember(Member m) {
-        m.changePw(encoder.encode(m.getMPw()));
-        m.changeGrade(RoleEnum.USER);
+        m.setPw(encoder.encode(m.getMPw()));
+        m.setGrade(RoleEnum.USER);
         try{
             memberRepository.saveMember(m);
         } catch (DataIntegrityViolationException e) {
@@ -101,7 +101,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void changePw(Member m, String newPw) {
-        m.changePw(encoder.encode(newPw));
+        System.out.println("newPw : "+newPw);
+        System.out.println("encodedPw : "+encoder.encode(newPw));
+        m.setPw(encoder.encode(newPw));
         int updated = memberRepository.changePw(m);
         if (updated <= 0) {
             throw new CustomException(CommonEnum.FAIL_CHANGE_PW.getVal(), "/", true);
@@ -139,7 +141,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member updateFreelancer(Member m) {
-        return memberRepository.updateFreelancer(m)
+        memberRepository.updateFreelancer(m);
+        return memberRepository.findBymNo(m.getMNo())
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
     }
 
