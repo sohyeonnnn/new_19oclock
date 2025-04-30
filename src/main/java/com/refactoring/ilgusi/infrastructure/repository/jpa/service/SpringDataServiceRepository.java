@@ -15,4 +15,8 @@ public interface SpringDataServiceRepository extends JpaRepository<Service, Inte
     @Modifying
     @Query("UPDATE Service s SET s.deleteStatus = 'Y', s.sTitle = CONCAT('(삭제)', s.sTitle) WHERE s.mNo = :mNo")
     void setDeleteStatusY(@Param("mNo") int mNo);
+
+    @Query("SELECT s FROM Service s WHERE s.mNo = :mNo")
+    int countServiceBymNo(int mNo);
+
 }

@@ -29,7 +29,7 @@
         {{/hasBrandAndService}}
 
         <div>
-            <form action="/updateFreelancer?" method="post">
+            <form action="/updateFreelancer" method="post">
                 <div class="form-group brand">
                     <label for="tel-label">브랜드 명</label><br>
                     <input type="hidden" value="{{loginMember.MId}}" name="mId" id="mId">
@@ -48,8 +48,7 @@
 
                 <div class="form-group">
                     <label for="tel-label">소개</label><br>
-                    <textarea rows="17" cols="93" class="form-text" name="introduce" maxlength="1333" required="required">
-                        {{#loginMember.introduce}}{{loginMember.introduce}}{{/loginMember.introduce}}</textarea>
+                    <textarea rows="17" cols="93" class="form-text" name="introduce" maxlength="1333" required="required">{{#loginMember.introduce}}{{loginMember.introduce}}{{/loginMember.introduce}}</textarea>
                 </div>
                 <div class="btn-box">
                     <button class="btn2 change" type="submit">

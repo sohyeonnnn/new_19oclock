@@ -64,19 +64,19 @@ public class Member extends BaseEntity {
 		this.introduce = introduce;
 	}
 
-	public void changePw(String newPw){
+	public void setPw(String newPw){
 		mPw = newPw;
 	}
 
-	public void changeGrade(RoleEnum newGrade){
+	public void setGrade(RoleEnum newGrade){
 		mGrade = newGrade;
 	}
 
-	public void changeBuyingCount(int newBuyingCount){
+	public void setBuyingCount(int newBuyingCount){
 		buyingCount = newBuyingCount;
 	}
 
-	public void changeSellingCount(int newSellingCount){
+	public void setSellingCount(int newSellingCount){
 		sellingCount = newSellingCount;
 	}
 

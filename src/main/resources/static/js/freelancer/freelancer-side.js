@@ -38,14 +38,19 @@
 
     //생성된 서비스가 5개면 더이상 생성할 수 없게 함.(승인되고 삭제안된 개수)
     function isPossibleMakeService(){
-        var mId = $("#memberId").val();
+        var mNo = $("#memberNo").val();
+        console.log(mNo);
         $.ajax({
+            type : "get",
             url : "/isPossibleMakeService",
-            type : "post",
-            data : {"mId":mId},
-            success : function(result){
-                if(result <5){
-                    location.href = "/serviceJoinFrm?MId="+mId;
+            data : {
+                mNo:$("#memberNo").val()
+            },
+            dataType: "json",
+            success : function(response){
+                if(response.data <5){
+                    console.log("@@@");
+                   // location.href = "/serviceJoinFrm?MNo="+mNo;
                 }else{
                     alert('서비스를 생성할 수 있는 개수를 초과했습니다. \n현재 서비스 개수 : 5개');
                 }

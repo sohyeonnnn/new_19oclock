@@ -35,7 +35,6 @@ public class freelancerController {
     // 프리랜서 마이페이지 정보수정(소개글,연락가능시간,브랜드명 추가)
     @PostMapping("/updateFreelancer")
     public String updateFreelancer(FreelancerUpdateDto m, Model model, HttpServletRequest req) {
-        System.err.println(m.toString());
         Member member = memberService.updateFreelancer(m.toEntity());
         System.err.println("member : "+member.toString());
         HttpSession session = req.getSession();

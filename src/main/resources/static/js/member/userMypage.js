@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $("#modal_pwChange_close_btn").click(function(){
         $('#modal_pwChange').toggle('slow');
     });
-    $("#modal_pwChange_confirm_btn").click(function(){
+    $("#modal_pwChange_confirm_btn").click(function() {
         var mId = $('#id-label').val();
         var mPw = $('#pw-label').val();
         var pwCheck1 = $("#pw-check1").val();
@@ -22,11 +22,22 @@ document.addEventListener('DOMContentLoaded', function() {
         var regCheck = $("#reg-check").val();
         var object = 'pw';
 
-        if(pwCheck1 == pwCheck2 &&  pwCheck2 != '' && regCheck == 'true' ){
-            alert('비밀번호가 변경되었습니다.');
-            location.href="/changePw?mId="+mId+"&mPw="+mPw+"&data="+pwCheck2+"&object="+object;
-        }else{
-            alert('다시 한 번 확인해주세요');
+        if (pwCheck1 === pwCheck2 && pwCheck2 !== '' && regCheck === 'true') {
+            $.post("/changePw", {
+                mId: mId,
+                mPw: mPw,
+                data: pwCheck2,
+                object: object
+            })
+                .done(function(response) {
+                    alert("비밀번호가 변경되었습니다.");
+                    location.href = "/userMypage";
+                })
+                .fail(function() {
+                    alert("비밀번호 변경 실패");
+                });
+        } else {
+            alert("다시 한 번 확인해주세요");
         }
     });
     $("#pw-current").keyup(function(){

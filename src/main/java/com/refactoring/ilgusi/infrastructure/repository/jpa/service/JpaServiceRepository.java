@@ -39,7 +39,7 @@ public class JpaServiceRepository implements ServiceRepository {
 
     @Override
     public List<ReviewJoin> selectReviewList(String mId, int start, int end) {
-        return List.of();
+        return null;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class JpaServiceRepository implements ServiceRepository {
 
     @Override
     public List<Service> serviceList(String mId) {
-        return List.of();
+        return null;
     }
 
     @Override
@@ -139,7 +139,7 @@ public class JpaServiceRepository implements ServiceRepository {
 
     @Override
     public List<ServiceReview> reviewListSize(String mId) {
-        return List.of();
+        return null;
     }
 
     @Override
@@ -159,7 +159,7 @@ public class JpaServiceRepository implements ServiceRepository {
 
     @Override
     public List<Service> searchService(int begin, int end, String keyword) {
-        return List.of();
+        return null;
     }
 
     @Override
@@ -183,8 +183,8 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public int selectFreeServiceCount(String mId) {
-        return 0;
+    public int selectFreeServiceCount(int mId) {
+        return jpaRepository.countServiceBymNo(mId);
     }
 
     @Override
