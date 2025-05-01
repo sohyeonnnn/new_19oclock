@@ -196,6 +196,27 @@ public class MemberController {
         model.addAttribute("totalCount", rpd.getTotalCount());
         return "member/userRequestHistory";
     }
+
+
+    List<Map<String, Object>> mustacheList = new ArrayList<>();
+for (int i = 0; i < list.size(); i++) {
+    Request r = list.get(i);
+    if (r.getMId().equals(loginMember.getMId())) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("index", i + 1);
+        map.put("reqNo", r.getReqNo());
+        map.put("reqTitle", r.getReqTitle());
+        map.put("writeDate", r.getWriteDate());
+        map.put("isOwner", true); // MId 비교 결과
+        map.put("isRecruiting", r.getReqStatus() == 0);
+        map.put("isOngoing", r.getReqStatus() == 1);
+        map.put("isClosed", r.getReqStatus() == 2);
+        mustacheList.add(map);
+    }
+}
+model.addAttribute("list", mustacheList);
+
+
 */
 
     

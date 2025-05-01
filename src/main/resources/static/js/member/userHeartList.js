@@ -71,6 +71,6 @@
         $("#array-select").change(function(){
         	var order = $("#array-select").val();
         	var mNo = $("#mNo").val();
-        	location.href = "/userHeartList.do?mNo="+mNo+"&order="+order;
+        	location.href = "/userHeartList?mNo="+mNo+"&order="+order;
         	console.log(order+"/"+mNo);
         });

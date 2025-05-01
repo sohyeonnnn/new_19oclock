@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>19시 :: 작성한 의뢰글</title>
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+
+	<link rel="stylesheet" href="/css/member/userRequestHistory.css">
+	<script type="text/javascript" src="/js/member/userRequestHistory.js"></script>
+
+</head>
+<body>
+	<div class="header">
+		{{>common/header}}
+	</div>
+    <div class="page-wrap">
+        <!-- 사이드메뉴 -->
+		{{>common/mypage-side}}
+        
+        <div class="board-wrap">
+            <div class="board-box">
+                <span>내가 작성한 의뢰 글</span>
+                <button class="btn-custom" onclick="location.href='/requestWriteFrm?position=mypage'">글쓰기</button>
+            </div>
+            <div class="container-box">
+				<table class="table table-hover">
+	                <tr style="background-color: rgba(224, 224, 224, 0.5);">
+	                    <th style="width: 100px;text-align: center">번호</th>
+	                    <th style="text-align: center">제목</th>
+	                    <th style="width: 100px;text-align: center">진행상태</th>
+	                    <th style="width: 200px;text-align: center">작성일</th>
+	                </tr>
+
+					{{#list}}
+					{{#isOwner}}
+					<tr>
+						<td>{{index}}</td>
+						<td><a href="/requestDetail.do?reqNo={{reqNo}}&position=mypage" class="table-title">{{reqTitle}}</a></td>
+						<td>
+							{{#isRecruiting}}모집 중{{/isRecruiting}}
+							{{#isOngoing}}진행 중{{/isOngoing}}
+							{{#isClosed}}마감{{/isClosed}}
+						</td>
+						<td>{{writeDate}}</td>
+					</tr>
+					{{/isOwner}}
+					{{/list}}
+
+				</table>
+	            <div>
+            		<br>
+           		</div>
+            	<br><br>
+            	<div class="text-center" style="width:100%; margin:0 auto;">
+					<ul class="pagination" ></ul>
+             	</div>
+           	<div></div>
+        </div>
+	</div>
+	</div>
+	<br><br><br>
+	{{>common/footer}}
+
+</body>
+</html>
