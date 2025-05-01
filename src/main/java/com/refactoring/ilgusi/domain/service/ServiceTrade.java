@@ -2,10 +2,13 @@ package com.refactoring.ilgusi.domain.service;
 
 import com.refactoring.ilgusi.common.BaseEntity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class ServiceTrade extends BaseEntity {
 	@Id

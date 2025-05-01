@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MemberUpdateDto {
+	private int mNo;
 	private String mId;
 	private String mPw;
 	private String mName;
@@ -20,6 +21,7 @@ public class MemberUpdateDto {
 
 	public Member toEntity() {
 		return Member.builder()
+				.mNo(mNo)
 				.mId(mId)
 				.mPw(mPw)
 				.mName(mName)

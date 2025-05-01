@@ -25,32 +25,32 @@ public interface SpringDataMemberRepository extends JpaRepository<Member, Intege
 
     @Modifying
     @Transactional
-    @Query("UPDATE Member m SET m.mPw = :mPw WHERE m.mId = :mId")
-    int changePw(@Param("mId") String mId, @Param("mPw") String mPw);
+    @Query("UPDATE Member m SET m.mPw = :mPw WHERE m.mNo = :mNo")
+    int changePw(@Param("mNo") int mNo, @Param("mPw") String mPw);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Member m SET m.mGrade = CASE WHEN m.mGrade = :user THEN :freelancer ELSE :user END  WHERE m.mId = :mId")
-    int changeGrade(@Param("mId") String mId,
+    @Query("UPDATE Member m SET m.mGrade = CASE WHEN m.mGrade = :user THEN :freelancer ELSE :user END  WHERE m.mNo = :mNo")
+    int changeGrade(@Param("mNo") int mNo,
                     @Param("user") RoleEnum user,
                     @Param("freelancer") RoleEnum freelancer);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Member m SET m.mEmail = :data WHERE m.mId = :mId")
-    int changeMypageEmail(@Param("mId") String mId,
+    @Query("UPDATE Member m SET m.mEmail = :data WHERE m.mId = :mNo")
+    int changeMypageEmail(@Param("mNo") int mNo,
                      @Param("data") String data);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Member m SET m.mPhone = :data WHERE m.mId = :mId")
-    int changeMypagePhone(@Param("mId") String mId,
+    @Query("UPDATE Member m SET m.mPhone = :data WHERE m.mNo = :mNo")
+    int changeMypagePhone(@Param("mNo") int mNo,
                           @Param("data") String data);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Member m SET m.brandName = :brandName, m.contactTime = :contactTime, m.introduce = :introduce WHERE m.mId = :mId")
-    int updateFreelancer(@Param("mId") String mId,
+    @Query("UPDATE Member m SET m.brandName = :brandName, m.contactTime = :contactTime, m.introduce = :introduce WHERE m.mNo = :mNo")
+    int updateFreelancer(@Param("mNo") int mNo,
                     @Param("brandName") String brandName,
                     @Param("contactTime") String contactTime,
                     @Param("introduce") String introduce);

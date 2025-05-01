@@ -3,12 +3,19 @@ $(document).ready(function () {
         var grade = $(this).prev().val();
         var mId = $(this).prev().prev().val();
         var mPw = $(this).prev().prev().prev().val();
+        var mNo = $("#memberNo").val();
 
         //post로 넘기기
         var form = document.createElement("form");
         form.action = "/changeGrade";
         form.method = "post";
 
+        //no 추가
+        var input_mNo = document.createElement("input");
+        input_mNo.setAttribute("type", "hidden");
+        input_mNo.setAttribute("name", "mNo");
+        input_mNo.setAttribute("value", mNo);
+        form.appendChild(input_mNo);
         //id 추가
         var input_mId = document.createElement("input");
         input_mId.setAttribute("type", "hidden");

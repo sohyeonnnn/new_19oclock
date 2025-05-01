@@ -5,10 +5,9 @@ import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.EmailService;
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
-
-import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
+import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
+import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
 import com.refactoring.ilgusi.exception.CustomException;
@@ -35,14 +34,22 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.findBymId(id)
                 .filter(member -> encoder.matches(pw, member.getMPw()))
                 .map(member -> {
-                    if (member.getMGrade() != RoleEnum.ADMIN) {
+                    /*if (member.getMGrade() != RoleEnum.ADMIN) {
                         member.setGrade(RoleEnum.USER);
-                    }
+                    }*/
                     member.setBuyingCount(selectBuyingCount(member.getMNo()));
-                    member.setSellingCount(selectSellingCount(member.getMId()));
+                    member.setSellingCount(selectSellingCount(member.getMNo()));
                     return member;
                 })
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(), CommonEnum.HOME_URL.getVal()));
+    }
+
+    public int selectBuyingCount(int mNo) {
+        return serviceTradeRepository.selectBuyingCount(mNo);
+    }
+
+    public int selectSellingCount(int mNo) {
+        return serviceTradeRepository.selectSellingCount(mNo);
     }
 
     @Override
@@ -52,14 +59,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional
     public void registerMember(Member m) {
         m.setPw(encoder.encode(m.getMPw()));
         m.setGrade(RoleEnum.USER);
-        try{
-            memberRepository.saveMember(m);
-        } catch (DataIntegrityViolationException e) {
+        if(checkDupId(m.getMId())){
             throw new CustomException(CommonEnum.JOIN_FAIL.getVal(), "/join");
         }
+        memberRepository.saveMember(m);
     }
 
     @Override
@@ -111,32 +118,17 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member changeMypage(String mId, String data, String object) {
-        return memberRepository.changeMypage(mId, data, object)
+    public Member changeMypage(int mNo, String data, String object) {
+        return memberRepository.changeMypage(mNo, data, object)
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
     }
 
     @Override
-    public void deleteMember(int mNo) {
-       memberRepository.deleteMember(mNo);
-    }
-
-
-    @Override
-    public Member changeGrade(String mId) {
+    public Member changeGrade(int mNo) {
         RoleEnum user = RoleEnum.USER;
         RoleEnum free = RoleEnum.FREELANCER;
-        return memberRepository.changeGrade(mId, user, free)
+        return memberRepository.changeGrade(mNo, user, free)
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
-    }
-
-    @Override
-    public void settingMemberGrade(Member m) {
-    }
-
-    @Override
-    public void setDeleteStatusY(Integer mNo) {
-        serviceRepository.setDeleteStatusY(mNo);
     }
 
     @Override
@@ -146,23 +138,26 @@ public class MemberServiceImpl implements MemberService {
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
     }
 
-
     @Override
+    @Transactional
+    public void unregisterMember(int mNo) {
+        tradeStatus(mNo);
+        setDeleteStatusY(mNo);
+        deleteMember(mNo);
+    }
+
+    public void deleteMember(int mNo){
+        memberRepository.deleteMember(mNo);
+    }
+
+    public void setDeleteStatusY(Integer mNo) {
+        serviceRepository.setDeleteStatusY(mNo);
+    }
+
     public void tradeStatus(int mNo) {
         Optional.of(serviceTradeRepository.countBymNoAndtStatus(mNo, 1))
                 .filter(count -> count == 0)
                 .orElseThrow(() -> new CustomException("거래 중인 서비스가 있기 때문에 탈퇴할 수 없습니다", "/userMypage", true));
     }
-
-    @Override
-    public int selectBuyingCount(int mNo) {
-        return serviceTradeRepository.selectBuyingCount(mNo);
-    }
-
-    @Override
-    public int selectSellingCount(String mId) {
-        return serviceTradeRepository.selectSellingCount(mId);
-    }
-
 
 }

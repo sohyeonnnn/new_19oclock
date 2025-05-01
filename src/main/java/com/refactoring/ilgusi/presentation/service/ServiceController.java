@@ -44,7 +44,7 @@ public class ServiceController {
 
     @PostMapping("/serviceJoin")
     public String serviceJoin(Join join, Model model, MultipartFile[] ssImg, HttpServletRequest request) {
-        String root = request.getSession().getServletContext().getRealPath("/");
+       /* String root = request.getSession().getServletContext().getRealPath("/");
         String path = root + "/upload/service/";
         ArrayList<ServiceFile> fileList = new ArrayList<ServiceFile>();
 
@@ -65,12 +65,11 @@ public class ServiceController {
                 f.setFilepath(filepath);
                 fileList.add(f); // 데이터베이스 처리를 위해 객체화 해서 list에 추가
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
         join.setFileList(fileList);
-        join.setSImg(fileList.get(0).getFilepath());
+        join.setSImg(fileList.get(0).getFilepath());*/
 
         serviceService.insertService(join);
 

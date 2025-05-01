@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class FreelancerUpdateDto {
-	//private Integer mNo;
+	private String mNo;
 	private String mId;
 	private String brandName;
 	private String contactTime;
@@ -18,7 +18,7 @@ public class FreelancerUpdateDto {
 
 	public Member toEntity() {
 		return Member.builder()
-				//.mNo(mNo)
+				.mNo(Integer.valueOf(mNo))
 				.mId(mId)
 				.brandName(brandName)
 				.contactTime(contactTime)
@@ -29,7 +29,7 @@ public class FreelancerUpdateDto {
 	@Override
 	public String toString() {
 		return "FreelancerUpdateDto{" +
-				//"mNo=" + mNo +
+				"mNo=" + mNo +
 				", mId='" + mId + '\'' +
 				", brandName='" + brandName + '\'' +
 				", contactTime='" + contactTime + '\'' +

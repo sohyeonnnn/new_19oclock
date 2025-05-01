@@ -1,13 +1,14 @@
 package com.refactoring.ilgusi.presentation.member;
 
+import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.member.dto.FreelancerUpdateDto;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Controller
-public class freelancerController {
+public class FreelancerController {
     private final MemberService memberService;
 
     @RequestMapping("/freelancerMypage")
@@ -36,13 +37,10 @@ public class freelancerController {
     @PostMapping("/updateFreelancer")
     public String updateFreelancer(FreelancerUpdateDto m, Model model, HttpServletRequest req) {
         Member member = memberService.updateFreelancer(m.toEntity());
-        System.err.println("member : "+member.toString());
-        HttpSession session = req.getSession();
-        session.setAttribute("loginMember", member);
-
-        model.addAttribute("msg", "등록되었습니다.");
-        model.addAttribute("loc", "/freelancerMypage?MNo=" + member.getMNo());
-        return "common/msg";
+        req.getSession().setAttribute("loginMember", member);
+        String msg = "등록되었습니다.";
+        String loc = "/freelancerMypage?MNo=" + member.getMNo();
+        return MsgRedirectHelper.success(model,msg,loc);
     }
     
 }

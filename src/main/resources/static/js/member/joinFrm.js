@@ -1,11 +1,4 @@
-function blurEvt($inputTarget, $validationTarget) {
-    if ($inputTarget.val() != '') {
-        $inputTarget.trigger("keyup");
-    } else {
-        $inputTarget.removeAttr("style");
-        $validationTarget.hide();
-    }
-}
+
 
 $(document).ready(function () {
     // submit 버튼 비활성화
@@ -213,15 +206,15 @@ $(document).ready(function () {
     $("#reg-form").on("submit", function (e) {
         e.preventDefault(); // 가장 먼저 위치해야 함
         $.ajax({
-            type: "get",
+            type: "post",
             url: "/checkDupId",
             data: {
                 id: $("#id").val()
             },
             dataType: "json",
             success: function (response) {
-                if (response.result == "true") {
-                    alert(response.message);
+                console.log(response);
+                if (response.isSuccess) {
                     $("#id").val('');
                     $("#id").trigger("keyup");
                     $("#id").trigger("blur");
@@ -236,3 +229,11 @@ $(document).ready(function () {
         });
     });
 });
+function blurEvt($inputTarget, $validationTarget) {
+    if ($inputTarget.val() != '') {
+        $inputTarget.trigger("keyup");
+    } else {
+        $inputTarget.removeAttr("style");
+        $validationTarget.hide();
+    }
+}

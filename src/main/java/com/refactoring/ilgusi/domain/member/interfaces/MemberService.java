@@ -3,8 +3,6 @@ package com.refactoring.ilgusi.domain.member.interfaces;
 import com.refactoring.ilgusi.domain.member.Member;
 
 public interface MemberService {
-    int selectBuyingCount(int mNo);
-    int selectSellingCount(String mId);
     Member loginMember(String id, String pw);
     Member selectOneMember(Integer mNo);
     void registerMember(Member m);
@@ -12,11 +10,8 @@ public interface MemberService {
     Member searchId(Member m);
     String resetPw(Member m);
     void changePw(Member m, String newPw);
-    Member changeMypage(String mId, String data, String object);
-    void deleteMember(int mNo);
-    Member changeGrade(String mId);
-    void settingMemberGrade(Member m);
-    void tradeStatus(int mNo);
-    void setDeleteStatusY(Integer mNo);
+    Member changeMypage(int mNo, String data, String object);
+    void unregisterMember(int mNo);
+    Member changeGrade(int mNo);
     Member updateFreelancer(Member m);
 }

@@ -7,7 +7,6 @@ import com.refactoring.ilgusi.domain.service.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 public interface ServiceRepository {
 
@@ -105,4 +104,5 @@ public interface ServiceRepository {
 
     void setDeleteStatusY(int mNo);
 
+    void save(Service s);
 }

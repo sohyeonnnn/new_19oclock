@@ -39,19 +39,19 @@ public class JpaMemberRepository implements MemberRepository {
 
     @Override
     public int changePw(Member m) {
-        return jpaRepository.changePw(m.getMId(), m.getMPw());
+        return jpaRepository.changePw(m.getMNo(), m.getMPw());
     }
 
     @Override
-    public Optional<Member> changeMypage(String mId, String data, String object) {
+    public Optional<Member> changeMypage(int mNo, String data, String object) {
         if(object.equals("email")){
-            jpaRepository.changeMypageEmail(mId, data);
+            jpaRepository.changeMypageEmail(mNo, data);
         }else if(object.equals("phone")){
-            jpaRepository.changeMypagePhone(mId, data);
+            jpaRepository.changeMypagePhone(mNo, data);
         }else if(object.equals("pw")){
-            jpaRepository.changePw(mId, data);
+            jpaRepository.changePw(mNo, data);
         }
-        return jpaRepository.findBymId(mId);
+        return jpaRepository.findBymNo(mNo);
     }
 
     @Override
@@ -60,9 +60,9 @@ public class JpaMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> changeGrade(String mId, RoleEnum user, RoleEnum free) {
-        jpaRepository.changeGrade(mId, RoleEnum.USER, RoleEnum.FREELANCER);
-        return findBymId(mId);
+    public Optional<Member> changeGrade(int mNo, RoleEnum user, RoleEnum free) {
+        jpaRepository.changeGrade(mNo, RoleEnum.USER, RoleEnum.FREELANCER);
+        return findBymNo(mNo);
     }
 
     @Override
@@ -71,7 +71,8 @@ public class JpaMemberRepository implements MemberRepository {
 
     @Override
     public Optional<Member> updateFreelancer(Member m) {
-        jpaRepository.updateFreelancer(m.getMId(), m.getBrandName(), m.getContactTime(), m.getIntroduce());
-        return findBymId(m.getMId());
+        System.out.println(m.toString());
+        jpaRepository.updateFreelancer(m.getMNo(), m.getBrandName(), m.getContactTime(), m.getIntroduce());
+        return findBymNo(m.getMNo());
     }
 }

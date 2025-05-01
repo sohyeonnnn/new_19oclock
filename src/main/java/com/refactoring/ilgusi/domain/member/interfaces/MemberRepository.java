@@ -23,13 +23,13 @@ public interface MemberRepository  {
     int changePw(Member m);
 
     // 사용자 마이페이지-이메일, 폰번호, 비번 변경
-    Optional<Member> changeMypage(String mId, String data, String object);
+    Optional<Member> changeMypage(int mNo, String data, String object);
 
     // 사용자 마이페이지-회원탈퇴
    void deleteMember(int mNo);
 
     // 마이페이지에서 사용자-프리랜서 전환
-    Optional<Member> changeGrade(String mId, RoleEnum user, RoleEnum free);
+    Optional<Member> changeGrade(int mNo, RoleEnum user, RoleEnum free);
 
     // 로그인하면 grade를 1로 셋팅
     void settingMemberGrade(Member m);

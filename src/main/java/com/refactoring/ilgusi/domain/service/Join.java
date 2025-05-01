@@ -41,26 +41,45 @@ public class Join {
 	}
 
 	public Service toEntity() {
-		Service service = new Service();
-		service.setMNo(this.mNo);
-		service.setSTitle(this.sTitle);
-		service.setSPrice(this.sPrice);
-		service.setSContent(this.sContent);
-		service.setSArea(this.sArea);
-		service.setSImg(this.sImg);
-		service.setSRate(this.sRate);
-		service.setMainCategory(this.mainCategory);
-		service.setSubCategory(this.subCategory);
-		service.setWorkingDate(this.workingDate);
-		service.setWorkingCount(0); // 기본값
-		service.setWriteDate(java.time.LocalDate.now().toString()); // "yyyy-MM-dd"
-		service.setDeleteStatus('n'); // 기본값
-		service.setAdminApproval('n'); // 기본값
-		service.setBrandName(this.brandName);
-
-		// 선택적: mainCategoryName, subCategoryName, sPriceTxt은 필요 시 추가로 설정
-		return service;
+		return Service.builder()
+				.mNo(mNo)
+				.mainCategory(mainCategory)
+				.subCategory(subCategory)
+				.sArea(sArea)
+				.sPrice(sPrice)
+				.workingDate(workingDate)
+				.sContent(sContent)
+				.brandName(brandName)
+				.build();
 	}
 
-
+	@Override
+	public String toString() {
+		return "Join{" +
+				"mId='" + mId + '\'' +
+				", sTitle='" + sTitle + '\'' +
+				", sPrice=" + sPrice +
+				", sContent='" + sContent + '\'' +
+				", sArea='" + sArea + '\'' +
+				", mainCategory=" + mainCategory +
+				", subCategory=" + subCategory +
+				", workingDate=" + workingDate +
+				", mNo=" + mNo +
+				", sRate=" + sRate +
+				", mName='" + mName + '\'' +
+				", mEmail='" + mEmail + '\'' +
+				", mPhone='" + mPhone + '\'' +
+				", introduce='" + introduce + '\'' +
+				", enrollDate='" + enrollDate + '\'' +
+				", brandName='" + brandName + '\'' +
+				", contactTime='" + contactTime + '\'' +
+				", serviceList=" + serviceList +
+				", reviewList=" + reviewList +
+				", pageNavi='" + pageNavi + '\'' +
+				", fileList=" + fileList +
+				", sImg='" + sImg + '\'' +
+				", deleteStatus='" + deleteStatus + '\'' +
+				", adminApproval='" + adminApproval + '\'' +
+				'}';
+	}
 }

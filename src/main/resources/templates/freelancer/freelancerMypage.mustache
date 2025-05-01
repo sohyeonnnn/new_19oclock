@@ -32,6 +32,7 @@
             <form action="/updateFreelancer" method="post">
                 <div class="form-group brand">
                     <label for="tel-label">브랜드 명</label><br>
+                    <input type="hidden" value="{{loginMember.MNo}}" name="mNo" id="mNo">
                     <input type="hidden" value="{{loginMember.MId}}" name="mId" id="mId">
                     <input type="hidden" value="{{loginMember.MPw}}" name="mPw">
                     <input type="text" class="form-box" placeholder="브랜드명을 입력해주세요."

@@ -1,9 +1,9 @@
-package com.refactoring.ilgusi.application.service;
+package com.refactoring.ilgusi.application.member;
 
+
+import com.refactoring.ilgusi.domain.member.interfaces.AdminService;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
-import com.refactoring.ilgusi.domain.service.Join;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
-import com.refactoring.ilgusi.domain.service.interfaces.ServiceService;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,19 +13,10 @@ import javax.transaction.Transactional;
 @Transactional
 @RequiredArgsConstructor
 @Service
-public class ServiceServiceImpl implements ServiceService {
+public class AdminServiceImpl implements AdminService {
     private final MemberRepository memberRepository;
     private final ServiceTradeRepository serviceTradeRepository;
     private final ServiceRepository serviceRepository;
-
-    public int selectFreeServiceCount(int mNo){
-        return serviceRepository.selectFreeServiceCount(mNo);
-    }
-
-    public void insertService(Join join){
-        System.out.println(join.toString());
-        serviceRepository.save(join.toEntity());
-    }
 
 
 }

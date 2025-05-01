@@ -4,12 +4,12 @@ import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.member.dto.MemberLoginDto;
-import com.refactoring.ilgusi.domain.member.dto.MemberUpdateDto;
-import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
 import com.refactoring.ilgusi.domain.member.dto.MemberJoinDto;
+import com.refactoring.ilgusi.domain.member.dto.MemberLoginDto;
 import com.refactoring.ilgusi.domain.member.dto.MemberSearchIdPwDto;
+import com.refactoring.ilgusi.domain.member.dto.MemberUpdateDto;
+import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -37,15 +37,26 @@ public class MemberController {
         return "member/searchIdPw";
     }
 
+    // 사용자 마이페이지 이동
+    @GetMapping("/userMypage")
+    public String userMypage(@ModelAttribute("loginMember")Member m) {
+        if (m.getMGrade() == RoleEnum.USER) {
+            return "member/userMypage";
+        } else if (m.getMGrade() == RoleEnum.FREELANCER) {
+            return "redirect:/freelancerMypage?MNo=" + m.getMNo();
+        }
+        return "/";
+    }
+
     // 아이디 중복검사
     @ResponseBody
-    @GetMapping("/checkDupId")
+    @PostMapping("/checkDupId")
     public ResponseEntity<?> checkDuplicateId(@RequestParam String id) {
         return ResponseEntity.ok(ResultData.builder().isSuccess(memberService.checkDupId(id)).build());
     }
 
-    // 회원가입 기능
-    @RequestMapping("/register")
+    // 회원가입
+    @PostMapping("/register")
     public String register(MemberJoinDto m, Model model) {
         memberService.registerMember(m.toEntity());
 
@@ -64,7 +75,7 @@ public class MemberController {
 
         HttpSession session = req.getSession();
         session.setAttribute("loginMember", loginMember);
-        if (loginMember.getMGrade().equals(RoleEnum.ADMIN)) {
+        if (loginMember.getMGrade() == RoleEnum.ADMIN) {
             loc = "/manageMember?reqPage=1&grade=all&keyword=&order=new";
         }
         return MsgRedirectHelper.success(model,msg,loc);
@@ -113,21 +124,10 @@ public class MemberController {
         return MsgRedirectHelper.close(model,msg,loc, true);
     }
 
-    // 사용자 마이페이지 이동
-    @RequestMapping("/userMypage")
-    public String userMypage(@ModelAttribute("loginMember")Member m) {
-        if (m.getMGrade().equals(RoleEnum.USER)) {
-            return "member/userMypage";
-        } else if (m.getMGrade().equals(RoleEnum.FREELANCER)) {
-            return "redirect:/freelancerMypage?MNo=" + m.getMNo();
-        }
-        return "/";
-    }
-
     //  마이페이지에서 사용자-프리랜서 전환
     @PostMapping("/changeGrade")
     public String changeGrade(@ModelAttribute("loginMember")Member m, HttpServletRequest req) {
-        Member member = memberService.changeGrade(m.getMId());
+        Member member = memberService.changeGrade(m.getMNo());
         req.getSession().setAttribute("loginMember", member);
         if (member.getMGrade() == RoleEnum.USER) {
             return "member/userMypage";
@@ -140,16 +140,15 @@ public class MemberController {
     @ResponseBody
     @RequestMapping("/changeMypage")
     public String changeMypage(MemberUpdateDto m, HttpServletRequest req) {
-        Member updatedMember = memberService.changeMypage(m.getMId(), m.getData(), m.getObject());
+        Member updatedMember = memberService.changeMypage(m.getMNo(), m.getData(), m.getObject());
         req.getSession().setAttribute("loginMember", updatedMember);
         return "/";
     }
 
     // 사용자 마이페이지-비밀번호 변경
     @PostMapping("/changePw")
-    public String changePw(@RequestParam String mId,@RequestParam String mPw, @RequestParam String data, @RequestParam String object, HttpServletRequest req) {
-        System.out.println("object : "+object);
-        Member updatedMember = memberService.changeMypage(mId, data, object);
+    public String changePw(@RequestParam int mNo, @RequestParam String data, @RequestParam String object, HttpServletRequest req) {
+        Member updatedMember = memberService.changeMypage(mNo, data, object);
         req.getSession().setAttribute("loginMember", updatedMember);
         return "member/userMypage";
     }
@@ -159,16 +158,8 @@ public class MemberController {
     public String deleteMember(@ModelAttribute("loginMember")Member sessionMember, Integer mNo, HttpServletRequest req, Model model) {
         String msg = "탈퇴 되었습니다.";
         String loc= "/";
-        memberService.tradeStatus(mNo);
-        if (!sessionMember.isAdmin()) {
-            memberService.setDeleteStatusY(mNo); // 서비스 delete_status = 'y'로 바꿈
-            memberService.deleteMember(mNo);
-            req.getSession().setAttribute("loginMember", null);
-        } else {// 관리자가 삭제할때
-            //memberService.setDeleteStatusY(mNo); // delete_status = 'y'로 바꿈*/
-            //memberService.deleteMember(mNo);
-            loc = "/manageMember?reqPage=1&grade=black&keyword=&order=new";
-        }
+        memberService.unregisterMember(mNo);
+        req.getSession().setAttribute("loginMember", null);
         return MsgRedirectHelper.build(model,msg,loc);
     }
 

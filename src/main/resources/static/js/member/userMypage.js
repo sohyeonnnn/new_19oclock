@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //이메일 수정하기
 function emailEdit(obj){
+    var mNo = $('#no-label').val();
     var mId = $('#id-label').val();
     var mPw = $('#pw-label').val();
     var status = $('#email-btn').html();
@@ -114,7 +115,7 @@ function emailEdit(obj){
         $.ajax({
             url : "/changeMypage",
             type : "get",
-            data : {"mId":mId,"mPw":mPw,"data":mEmail,"object":"email" },
+            data : {"mNo":mNo,"mPw":mPw,"data":mEmail,"object":"email" },
             success : function(data){
                 $('#email-label').attr('readonly', true).css({'background-color': 'rgba(224, 224, 224, 0.4)'});
                 $('#email-btn').html("수정");

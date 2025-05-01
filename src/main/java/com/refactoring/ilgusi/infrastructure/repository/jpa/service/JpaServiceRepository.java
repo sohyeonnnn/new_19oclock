@@ -8,7 +8,6 @@ import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 public class JpaServiceRepository implements ServiceRepository {
     private final SpringDataServiceRepository jpaRepository;
@@ -191,6 +190,11 @@ public class JpaServiceRepository implements ServiceRepository {
     @Override
     public void setDeleteStatusY(int mNo) {
 
+    }
+
+    @Override
+    public void save(Service s) {
+        jpaRepository.save(s);
     }
 
 
