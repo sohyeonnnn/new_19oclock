@@ -217,6 +217,22 @@ for (int i = 0; i < list.size(); i++) {
 model.addAttribute("list", mustacheList);
 
 
+
+
+
+
+
+
+
+memberlist
+model.addAttribute("memberList", memberList);
+model.addAttribute("isFreePage", page.equals("free"));
+model.addAttribute("isBlackPage", page.equals("black"));
+model.addAttribute("orderNew", order.equals("new"));
+model.addAttribute("orderBlack", order.equals("black"));
+model.addAttribute("notAdmin", !m.getMId().equals("admin"));
+model.addAttribute("hasHistory", useHistory != null && useHistory.containsKey(m.getMNo()));
+// etc.
 */
 
     

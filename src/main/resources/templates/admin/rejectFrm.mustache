@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>19시(관리자) :: 서비스 등록 거절 이유</title>
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180"
+	href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="favicon_io/favicon-16x16.png">
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="/css/admin/rejectFrm.css">
+	<script type="text/javascript" src="/js/admin/rejectFrm.js"></script>
+</head>
+
+
+<body>
+	<div class="r-wrap">
+		<img src="img/logo/logo_white.png" width="200px;">
+		<fieldset>
+		<b>카테고리 : </b>[{{ service.MCatName}}]{{service.SCatName}}<br>
+			<b>서비스 : </b>{{service.STitle}} ({{service.MId}})<br>
+			<b>거절 이유 :</b><br> 
+				<input type="radio" name="reason" id="r1"> <label for="r1">카테고리 선택이 잘못되었습니다.</label><br> 
+				<input type="radio" name="reason" id="r2"> <label for="r2">서비스 설명이 부족합니다.</label><br> 
+				<input type="radio" name="reason" id="r3"> <label for="r3">부적절한 서비스입니다.</label><br> 
+				<input type="radio" name="reason" id="r4" checked> <label for="r4">관리자에게 문의하세요.</label>
+		</fieldset>
+		<br> 위의 이유로 서비스 등록을 거절합니다.<br> <br>
+		<button class="btn color" id="submit" onclick="">확인</button>
+		<button class="btn" id="close" onclick="window.close();">닫기</button>
+	</div>
+
+</body>
+</html>

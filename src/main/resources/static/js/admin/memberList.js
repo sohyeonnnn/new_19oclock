@@ -1,4 +1,5 @@
 
+$(document).ready(function () {
 	$(function() {
 		var page = "${page}";
 		if (page == 'all') {
@@ -25,16 +26,6 @@
 		locationFunc('black', '', 'new');
 	});
 
-	function locationFunc(grade, keyword, order) {
-		location.href = "/manageMember.do?reqPage=1&grade=" + grade
-				+ "&keyword=" + keyword + "&order=" + order;
-	}
-
-	function search(page) {
-		var keyword = $(".keyword").val();
-		locationFunc(page, keyword, '');
-	}
-
 	$("input[type=radio]").change(function() {
 		var grade = "${page}";
 		var keyword = "${keyword}";
@@ -43,9 +34,23 @@
 
 	});
 
+
+});
+
+	function locationFunc(grade, keyword, order) {
+		location.href = "/manageMember?reqPage=1&grade=" + grade
+				+ "&keyword=" + keyword + "&order=" + order;
+	}
+
+	function search(page) {
+		var keyword = $(".keyword").val();
+		locationFunc(page, keyword, '');
+	}
+
+
 	function deleteMember(mId,mNo) {
 		check = confirm(mId + "님을 탈퇴시킵니다")
 		if (check) {
-			location.href="/deleteMember.do?mId="+mId+"&mNo="+mNo;
+			location.href="/deleteMember?mId="+mId+"&mNo="+mNo;
 		}
 	}

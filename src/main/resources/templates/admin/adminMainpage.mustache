@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/css/admin/adminMainpage.css">
+</head>
+<body>
+	<div class="header">
+		<img src="/img/logo/logo_white.png" onclick="location='/'">
+		<div class="name">관리자</div>
+	</div>
+	<div class="sideNavi">
+		<ul>
+			<li class="navi-link"><a
+				href="/manageMember?reqPage=1&grade=all&keyword=&order=new">MEMBER</a></li>
+			<li class="navi-link"><a
+				href="/manageService?reqPage=1&status=waiting&keyword1=&keyword2=&order=old">SERVICE</a></li>
+			<li class="navi-link"><a href="/adminNoticeList?reqPage=1&keyword=">NOTICE</a></li>
+			<li class="navi-link"><a href="/manageQnA?list_num=10">FAQ</a></li>
+		</ul>
+	</div>
+
+
+</body>
+</html>

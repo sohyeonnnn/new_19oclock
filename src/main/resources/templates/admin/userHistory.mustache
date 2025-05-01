@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>19시(관리자) :: 서비스 이용내역</title>
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180"
+	href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="favicon_io/favicon-16x16.png">
+
+<link rel="stylesheet" href="/css/admin/userHistory.css">
+</head>
+<body>
+	<table class="historyTable"
+		style="width: 90%; margin-top: 10px; text-align: center;">
+		<tr>
+			<th>서비스이름</th>
+			<th>진행상태</th>
+			<th>가격</th>
+			<th>시작일</th>
+			<th>종료일</th>
+		</tr>
+		{{#history}}
+		<tr>
+			<td>{{STitle}}</td>
+			<td>
+				{{#isPending}}결제전{{/isPending}}
+				{{#isOngoing}}진행중{{/isOngoing}}
+				{{#isCompleted}}진행완료{{/isCompleted}}
+			</td>
+			<td>{{TPrice}}</td>
+			<td>{{startDate}}</td>
+			<td>{{endDate}}</td>
+		</tr>
+		{{/history}}
+
+	</table>
+</body>
+</html>

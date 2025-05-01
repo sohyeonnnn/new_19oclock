@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>19시(관리자) :: 회원관리</title>
+
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180"
+	href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="favicon_io/favicon-16x16.png">
+
+</head>
+<body>
+{{>admin/adminMainpage}}
+
+	<div class="serviceNavi">
+		<ul>
+			<li class="tab">전체회원</li>
+			<li class="tab">프리랜서</li>
+			<li class="tab">블랙컨슈머</li>
+		</ul>
+	</div>
+
+<div class="adminContent">
+	{{#memberList}}
+	<div>
+		<div style="float: right; margin-right: 10%; margin-top: 0; margin-bottom: 20px;">
+			<input type="text" placeholder="id 또는 브랜드네임" class="keyword">
+			<button class="btn search" onclick="search('{{page}}');">검색</button>
+			<br>
+			<div style="margin: 0 auto; margin-top: 5px; font-size: 15px;">
+				<b>정렬 : </b>
+				{{#orderNew}}
+				<input type="radio" name="order" value="new" checked>가입날짜↓
+				{{/orderNew}}
+				{{^orderNew}}
+				<input type="radio" name="order" value="new">가입날짜↓
+				{{/orderNew}}
+
+				{{#orderBlack}}
+				<input type="radio" name="order" value="black" checked>신고횟수↓
+				{{/orderBlack}}
+				{{^orderBlack}}
+				<input type="radio" name="order" value="black">신고횟수↓
+				{{/orderBlack}}
+			</div>
+		</div>
+
+		{{#keyword}}
+		<div>
+			<b>아이디 또는 브랜드네임 : </b> [{{keyword}}] 의<b> 검색 결과</b>
+		</div>
+		{{/keyword}}
+
+		<table class="memberTable" style="width: 90%;">
+			<tr>
+				<th>가입일</th>
+				<th>아이디</th>
+				<th>이름</th>
+				{{#isFreePage}}
+				<th>브랜드네임</th>
+				{{/isFreePage}}
+				{{^isFreePage}}
+				<th>등급</th>
+				<th>거래</th>
+				{{/isFreePage}}
+				<th>신고</th>
+				<th colspan="3">메세지</th>
+				{{#isBlackPage}}
+				<th>처리</th>
+				{{/isBlackPage}}
+			</tr>
+			{{#memberList}}
+			{{#notAdmin}}
+			<tr>
+				<td>{{enrollDate}}</td>
+				<td>{{MId}}</td>
+				<td>{{MName}}</td>
+				{{#isFreePage}}
+				<td>{{brandName}}</td>
+				{{/isFreePage}}
+				{{^isFreePage}}
+				<td>{{#MGrade}}{{#isNormalMember}}일반회원{{/isNormalMember}}{{#isFreelancer}}프리랜서{{/isFreelancer}}{{/MGrade}}</td>
+				<td>
+					{{#useHistory}}
+					{{#hasHistory}}
+					<a href="/tradeHistory.do?sNo=-1&mNo={{MNo}}"
+					   onclick="window.open(this.href, '', 'width=800, height=300, left=1000, scrollbars=no,location=no, resizable=no'); return false;">
+						{{value}}
+					</a>
+					{{/hasHistory}}
+					{{^hasHistory}}-{{/hasHistory}}
+					{{/useHistory}}
+				</td>
+				{{/isFreePage}}
+				<td>{{warningCount}}</td>
+				<td><a href="/adminMessage.do?mNo={{MNo}}"
+					   onclick="window.open(this.href, '', 'width=300, height=350, left=1000, scrollbars=no,location=no, resizable=no'); return false;">
+					<img src="/img/icon/chat.png"/>
+				    </a>
+                </td>
+				<td class="msgtd" style="text-align: left;">
+					{{#adminMsg}}
+					{{#msgForMId}}
+					{{#CContent}}{{CContent}}{{/CContent}}
+					{{/msgForMId}}
+					{{/adminMsg}}
+				</td>
+				<td>
+					{{#adminMsg}}
+					{{#readStatus}}
+					{{#isRead}}읽음{{/isRead}}
+					{{#isUnread}}안읽음{{/isUnread}}
+					{{/readStatus}}
+					{{/adminMsg}}
+				</td>
+				{{#isBlackPage}}
+				<td><button class="btn deleteBtn" onclick="deleteMember('{{MId}}','{{MNo}}')">탈퇴</button></td>
+				{{/isBlackPage}}
+			</tr>
+			{{/notAdmin}}
+			{{/memberList}}
+		</table>
+
+		<div style="width: 100%; margin: 10px; text-align: center">
+			<ul class="pageNavi">{{pageNavi}}</ul>
+		</div>
+	</div>
+	{{/memberList}}
+
+	{{^memberList}}
+	<div style="text-align: center">
+		<br> <br> <br> <br>
+		<div style="float: right; margin-right: 10%; margin-top: 0; margin-bottom: 20px;">
+			<input type="text" placeholder="id 또는 브랜드네임" class="keyword">
+			<button class="btn search" onclick="search('{{page}}');">검색</button>
+			<br>
+			<div style="margin: 0 auto; margin-top: 5px; font-size: 15px;">
+				<b>정렬 : </b>
+				{{#orderNew}}
+				<input type="radio" name="order" value="new" checked>가입날짜↓
+				{{/orderNew}}
+				{{^orderNew}}
+				<input type="radio" name="order" value="new">가입날짜↓
+				{{/orderNew}}
+
+				{{#orderBlack}}
+				<input type="radio" name="order" value="black" checked>신고횟수↓
+				{{/orderBlack}}
+				{{^orderBlack}}
+				<input type="radio" name="order" value="black">신고횟수↓
+				{{/orderBlack}}
+			</div>
+		</div>
+
+		{{#keyword}}
+		<div>
+			<b>아이디 또는 브랜드네임 : </b> [{{keyword}}] 의<b> 검색 결과</b>
+		</div>
+		{{/keyword}}
+
+		<br> <br> <br> <br> <br> <br> <br>
+		<img src="/img/icon/exclamation.png"> <br>
+		<h1>검색 결과가 없습니다!</h1>
+	</div>
+	{{/memberList}}
+</div>
+
+
+</body>
+</html>

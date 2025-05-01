@@ -1,5 +1,4 @@
-
-	
+$(document).ready(function () {
 	$(function() {
 		var page = "${page}";
 		if (page == 'waiting') {
@@ -12,7 +11,7 @@
 			$(".tab").eq(2).addClass("select");
 		}
 
-	
+
 	});
 
 	$(".tab").eq(0).click(function() {
@@ -26,6 +25,17 @@
 	$(".tab").eq(2).click(function() {
 		locationFunc('deleted', '', '','new');
 	});
+
+	$("input[type=radio]").change(function() {
+		var status = "${page}";
+		var keyword1 = "${keyword1}";
+		var keyword2 = "${keyword2}";
+		var order = $("input[type=radio]:checked").val()
+		locationFunc(status, keyword1,keyword2, order);
+
+	});
+
+});
 
 	function locationFunc(status, keyword1,keyword2,order) {
 		location.href = "/manageService.do?reqPage=1&status=" + status
@@ -41,15 +51,7 @@
 		locationFunc(page, keyword1,keyword2, ''); 
 	}
 
-	$("input[type=radio]").change(function() {
-		var status = "${page}";
-		var keyword1 = "${keyword1}";
-		var keyword2 = "${keyword2}";
-		var order = $("input[type=radio]:checked").val()
-		locationFunc(status, keyword1,keyword2, order);
 
-	});
-	
 	   
 	  //메세지 보내기
 		function sendMsg(mNo,mId,content) {

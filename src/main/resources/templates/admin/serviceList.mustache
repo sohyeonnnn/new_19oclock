@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>19시(관리자) :: 서비스관리</title>
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180"
+	href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="favicon_io/favicon-16x16.png">
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="/css/admin/serviceList.css">
+	<script type="text/javascript" src="/js/admin/serviceList.js"></script>
+
+
+</head>
+<body>
+{{>common/adminMainpage}}
+
+	<div class="serviceNavi">
+		<ul>
+			<li class="tab">미등록서비스</li>
+			<li class="tab">등록서비스</li>
+			<li class="tab">거절/삭제된서비스</li>
+		</ul>
+	</div>
+	<div class="adminContent">
+		{{#hasServiceList}}
+		<div>
+			<div style="float: right; margin-right: 10%; margin-bottom: 20px;">
+				<select>
+					<option value="title" {{#isTitle}}selected{{/isTitle}}>서비스명</option>
+					<option value="free" {{#isFree}}selected{{/isFree}}>id</option>
+				</select>
+				<input type="text" placeholder="검색" class="keyword2">
+				<button class="btn search" onclick="search('{{page}}');">검색</button>
+
+				<div style="margin-top: 5px;">
+					<b>정렬 : </b>
+					<input type="radio" name="order" value="old" {{#orderOld}}checked{{/orderOld}}>등록일↑
+					<input type="radio" name="order" value="new" {{#orderNew}}checked{{/orderNew}}>등록일↓
+					<input type="radio" name="order" value="working" {{#orderWorking}}checked{{/orderWorking}}>작업수↓
+					<input type="radio" name="order" value="cate" {{#orderCate}}checked{{/orderCate}}>카테고리↓
+					<input type="radio" name="order" value="id" {{#orderId}}checked{{/orderId}}>id↓
+				</div>
+			</div>   {{#hasKeyword}}
+			<div>
+				{{#isTitle}}<b>서비스명 : </b>{{/isTitle}}
+				{{#isFree}}<b>프리랜서 : </b>{{/isFree}}
+				[{{keyword2}}] 의<b> 검색 결과</b>
+			</div>
+			{{/hasKeyword}}
+
+			<table class="serviceTable" style="width: 90%;">
+				<tr>
+					<th>등록일</th>
+					<th>서비스번호</th>
+					<th>아이디</th>
+					<th>카테고리</th>
+					<th>서비스명</th>
+					{{#isWaiting}}<th>처리</th>{{/isWaiting}}
+					{{^isWaiting}}<th>작업수</th>{{/isWaiting}}
+					{{#isApproved}}<th>처리</th>{{/isApproved}}
+					{{#isDeleted}}<th>상태</th>{{/isDeleted}}
+				</tr>
+				{{#serviceList}}
+				{{#hasServiceNo}}
+				<tr>
+					<td>{{writeDate}}</td>
+					<td>{{SNo}}</td>
+					<td>{{MId}}{{^MId}}탈퇴한회원{{/MId}}</td>
+					<td><b>[{{MCatName}}]</b>{{SCatName}}</td>
+					<td>
+						<a href="/serviceView2.do?sNo={{SNo}}&reqPage=1"
+						   onclick="window.open(this.href, '', 'width=1200, height=1800, left=1000, scrollbars=no,location=no, resizable=no'); return false;">
+							{{STitle}}
+						</a>
+					</td>
+					<!-- 미등록서비스 -->
+					{{#isWaiting}}
+					<td>
+						{{#mIdandmNo}}
+						{{#isMatch}}{{#value}}
+						<button class="btn acceptBtn" onclick="acceptService('{{value}}','{{key}}','{{SNo}}','{{STitle}}');">승인</button>
+						{{/value}}{{/isMatch}}
+						{{/mIdandmNo}}
+						<button class="btn rejectBtn">
+							<a href="/rejectFrm.do?sNo={{SNo}}"
+							   onclick="window.open(this.href, '', 'width=800, height=400, left=1000, scrollbars=no,location=no, resizable=no'); return false;">거절</a>
+						</button>
+					</td>
+					{{/isWaiting}}
+					<!-- 미등록서비스 -->
+					<!-- 등록된 서비스 -->
+					{{^isWaiting}}
+					<td>
+						{{#hasWorkCount}}
+						<a href="/tradeHistory.do?sNo={{SNo}}&mNo=-1"
+						   onclick="window.open(this.href, '', 'width=800, height=400, left=1000, scrollbars=no,location=no, resizable=no'); return false;">{{workingCount}}</a>
+						{{/hasWorkCount}}
+						{{^hasWorkCount}}{{workingCount}}{{/hasWorkCount}}
+					</td>
+					{{#isApproved}}
+					<td>
+						{{#mIdandmNo}}
+						{{#isMatch}}
+						<button class="btn deleteBtn"
+								onclick="deleteService('{{value}}','{{key}}','{{SNo}}','{{STitle}}');">삭제</button>
+						{{/isMatch}}
+						{{/mIdandmNo}}
+					</td>
+					{{/isApproved}}
+					{{/isWaiting}}
+					<!-- 등록된 서비스 -->
+					{{#isDeleted}}
+					<td>
+						{{#isRejected}}거절{{/isRejected}}
+						{{#isDeletedApproved}}삭제{{/isDeletedApproved}}
+					</td>
+					{{/isDeleted}}
+					<!-- 거절/삭제된 서비스 -->
+				</tr>
+				{{/hasServiceNo}}
+				{{/serviceList}}
+			</table>
+			<div style="text-align: center;">
+				<ul class="pageNavi">{{{pageNavi}}}</ul>
+			</div>
+		</div>
+		{{/hasServiceList}}
+
+		{{^hasServiceList}}
+		<div>
+			<div style="float: right; margin-right: 10%;">
+				<select>
+					<option value="title" {{#isTitle}}selected{{/isTitle}}>서비스명</option>
+					<option value="free" {{#isFree}}selected{{/isFree}}>프리랜서</option>
+				</select>
+				<input type="text" placeholder="검색" class="keyword2">
+				<button class="btn search" onclick="search('{{page}}');">검색</button>
+			</div>
+			{{#hasKeyword}}
+			<div>
+				{{#isTitle}}<b>서비스명 : </b>{{/isTitle}}
+				{{#isFree}}<b>프리랜서 : </b>{{/isFree}}
+				[{{keyword2}}] 의<b> 검색 결과</b>
+			</div>
+			{{/hasKeyword}}
+
+			<div style="text-align: center; margin-top: 50px;">
+				<img src="/img/icon/exclamation.png">
+				<h1>검색 결과가 없습니다!</h1>
+			</div>
+		</div>
+		{{/hasServiceList}}
+
+	</div>
+</body>
+</html>

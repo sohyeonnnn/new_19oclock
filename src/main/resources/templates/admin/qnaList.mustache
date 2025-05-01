@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>19시(관리자) :: qna</title>
+    <link rel="stylesheet" href="/css/admin/qnaList.css">
+    <script type="text/javascript" src="/js/admin/qnaList.js"></script>
+
+</head>
+
+<body>
+
+<div class="background-screen"></div>
+{{> admin/adminMainpage }}
+
+<div class="qna-view-container">
+    <div class="qna-view-top">
+        <div class="qna-view-top-title">
+            보기
+            <div class="modal-exit">x</div>
+        </div>
+    </div>
+    <div class="qna-view-main">
+        <div class="qna-view-title"></div>
+        <div class="qna-view-file"></div>
+        <div class="qna-view-content"></div>
+    </div>
+</div>
+
+<!-- 답변 작성하는 모달창 -->
+<div class="qna-view-container-answer">
+    <div class="qna-view-top">
+        <div class="qna-view-top-title">
+            답변 작성
+            <div class="modal-exit">x</div>
+        </div>
+    </div>
+    <div class="qna-view-main-answer">
+        <form id="qna-reg-form" action="registerQuestion" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="loc" id="loc">
+            <input type="hidden" name="answer_No" id="answer_No">
+            <div class="qna-view-content-answer">
+                <textarea name="qContent">{{#answerNo}}{{question.answerContent}}{{/answerNo}}</textarea>
+            </div>
+            <div class="qna-view-action">
+                <input type="submit" class="btn-submit" value="등록하기">
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 메인 섹션 부분 -->
+<section class="qna-section">
+    <div class="qna-container">
+        <div class="qna-top">
+            <select name="list_num">
+                <option value="10" {{#list_num_10}}selected{{/list_num_10}}>10개</option>
+                <option value="20" {{#list_num_20}}selected{{/list_num_20}}>20개</option>
+                <option value="30" {{#list_num_30}}selected{{/list_num_30}}>30개</option>
+            </select>
+        </div>
+
+        <div class="qna-center">
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성날짜</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#questionList}}
+                <tr class="tr">
+                    <td><input type="checkbox" name="qNo"></td>
+                    <td>{{QNo}}</td>
+                    <td>
+                        <input type="hidden" value="{{QNo}}">
+                        <a href="#" class="list-title">{{QTitle}}</a>
+                        {{^answerStatus}}
+                        <a href="#" class="btn-answer">답변</a>
+                        {{/answerStatus}}
+                        {{#secretStatus}}
+                        <span>&#128274;</span>
+                        {{/secretStatus}}
+                    </td>
+                    <td>{{MId}}</td>
+                    <td>{{writeDate}}</td>
+                </tr>
+
+                {{#answerStatus}}
+                <tr style="border-top: none;">
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="hidden" value="{{QNo}}">
+                        <a href="#" class="answer-list-title">&#10551; 답변입니다.</a>
+                        <a href="#" class="btn-update">수정</a>
+                    </td>
+                    <td>관리자</td>
+                    <td>{{answerDate}}</td>
+                </tr>
+                {{/answerStatus}}
+                {{/questionList}}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="qna-bottom">
+            <div class="paging">
+                {{#showPrev}}
+                <a class="page-prev" href="?page={{prevPage}}{{queryParams}}">이전</a>
+                {{/showPrev}}
+
+                {{#pages}}
+                <a class="page-num {{#selected}}page-selected{{/selected}}" href="?page={{number}}{{queryParams}}">
+                    {{number}}
+                </a>
+                {{/pages}}
+
+                {{#showNext}}
+                <a class="page-next" href="?page={{nextPage}}{{queryParams}}">다음</a>
+                {{/showNext}}
+            </div>
+
+            <div class="qna-search">
+                <form action="" method="get">
+                    <select name="qna_type">
+                        <option value="1">제목</option>
+                        <option value="2">작성자</option>
+                    </select>
+                    <input type="text" name="qna_keyword">
+                    <input type="submit" value="검색">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+</body>
+
+</html>
