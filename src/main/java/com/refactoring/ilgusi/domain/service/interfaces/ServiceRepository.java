@@ -13,7 +13,7 @@ public interface ServiceRepository {
 
     Join selectOneMember(String mId);
 
-    int insertService(Join join);
+    Service insertService(Join join);
 
     // 프리랜서 마이페이지 정보 수정
     int updateFreelancer(Member m);

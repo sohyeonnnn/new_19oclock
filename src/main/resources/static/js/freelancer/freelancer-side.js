@@ -1,5 +1,5 @@
-
-    $(".switch").click(function(){
+$(document).ready(function () {
+    $(".switch").click(function () {
         var grade = $(this).prev().val();
         var mId = $(this).prev().prev().val();
         var mPw = $(this).prev().prev().prev().val();
@@ -32,30 +32,30 @@
         form.submit();
     });
 
-    function errorMsg(){
-        alert('프리랜서 프로필을 작성해주세요');
-    }
+});
 
-    //생성된 서비스가 5개면 더이상 생성할 수 없게 함.(승인되고 삭제안된 개수)
-    function isPossibleMakeService(){
-        var mNo = $("#memberNo").val();
-        console.log(mNo);
-        $.ajax({
-            type : "get",
-            url : "/isPossibleMakeService",
-            data : {
-                mNo:$("#memberNo").val()
-            },
-            dataType: "json",
-            success : function(response){
-                if(response.data <5){
-                    console.log("@@@");
-                   // location.href = "/serviceJoinFrm?MNo="+mNo;
-                }else{
-                    alert('서비스를 생성할 수 있는 개수를 초과했습니다. \n현재 서비스 개수 : 5개');
-                }
-            },error : function(){
-                console.log("오류");
+function errorMsg() {
+    alert('프리랜서 프로필을 작성해주세요');
+}
+
+//생성된 서비스가 5개면 더이상 생성할 수 없게 함.(승인되고 삭제안된 개수)
+function isPossibleMakeService() {
+    var mNo = $("#memberNo").val();
+    $.ajax({
+        type: "post",
+        url: "/isPossibleMakeService",
+        data: {
+            mNo: mNo
+        },
+        dataType: "json",
+        success: function (response) {
+            if (response.data < 5) {
+                location.href = "/serviceJoinFrm";//?MNo="+mNo;
+            } else {
+                alert('서비스를 생성할 수 있는 개수를 초과했습니다. \n현재 서비스 개수 : 5개');
             }
-        });
-    }
+        }, error: function () {
+            console.log("오류");
+        }
+    });
+}

@@ -23,8 +23,9 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public int insertService(Join join) {
-        return 0;
+    public Service insertService(Join join) {
+        Service service = join.toEntity();
+        return jpaRepository.save(service);
     }
 
     @Override
@@ -183,8 +184,8 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public int selectFreeServiceCount(int mId) {
-        return jpaRepository.countServiceBymNo(mId);
+    public int selectFreeServiceCount(int mNo) {
+        return jpaRepository.countServiceBymNo(mNo);
     }
 
     @Override

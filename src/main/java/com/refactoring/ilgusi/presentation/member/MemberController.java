@@ -125,7 +125,7 @@ public class MemberController {
     }
 
     //  마이페이지에서 사용자-프리랜서 전환
-    @RequestMapping("/changeGrade")
+    @PostMapping("/changeGrade")
     public String changeGrade(@ModelAttribute("loginMember")Member m, HttpServletRequest req) {
         Member member = memberService.changeGrade(m.getMId());
         req.getSession().setAttribute("loginMember", member);
@@ -179,6 +179,10 @@ public class MemberController {
         memberService.loginMember(mId, mPw);
         return ResponseEntity.ok(ResultData.builder().isSuccess(true).build());
     }
+
+
+
+
 
 
 /*

@@ -1,14 +1,15 @@
 package com.refactoring.ilgusi.domain.service;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Builder
 public class Service {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

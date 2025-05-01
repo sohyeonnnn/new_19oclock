@@ -39,5 +39,28 @@ public class Join {
 	public String getIntroduceBr() {
 		return introduce.replaceAll("\r\n", "<br>");
 	}
-	
+
+	public Service toEntity() {
+		Service service = new Service();
+		service.setMNo(this.mNo);
+		service.setSTitle(this.sTitle);
+		service.setSPrice(this.sPrice);
+		service.setSContent(this.sContent);
+		service.setSArea(this.sArea);
+		service.setSImg(this.sImg);
+		service.setSRate(this.sRate);
+		service.setMainCategory(this.mainCategory);
+		service.setSubCategory(this.subCategory);
+		service.setWorkingDate(this.workingDate);
+		service.setWorkingCount(0); // 기본값
+		service.setWriteDate(java.time.LocalDate.now().toString()); // "yyyy-MM-dd"
+		service.setDeleteStatus('n'); // 기본값
+		service.setAdminApproval('n'); // 기본값
+		service.setBrandName(this.brandName);
+
+		// 선택적: mainCategoryName, subCategoryName, sPriceTxt은 필요 시 추가로 설정
+		return service;
+	}
+
+
 }

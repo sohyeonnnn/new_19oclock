@@ -48,7 +48,7 @@
 						<tr>
 							<td class="table-title"><p>*카테고리 선택</p></td>
 							<td style="width: 400px;">
-								<input type="hidden" name="mId" value="${loginMember.MId}">
+								<input type="hidden" name="mId" value="{{loginMember.MId}}">
 								<select class="input-box" name="mainCategory" style="width: 150px; float: left; margin-left: 30px; height: 30px;" id="mainCategory"  required="required">	
 										<option value="0">메인 카테고리 선택</option>
 										<option value="10">디자인</option>
@@ -99,7 +99,7 @@
 						<tr>
 							<td class="table-title"><p>*휴대폰 번호</p></td>
 							<td style="width: 400px;">
-								<input type="text" class="input-noLine" name="mPhone" style="width: 200px; height: 23px; float: left; margin-left: 30px; margin-top: 10px;" value="${loginMember.MPhone }" readonly="readonly">
+								<input type="text" class="input-noLine" name="mPhone" style="width: 200px; height: 23px; float: left; margin-left: 30px; margin-top: 10px;" value="{{loginMember.MPhone}}" readonly="readonly">
 							</td>
 						</tr>
 						<tr>
@@ -122,7 +122,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="table-title" colspan="2""><p style="height:20px;text-align:left;">*서비스내용</p></td>
+							<td class="table-title" colspan="2"><p style="height:20px;text-align:left;">*서비스내용</p></td>
 						</tr>
 						<tr>
 							<td colspan="2" style="border:0;" >
