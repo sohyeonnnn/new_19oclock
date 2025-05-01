@@ -1,7 +1,6 @@
 package com.refactoring.ilgusi.domain.member.dto;
 
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.member.RoleEnum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

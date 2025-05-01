@@ -2,11 +2,11 @@ package com.refactoring.ilgusi.domain.notice.interfaces;
 
 
 import com.refactoring.ilgusi.domain.notice.Notice;
-import com.refactoring.ilgusi.domain.notice.dto.NoticePageResponseDto;
+import com.refactoring.ilgusi.domain.notice.dto.NoticePageDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeViewDto;
 
 public interface NoticeService {
-    NoticePageResponseDto selectNoticeListApi(int reqPage, String keyword);
+    NoticePageDto selectNoticeListApi(int reqPage, String keyword);
     NoticeViewDto selectNoticeView(int nNo);
     void insertNotice(Notice n);
     void deleteNotice(int nNo);

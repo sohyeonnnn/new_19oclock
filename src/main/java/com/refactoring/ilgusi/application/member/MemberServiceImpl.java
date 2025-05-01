@@ -12,7 +12,6 @@ import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
 import com.refactoring.ilgusi.exception.CustomException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

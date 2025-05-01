@@ -4,10 +4,10 @@ import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.domain.notice.Notice;
-import com.refactoring.ilgusi.domain.notice.interfaces.NoticeService;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeInsertDto;
-import com.refactoring.ilgusi.domain.notice.dto.NoticePageResponseDto;
+import com.refactoring.ilgusi.domain.notice.dto.NoticePageDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeViewDto;
+import com.refactoring.ilgusi.domain.notice.interfaces.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -41,7 +41,7 @@ public class NoticeController {
     //공지사항 목록으로 이동
     @GetMapping("/noticeList")
     @ResponseBody
-    public ResponseEntity<NoticePageResponseDto> noticeListApi (int reqPage, String keyword) {
+    public ResponseEntity<NoticePageDto> noticeListApi (int reqPage, String keyword) {
         return ResponseEntity.ok(noticeService.selectNoticeListApi(reqPage, keyword));
     }
 

@@ -1,9 +1,9 @@
-package com.refactoring.ilgusi.domain.service;
+package com.refactoring.ilgusi.domain.service.dto;
 
 import lombok.Data;
 
 @Data
-public class ServiceBrandname {
+public class ServiceBrandDto {
 	private int sNo;			//서비스 번호
 	private String mId;			//회원 아이디(작성자
 	private String sTitle;		//서비스 제목

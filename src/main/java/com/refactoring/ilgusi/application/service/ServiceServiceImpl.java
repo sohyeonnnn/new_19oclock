@@ -1,7 +1,7 @@
 package com.refactoring.ilgusi.application.service;
 
 import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
-import com.refactoring.ilgusi.domain.service.Join;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceService;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
@@ -22,7 +22,7 @@ public class ServiceServiceImpl implements ServiceService {
         return serviceRepository.selectFreeServiceCount(mNo);
     }
 
-    public void insertService(Join join){
+    public void insertService(ServiceInsertDto join){
         System.out.println(join.toString());
         serviceRepository.save(join.toEntity());
     }

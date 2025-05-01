@@ -1,4 +1,4 @@
-package com.refactoring.ilgusi.domain.service;
+package com.refactoring.ilgusi.domain.service.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ReviewJoin {
+public class ReviewDto {
 
 	private int rNo; // 리뷰 고유 번호
 	private int tNo; // 거래 번호

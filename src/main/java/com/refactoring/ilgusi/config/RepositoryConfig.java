@@ -1,13 +1,13 @@
 package com.refactoring.ilgusi.config;
 
 import com.refactoring.ilgusi.domain.category.interfaces.CategoryRepository;
-import com.refactoring.ilgusi.domain.chat.ChatRepository;
+import com.refactoring.ilgusi.domain.chat.interfaces.ChatRepository;
 import com.refactoring.ilgusi.domain.favorite.FavoriteRepository;
 import com.refactoring.ilgusi.domain.member.interfaces.AdminRepository;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 import com.refactoring.ilgusi.domain.notice.interfaces.NoticeRepository;
-import com.refactoring.ilgusi.domain.question.QuestionRepository;
-import com.refactoring.ilgusi.domain.request.RequestRepository;
+import com.refactoring.ilgusi.domain.question.interfaces.QuestionRepository;
+import com.refactoring.ilgusi.domain.request.interfaces.RequestRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
 import com.refactoring.ilgusi.infrastructure.repository.jpa.category.JpaCategoryRepository;

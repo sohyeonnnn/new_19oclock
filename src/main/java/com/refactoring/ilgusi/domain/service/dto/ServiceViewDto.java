@@ -1,9 +1,9 @@
-package com.refactoring.ilgusi.domain.service;
+package com.refactoring.ilgusi.domain.service.dto;
 
 import lombok.Data;
 
 @Data
-public class ServiceViewData {
+public class ServiceViewDto {
 	private String status;
 	private String keyword1;
 	private String keyword2;
@@ -11,7 +11,7 @@ public class ServiceViewData {
 	private int start;
 	private int end;
 
-	public ServiceViewData(String status, String keyword1, String keyword2, String order, int start, int end) {
+	public ServiceViewDto(String status, String keyword1, String keyword2, String order, int start, int end) {
 		super();
 		this.status = status;
 		this.keyword1 = keyword1;

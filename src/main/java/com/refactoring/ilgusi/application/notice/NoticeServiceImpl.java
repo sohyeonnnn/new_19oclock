@@ -2,10 +2,10 @@ package com.refactoring.ilgusi.application.notice;
 
 import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.domain.notice.Notice;
+import com.refactoring.ilgusi.domain.notice.dto.NoticePageDto;
+import com.refactoring.ilgusi.domain.notice.dto.NoticeViewDto;
 import com.refactoring.ilgusi.domain.notice.interfaces.NoticeRepository;
 import com.refactoring.ilgusi.domain.notice.interfaces.NoticeService;
-import com.refactoring.ilgusi.domain.notice.dto.NoticePageResponseDto;
-import com.refactoring.ilgusi.domain.notice.dto.NoticeViewDto;
 import com.refactoring.ilgusi.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class NoticeServiceImpl implements NoticeService {
     private final NoticeRepository noticeRepository;
 
     @Override
-    public NoticePageResponseDto selectNoticeListApi(int reqPage, String keyword) {
+    public NoticePageDto selectNoticeListApi(int reqPage, String keyword) {
         int limit = 10;
         int offset = (reqPage - 1) * limit;
 
@@ -29,7 +29,7 @@ public class NoticeServiceImpl implements NoticeService {
         int totalPage = (int) Math.ceil((double) totalCount / limit);
         String pageNavi = this.generatePageNavi(reqPage, keyword, totalPage, totalCount, limit);
 
-        return NoticePageResponseDto.builder()
+        return NoticePageDto.builder()
                 .noticeList(noticeList)
                 .reqPage(reqPage)
                 .totalCount(totalCount)

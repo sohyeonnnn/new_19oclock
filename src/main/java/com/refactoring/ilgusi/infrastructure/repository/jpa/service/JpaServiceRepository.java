@@ -2,7 +2,12 @@ package com.refactoring.ilgusi.infrastructure.repository.jpa.service;
 
 import com.refactoring.ilgusi.domain.category.Category;
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.service.*;
+import com.refactoring.ilgusi.domain.service.Service;
+import com.refactoring.ilgusi.domain.service.ServiceFile;
+import com.refactoring.ilgusi.domain.service.ServicePay;
+import com.refactoring.ilgusi.domain.service.ServiceReview;
+import com.refactoring.ilgusi.domain.service.dto.ReviewDto;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 
 import java.util.ArrayList;
@@ -17,12 +22,12 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public Join selectOneMember(String mId) {
+    public ServiceInsertDto selectOneMember(String mId) {
         return null;
     }
 
     @Override
-    public Service insertService(Join join) {
+    public Service insertService(ServiceInsertDto join) {
         Service service = join.toEntity();
         return jpaRepository.save(service);
     }
@@ -38,7 +43,7 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public List<ReviewJoin> selectReviewList(String mId, int start, int end) {
+    public List<ReviewDto> selectReviewList(String mId, int start, int end) {
         return null;
     }
 

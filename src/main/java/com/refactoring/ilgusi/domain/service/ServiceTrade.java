@@ -1,7 +1,6 @@
 package com.refactoring.ilgusi.domain.service;
 
 import com.refactoring.ilgusi.common.BaseEntity;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

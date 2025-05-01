@@ -1,7 +1,10 @@
 package com.refactoring.ilgusi.domain.notice.dto;
 
 import com.refactoring.ilgusi.domain.notice.Notice;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -9,7 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NoticePageResponseDto {
+public class NoticePageDto {
 	private List<Notice> noticeList;
 	private int reqPage;
 	private int totalCount;

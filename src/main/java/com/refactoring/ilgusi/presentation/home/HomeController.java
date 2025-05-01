@@ -1,16 +1,13 @@
 package com.refactoring.ilgusi.presentation.home;
 
 
-import com.refactoring.ilgusi.common.GlobalModelAttributeAdvice;
 import com.refactoring.ilgusi.domain.category.interfaces.CategoryService;
-import com.refactoring.ilgusi.domain.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.Optional;
 
 
 @RequiredArgsConstructor

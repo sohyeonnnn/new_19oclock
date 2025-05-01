@@ -1,9 +1,9 @@
-package com.refactoring.ilgusi.domain.service;
+package com.refactoring.ilgusi.domain.service.dto;
 
 import lombok.Data;
 
 @Data
-public class TradeHistory {
+public class TradeHistoryDto {
 	private int tNo;			//거래번호
 	private int sNo;			//서비스 번호
 	private int mNo;			//멤버 번호

@@ -1,24 +1,20 @@
 package com.refactoring.ilgusi.presentation.service;
 
-import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
-import com.refactoring.ilgusi.domain.service.Join;
-import com.refactoring.ilgusi.domain.service.ServiceFile;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 
 @Controller
 @RequiredArgsConstructor
@@ -43,7 +39,7 @@ public class ServiceController {
     }
 
     @PostMapping("/serviceJoin")
-    public String serviceJoin(Join join, Model model, MultipartFile[] ssImg, HttpServletRequest request) {
+    public String serviceJoin(ServiceInsertDto join, Model model, MultipartFile[] ssImg, HttpServletRequest request) {
        /* String root = request.getSession().getServletContext().getRealPath("/");
         String path = root + "/upload/service/";
         ArrayList<ServiceFile> fileList = new ArrayList<ServiceFile>();

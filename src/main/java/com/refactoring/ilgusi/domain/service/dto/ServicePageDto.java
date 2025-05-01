@@ -1,10 +1,11 @@
-package com.refactoring.ilgusi.domain.service;
+package com.refactoring.ilgusi.domain.service.dto;
 
+import com.refactoring.ilgusi.domain.service.Service;
 import lombok.Data;
 
 import java.util.ArrayList;
 @Data
-public class ServicePageData {
+public class ServicePageDto {
 	
 	private ArrayList<Service> list;
 	private String pageNavi;
@@ -19,8 +20,8 @@ public class ServicePageData {
 	
 	
 	
-	public ServicePageData(ArrayList<Service> list, String pageNavi, int end, int start, int reqPage, int totalCount,
-			String order, String keyword) {
+	public ServicePageDto(ArrayList<Service> list, String pageNavi, int end, int start, int reqPage, int totalCount,
+						  String order, String keyword) {
 		super();
 		this.list = list;
 		this.pageNavi = pageNavi;
@@ -34,7 +35,7 @@ public class ServicePageData {
 
 
 
-	public ServicePageData() {
+	public ServicePageDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

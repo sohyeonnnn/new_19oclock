@@ -2,7 +2,12 @@ package com.refactoring.ilgusi.domain.service.interfaces;
 
 import com.refactoring.ilgusi.domain.category.Category;
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.service.*;
+import com.refactoring.ilgusi.domain.service.Service;
+import com.refactoring.ilgusi.domain.service.ServiceFile;
+import com.refactoring.ilgusi.domain.service.ServicePay;
+import com.refactoring.ilgusi.domain.service.ServiceReview;
+import com.refactoring.ilgusi.domain.service.dto.ReviewDto;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,16 +15,16 @@ import java.util.List;
 
 public interface ServiceRepository {
 
-    Join selectOneMember(String mId);
+    ServiceInsertDto selectOneMember(String mId);
 
-    Service insertService(Join join);
+    Service insertService(ServiceInsertDto join);
 
     // 프리랜서 마이페이지 정보 수정
     int updateFreelancer(Member m);
 
     Member selectOneMember(int MNO);
 
-    List<ReviewJoin> selectReviewList(String mId, int start, int end);
+    List<ReviewDto> selectReviewList(String mId, int start, int end);
 
     int selectServiceNo();
 
