@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @RequiredArgsConstructor
@@ -18,13 +19,17 @@ public class ServiceServiceImpl implements ServiceService {
     private final ServiceTradeRepository serviceTradeRepository;
     private final ServiceRepository serviceRepository;
 
-    public int selectFreeServiceCount(int mNo){
+    public int selectFreelancerServiceCount(int mNo){
         return serviceRepository.selectFreeServiceCount(mNo);
     }
 
-    public void insertService(ServiceInsertDto join){
-        System.out.println(join.toString());
-        serviceRepository.save(join.toEntity());
+    public void insertService(ServiceInsertDto s){
+        serviceRepository.insertService(s.toEntity());
+    }
+
+    @Override
+    public List<com.refactoring.ilgusi.domain.service.Service> selectOrderedServiceList(int mNo, String order) {
+        return serviceRepository.selectServiceList(mNo, order);
     }
 
 

@@ -8,6 +8,7 @@ import com.refactoring.ilgusi.domain.service.ServicePay;
 import com.refactoring.ilgusi.domain.service.ServiceReview;
 import com.refactoring.ilgusi.domain.service.dto.ReviewDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
+import org.hibernate.annotations.Sort;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,16 +16,12 @@ import java.util.List;
 
 public interface ServiceRepository {
 
-    ServiceInsertDto selectOneMember(String mId);
+    Service insertService(Service s);
 
-    Service insertService(ServiceInsertDto join);
-
-    // 프리랜서 마이페이지 정보 수정
-    int updateFreelancer(Member m);
-
-    Member selectOneMember(int MNO);
+    List<Service> selectServiceList(int mNo, String order);
 
     List<ReviewDto> selectReviewList(String mId, int start, int end);
+
 
     int selectServiceNo();
 
@@ -99,7 +96,7 @@ public interface ServiceRepository {
     // 프리랜서마이페이지 서비스 삭제
     int deleteService(int sNo);
 
-    ArrayList<Service> selectServiceList(String mId, String order);
+
 
     // 리뷰 작성하면 서비스테이블 s_rate에 평점 넣어줌
     int serviceUpdateSRate(int sNo);

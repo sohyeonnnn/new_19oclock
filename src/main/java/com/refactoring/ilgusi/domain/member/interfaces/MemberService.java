@@ -4,7 +4,7 @@ import com.refactoring.ilgusi.domain.member.Member;
 
 public interface MemberService {
     Member loginMember(String id, String pw);
-    Member selectOneMember(Integer mNo);
+    Member selectMemberByNo(Integer mNo);
     void registerMember(Member m);
     boolean checkDupId(String id);
     Member searchId(Member m);

@@ -43,7 +43,7 @@ public class MemberController {
         if (m.getMGrade() == RoleEnum.USER) {
             return "member/userMypage";
         } else if (m.getMGrade() == RoleEnum.FREELANCER) {
-            return "redirect:/freelancerMypage?MNo=" + m.getMNo();
+            return "redirect:/freelancerMypage";
         }
         return "/";
     }
@@ -132,7 +132,7 @@ public class MemberController {
         if (member.getMGrade() == RoleEnum.USER) {
             return "member/userMypage";
         } else {
-            return "redirect:/freelancerMypage?MNo=" + member.getMNo();
+            return "redirect:/freelancerMypage";
         }
     }
 
@@ -147,7 +147,7 @@ public class MemberController {
 
     // 사용자 마이페이지-비밀번호 변경
     @PostMapping("/changePw")
-    public String changePw(@RequestParam int mNo, @RequestParam String data, @RequestParam String object, HttpServletRequest req) {
+    public String changePw(@RequestParam Integer mNo, @RequestParam String data, @RequestParam String object, HttpServletRequest req) {
         Member updatedMember = memberService.changeMypage(mNo, data, object);
         req.getSession().setAttribute("loginMember", updatedMember);
         return "member/userMypage";

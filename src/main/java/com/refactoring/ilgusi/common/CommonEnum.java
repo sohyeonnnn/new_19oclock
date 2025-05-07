@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum CommonEnum {
 
-    HOME_URL("/"),
+    HOME_URL("redirect:/"),
     SUCCESS("성공!"),
     FAIL("실패!"),
     ERROR("ERROR! 관리자에게 문의하세요"),

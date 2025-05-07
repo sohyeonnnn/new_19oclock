@@ -41,7 +41,7 @@ public class NoticeController {
     //공지사항 목록으로 이동
     @GetMapping("/noticeList")
     @ResponseBody
-    public ResponseEntity<NoticePageDto> noticeListApi (int reqPage, String keyword) {
+    public ResponseEntity<NoticePageDto> noticeListApi (Integer reqPage, String keyword) {
         return ResponseEntity.ok(noticeService.selectNoticeListApi(reqPage, keyword));
     }
 
@@ -102,7 +102,7 @@ public class NoticeController {
 
     //공지사항 내용 보기
     @GetMapping("/noticeView")
-    public String noticeView (int nNo, Model model) {
+    public String noticeView (Integer nNo, Model model) {
         NoticeViewDto noticeView = noticeService.selectNoticeView(nNo);
         model.addAttribute("n", noticeView);
         return "notice/noticeView";
@@ -110,7 +110,7 @@ public class NoticeController {
 
     //공지사항 삭제
     @PostMapping("/deleteNotice")
-    public String deleteNotice(int nNo, Model model) {
+    public String deleteNotice(Integer nNo, Model model) {
         noticeService.deleteNotice(nNo);
 
         String msg = CommonEnum.NOTICE_DELETE.getVal();
@@ -120,7 +120,7 @@ public class NoticeController {
     }
 
     @PostMapping("/updateNoticeFrm")
-    public String updateNoticeFrm (int nNo, Model model, Notice n) {
+    public String updateNoticeFrm (Integer nNo, Model model, Notice n) {
         NoticeViewDto noticeView = noticeService.selectNoticeView(nNo);
         model.addAttribute("n", noticeView);
 

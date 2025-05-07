@@ -52,9 +52,10 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member selectOneMember(Integer no) {
-        return memberRepository.findBymNo(no)
-                .orElseThrow(() -> new CustomException("사용자가 없습니다.", "member/userMypage"));
+    public Member selectMemberByNo(Integer mNo) {
+        System.out.println("mNo : "+mNo);
+        return memberRepository.findBymNo(mNo)
+                .orElseThrow(() -> new CustomException("사용자가 없습니다!", "/"));
     }
 
     @Override
@@ -111,7 +112,7 @@ public class MemberServiceImpl implements MemberService {
         System.out.println("encodedPw : "+encoder.encode(newPw));
         m.setPw(encoder.encode(newPw));
         int updated = memberRepository.changePw(m);
-        if (updated <= 0) {
+        if (updated < 1) {
             throw new CustomException(CommonEnum.FAIL_CHANGE_PW.getVal(), "/", true);
         }
     }

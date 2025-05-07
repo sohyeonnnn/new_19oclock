@@ -9,6 +9,7 @@ import com.refactoring.ilgusi.domain.service.ServiceReview;
 import com.refactoring.ilgusi.domain.service.dto.ReviewDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
+import com.refactoring.ilgusi.exception.CustomException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,23 +23,19 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public ServiceInsertDto selectOneMember(String mId) {
-        return null;
+    public Service insertService(Service s) {
+        return jpaRepository.save(s);
     }
 
     @Override
-    public Service insertService(ServiceInsertDto join) {
-        Service service = join.toEntity();
-        return jpaRepository.save(service);
-    }
-
-    @Override
-    public int updateFreelancer(Member m) {
-        return 0;
-    }
-
-    @Override
-    public Member selectOneMember(int MNO) {
+    public List<Service> selectServiceList(int mNo, String order) {
+        if(order.equals("approved")){
+            return jpaRepository.selectApprovedServiceList(mNo)
+                    .orElseThrow(()-> new CustomException("서비스 없음"));
+        }else if(order.equals("rejected")){
+            return jpaRepository.selectRejectedServiceList(mNo)
+                    .orElseThrow(()-> new CustomException("서비스 없음"));
+        }
         return null;
     }
 
@@ -175,11 +172,6 @@ public class JpaServiceRepository implements ServiceRepository {
     @Override
     public int deleteService(int sNo) {
         return 0;
-    }
-
-    @Override
-    public ArrayList<Service> selectServiceList(String mId, String order) {
-        return null;
     }
 
     @Override

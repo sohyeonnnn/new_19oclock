@@ -16,49 +16,55 @@
 		<!-- 사이드메뉴 -->
         {{> freelancer/freelancer-side}}
 
-		<input type="hidden" value="${loginMember.MName }" class="memberId">
+		<input type="hidden" value="{{loginMember.MId}}" class="memberId">
 		<div class="board-wrap">
 			<div class="board-box">
 				<span>서비스 내역</span>
 				<select class="selectBox form-control array" id="search-subject" style="width: 150px;">
-					<option value="agree">승인된 서비스</option>
-					<option value="refuse">미등록 서비스</option>
+					<option value="approved">승인된 서비스</option>
+					<option value="rejected">미등록 서비스</option>
 				</select>
 			</div>
 			<div class="inner">
 				<div class="ListContainer">
-					<c:choose>
-						<c:when test="${j.serviceList.size() == 0}">
-							<div class="noList" style="width: 800px">등록된 서비스가 없습니다.</div>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${list}" var="s" begin="0" end="4">
-								<div>
-									<div>
-										<input type="hidden" value="${s.SNo }" id="sNo"> <a href="/serviceView?sNo=${s.SNo}&reqPage=1&mNo=${loginMember.MNo }">
-											<div class="title-img">
-												<div class="back-img">
-													<img src="/upload/service/${s.SImg}" width="225x" height="133px">
-												</div>
-											</div>
-										</a>
 
-									</div>
-									<div class="empty"></div>
-									<div class="cate">
-										${s.mainCategoryName } / ${s.subCategoryName }
-									</div>
-									<div class="title"><a href="/serviceView?sNo=${s.SNo}&reqPage=1&mNo=${loginMember.MNo }"> ${s.STitle} </a></div>
-									<a href="#">
-										<div class="content" style="font-size: 12pt; float: right; width: 200px; text-align: right;"  >${s.SPriceTxt }원~</div>
-									</a>
-									<button class="del-btn" value="삭제하기" onclick="del();">삭제하기</button>
-								</div>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
+                    {{#list}}
+                        <div>
+                            <div>
+                                <input type="hidden" value="{{SNo}}" id="sNo">
+                                <a href="/serviceView?sNo={{SNo}}&reqPage=1">
+                                <div class="title-img">
+                                    <div class="back-img">
+                                        <img src="/upload/service/{{SImg}}" width="225px" height="133px">
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                            <div class="empty"></div>
+                            <div class="cate">
+                                {{mainCategoryName}} / {{subCategoryName}}
+                            </div>
+                            <div class="title">
+                                <a href="/serviceView?sNo={{SNo}}&reqPage=1">
+                                {{STitle}}
+                                </a>
+                            </div>
+                            <a href="#">
+                                <div class="content" style="font-size: 12pt; float: right; width: 200px; text-align: right;">
+                                    {{SPrice}}원~
+                                </div>
+                            </a>
+                            <button class="del-btn" value="삭제하기" onclick="del();">삭제하기</button>
+                        </div>
+                    {{/list}}
 
-				</div>
+
+                    {{^list}}
+                        <div class="noList" style="width: 800px">등록된 서비스가 없습니다.</div>
+                    {{/list}}
+
+
+                </div>
 			</div>
 		</div>
 	</div>
