@@ -13,16 +13,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class ServiceDto {
-	private String mId;
-	private String sTitle;
-	private int sPrice;
-	private String sContent;
-	private String sArea;
+	private int mNo;
 	private int mainCategory;
 	private int subCategory;
+	private String sTitle;
+	private String sContent;
+	private String sArea;
+	private int sPrice;
 	private int workingDate;
-	private int mNo;  
 	private int sRate;
+	private String sImg;
+	private String deleteStatus;
+	private String adminApproval;
+
 	private String mName;
 	private String mEmail;
 	private String mPhone;
@@ -32,11 +35,10 @@ public class ServiceDto {
 	private String contactTime;//연락가능시간
 	private List<Service> serviceList;		 //list로 해준것은 introduce.jsp에서 <for each list로 받아야한다.
 	private List<ReviewDto> reviewList;  //list로 해준것은 introduce.jsp에서 <for each list로 받아야한다.
+
 	private String pageNavi;				//페이징처리를위한 것
 	private ArrayList<ServiceFile> fileList ; //list로 해준것은 introduce.jsp에서 <for each list로 받아야한다.
-	private String sImg;
-	private String deleteStatus;
-	private String adminApproval;
+
 
 	// 줄바꿈
 	public String getIntroduceBr() {
@@ -48,27 +50,34 @@ public class ServiceDto {
 				.mNo(mNo)
 				.mainCategory(mainCategory)
 				.subCategory(subCategory)
+				.sTitle(sTitle)
+				.sContent(sContent)
 				.sArea(sArea)
 				.sPrice(sPrice)
 				.workingDate(workingDate)
-				.sContent(sContent)
+				.sImg(sImg)
+				.sRate(sRate)
 				.brandName(brandName)
+				.adminApproval(adminApproval)
+				.deleteStatus(deleteStatus)
 				.build();
 	}
 
 	@Override
 	public String toString() {
-		return "Join{" +
-				"mId='" + mId + '\'' +
-				", sTitle='" + sTitle + '\'' +
-				", sPrice=" + sPrice +
-				", sContent='" + sContent + '\'' +
-				", sArea='" + sArea + '\'' +
+		return "ServiceDto{" +
+				"mNo=" + mNo +
 				", mainCategory=" + mainCategory +
 				", subCategory=" + subCategory +
+				", sTitle='" + sTitle + '\'' +
+				", sContent='" + sContent + '\'' +
+				", sArea='" + sArea + '\'' +
+				", sPrice=" + sPrice +
 				", workingDate=" + workingDate +
-				", mNo=" + mNo +
 				", sRate=" + sRate +
+				", sImg='" + sImg + '\'' +
+				", deleteStatus='" + deleteStatus + '\'' +
+				", adminApproval='" + adminApproval + '\'' +
 				", mName='" + mName + '\'' +
 				", mEmail='" + mEmail + '\'' +
 				", mPhone='" + mPhone + '\'' +
@@ -80,9 +89,6 @@ public class ServiceDto {
 				", reviewList=" + reviewList +
 				", pageNavi='" + pageNavi + '\'' +
 				", fileList=" + fileList +
-				", sImg='" + sImg + '\'' +
-				", deleteStatus='" + deleteStatus + '\'' +
-				", adminApproval='" + adminApproval + '\'' +
 				'}';
 	}
 }

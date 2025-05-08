@@ -80,21 +80,19 @@ public class ServiceController {
         serviceService.insertService(join);
 
         String msg = "서비스를 등록하였습니다";
-        String loc = "/freelancerServiceList?order=refuse";
+        String loc = "/freelancerServiceList?order=rejected";
 
         return MsgRedirectHelper.success(model,msg,loc);
     }
 
     @GetMapping("/freelancerServiceList")
     public String freelancerServiceList(@ModelAttribute("loginMember") Member m, Model model, String order) {
-        //erviceDto service = new ServiceDto();
-        //service.setServiceList(serviceService.serviceList(m.getMNo()));
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ m @@@@@@@@@@@@@@@@@"+ m.toString());
-        System.out.println("order  : " + order);
         List<Service> list = serviceService.selectOrderedServiceList(m.getMNo(), order);
 
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println(list.toString());
+        for (Service service : list ){
+            System.out.println(service.toString());
+        }
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
         /*DecimalFormat formatter = new DecimalFormat("###,###");
@@ -105,7 +103,7 @@ public class ServiceController {
         model.addAttribute("list", list);
         //model.addAttribute("service", service);
 
-        /*System.out.println("list사이즈 : " + list.size());
+        /*
 
         System.out.println("test" + j.getServiceList().size());
         if (list.size() != 0) {

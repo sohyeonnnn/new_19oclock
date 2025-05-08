@@ -45,7 +45,7 @@ public class MemberController {
         } else if (m.getMGrade() == RoleEnum.FREELANCER) {
             return "redirect:/freelancerMypage";
         }
-        return "/";
+        return CommonEnum.HOME_URL.getVal();
     }
 
     // 아이디 중복검사
@@ -70,7 +70,7 @@ public class MemberController {
     @PostMapping("/login")
     public String login(HttpServletRequest req, MemberLoginDto m, Model model) {
         String msg = CommonEnum.LOGIN.getVal();
-        String loc = "/";
+        String loc = CommonEnum.HOME_URL.getVal();
         Member loginMember = memberService.loginMember(m.getMId(), m.getMPw());
 
         HttpSession session = req.getSession();
@@ -85,11 +85,6 @@ public class MemberController {
     @PostMapping("/logout")
     public void logout(HttpServletRequest req, Model model) {
         req.getSession().setAttribute("loginMember", null);
-/*
-        String msg = CommonEnum.LOGOUT.getVal();
-        String loc = CommonEnum.HOME_URL.getVal();
-
-        return MsgRedirectHelper.success(model,msg,loc);*/
     }
 
     // 아이디 찾기
@@ -98,7 +93,7 @@ public class MemberController {
         Member member = memberService.searchId(m.toEntity());
 
         String msg = CommonEnum.ID_IS.getVal() + member.getMId();
-        String loc = "/";
+        String loc = CommonEnum.HOME_URL.getVal();
 
         return MsgRedirectHelper.build(model,msg,loc);
     }
@@ -107,7 +102,7 @@ public class MemberController {
     @PostMapping("/searchPw")
     public String resetPw(HttpServletRequest req, MemberSearchIdPwDto m, Model model) {
         String msg = CommonEnum.PW_IS.getVal() +  memberService.resetPw(m.toEntity());
-        String loc = "/";
+        String loc = CommonEnum.HOME_URL.getVal();
 
         return MsgRedirectHelper.build(model,msg,loc);
     }
@@ -119,7 +114,7 @@ public class MemberController {
         memberService.changePw(m, mPw);
 
         String msg = CommonEnum.UPDATE_SUCCESS.getVal();
-        String loc = "/";
+        String loc = CommonEnum.HOME_URL.getVal();
 
         return MsgRedirectHelper.close(model,msg,loc, true);
     }
@@ -142,7 +137,7 @@ public class MemberController {
     public String changeMypage(MemberUpdateDto m, HttpServletRequest req) {
         Member updatedMember = memberService.changeMypage(m.getMNo(), m.getData(), m.getObject());
         req.getSession().setAttribute("loginMember", updatedMember);
-        return "/";
+        return CommonEnum.HOME_URL.getVal();
     }
 
     // 사용자 마이페이지-비밀번호 변경
@@ -157,7 +152,7 @@ public class MemberController {
     @RequestMapping("/deleteMember")
     public String deleteMember(@ModelAttribute("loginMember")Member sessionMember, Integer mNo, HttpServletRequest req, Model model) {
         String msg = "탈퇴 되었습니다.";
-        String loc= "/";
+        String loc= CommonEnum.HOME_URL.getVal();
         memberService.unregisterMember(mNo);
         req.getSession().setAttribute("loginMember", null);
         return MsgRedirectHelper.build(model,msg,loc);

@@ -5,31 +5,28 @@
 			 $(".menu").children().eq(2).find('img').css({'display':'inline'});
 			 
 			var order = "${order}";
-			var id = "${loginMember.MId}";
-			console.log("order : "+order);
-			console.log("memberId : "+ id);
 			
-			if(order == "agree"){
-				$(".array").val("agree").prop("select","seleted");
-			}else if ( order == "refuse")
-				$(".array").val("refuse").prop("select","seleted");
+			if(order == "approved"){
+				$(".array").val("approved").prop("select","seleted");
+			}else if ( order == "rejected")
+				$(".array").val("rejected").prop("select","seleted");
 			
 			$(".array").change(function () {
 				var order = $(".array").val();
-				location.href="/freelancerServiceList.do?mId="+id+"&order="+order;
+				location.href="/freelancerServiceList?order="+order;
 			})
-			 
+
+			function del(){
+				var sNo = $("#sNo").val();
+				var confirm_test = confirm("해당 서비스를 삭제할까요?");
+
+				if(confirm_test == true){
+					location.href = "/delService?sNo="+sNo;
+				}
+
+			};
+
 		});
 
 		
- 	   function del(){
-    		var sNo = $("#sNo").val();
-    		console.log("sNo :"+sNo);
-    		var confirm_test = confirm("해당 서비스를 삭제할까요?");
-    		var id = "${loginMember.MId}";
-    		
-    		if(confirm_test == true){
-    			location.href = "/delService.do?sNo="+sNo+"&mId="+id;
-    		}
-    		
-    	};
+

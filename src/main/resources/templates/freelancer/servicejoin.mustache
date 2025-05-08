@@ -31,7 +31,7 @@
 				<p style="font-size: 15px;">2. 등록한 서비스의 내용에 연락처 등 직거래를 유발할 수 있는 문구가 들어갈 경우(홈페이지, 이메일, 전화번호 등등)</p>
 				<p style="font-size: 15px;">3. 등록한 서비스의 가격이 정확하게 표시되지 않거나, 적절한 가격으로 입력이 되지 않는 경우</p>
 				<p style="font-size: 15px;">4. 등록한 서비스의 전문성이 다른 재능에 비해 확연히 떨어진다고 판단될 경우</p>
-				<p style="font-size: 15px;">5. 등록한 서비스의 내용이 재능넷의 성격에 부합되지 않는 성격의 재능일 경우</p>
+				<p style="font-size: 15px;">5. 등록한 서비스의 내용이 일.구.시의 성격에 부합되지 않는 성격의 재능일 경우</p>
 				<br> <br>
 				<h3>※서비스 등록 후부터 성실한 판매에 임할 것을 동의하는 것으로 간주하며, 불성실한 판매 행위가 발견될 시에 판매정지 처리 될 수있습니다.</h3>
 			</div>
@@ -43,22 +43,26 @@
 					<table  style="border-collapse: collapse;" class="table">
 						<tr>
 							<td class="table-title" style="border:0;"><p>*서비스 제목</p></td>
-							<td style="width: 800px;border:0;"><input type="text" name="sTitle" class="input-box" placeholder="제목을 입력하세요" maxlength="300" style="margin-left: 30px;width: 90%; height: 30px;float:left"  required="required"></td>
+							<td style="width: 800px;border:0;">
+                                <input type="text" name="sTitle" class="input-box" placeholder="제목을 입력하세요" maxlength="300" style="margin-left: 30px;width: 90%; height: 30px;float:left"  required="required">
+                            </td>
 						</tr>
 						<tr>
 							<td class="table-title"><p>*카테고리 선택</p></td>
 							<td style="width: 400px;">
                                 <input type="hidden" name="mNo" value="{{loginMember.MNo}}">
-								<input type="hidden" name="mId" value="{{loginMember.MId}}">
+                                <input type="hidden" name="brandName" value="{{loginMember.brandName}}">
+                                <input type="hidden" name="adminApproval" value="N">
+                                <input type="hidden" name="deleteStatus" value="N">
 								<select class="input-box" name="mainCategory" style="width: 150px; float: left; margin-left: 30px; height: 30px;" id="mainCategory"  required="required">
 										<option value="0">메인 카테고리 선택</option>
-										<option value="10">디자인</option>
-										<option value="20">IT/프로그래밍</option>
-										<option value="30">영상/사진/음향</option>
-										<option value="40">교육</option>
-										<option value="50">문서/글쓰기</option>
-										<option value="60">비즈니스컨설팅</option>
-										<option value="70">주문제작</option>
+										<option value="1000">디자인</option>
+										<option value="2000">IT/프로그래밍</option>
+										<option value="3000">영상/사진/음향</option>
+										<option value="4000">교육</option>
+										<option value="5000">문서/글쓰기</option>
+										<option value="6000">비즈니스컨설팅</option>
+										<option value="7000">주문제작</option>
 								</select>
 								 <div style="float:left;line-height:50px;width:30px;font-align:center;margin-left: 30px;color: gray">>></div>
 								 <select class="input-box" name="subCategory" style="width: 200px; float: left; margin-left: 30px; height: 30px;"  required="required">

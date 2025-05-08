@@ -26,7 +26,7 @@
     <ul class="menu">
         <li>
             <img src="/img/icon/circle_navy.png">
-            <a href="/freelancerMypage?MNo={{loginMember.MNo}}">프리랜서의 프로필</a>
+            <a href="/freelancerMypage">프리랜서의 프로필</a>
         </li>
 
         <li>
@@ -45,7 +45,7 @@
                 <a href="javascript:errorMsg();">등록한 서비스 확인</a>
             {{/loginMember.brandName}}
             {{#loginMember.brandName}}
-                <a href="/freelancerServiceList?&order=approved">등록한 서비스 확인</a>
+                <a href="/freelancerServiceList?order=approved">등록한 서비스 확인</a>
             {{/loginMember.brandName}}
         </li>
 

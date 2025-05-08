@@ -39,9 +39,9 @@ public class Service {
 	@Column
 	private String writeDate;	//작성 날짜
 	@Column
-	private char deleteStatus;	//삭제 여부
+	private String deleteStatus;	//삭제 여부
 	@Column
-	private char adminApproval;	//승인 여부
+	private String adminApproval;	//승인 여부
 	
 	//(문정) 추가
 	@Column
@@ -58,5 +58,30 @@ public class Service {
 	//줄바꿈
 	public String getSContentBr() {
 		return sContent.replaceAll("\r\n", "<br>");
+	}
+
+	@Override
+	public String toString() {
+		return "Service{" +
+				"sNo=" + sNo +
+				", mNo=" + mNo +
+				", sTitle='" + sTitle + '\'' +
+				", sPrice=" + sPrice +
+				", sContent='" + sContent + '\'' +
+				", sArea='" + sArea + '\'' +
+				", sImg='" + sImg + '\'' +
+				", sRate=" + sRate +
+				", mainCategory=" + mainCategory +
+				", subCategory=" + subCategory +
+				", workingDate=" + workingDate +
+				", workingCount=" + workingCount +
+				", writeDate='" + writeDate + '\'' +
+				", deleteStatus=" + deleteStatus +
+				", adminApproval=" + adminApproval +
+				", mainCategoryName='" + mainCategoryName + '\'' +
+				", subCategoryName='" + subCategoryName + '\'' +
+				", sPriceTxt='" + sPriceTxt + '\'' +
+				", brandName='" + brandName + '\'' +
+				'}';
 	}
 }

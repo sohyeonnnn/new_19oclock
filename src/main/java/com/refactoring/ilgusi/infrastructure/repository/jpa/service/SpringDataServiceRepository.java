@@ -13,16 +13,16 @@ public interface SpringDataServiceRepository extends JpaRepository<Service, Inte
 
 
     @Modifying
-    @Query("UPDATE Service s SET s.deleteStatus = 'Y', s.sTitle = CONCAT('(삭제)', s.sTitle) WHERE s.mNo = :mNo")
+    @Query("UPDATE Service s SET s.deleteStatus = 'Y', s.sTitle = CONCAT('(삭제)', s.sTitle) WHERE s.mNo = :mNo AND s.deleteStatus = 'N'")
     void setDeleteStatusY(@Param("mNo") int mNo);
 
     @Query("SELECT COUNT(s) FROM Service s WHERE s.mNo = :mNo AND s.deleteStatus = 'N' and s.adminApproval = 'Y' ")
-    int countServiceBymNo(@Param("mNo") int mNo);
+    Integer countServiceBymNo(@Param("mNo") int mNo);
 
-    @Query("SELECT s FROM Service s Where s.mNo= :mNo AND s.adminApproval = 'Y'")
+    @Query("SELECT s FROM Service s Where s.mNo= :mNo AND s.adminApproval = 'Y' AND s.deleteStatus = 'N'")
      Optional<List<Service>> selectApprovedServiceList(@Param("mNo") int mNo);
 
-    @Query("SELECT s FROM Service s Where s.mNo= :mNo AND s.adminApproval = 'N'")
+    @Query("SELECT s FROM Service s Where s.mNo= :mNo AND s.adminApproval = 'N' AND s.deleteStatus = 'N'")
     Optional<List<Service>> selectRejectedServiceList(@Param("mNo") int mNo);
 
 }

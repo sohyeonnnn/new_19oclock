@@ -32,66 +32,65 @@ $(document).ready(function () {
 			if (a == '0') {
 				temp.append('<option value="0">서브 카테고리를 선택</option>');
 			}
-			if (a == '10') {
-				temp.append('<option value="11">로고/브랜딩</option>');
-				temp.append('<option value="12">인쇄ㆍ홍보물ㆍ배너</option>');
-				temp.append('<option value="13">캘리그라피ㆍ폰트</option>');
-				temp.append('<option value="14">일러스트ㆍ캐리커쳐</option>');
-				temp.append('<option value="15">간판ㆍ시공</option>');
-				temp.append('<option value="16">이벤트 ㆍ상세페이지</option>');
-				temp.append('<option value="17">의류</option>');
-				temp.append('<option value="18">웹툰ㆍ캐릭터ㆍ이모티콘</option>');
+			if (a == '1000') {
+				temp.append('<option value="1100">로고/브랜딩</option>');
+				temp.append('<option value="1200">인쇄ㆍ홍보물ㆍ배너</option>');
+				temp.append('<option value="1300">캘리그라피ㆍ폰트</option>');
+				temp.append('<option value="1400">일러스트ㆍ캐리커쳐</option>');
+				temp.append('<option value="1500">간판ㆍ시공</option>');
+				temp.append('<option value="1600">이벤트 ㆍ상세페이지</option>');
+				temp.append('<option value="1700">의류</option>');
+				temp.append('<option value="1800">웹툰ㆍ캐릭터ㆍ이모티콘</option>');
 			}
-			if (a == '20') {
-				temp.append('<option value="21">워드프레스</option>');
-				temp.append('<option value="22">웹사이트개발</option>');
-				temp.append('<option value="23">프로그램 개발</option>');
-				temp.append('<option value="24">데이터베이스</option>');
-				temp.append('<option value="25">게임개발</option>');
-				temp.append('<option value="26">보안</option>');
-				temp.append('<option value="27">파일변환</option>');
+			if (a == '2000') {
+				temp.append('<option value="2100">워드프레스</option>');
+				temp.append('<option value="2200">웹사이트개발</option>');
+				temp.append('<option value="2300">프로그램 개발</option>');
+				temp.append('<option value="2400">데이터베이스</option>');
+				temp.append('<option value="2500">게임개발</option>');
+				temp.append('<option value="2600">보안</option>');
+				temp.append('<option value="2700">파일변환</option>');
 			}
-			if (a == '30') {
-				temp.append('<option value="31">영상촬영ㆍ편집</option>');
-				temp.append('<option value="32">유튜브 제작</option>');
-				temp.append('<option value="33">애니메이션제작</option>');
-				temp.append('<option value="34">더빙ㆍ녹음</option>');
-				temp.append('<option value="35">음악ㆍ사운드</option>');
+			if (a == '3000') {
+				temp.append('<option value="3100">영상촬영ㆍ편집</option>');
+				temp.append('<option value="3200">유튜브 제작</option>');
+				temp.append('<option value="3300">애니메이션제작</option>');
+				temp.append('<option value="3400">더빙ㆍ녹음</option>');
+				temp.append('<option value="3500">음악ㆍ사운드</option>');
 			}
-			if (a == '40') {
-				temp.append('<option value="41">외국어(영어)</option>');
-				temp.append('<option value="42">외국어(기타언어)</option>');
-				temp.append('<option value="43">취미 라이프</option>');
-				temp.append('<option value="44">입시/학업</option>');
-				temp.append('<option value="45">pptㆍ프레젠테이션</option>');
-				temp.append('<option value="46">마케팅</option>');
-				temp.append('<option value="47">사진</option>');
+			if (a == '4000') {
+				temp.append('<option value="4100">외국어(영어)</option>');
+				temp.append('<option value="4200">외국어(기타언어)</option>');
+				temp.append('<option value="4300">취미 라이프</option>');
+				temp.append('<option value="4400">입시/학업</option>');
+				temp.append('<option value="4500">pptㆍ프레젠테이션</option>');
+				temp.append('<option value="4600">마케팅</option>');
+				temp.append('<option value="4700">사진</option>');
 			}
-			if (a == '50') {
-				temp.append('<option value="51">보도자료</option>');
-				temp.append('<option value="52">광고카피라이팅</option>');
-				temp.append('<option value="53">마케팅 글작성</option>');
-				temp.append('<option value="54">책ㆍ시나리오 작성</option>');
-				temp.append('<option value="55">논문</option>');
-				temp.append('<option value="56">교정ㆍ교육 첨삭</option>');
-				temp.append('<option value="57">기타</option>');
+			if (a == '5000') {
+				temp.append('<option value="5100">보도자료</option>');
+				temp.append('<option value="5200">광고카피라이팅</option>');
+				temp.append('<option value="5300">마케팅 글작성</option>');
+				temp.append('<option value="5400">책ㆍ시나리오 작성</option>');
+				temp.append('<option value="5500">논문</option>');
+				temp.append('<option value="5600">교정ㆍ교육 첨삭</option>');
+				temp.append('<option value="5700">기타</option>');
 			}
-			if (a == '60') {
-				temp.append('<option value="61">사업계획서 투자제안서</option>');
-				temp.append('<option value="62">인사ㆍ노무</option>');
-				temp.append('<option value="63">창업컨설팅</option>');
-				temp.append('<option value="64">법률법무</option>');
-				temp.append('<option value="65">업무지원ㆍcs</option>');
+			if (a == '6000') {
+				temp.append('<option value="6100">사업계획서 투자제안서</option>');
+				temp.append('<option value="6200">인사ㆍ노무</option>');
+				temp.append('<option value="6300">창업컨설팅</option>');
+				temp.append('<option value="6400">법률법무</option>');
+				temp.append('<option value="6500">업무지원ㆍcs</option>');
 			}
-			if (a == '70') {
-				temp.append('<option value="71">인쇄</option>');
-				temp.append('<option value="72">간판</option>');
-				temp.append('<option value="73">기념품제작</option>');
-				temp.append('<option value="74">모형제작</option>');
-				temp.append('<option value="75">시스템제작</option>');
-				temp.append('<option value="63">창업컨설팅</option>');
-				temp.append('<option value="76">인테리어시공</option>');
-				temp.append('<option value="77">패키지제작</option>');
+			if (a == '7000') {
+				temp.append('<option value="7100">인쇄</option>');
+				temp.append('<option value="7200">간판</option>');
+				temp.append('<option value="7300">기념품제작</option>');
+				temp.append('<option value="7400">모형제작</option>');
+				temp.append('<option value="7500">시스템제작</option>');
+				temp.append('<option value="7600">인테리어시공</option>');
+				temp.append('<option value="7700">패키지제작</option>');
 			}
 		});
 

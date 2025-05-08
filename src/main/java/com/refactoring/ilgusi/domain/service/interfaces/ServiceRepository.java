@@ -13,12 +13,13 @@ import org.hibernate.annotations.Sort;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public interface ServiceRepository {
 
     Service insertService(Service s);
 
-    List<Service> selectServiceList(int mNo, String order);
+    Optional<List<Service>> selectServiceList(int mNo, String order);
 
     List<ReviewDto> selectReviewList(String mId, int start, int end);
 
@@ -102,7 +103,7 @@ public interface ServiceRepository {
     int serviceUpdateSRate(int sNo);
 
     // 프리랜서가 등록한 총 서비스 개수
-    int selectFreeServiceCount(int mNo);
+    Integer selectFreeServiceCount(int mNo);
 
     void setDeleteStatusY(int mNo);
 

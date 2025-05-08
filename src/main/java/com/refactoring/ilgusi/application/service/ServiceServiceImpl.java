@@ -5,6 +5,7 @@ import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceService;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
+import com.refactoring.ilgusi.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class ServiceServiceImpl implements ServiceService {
     private final ServiceTradeRepository serviceTradeRepository;
     private final ServiceRepository serviceRepository;
 
-    public int selectFreelancerServiceCount(int mNo){
+    public Integer selectFreelancerServiceCount(int mNo){
         return serviceRepository.selectFreeServiceCount(mNo);
     }
 
@@ -29,7 +30,8 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public List<com.refactoring.ilgusi.domain.service.Service> selectOrderedServiceList(int mNo, String order) {
-        return serviceRepository.selectServiceList(mNo, order);
+        return serviceRepository.selectServiceList(mNo, order)
+                .orElseThrow(() -> new CustomException("서비스 없음", "freelancer/freelancerMypage"));
     }
 
 

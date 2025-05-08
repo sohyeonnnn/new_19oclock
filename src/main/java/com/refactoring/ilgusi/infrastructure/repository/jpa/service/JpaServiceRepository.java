@@ -14,6 +14,7 @@ import com.refactoring.ilgusi.exception.CustomException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class JpaServiceRepository implements ServiceRepository {
     private final SpringDataServiceRepository jpaRepository;
@@ -28,13 +29,12 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public List<Service> selectServiceList(int mNo, String order) {
+    public Optional<List<Service>> selectServiceList(int mNo, String order) {
+        System.out.println("order : "+order);
         if(order.equals("approved")){
-            return jpaRepository.selectApprovedServiceList(mNo)
-                    .orElseThrow(()-> new CustomException("서비스 없음"));
+            return jpaRepository.selectApprovedServiceList(mNo);
         }else if(order.equals("rejected")){
-            return jpaRepository.selectRejectedServiceList(mNo)
-                    .orElseThrow(()-> new CustomException("서비스 없음"));
+            return jpaRepository.selectRejectedServiceList(mNo);
         }
         return null;
     }
@@ -180,7 +180,7 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public int selectFreeServiceCount(int mNo) {
+    public Integer selectFreeServiceCount(int mNo) {
         return jpaRepository.countServiceBymNo(mNo);
     }
 
