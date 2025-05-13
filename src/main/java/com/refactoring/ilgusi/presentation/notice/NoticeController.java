@@ -3,9 +3,9 @@ package com.refactoring.ilgusi.presentation.notice;
 import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
-import com.refactoring.ilgusi.domain.notice.Notice;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeInsertDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticePageDto;
+import com.refactoring.ilgusi.domain.notice.dto.NoticeUpdateDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeViewDto;
 import com.refactoring.ilgusi.domain.notice.interfaces.NoticeService;
 import lombok.RequiredArgsConstructor;
@@ -61,8 +61,8 @@ public class NoticeController {
         String[] uploadResult = fileUpload(file, uploadDir);
 
         noticeService.insertNotice(new NoticeInsertDto().builder()
-                .nTitle(notice.getNTitle())
-                .nContent(notice.getNContent())
+                .noticeTitle(notice.getNoticeTitle())
+                .noticeContent(notice.getNoticeContent())
                 .filename(uploadResult[0])
                 .filepath(uploadResult[1])
                 .build()
@@ -102,16 +102,16 @@ public class NoticeController {
 
     //공지사항 내용 보기
     @GetMapping("/noticeView")
-    public String noticeView (Integer nNo, Model model) {
-        NoticeViewDto noticeView = noticeService.selectNoticeView(nNo);
-        model.addAttribute("n", noticeView);
+    public String noticeView (Integer noticeNo, Model model) {
+        NoticeViewDto noticeView = noticeService.selectNoticeView(noticeNo);
+        model.addAttribute("notice", noticeView);
         return "notice/noticeView";
     }
 
     //공지사항 삭제
     @PostMapping("/deleteNotice")
-    public String deleteNotice(Integer nNo, Model model) {
-        noticeService.deleteNotice(nNo);
+    public String deleteNotice(Integer noticeNo, Model model) {
+        noticeService.deleteNotice(noticeNo);
 
         String msg = CommonEnum.NOTICE_DELETE.getVal();
         String loc = "/noticeListPage";
@@ -120,21 +120,21 @@ public class NoticeController {
     }
 
     @PostMapping("/updateNoticeFrm")
-    public String updateNoticeFrm (Integer nNo, Model model, Notice n) {
-        NoticeViewDto noticeView = noticeService.selectNoticeView(nNo);
-        model.addAttribute("n", noticeView);
+    public String updateNoticeFrm (Integer noticeNo, Model model) {
+        NoticeViewDto noticeView = noticeService.selectNoticeView(noticeNo);
+        model.addAttribute("notice", noticeView);
 
         return "notice/noticeUpdateFrm";
     }
 
     // 공지사항 수정
     @PostMapping("/updateNotice")
-    public String updateNotice( NoticeInsertDto notice, MultipartHttpServletRequest mRequest, Model model,HttpServletRequest request) {
+    public String updateNotice(NoticeUpdateDto notice, MultipartHttpServletRequest mRequest, Model model, HttpServletRequest request) {
         MultipartFile file = mRequest.getFile("file");
         String uploadDir = request.getSession().getServletContext().getRealPath("/upload/notice/");
 
         // 기존 notice 정보 조회 (기존 파일 정보 확보용)
-        NoticeViewDto oldNotice = noticeService.selectNoticeView(notice.getNNo());
+        NoticeViewDto oldNotice = noticeService.selectNoticeView(notice.getNoticeNo());
 
         String filename = oldNotice.getFilename();
         String filepath = oldNotice.getFilepath();
@@ -154,10 +154,10 @@ public class NoticeController {
             filepath = uploadResult[1];
         }
 
-        noticeService.updateNotice(NoticeInsertDto.builder()
-                .nNo(notice.getNNo())
-                .nTitle(notice.getNTitle())
-                .nContent(notice.getNContent())
+        noticeService.updateNotice(NoticeUpdateDto.builder()
+                .noticeNo(notice.getNoticeNo())
+                .noticeTitle(notice.getNoticeTitle())
+                .noticeContent(notice.getNoticeContent())
                 .filename(filename)
                 .filepath(filepath)
                 .build()

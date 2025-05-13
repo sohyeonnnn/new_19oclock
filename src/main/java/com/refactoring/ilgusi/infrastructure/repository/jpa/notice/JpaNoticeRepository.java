@@ -19,27 +19,27 @@ public class JpaNoticeRepository implements NoticeRepository {
     }
 
     @Override
-    public Optional<Notice> selectNoticeView(int nNo) {
-        return jpaRepository.findById(nNo);
+    public Optional<Notice> selectNoticeView(int noticeNo) {
+        return jpaRepository.findByNoticeNo(noticeNo);
     }
 
     @Override
-    public void insertNotice(Notice n) {
-        jpaRepository.save(n);
+    public void insertNotice(Notice notice) {
+        jpaRepository.save(notice);
     }
 
     @Override
-    public void deleteNotice(int nNo) {
-        jpaRepository.deleteBynNo(nNo);
+    public void deleteNotice(int noticeNo) {
+        jpaRepository.deleteByNoticeNo(noticeNo);
     }
 
     @Override
-    public void updateNotice(Notice n) {
-        jpaRepository.save(n);
+    public void updateNotice(Notice notice) {
+        jpaRepository.save(notice);
     }
 
     @Override
     public int totalCount(String keyword) {
-        return (int) jpaRepository.countByKeyword(keyword);
+        return jpaRepository.countByKeyword(keyword);
     }
 }

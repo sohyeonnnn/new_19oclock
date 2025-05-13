@@ -12,18 +12,16 @@ import org.springframework.web.multipart.MultipartFile;
 @AllArgsConstructor
 @Builder
 public class NoticeInsertDto {
-	private Integer nNo;
-	private String nTitle;
-	private String nContent;
+	private String noticeTitle;
+	private String noticeContent;
 	private MultipartFile file;
 	private String filename;
 	private String filepath;
 
 	public Notice toEntity() {
 		return Notice.builder()
-				.nNo(nNo)
-				.nTitle(nTitle)
-				.nContent(nContent)
+				.noticeTitle(noticeTitle)
+				.noticeContent(noticeContent)
 				.filename(filename)
 				.filepath(filepath)
 				.build();

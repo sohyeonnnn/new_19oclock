@@ -26,28 +26,28 @@
         <table class="table write-box">
             <tr style="background-color: rgba(224, 224, 224, 0.5);">
                 <th style="width: 100px;">제목</th>
-                <td style="width: 570px;">{{n.nTitle}}</td>
+                <td style="width: 570px;">{{notice.noticeTitle}}</td>
                 <th style="width: 100px;">작성일</th>
-                <td>{{n.writeDate}}</td>
+                <td>{{notice.writeDate}}</td>
             </tr>
             <tr style="background-color: rgba(224, 224, 224, 0.5);">
                 <th style="height: 30px; line-height: 40px;">첨부파일</th>
                 <td colspan="3" style="line-height: 30px;">
-                    {{#n.filename}}
-                        <p>{{n.filename}}</p>
-                    {{/n.filename}}
-                    {{^n.filename}}
+                    {{#notice.filename}}
+                        <p>{{notice.filename}}</p>
+                    {{/notice.filename}}
+                    {{^notice.filename}}
                         <p>첨부파일 없음</p>
-                    {{/n.filename}}
+                    {{/notice.filename}}
                 </td>
             </tr>
             <tr>
                 <th class="noticeContent">내용</th>
                 <td style="text-align: center;" colspan="3">
-                    {{#n.filename}}
-                        <img src="/upload/notice/{{n.filename}}" width="500px;">
-                    {{/n.filename}}
-                    <p>{{{n.nContent}}}</p>
+                    {{#notice.filename}}
+                        <img src="/upload/notice/{{notice.filename}}" width="500px;">
+                    {{/notice.filename}}
+                    <p>{{{notice.noticeContent}}}</p>
                 </td>
             </tr>
         </table>
@@ -57,13 +57,13 @@
         </div>
         <div class="btn-right">
             {{#isAdmin}}
-                <form id="updateForm" method="post" action="/updateNoticeFrm?nNo={{n.nNo}}" style="display:inline-block;">
-                <input type="hidden" name="nNo" value="{{n.nNo}}">
+                <form id="updateForm" method="post" action="/updateNoticeFrm?noticeNo={{notice.noticeNo}}" style="display:inline-block;">
+                <input type="hidden" name="nNo" value="{{notice.noticeNo}}">
                 <button class="btn btn-custom" type="submit">수정하기</button>
                 </form>
 
-                <form id="deleteForm" method="post" action="/deleteNotice?nNo={{n.nNo}}" style="display:inline-block; margin-right: 10px;">
-                <input type="hidden" name="nNo" value="{{n.nNo}}">
+                <form id="deleteForm" method="post" action="/deleteNotice?noticeNo={{notice.noticeNo}}" style="display:inline-block; margin-right: 10px;">
+                <input type="hidden" name="nNo" value="{{notice.noticeNo}}">
                 <button class="btn btn-custom" type="submit">삭제하기</button>
                 </form>
             {{/isAdmin}}

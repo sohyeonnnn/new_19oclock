@@ -11,22 +11,24 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class NoticeViewDto {
+public class NoticeUpdateDto {
 	private Integer noticeNo;
 	private String noticeTitle;
 	private String noticeContent;
 	private MultipartFile file;
 	private String filename;
 	private String filepath;
-	private String writeDate;
 
 	public Notice toEntity() {
 		return Notice.builder()
+				.noticeNo(noticeNo)
 				.noticeTitle(noticeTitle)
 				.noticeContent(noticeContent)
 				.filename(filename)
 				.filepath(filepath)
 				.build();
 	}
+
+
 
 }

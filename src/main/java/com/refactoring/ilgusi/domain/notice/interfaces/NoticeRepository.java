@@ -8,9 +8,9 @@ import java.util.Optional;
 
 public interface NoticeRepository {
     List<Notice> selectNoticeList(int offset, int limit, String keyword);
-    Optional<Notice> selectNoticeView(int nNo);
-    void insertNotice(Notice n);
-    void deleteNotice(int nNo);
-    void updateNotice(Notice n);
+    Optional<Notice> selectNoticeView(int noticeNo);
+    void insertNotice(Notice notice);
+    void deleteNotice(int noticeNo);
+    void updateNotice(Notice notice);
     int totalCount(String keyword);
 }

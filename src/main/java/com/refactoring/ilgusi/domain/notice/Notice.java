@@ -14,22 +14,17 @@ import java.time.format.DateTimeFormatter;
 @Builder
 public class Notice extends BaseEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer nNo;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Integer noticeNo;
 	@Column(nullable=false)
-	private String nTitle;
+	private String noticeTitle;
 	@Lob
 	@Column(nullable=false)
-	private String nContent;
+	private String noticeContent;
 	@Column
 	private String filename;
 	@Column
 	private String filepath;
-
-	//줄바꿈
-	public String getNContentBr() {
-		return nContent.replaceAll("\r\n", "<br>");
-	}
 
 	@Transient
 	public String getWriteDate() {

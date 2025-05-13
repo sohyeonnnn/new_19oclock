@@ -78,17 +78,17 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public void insertNotice(Notice n) {
-        noticeRepository.insertNotice(n);
+    public void insertNotice(Notice notice) {
+        noticeRepository.insertNotice(notice);
     }
 
     @Override
-    public NoticeViewDto selectNoticeView(int nNo) {
-        return noticeRepository.selectNoticeView(nNo)
+    public NoticeViewDto selectNoticeView(int noticeNo) {
+        return noticeRepository.selectNoticeView(noticeNo)
                 .map(notice -> NoticeViewDto.builder()
-                        .nNo(notice.getNNo())
-                        .nTitle(notice.getNTitle())
-                        .nContent(notice.getNContent())
+                        .noticeNo(notice.getNoticeNo())
+                        .noticeTitle(notice.getNoticeTitle())
+                        .noticeContent(notice.getNoticeContent())
                         .filename(notice.getFilename())
                         .filepath(notice.getFilepath())
                         .writeDate(notice.getWriteDate())
@@ -97,12 +97,12 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public void deleteNotice(int nNo) {
-        noticeRepository.deleteNotice(nNo);
+    public void deleteNotice(int noticeNo) {
+        noticeRepository.deleteNotice(noticeNo);
     }
 
     @Override
-    public void updateNotice(Notice n) {
-        noticeRepository.updateNotice(n);
+    public void updateNotice(Notice notice) {
+        noticeRepository.updateNotice(notice);
     }
 }
