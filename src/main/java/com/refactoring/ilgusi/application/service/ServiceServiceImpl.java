@@ -20,8 +20,8 @@ public class ServiceServiceImpl implements ServiceService {
     private final ServiceTradeRepository serviceTradeRepository;
     private final ServiceRepository serviceRepository;
 
-    public Integer selectFreelancerServiceCount(int mNo){
-        return serviceRepository.selectFreeServiceCount(mNo);
+    public Integer selectFreelancerServiceCount(int memberNo){
+        return serviceRepository.selectFreeServiceCount(memberNo);
     }
 
     public void insertService(ServiceInsertDto s){

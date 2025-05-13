@@ -28,8 +28,8 @@
                 <div class="search-contents">
                     <!-- 아이디 찾기 폼 -->
                     <form action="/searchId" method="post">
-                        <input type="text" name="mName" id="mName" placeholder="이름을 입력해주세요.">
-                        <input type="text" name="mPhone" id="mPhone" placeholder="전화번호를 입력해주세요.( '-' 제외 )">
+                        <input type="text" name="memberName" id="mName" placeholder="이름을 입력해주세요.">
+                        <input type="text" name="phoneNo" id="mPhone" placeholder="전화번호를 입력해주세요.( '-' 제외 )">
                         <input type="submit" value="아이디 찾기">
                     </form>
                 </div>
@@ -41,11 +41,11 @@
                 <div class="search-contents">
                     <!-- 비밀번호 찾기 폼 -->
                     <form id="pop-form" action="/searchPw" method="post">
-                        <input type="hidden" name="mId" id="mIdHidden">
-                        <input type="hidden" name="mPhone" id="mPhoneHidden">
+                        <input type="hidden" name="memberId" id="mIdHidden">
+                        <input type="hidden" name="phoneNo" id="mPhoneHidden">
                     </form>
-                    <input type="text" name="mId" id="mId" placeholder="아이디를 입력해주세요.">
-                    <input type="text" name="mPhone" id="mPhone2" placeholder="전화번호를 입력해주세요.( '-' 제외 )">
+                    <input type="text" name="memberId" id="mId" placeholder="아이디를 입력해주세요.">
+                    <input type="text" name="phoneNo" id="mPhone2" placeholder="전화번호를 입력해주세요.( '-' 제외 )">
                     <input type="button" id="btnPw" value="비밀번호 찾기">
                 </div>
             </div>

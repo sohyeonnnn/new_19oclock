@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (pwCheck1 === pwCheck2 && pwCheck2 !== '' && regCheck === 'true') {
             $.post("/changePw", {
-                mId: mId,
-                mPw: mPw,
+                memberId: mId,
+                memberPw: mPw,
                 data: pwCheck2,
                 object: object
             })
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $.ajax({
             url: '/checkPassword',
             type: 'POST',
-            data: { mId: mId, mPw: mPw_input, mNo : mNo },
+            data: { memberId: mId, memberPw: mPw_input, memberNo : mNo },
             success: function (result) {
                 if (result.success) {
                     console.log("성공!!!");
@@ -105,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function emailEdit(obj){
     var mNo = $('#no-label').val();
     var mId = $('#id-label').val();
-    var mPw = $('#pw-label').val();
     var status = $('#email-btn').html();
     var mEmail = $('#email-label').val();
     if(status == "수정"){
@@ -115,7 +114,7 @@ function emailEdit(obj){
         $.ajax({
             url : "/changeMypage",
             type : "get",
-            data : {"mNo":mNo,"mPw":mPw,"data":mEmail,"object":"email" },
+            data : {"memberNo":mNo, "data":mEmail,"object":"email" },
             success : function(data){
                 $('#email-label').attr('readonly', true).css({'background-color': 'rgba(224, 224, 224, 0.4)'});
                 $('#email-btn').html("수정");
@@ -130,8 +129,8 @@ function emailEdit(obj){
 
 //전화번호 수정하기 누르면
 function phoneEdit(obj){
+    var mNo = $('#no-label').val();
     var mId = $('#id-label').val();
-    var mPw = $('#pw-label').val();
     var status = $('#phone-btn').html();
     var phone1 = $("#phone1").val();
     var phone2 = $("#phone2").val();
@@ -146,7 +145,7 @@ function phoneEdit(obj){
             $.ajax({
                 url : "/changeMypage",
                 type : "get",
-                data : {"mId":mId,"mPw":mPw,"data":phone,"object":"phone" },
+                data : {"memberNo":mNo, "memberId":mId,"data":phone,"object":"phone" },
                 success : function(data){
                     $('#phone1').attr('readonly', true).css({'background-color': 'rgba(224, 224, 224, 0.4)'});
                     $('#phone2').attr('readonly', true).css({'background-color': 'rgba(224, 224, 224, 0.4)'});
@@ -185,11 +184,11 @@ function deleteMember() {
         $.ajax({
             url: '/checkPassword',
             type: 'POST',
-            data: { mId: mId, mPw: mPw_check, mNo : mNo },
+            data: { memberId: mId, memberPw: mPw_check, memberNo : mNo },
             success: function (result) {
                 if (result.success) {
                     // 서버에서 비밀번호 인증 성공 시
-                    location.href = "/deleteMember?mNo=" + mNo;
+                    location.href = "/deleteMember?memberNo=" + mNo;
                 } else {
                     alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
                 }

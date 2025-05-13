@@ -21,7 +21,7 @@ public class FreelancerController {
     private final MemberService memberService;
 
     @RequestMapping("/freelancerMypage")
-    public String selectFreelancerMypage(@ModelAttribute("loginMember")Member m, Model model) {
+    public String selectFreelancerMypage(@ModelAttribute("loginMember")Member member, Model model) {
 
         //int serviceCount = service.selectFreeServiceCount(m.getMId());
         //model.addAttribute("serviceCount", serviceCount);

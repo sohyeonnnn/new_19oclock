@@ -103,7 +103,7 @@ public interface ServiceRepository {
     int serviceUpdateSRate(int sNo);
 
     // 프리랜서가 등록한 총 서비스 개수
-    Integer selectFreeServiceCount(int mNo);
+    Integer selectFreeServiceCount(int memberNo);
 
     void setDeleteStatusY(int mNo);
 

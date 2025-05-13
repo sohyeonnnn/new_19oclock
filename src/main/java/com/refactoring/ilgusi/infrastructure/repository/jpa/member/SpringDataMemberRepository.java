@@ -13,44 +13,44 @@ import java.util.Optional;
 // 기술 전용 인터페이스, Spring이 구현체를 자동 생성해줌
 // MemberRepository를 extends하지 않음
 public interface SpringDataMemberRepository extends JpaRepository<Member, Integer>{
-    Optional<Member> findBymId(String mId);
-    Optional<Member> findBymNo(Integer mNo);
+    Optional<Member> findByMemberId(String memberId);
+    Optional<Member> findByMemberNo(Integer memberNo);
 
-    void deleteBymNo(int mNo);
+    void deleteByMemberNo(int mNo);
 
-    @Query("SELECT m FROM Member m WHERE (m.mName = :mName AND m.mPhone = :mPhone) OR (m.mId = :mId AND m.mPhone = :mPhone)")
-    Optional<Member> findBymNameAndmPhoneOrmIdAndmPhone(@Param("mName") String mName,
-                                                    @Param("mPhone") String mPhone,
-                                                    @Param("mId") String mId);
-
-    @Modifying
-    @Transactional
-    @Query("UPDATE Member m SET m.mPw = :mPw WHERE m.mNo = :mNo")
-    int changePw(@Param("mNo") int mNo, @Param("mPw") String mPw);
+    @Query("SELECT m FROM Member m WHERE (m.memberName = :memberName AND m.phoneNo = :phoneNo) OR (m.memberId = :memberId AND m.phoneNo = :phoneNo)")
+    Optional<Member> findByMemberNameAndPhoneNoOrMemberIdAndPhoneNo(@Param("memberName") String memberName,
+                                                    @Param("phoneNo") String phoneNo,
+                                                    @Param("memberId") String memberId);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Member m SET m.mGrade = CASE WHEN m.mGrade = :user THEN :freelancer ELSE :user END  WHERE m.mNo = :mNo")
-    int changeGrade(@Param("mNo") int mNo,
+    @Query("UPDATE Member m SET m.memberPw = :memberPw WHERE m.memberNo = :memberNo")
+    int changePw(@Param("memberNo") int memberNo, @Param("memberPw") String memberPw);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Member m SET m.memberGrade = CASE WHEN m.memberGrade = :user THEN :freelancer ELSE :user END  WHERE m.memberNo = :memberNo")
+    int changeGrade(@Param("memberNo") int memberNo,
                     @Param("user") RoleEnum user,
                     @Param("freelancer") RoleEnum freelancer);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Member m SET m.mEmail = :data WHERE m.mId = :mNo")
-    int changeMypageEmail(@Param("mNo") int mNo,
+    @Query("UPDATE Member m SET m.email = :data WHERE m.memberNo = :memberNo")
+    int changeMypageEmail(@Param("memberNo") int memberNo,
                      @Param("data") String data);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Member m SET m.mPhone = :data WHERE m.mNo = :mNo")
-    int changeMypagePhone(@Param("mNo") int mNo,
+    @Query("UPDATE Member m SET m.phoneNo = :data WHERE m.memberNo = :memberNo")
+    int changeMypagePhone(@Param("memberNo") int memberNo,
                           @Param("data") String data);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Member m SET m.brandName = :brandName, m.contactTime = :contactTime, m.introduce = :introduce WHERE m.mNo = :mNo")
-    int updateFreelancer(@Param("mNo") int mNo,
+    @Query("UPDATE Member m SET m.brandName = :brandName, m.contactTime = :contactTime, m.introduce = :introduce WHERE m.memberNo = :memberNo")
+    int updateFreelancer(@Param("memberNo") int memberNo,
                     @Param("brandName") String brandName,
                     @Param("contactTime") String contactTime,
                     @Param("introduce") String introduce);

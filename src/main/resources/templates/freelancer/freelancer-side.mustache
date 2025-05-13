@@ -13,12 +13,12 @@
     <div>
         <img src="/img/icon/mypage_freelancer.png" style="width: 147px; height: 147px">
     </div>
-    <div style="margin-top: 10px;">{{loginMember.MId}}님</div>
+    <div style="margin-top: 10px;">{{loginMember.MemberId}}님</div>
     <div style="margin-top: 5px;">
-        <input type="hidden" value="{{loginMember.MNo}}" id = "memberNo">
-        <input type="hidden" value="{{loginMember.MPw}}">
-        <input type="hidden" value="{{loginMember.MId}}" id="memberId">
-        <input type="hidden" value="{{loginMember.MGrade}}">
+        <input type="hidden" value="{{loginMember.MemberNo}}" id = "memberNo">
+        <input type="hidden" value="{{loginMember.MemberPw}}">
+        <input type="hidden" value="{{loginMember.MemberId}}" id="memberId">
+        <input type="hidden" value="{{loginMember.MemberGrade}}">
         <button class="switch">사용자로 전환</button>
     </div>
     <p>FREELANCER PAGE</p>
@@ -55,7 +55,7 @@
                 <a href="javascript:errorMsg();">거래 내역</a>
             {{/loginMember.brandName}}
             {{#loginMember.brandName}}
-                <a href="/freelancerTradeHistory?mNo={{loginMember.MNo}}">거래 내역</a>
+                <a href="/freelancerTradeHistory?memberNo={{loginMember.MemberNo}}">거래 내역</a>
             {{/loginMember.brandName}}
         </li>
     </ul>

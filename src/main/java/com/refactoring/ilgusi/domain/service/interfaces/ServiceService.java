@@ -7,7 +7,7 @@ import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
 import java.util.List;
 
 public interface ServiceService {
-    Integer selectFreelancerServiceCount(int mNo);
+    Integer selectFreelancerServiceCount(int memberNo);
     void insertService(ServiceInsertDto join);
     List<Service> selectOrderedServiceList(int mNo, String order);
 }

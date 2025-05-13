@@ -11,20 +11,20 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MemberJoinDto{
 
-	private String mId;
-	private String mPw;
-	private String mName;
-	private String mEmail;
-	private String mPhone;
+	private String memberId;
+	private String memberPw;
+	private String memberName;
+	private String email;
+	private String phoneNo;
 
 	public Member toEntity() {
 		return Member.builder()
-				.mId(mId)
-				.mPw(mPw)
-				.mName(mName)
-				.mEmail(mEmail)
-				.mPhone(mPhone)
-				.mGrade(RoleEnum.USER)
+				.memberId(memberId)
+				.memberPw(memberPw)
+				.memberName(memberName)
+				.email(email)
+				.phoneNo(phoneNo)
+				.memberGrade(RoleEnum.USER)
 				.build();
 	}
 

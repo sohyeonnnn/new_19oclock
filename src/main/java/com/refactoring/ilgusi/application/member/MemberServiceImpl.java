@@ -30,53 +30,52 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member loginMember(String id, String pw) {
-        return memberRepository.findBymId(id)
-                .filter(member -> encoder.matches(pw, member.getMPw()))
+        return memberRepository.findByMemberId(id)
+                .filter(member -> encoder.matches(pw, member.getMemberPw()))
                 .map(member -> {
                     /*if (member.getMGrade() != RoleEnum.ADMIN) {
                         member.setGrade(RoleEnum.USER);
                     }*/
-                    member.setBuyingCount(selectBuyingCount(member.getMNo()));
-                    member.setSellingCount(selectSellingCount(member.getMNo()));
+                    member.setBuyingCount(selectBuyingCount(member.getMemberNo()));
+                    member.setSellingCount(selectSellingCount(member.getMemberNo()));
                     return member;
                 })
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(), CommonEnum.HOME_URL.getVal()));
     }
 
-    public int selectBuyingCount(int mNo) {
-        return serviceTradeRepository.selectBuyingCount(mNo);
+    public int selectBuyingCount(int memberNo) {
+        return serviceTradeRepository.selectBuyingCount(memberNo);
     }
 
-    public int selectSellingCount(int mNo) {
-        return serviceTradeRepository.selectSellingCount(mNo);
+    public int selectSellingCount(int memberNo) {
+        return serviceTradeRepository.selectSellingCount(memberNo);
     }
 
     @Override
-    public Member selectMemberByNo(Integer mNo) {
-        System.out.println("mNo : "+mNo);
-        return memberRepository.findBymNo(mNo)
+    public Member selectMemberByNo(Integer memberNo) {
+        return memberRepository.findByMemberNo(memberNo)
                 .orElseThrow(() -> new CustomException("사용자가 없습니다!", "/"));
     }
 
     @Override
     @Transactional
-    public void registerMember(Member m) {
-        m.setPw(encoder.encode(m.getMPw()));
-        m.setGrade(RoleEnum.USER);
-        if(checkDupId(m.getMId())){
+    public void registerMember(Member member) {
+        member.setPw(encoder.encode(member.getMemberPw()));
+        member.setGrade(RoleEnum.USER);
+        if(checkDupId(member.getMemberId())){
             throw new CustomException(CommonEnum.JOIN_FAIL.getVal(), "/join");
         }
-        memberRepository.saveMember(m);
+        memberRepository.saveMember(member);
     }
 
     @Override
     public boolean checkDupId(String id) {
-        return memberRepository.findBymId(id).isPresent();
+        return memberRepository.findByMemberId(id).isPresent();
     }
 
     @Override
-    public Member searchId(Member m) {
-        return memberRepository.searchIdPw(m)
+    public Member searchId(Member member) {
+        return memberRepository.searchIdPw(member)
                 .orElseThrow(() -> new CustomException(CommonEnum.NOT_VALID_USER.getVal(),"/"));
     }
 
@@ -108,8 +107,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void changePw(Member m, String newPw) {
-        System.out.println("newPw : "+newPw);
-        System.out.println("encodedPw : "+encoder.encode(newPw));
         m.setPw(encoder.encode(newPw));
         int updated = memberRepository.changePw(m);
         if (updated < 1) {
@@ -118,44 +115,44 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member changeMypage(int mNo, String data, String object) {
-        return memberRepository.changeMypage(mNo, data, object)
+    public Member changeMypage(int memberNo, String data, String object) {
+        return memberRepository.changeMypage(memberNo, data, object)
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
     }
 
     @Override
-    public Member changeGrade(int mNo) {
+    public Member changeGrade(int memberNo) {
         RoleEnum user = RoleEnum.USER;
         RoleEnum free = RoleEnum.FREELANCER;
-        return memberRepository.changeGrade(mNo, user, free)
+        return memberRepository.changeGrade(memberNo, user, free)
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
     }
 
     @Override
-    public Member updateFreelancer(Member m) {
-        memberRepository.updateFreelancer(m);
-        return memberRepository.findBymNo(m.getMNo())
+    public Member updateFreelancer(Member member) {
+        memberRepository.updateFreelancer(member);
+        return memberRepository.findByMemberNo(member.getMemberNo())
                 .orElseThrow(() -> new CustomException(CommonEnum.FAIL.getVal(),"/", true));
     }
 
     @Override
     @Transactional
-    public void unregisterMember(int mNo) {
-        tradeStatus(mNo);
-        setDeleteStatusY(mNo);
-        deleteMember(mNo);
+    public void unregisterMember(int memberNo) {
+        tradeStatus(memberNo);
+        setDeleteStatusY(memberNo);
+        deleteMember(memberNo);
     }
 
-    public void deleteMember(int mNo){
-        memberRepository.deleteMember(mNo);
+    public void deleteMember(int memberNo){
+        memberRepository.deleteMember(memberNo);
     }
 
-    public void setDeleteStatusY(Integer mNo) {
-        serviceRepository.setDeleteStatusY(mNo);
+    public void setDeleteStatusY(Integer memberNo) {
+        serviceRepository.setDeleteStatusY(memberNo);
     }
 
-    public void tradeStatus(int mNo) {
-        Optional.of(serviceTradeRepository.countBymNoAndtStatus(mNo, 1))
+    public void tradeStatus(int memberNo) {
+        Optional.of(serviceTradeRepository.countBymNoAndtStatus(memberNo, 1))
                 .filter(count -> count == 0)
                 .orElseThrow(() -> new CustomException("거래 중인 서비스가 있기 때문에 탈퇴할 수 없습니다", "/userMypage", true));
     }

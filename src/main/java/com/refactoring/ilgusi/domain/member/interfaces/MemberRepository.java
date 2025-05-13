@@ -9,31 +9,31 @@ import java.util.Optional;
 public interface MemberRepository  {
 
     // 회원가입 기능
-    Member saveMember(Member m);
+    Member saveMember(Member member);
 
     // 아이디 중복검사 기능
-    Optional<Member> findBymId(String id);
+    Optional<Member> findByMemberId(String memberId);
 
-    Optional<Member> findBymNo(Integer no);
+    Optional<Member> findByMemberNo(Integer memberNo);
 
     // 아이디/비밀번호 찾기 기능
-    Optional<Member> searchIdPw(Member m);
+    Optional<Member> searchIdPw(Member member);
 
     // 비밀번호 찾기 후 - 비밀번호 변경
-    int changePw(Member m);
+    int changePw(Member member);
 
     // 사용자 마이페이지-이메일, 폰번호, 비번 변경
-    Optional<Member> changeMypage(int mNo, String data, String object);
+    Optional<Member> changeMypage(int memberNo, String data, String object);
 
     // 사용자 마이페이지-회원탈퇴
-   void deleteMember(int mNo);
+   void deleteMember(int memberNo);
 
     // 마이페이지에서 사용자-프리랜서 전환
-    Optional<Member> changeGrade(int mNo, RoleEnum user, RoleEnum free);
+    Optional<Member> changeGrade(int memberNo, RoleEnum user, RoleEnum free);
 
     // 로그인하면 grade를 1로 셋팅
-    void settingMemberGrade(Member m);
+    void settingMemberGrade(Member member);
 
 
-    Optional<Member> updateFreelancer(Member m);
+    Optional<Member> updateFreelancer(Member member);
 }

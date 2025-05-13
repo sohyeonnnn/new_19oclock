@@ -18,61 +18,61 @@ public class JpaMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Member saveMember(Member m) {
-        return jpaRepository.save(m);
+    public Member saveMember(Member member) {
+        return jpaRepository.save(member);
     }
 
     @Override
-    public Optional<Member> findBymId(String mid) {
-        return jpaRepository.findBymId(mid);
+    public Optional<Member> findByMemberId(String memberId) {
+        return jpaRepository.findByMemberId(memberId);
     }
 
     @Override
-    public Optional<Member> findBymNo(Integer mNo) {
-        return jpaRepository.findBymNo(mNo);
+    public Optional<Member> findByMemberNo(Integer memberNo) {
+        return jpaRepository.findByMemberNo(memberNo);
     }
 
     @Override
     public Optional<Member> searchIdPw(Member m) {
-        return jpaRepository.findBymNameAndmPhoneOrmIdAndmPhone(m.getMName(), m.getMPhone(), m.getMId());
+        return jpaRepository.findByMemberNameAndPhoneNoOrMemberIdAndPhoneNo(m.getMemberName(), m.getPhoneNo(), m.getMemberId());
     }
 
     @Override
-    public int changePw(Member m) {
-        return jpaRepository.changePw(m.getMNo(), m.getMPw());
+    public int changePw(Member member) {
+        return jpaRepository.changePw(member.getMemberNo(), member.getMemberPw());
     }
 
     @Override
-    public Optional<Member> changeMypage(int mNo, String data, String object) {
+    public Optional<Member> changeMypage(int memberNo, String data, String object) {
         if(object.equals("email")){
-            jpaRepository.changeMypageEmail(mNo, data);
+            jpaRepository.changeMypageEmail(memberNo, data);
         }else if(object.equals("phone")){
-            jpaRepository.changeMypagePhone(mNo, data);
+            jpaRepository.changeMypagePhone(memberNo, data);
         }else if(object.equals("pw")){
-            jpaRepository.changePw(mNo, data);
+            jpaRepository.changePw(memberNo, data);
         }
-        return jpaRepository.findBymNo(mNo);
+        return jpaRepository.findByMemberNo(memberNo);
     }
 
     @Override
-    public void deleteMember(int mNo) {
-        jpaRepository.deleteBymNo(mNo);
+    public void deleteMember(int memberNo) {
+        jpaRepository.deleteByMemberNo(memberNo);
     }
 
     @Override
-    public Optional<Member> changeGrade(int mNo, RoleEnum user, RoleEnum free) {
-        jpaRepository.changeGrade(mNo, RoleEnum.USER, RoleEnum.FREELANCER);
-        return findBymNo(mNo);
+    public Optional<Member> changeGrade(int memberNo, RoleEnum user, RoleEnum free) {
+        jpaRepository.changeGrade(memberNo, RoleEnum.USER, RoleEnum.FREELANCER);
+        return findByMemberNo(memberNo);
     }
 
     @Override
-    public void settingMemberGrade(Member m) {
+    public void settingMemberGrade(Member member) {
     }
 
     @Override
-    public Optional<Member> updateFreelancer(Member m) {
-        System.out.println(m.toString());
-        jpaRepository.updateFreelancer(m.getMNo(), m.getBrandName(), m.getContactTime(), m.getIntroduce());
-        return findBymNo(m.getMNo());
+    public Optional<Member> updateFreelancer(Member member) {
+        System.out.println(member.toString());
+        jpaRepository.updateFreelancer(member.getMemberNo(), member.getBrandName(), member.getContactTime(), member.getIntroduce());
+        return findByMemberNo(member.getMemberNo());
     }
 }

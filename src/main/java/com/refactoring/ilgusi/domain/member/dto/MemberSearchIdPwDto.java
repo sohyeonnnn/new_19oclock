@@ -9,15 +9,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MemberSearchIdPwDto {
-	private String mId;
-	private String mName;
-	private String mPhone;
+	private String memberId;
+	private String memberName;
+	private String phoneNo;
 
 	public Member toEntity() {
 		return Member.builder()
-				.mId(mId)
-				.mName(mName)
-				.mPhone(mPhone)
+				.memberId(memberId)
+				.memberName(memberName)
+				.phoneNo(phoneNo)
 				.build();
 	}
 

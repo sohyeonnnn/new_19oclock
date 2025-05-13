@@ -4,14 +4,14 @@ import com.refactoring.ilgusi.domain.member.Member;
 
 public interface MemberService {
     Member loginMember(String id, String pw);
-    Member selectMemberByNo(Integer mNo);
-    void registerMember(Member m);
+    Member selectMemberByNo(Integer memberNo);
+    void registerMember(Member member);
     boolean checkDupId(String id);
-    Member searchId(Member m);
-    String resetPw(Member m);
-    void changePw(Member m, String newPw);
-    Member changeMypage(int mNo, String data, String object);
-    void unregisterMember(int mNo);
-    Member changeGrade(int mNo);
-    Member updateFreelancer(Member m);
+    Member searchId(Member member);
+    String resetPw(Member member);
+    void changePw(Member member, String newPw);
+    Member changeMypage(int memberNo, String data, String object);
+    void unregisterMember(int memberNo);
+    Member changeGrade(int memberNo);
+    Member updateFreelancer(Member member);
 }

@@ -32,9 +32,9 @@
             <form action="/updateFreelancer" method="post">
                 <div class="form-group brand">
                     <label for="tel-label">브랜드 명</label><br>
-                    <input type="hidden" value="{{loginMember.MNo}}" name="mNo" id="mNo">
-                    <input type="hidden" value="{{loginMember.MId}}" name="mId" id="mId">
-                    <input type="hidden" value="{{loginMember.MPw}}" name="mPw">
+                    <input type="hidden" value="{{loginMember.MemberNo}}" name="memberNo" id="mNo">
+                    <input type="hidden" value="{{loginMember.MemberId}}" name="memberId" id="mId">
+                    <input type="hidden" value="{{loginMember.MemberPw}}" name="mPw">
                     <input type="text" class="form-box" placeholder="브랜드명을 입력해주세요."
                            value="{{#loginMember.brandName}}{{loginMember.brandName}}{{/loginMember.brandName}}"
                            name="brandName" maxlength="10" required="required">

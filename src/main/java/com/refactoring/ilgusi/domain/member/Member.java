@@ -13,22 +13,22 @@ import javax.persistence.*;
 @Entity
 public class Member extends BaseEntity {
 	@Id
-	@Column(name = "M_NO")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer mNo;
+	@Column(name = "MEMBER_NO")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Integer memberNo;
 	@Column(nullable=false)
-	private String mId;
+	private String memberId;
 	@Column(nullable=false)
-	private String mPw;
+	private String memberPw;
 	@Column(nullable=false)
-	private String mName;
+	private String memberName;
 	@Column(nullable=false)
-	private String mEmail;
+	private String email;
 	@Column
-	private String mPhone;
+	private String phoneNo;
 	@Enumerated(EnumType.STRING)
 	@Column
-	private RoleEnum mGrade;
+	private RoleEnum memberGrade;
 	@Column
 	private Integer warningCount;
 	@Column
@@ -51,25 +51,25 @@ public class Member extends BaseEntity {
 	}
 
 	@Builder
-	public Member(Integer mNo, String mId, String mPw, String mName, String mEmail, String mPhone, RoleEnum mGrade, String brandName, String contactTime, String introduce) {
-		this.mNo = mNo;
-		this.mId = mId;
-		this.mPw = mPw;
-		this.mName = mName;
-		this.mEmail = mEmail;
-		this.mPhone = mPhone;
-		this.mGrade = mGrade;
+	public Member(Integer memberNo, String memberId, String memberPw, String memberName, String email, String phoneNo, RoleEnum memberGrade, String brandName, String contactTime, String introduce) {
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.memberName = memberName;
+		this.email = email;
+		this.phoneNo = phoneNo;
+		this.memberGrade = memberGrade;
 		this.brandName = brandName;
 		this.contactTime = 	contactTime;
 		this.introduce = introduce;
 	}
 
 	public void setPw(String newPw){
-		mPw = newPw;
+		memberPw = newPw;
 	}
 
 	public void setGrade(RoleEnum newGrade){
-		mGrade = newGrade;
+		memberGrade = newGrade;
 	}
 
 	public void setBuyingCount(int newBuyingCount){
@@ -80,28 +80,9 @@ public class Member extends BaseEntity {
 		sellingCount = newSellingCount;
 	}
 
-	@Override
-	public String toString() {
-		return "Member{" +
-				"mNo=" + mNo +
-				", mId='" + mId + '\'' +
-				", mPw='" + mPw + '\'' +
-				", mName='" + mName + '\'' +
-				", mEmail='" + mEmail + '\'' +
-				", mPhone='" + mPhone + '\'' +
-				", mGrade=" + mGrade +
-				", warningCount=" + warningCount +
-				", introduce='" + introduce + '\'' +
-				", enrollDate='" + enrollDate + '\'' +
-				", brandName='" + brandName + '\'' +
-				", contactTime='" + contactTime + '\'' +
-				", buyingCount=" + buyingCount +
-				", sellingCount=" + sellingCount +
-				'}';
-	}
 
 	public boolean isAdmin(){
-		return mGrade.equals(RoleEnum.ADMIN);
+		return memberGrade.equals(RoleEnum.ADMIN);
 	}
 	//jpa사용시 - 엔티티 객체가 persist(저장)되기 전에 자동으로 실행
 	/*@PrePersist

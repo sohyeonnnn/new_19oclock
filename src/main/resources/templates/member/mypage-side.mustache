@@ -23,20 +23,19 @@
     <div>
         <img src="/img/icon/mypage_person.png" style="width: 147px; height: 147px">
     </div>
-    <div style="margin-top: 10px;">{{loginMember.MId }}님</div>
+    <div style="margin-top: 10px;">{{loginMember.MemberId }}님</div>
     <div style="margin-top: 5px;">
-        <input type="hidden" value="{{loginMember.MNo}}" id = "memberNo">
-        <input type="hidden" value="{{loginMember.MPw}}">
-        <input type="hidden" value="{{loginMember.MId}}">
-        <input type="hidden" value="{{loginMember.MGrade}}">
+        <input type="hidden" value="{{loginMember.MemberNo}}" id = "memberNo">
+        <input type="hidden" value="{{loginMember.MemberId}}">
+        <input type="hidden" value="{{loginMember.MemberGrade}}">
         <button class="switch">프리랜서로 전환</button>
     </div>
     <p>MY PAGE</p>
     <hr>
     <ul class="menu">
         <li><img src="/img/icon/circle_navy.png"><a href="/userMypage">나의 프로필</a></li>
-        <li><img src="/img/icon/circle_navy.png"><a href="/userHeartList?mNo={{loginMember.MNo}}&order=all">찜한 내역</a></li>
-        <li><img src="/img/icon/circle_navy.png"><a href="/userTradeHistory?mNo={{loginMember.MNo}}">거래 내역</a></li>
+        <li><img src="/img/icon/circle_navy.png"><a href="/userHeartList?memberNo={{loginMember.MemberNo}}&order=all">찜한 내역</a></li>
+        <li><img src="/img/icon/circle_navy.png"><a href="/userTradeHistory?memberNo={{loginMember.MemberNo}}">거래 내역</a></li>
         <li><img src="/img/icon/circle_navy.png"><a href="/userRequestHistory?reqPage=1">작성한 의뢰글</a></li>
     </ul>
 </div>

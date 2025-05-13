@@ -39,8 +39,8 @@ public class ServiceController {
 
     @ResponseBody
     @PostMapping("/isPossibleMakeService")
-    public ResponseEntity<?> isPossibleMakeService(@RequestParam("mNo") int mNo) {
-        return ResponseEntity.ok(ResultData.builder().data(serviceService.selectFreelancerServiceCount(mNo)).build());
+    public ResponseEntity<?> isPossibleMakeService(@RequestParam("memberNo") int memberNo) {
+        return ResponseEntity.ok(ResultData.builder().data(serviceService.selectFreelancerServiceCount(memberNo)).build());
     }
 
     @GetMapping("/serviceJoinFrm")
@@ -87,7 +87,7 @@ public class ServiceController {
 
     @GetMapping("/freelancerServiceList")
     public String freelancerServiceList(@ModelAttribute("loginMember") Member m, Model model, String order) {
-        List<Service> list = serviceService.selectOrderedServiceList(m.getMNo(), order);
+        List<Service> list = serviceService.selectOrderedServiceList(m.getMemberNo(), order);
 
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         for (Service service : list ){

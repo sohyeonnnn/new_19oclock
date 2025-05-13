@@ -39,10 +39,10 @@ public class MemberController {
 
     // 사용자 마이페이지 이동
     @GetMapping("/userMypage")
-    public String userMypage(@ModelAttribute("loginMember")Member m) {
-        if (m.getMGrade() == RoleEnum.USER) {
+    public String userMypage(@ModelAttribute("loginMember")Member member) {
+        if (member.getMemberGrade() == RoleEnum.USER) {
             return "member/userMypage";
-        } else if (m.getMGrade() == RoleEnum.FREELANCER) {
+        } else if (member.getMemberGrade() == RoleEnum.FREELANCER) {
             return "redirect:/freelancerMypage";
         }
         return CommonEnum.HOME_URL.getVal();
@@ -57,8 +57,8 @@ public class MemberController {
 
     // 회원가입
     @PostMapping("/register")
-    public String register(MemberJoinDto m, Model model) {
-        memberService.registerMember(m.toEntity());
+    public String register(MemberJoinDto member, Model model) {
+        memberService.registerMember(member.toEntity());
 
         String msg = CommonEnum.JOIN.getVal();
         String loc = CommonEnum.HOME_URL.getVal();
@@ -68,14 +68,15 @@ public class MemberController {
 
     // 로그인
     @PostMapping("/login")
-    public String login(HttpServletRequest req, MemberLoginDto m, Model model) {
+    public String login(HttpServletRequest req, MemberLoginDto member, Model model) {
         String msg = CommonEnum.LOGIN.getVal();
         String loc = CommonEnum.HOME_URL.getVal();
-        Member loginMember = memberService.loginMember(m.getMId(), m.getMPw());
+
+        Member loginMember = memberService.loginMember(member.getMemberId(), member.getMemberPw());
 
         HttpSession session = req.getSession();
         session.setAttribute("loginMember", loginMember);
-        if (loginMember.getMGrade() == RoleEnum.ADMIN) {
+        if (loginMember.getMemberGrade() == RoleEnum.ADMIN) {
             loc = "/manageMember?reqPage=1&grade=all&keyword=&order=new";
         }
         return MsgRedirectHelper.success(model,msg,loc);
@@ -92,7 +93,7 @@ public class MemberController {
     public String searchId(MemberSearchIdPwDto m, Model model) {
         Member member = memberService.searchId(m.toEntity());
 
-        String msg = CommonEnum.ID_IS.getVal() + member.getMId();
+        String msg = CommonEnum.ID_IS.getVal() + member.getMemberId();
         String loc = CommonEnum.HOME_URL.getVal();
 
         return MsgRedirectHelper.build(model,msg,loc);
@@ -122,9 +123,9 @@ public class MemberController {
     //  마이페이지에서 사용자-프리랜서 전환
     @PostMapping("/changeGrade")
     public String changeGrade(@ModelAttribute("loginMember")Member m, HttpServletRequest req) {
-        Member member = memberService.changeGrade(m.getMNo());
+        Member member = memberService.changeGrade(m.getMemberNo());
         req.getSession().setAttribute("loginMember", member);
-        if (member.getMGrade() == RoleEnum.USER) {
+        if (member.getMemberGrade() == RoleEnum.USER) {
             return "member/userMypage";
         } else {
             return "redirect:/freelancerMypage";
@@ -135,7 +136,7 @@ public class MemberController {
     @ResponseBody
     @RequestMapping("/changeMypage")
     public String changeMypage(MemberUpdateDto m, HttpServletRequest req) {
-        Member updatedMember = memberService.changeMypage(m.getMNo(), m.getData(), m.getObject());
+        Member updatedMember = memberService.changeMypage(m.getMemberNo(), m.getData(), m.getObject());
         req.getSession().setAttribute("loginMember", updatedMember);
         return CommonEnum.HOME_URL.getVal();
     }
@@ -150,10 +151,10 @@ public class MemberController {
 
     // 사용자 마이페이지 - 회원탈퇴
     @RequestMapping("/deleteMember")
-    public String deleteMember(@ModelAttribute("loginMember")Member sessionMember, Integer mNo, HttpServletRequest req, Model model) {
+    public String deleteMember(@ModelAttribute("loginMember")Member sessionMember, Integer memberNo, HttpServletRequest req, Model model) {
         String msg = "탈퇴 되었습니다.";
         String loc= CommonEnum.HOME_URL.getVal();
-        memberService.unregisterMember(mNo);
+        memberService.unregisterMember(memberNo);
         req.getSession().setAttribute("loginMember", null);
         return MsgRedirectHelper.build(model,msg,loc);
     }

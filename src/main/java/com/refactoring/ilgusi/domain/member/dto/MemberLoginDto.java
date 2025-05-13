@@ -9,23 +9,23 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MemberLoginDto {
-	private Integer mNo;
-	private String mId;
-	private String mPw;
+	private Integer memberNo;
+	private String memberId;
+	private String memberPw;
 
 	public Member toEntity() {
 		return Member.builder()
-				.mId(mId)
-				.mPw(mPw)
+				.memberId(memberId)
+				.memberPw(memberPw)
 				.build();
 	}
 
 	@Override
 	public String toString() {
 		return "MemberLoginDto{" +
-				"mNo=" + mNo +
-				", mId='" + mId + '\'' +
-				", mPw='" + mPw + '\'' +
+				"memberNo=" + memberNo +
+				", memberId='" + memberId + '\'' +
+				", memberPw='" + memberPw + '\'' +
 				'}';
 	}
 }
