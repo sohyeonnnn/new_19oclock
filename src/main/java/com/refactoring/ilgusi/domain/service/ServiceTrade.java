@@ -11,16 +11,17 @@ import javax.persistence.*;
 @Entity
 public class ServiceTrade extends BaseEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer tNo;			//거래번호
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_trade_seq_gen")
+	@SequenceGenerator(name = "service_trade_seq_gen", sequenceName = "SERVICE_TRADE_SEQ", allocationSize = 1)
+	private Integer tradeNo;			//거래번호
 	@Column
-	private int sNo;			//서비스 번호
-	@Column(name = "M_NO")
-	private int mNo;			//멤버 번호
-	@Column(name = "T_STATUS")
-	private int tStatus;		//거래 진행 상태
+	private int serviceNo;			//서비스 번호
+	@Column(name = "MEMBER_NO")
+	private int memberNo;			//멤버 번호
+	@Column(name = "TRADE_STATUS")
+	private int tradeStatus;		//거래 진행 상태
 	@Column
-	private int tPrice;			//거래 가격
+	private int tradePrice;			//거래 가격
 	@Column
 	private String startDate;	//거래시작 날짜
 	@Column
@@ -28,5 +29,5 @@ public class ServiceTrade extends BaseEntity {
 	
 	//(문정) 천원단위 나누기위함
 	private String tPriceTxt;   //천원단위로 ,찍혀있는 텍스트
-	private String mId;         //거래내역에서 아이디 뽑아오기위함
+	private String memberId;         //거래내역에서 아이디 뽑아오기위함
 }

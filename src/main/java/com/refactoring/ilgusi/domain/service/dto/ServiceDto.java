@@ -13,16 +13,16 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class ServiceDto {
-	private int mNo;
+	private int memberNo;
 	private int mainCategory;
 	private int subCategory;
-	private String sTitle;
-	private String sContent;
-	private String sArea;
-	private int sPrice;
+	private String serviceTitle;
+	private String serviceContent;
+	private String serviceArea;
+	private int servicePrice;
 	private int workingDate;
-	private int sRate;
-	private String sImg;
+	private int serviceRate;
+	private String serviceImg;
 	private String deleteStatus;
 	private String adminApproval;
 
@@ -47,48 +47,19 @@ public class ServiceDto {
 
 	public Service toEntity() {
 		return Service.builder()
-				.mNo(mNo)
+				.memberNo(memberNo)
 				.mainCategory(mainCategory)
 				.subCategory(subCategory)
-				.sTitle(sTitle)
-				.sContent(sContent)
-				.sArea(sArea)
-				.sPrice(sPrice)
+				.serviceTitle(serviceTitle)
+				.serviceContent(serviceContent)
+				.serviceArea(serviceArea)
+				.servicePrice(servicePrice)
 				.workingDate(workingDate)
-				.sImg(sImg)
-				.sRate(sRate)
-				.brandName(brandName)
+				.serviceImg(serviceImg)
+				.serviceRate(serviceRate)
 				.adminApproval(adminApproval)
 				.deleteStatus(deleteStatus)
 				.build();
 	}
 
-	@Override
-	public String toString() {
-		return "ServiceDto{" +
-				"mNo=" + mNo +
-				", mainCategory=" + mainCategory +
-				", subCategory=" + subCategory +
-				", sTitle='" + sTitle + '\'' +
-				", sContent='" + sContent + '\'' +
-				", sArea='" + sArea + '\'' +
-				", sPrice=" + sPrice +
-				", workingDate=" + workingDate +
-				", sRate=" + sRate +
-				", sImg='" + sImg + '\'' +
-				", deleteStatus='" + deleteStatus + '\'' +
-				", adminApproval='" + adminApproval + '\'' +
-				", mName='" + mName + '\'' +
-				", mEmail='" + mEmail + '\'' +
-				", mPhone='" + mPhone + '\'' +
-				", introduce='" + introduce + '\'' +
-				", enrollDate='" + enrollDate + '\'' +
-				", brandName='" + brandName + '\'' +
-				", contactTime='" + contactTime + '\'' +
-				", serviceList=" + serviceList +
-				", reviewList=" + reviewList +
-				", pageNavi='" + pageNavi + '\'' +
-				", fileList=" + fileList +
-				'}';
-	}
 }

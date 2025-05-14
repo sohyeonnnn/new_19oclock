@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MemberJoinDto{
-
 	private String memberId;
 	private String memberPw;
 	private String memberName;

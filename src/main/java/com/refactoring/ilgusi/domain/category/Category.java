@@ -14,22 +14,13 @@ import javax.persistence.Id;
 @Entity
 public class Category {
 	@Id
-	@Column(name = "C_NO")
-	private Integer cNo;
-	@Column(name = "C_NAME")
-	private String cName;
-	@Column(name = "C_DIVISION_NO")
-	private Integer cDivisionNo;
+	@Column(name = "CATEGORY_CD")
+	private Integer categoryCd;
+	@Column(name = "CATEGORY_NAME")
+	private String categoryName;
+	@Column(name = "PARENT_CATEGORY_CD")
+	private Integer ParentCategoryCd;
 	@Column(name = "IMG_URL")
 	private String imgUrl;
 
-	@Override
-	public String toString() {
-		return "Category{" +
-				"cNo=" + cNo +
-				", cName='" + cName + '\'' +
-				", cDivisionNo=" + cDivisionNo +
-				", imgUrl='" + imgUrl + '\'' +
-				'}';
-	}
 }

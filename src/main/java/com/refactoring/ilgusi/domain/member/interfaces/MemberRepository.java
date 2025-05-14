@@ -31,9 +31,5 @@ public interface MemberRepository  {
     // 마이페이지에서 사용자-프리랜서 전환
     Optional<Member> changeGrade(int memberNo, RoleEnum user, RoleEnum free);
 
-    // 로그인하면 grade를 1로 셋팅
-    void settingMemberGrade(Member member);
-
-
     Optional<Member> updateFreelancer(Member member);
 }

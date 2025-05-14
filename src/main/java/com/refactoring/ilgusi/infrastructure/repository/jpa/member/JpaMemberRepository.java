@@ -66,10 +66,6 @@ public class JpaMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void settingMemberGrade(Member member) {
-    }
-
-    @Override
     public Optional<Member> updateFreelancer(Member member) {
         System.out.println(member.toString());
         jpaRepository.updateFreelancer(member.getMemberNo(), member.getBrandName(), member.getContactTime(), member.getIntroduce());

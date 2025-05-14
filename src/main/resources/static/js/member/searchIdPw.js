@@ -9,8 +9,8 @@ $(document).ready(function () {
         $("#pop-form").submit();
     });
     $("form").submit(function (e) {
-        let number = $(this).children("input[name=mPhone]").val();
+        let number = $(this).children("input[name=phoneNo]").val();
         let phone = number.substring(0,3)+'-'+number.substring(3,7)+'-'+number.substring(7,11);
-        $(this).children("input[name=mPhone]").val(phone);
+        $(this).children("input[name=phoneNo]").val(phone);
     });
 });

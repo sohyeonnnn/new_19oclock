@@ -35,6 +35,7 @@ public class FreelancerController {
         req.getSession().setAttribute("loginMember", member);
         return "redirect:/freelancerMypage";
     }
+
     
 }
 

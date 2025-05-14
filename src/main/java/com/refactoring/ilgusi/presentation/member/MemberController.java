@@ -31,23 +31,6 @@ public class MemberController {
         return "member/joinFrm";
     }
 
-    // 아이디/비번 찾기 페이지 이동
-    @GetMapping("/forgotIdPw")
-    public String searchIdPwFrm() {
-        return "member/searchIdPw";
-    }
-
-    // 사용자 마이페이지 이동
-    @GetMapping("/userMypage")
-    public String userMypage(@ModelAttribute("loginMember")Member member) {
-        if (member.getMemberGrade() == RoleEnum.USER) {
-            return "member/userMypage";
-        } else if (member.getMemberGrade() == RoleEnum.FREELANCER) {
-            return "redirect:/freelancerMypage";
-        }
-        return CommonEnum.HOME_URL.getVal();
-    }
-
     // 아이디 중복검사
     @ResponseBody
     @PostMapping("/checkDupId")
@@ -57,8 +40,8 @@ public class MemberController {
 
     // 회원가입
     @PostMapping("/register")
-    public String register(MemberJoinDto member, Model model) {
-        memberService.registerMember(member.toEntity());
+    public String register(MemberJoinDto joinMemberDto, Model model) {
+        memberService.registerMember(joinMemberDto.toEntity());
 
         String msg = CommonEnum.JOIN.getVal();
         String loc = CommonEnum.HOME_URL.getVal();
@@ -68,12 +51,11 @@ public class MemberController {
 
     // 로그인
     @PostMapping("/login")
-    public String login(HttpServletRequest req, MemberLoginDto member, Model model) {
+    public String login(HttpServletRequest req, MemberLoginDto loginMemberDto, Model model) {
         String msg = CommonEnum.LOGIN.getVal();
         String loc = CommonEnum.HOME_URL.getVal();
 
-        Member loginMember = memberService.loginMember(member.getMemberId(), member.getMemberPw());
-
+        Member loginMember = memberService.loginMember(loginMemberDto.getMemberId(), loginMemberDto.getMemberPw());
         HttpSession session = req.getSession();
         session.setAttribute("loginMember", loginMember);
         if (loginMember.getMemberGrade() == RoleEnum.ADMIN) {
@@ -88,10 +70,16 @@ public class MemberController {
         req.getSession().setAttribute("loginMember", null);
     }
 
+    // 아이디/비번 찾기 페이지 이동
+    @GetMapping("/forgotIdPw")
+    public String searchIdPwFrm() {
+        return "member/searchIdPw";
+    }
+
     // 아이디 찾기
     @PostMapping("/searchId")
-    public String searchId(MemberSearchIdPwDto m, Model model) {
-        Member member = memberService.searchId(m.toEntity());
+    public String searchId(MemberSearchIdPwDto searchIdDto, Model model) {
+        Member member = memberService.searchId(searchIdDto.toEntity());
 
         String msg = CommonEnum.ID_IS.getVal() + member.getMemberId();
         String loc = CommonEnum.HOME_URL.getVal();
@@ -100,19 +88,29 @@ public class MemberController {
     }
 
     // 비번 찾기
-    @PostMapping("/searchPw")
-    public String resetPw(HttpServletRequest req, MemberSearchIdPwDto m, Model model) {
-        String msg = CommonEnum.PW_IS.getVal() +  memberService.resetPw(m.toEntity());
+    @PostMapping("/resetPassword")
+    public String resetPw(HttpServletRequest req, MemberSearchIdPwDto searchPwDto, Model model) {
+        String msg = CommonEnum.PW_IS.getVal() +  memberService.resetPw(searchPwDto.toEntity());
         String loc = CommonEnum.HOME_URL.getVal();
 
         return MsgRedirectHelper.build(model,msg,loc);
     }
 
-    // 비번 찾기 (비번 변경)
-    @PostMapping("/searchChangePw")
-    public String searchPw(HttpServletRequest req, String mPw, Model model) {
-        Member m = (Member) req.getSession().getAttribute("loginMember");
-        memberService.changePw(m, mPw);
+    // 사용자 마이페이지 이동
+    @GetMapping("/userMypage")
+    public String userMypage(@ModelAttribute("loginMember")Member loginMember) {
+        if (loginMember.getMemberGrade() == RoleEnum.USER) {
+            return "member/userMypage";
+        } else if (loginMember.getMemberGrade() == RoleEnum.FREELANCER) {
+            return "redirect:/freelancerMypage";
+        }
+        return CommonEnum.HOME_URL.getVal();
+    }
+
+    // 비번 변경
+    @PostMapping("/changePassword")
+    public String searchPw(@ModelAttribute("loginMember")Member loginMember, HttpServletRequest req, String memberPw, Model model) {
+        memberService.changePw(loginMember, memberPw);
 
         String msg = CommonEnum.UPDATE_SUCCESS.getVal();
         String loc = CommonEnum.HOME_URL.getVal();
@@ -120,12 +118,12 @@ public class MemberController {
         return MsgRedirectHelper.close(model,msg,loc, true);
     }
 
-    //  마이페이지에서 사용자-프리랜서 전환
+    //  마이페이지 사용자-프리랜서 전환
     @PostMapping("/changeGrade")
-    public String changeGrade(@ModelAttribute("loginMember")Member m, HttpServletRequest req) {
-        Member member = memberService.changeGrade(m.getMemberNo());
-        req.getSession().setAttribute("loginMember", member);
-        if (member.getMemberGrade() == RoleEnum.USER) {
+    public String changeGrade(@ModelAttribute("loginMember")Member loginMember, HttpServletRequest req) {
+        Member updatedMember = memberService.changeGrade(loginMember.getMemberNo());
+        req.getSession().setAttribute("loginMember", updatedMember);
+        if (updatedMember.getMemberGrade() == RoleEnum.USER) {
             return "member/userMypage";
         } else {
             return "redirect:/freelancerMypage";
@@ -134,36 +132,36 @@ public class MemberController {
 
     // 사용자 마이페이지-이메일, 폰번호 변경
     @ResponseBody
-    @RequestMapping("/changeMypage")
-    public String changeMypage(MemberUpdateDto m, HttpServletRequest req) {
-        Member updatedMember = memberService.changeMypage(m.getMemberNo(), m.getData(), m.getObject());
+    @RequestMapping("/updateInfo")
+    public String changeMypage(MemberUpdateDto updateMemberDto, HttpServletRequest req) {
+        Member updatedMember = memberService.changeMypage(updateMemberDto.getMemberNo(), updateMemberDto.getData(), updateMemberDto.getObject());
         req.getSession().setAttribute("loginMember", updatedMember);
         return CommonEnum.HOME_URL.getVal();
     }
 
     // 사용자 마이페이지-비밀번호 변경
-    @PostMapping("/changePw")
-    public String changePw(@RequestParam Integer mNo, @RequestParam String data, @RequestParam String object, HttpServletRequest req) {
-        Member updatedMember = memberService.changeMypage(mNo, data, object);
+    @PostMapping("/updatePassword")
+    public String updatePassword(@RequestParam Integer memberNo, @RequestParam String data, @RequestParam String object, HttpServletRequest req) {
+        Member updatedMember = memberService.changeMypage(memberNo, data, object);
         req.getSession().setAttribute("loginMember", updatedMember);
         return "member/userMypage";
     }
 
     // 사용자 마이페이지 - 회원탈퇴
     @RequestMapping("/deleteMember")
-    public String deleteMember(@ModelAttribute("loginMember")Member sessionMember, Integer memberNo, HttpServletRequest req, Model model) {
+    public String deleteMember(@ModelAttribute("loginMember")Member loginMember, HttpServletRequest req, Model model) {
         String msg = "탈퇴 되었습니다.";
         String loc= CommonEnum.HOME_URL.getVal();
-        memberService.unregisterMember(memberNo);
+        memberService.unregisterMember(loginMember.getMemberNo());
         req.getSession().setAttribute("loginMember", null);
         return MsgRedirectHelper.build(model,msg,loc);
     }
 
     @PostMapping("/checkPassword")
     @ResponseBody
-    public ResponseEntity<?> checkPassword(@RequestParam String mId, @RequestParam String mPw) {
+    public ResponseEntity<?> checkPassword(@RequestParam String memberId, @RequestParam String memberPw) {
         // DB에서 암호화된 비밀번호 가져오기
-        memberService.loginMember(mId, mPw);
+        memberService.loginMember(memberId, memberPw);
         return ResponseEntity.ok(ResultData.builder().isSuccess(true).build());
     }
 

@@ -8,6 +8,7 @@ import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 import com.refactoring.ilgusi.domain.notice.interfaces.NoticeRepository;
 import com.refactoring.ilgusi.domain.question.interfaces.QuestionRepository;
 import com.refactoring.ilgusi.domain.request.interfaces.RequestRepository;
+import com.refactoring.ilgusi.domain.service.interfaces.ServiceFileRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
 import com.refactoring.ilgusi.infrastructure.repository.jpa.category.JpaCategoryRepository;
@@ -26,10 +27,7 @@ import com.refactoring.ilgusi.infrastructure.repository.jpa.question.JpaQuestion
 import com.refactoring.ilgusi.infrastructure.repository.jpa.question.SpringDataQuestionRepository;
 import com.refactoring.ilgusi.infrastructure.repository.jpa.request.JpaRequestRepository;
 import com.refactoring.ilgusi.infrastructure.repository.jpa.request.SpringDataRequestRepository;
-import com.refactoring.ilgusi.infrastructure.repository.jpa.service.JpaServiceRepository;
-import com.refactoring.ilgusi.infrastructure.repository.jpa.service.JpaServiceTradeRepository;
-import com.refactoring.ilgusi.infrastructure.repository.jpa.service.SpringDataServiceRepository;
-import com.refactoring.ilgusi.infrastructure.repository.jpa.service.SpringDataServiceTradeRepository;
+import com.refactoring.ilgusi.infrastructure.repository.jpa.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -98,6 +96,12 @@ public class RepositoryConfig {
     @Profile("jpa")
     public ServiceTradeRepository jpaServiceTradeRepository(SpringDataServiceTradeRepository repo) {
         return new JpaServiceTradeRepository(repo);
+    }
+
+    @Bean
+    @Profile("jpa")
+    public ServiceFileRepository jpaServiceFileRepository(SpringDataServiceFileRepository repo) {
+        return new JpaServiceFileRepository(repo);
     }
 
 

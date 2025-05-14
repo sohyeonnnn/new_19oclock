@@ -12,7 +12,7 @@ public class JpaFavoriteRepository implements FavoriteRepository {
     }
 
     @Override
-    public Favorite searchFavorite(int mNo, int sNo) {
+    public Favorite searchFavorite(int memberNo, int serviceNo) {
         return null;
     }
 }

@@ -13,16 +13,16 @@ public interface SpringDataServiceRepository extends JpaRepository<Service, Inte
 
 
     @Modifying
-    @Query("UPDATE Service s SET s.deleteStatus = 'Y', s.sTitle = CONCAT('(삭제)', s.sTitle) WHERE s.mNo = :mNo AND s.deleteStatus = 'N'")
-    void setDeleteStatusY(@Param("mNo") int mNo);
+    @Query("UPDATE Service s SET s.deleteStatus = 'Y', s.serviceTitle = CONCAT('(삭제)', s.serviceTitle) WHERE s.memberNo = :memberNo AND s.deleteStatus = 'N'")
+    void setDeleteStatusY(@Param("memberNo") int memberNo);
 
-    @Query("SELECT COUNT(s) FROM Service s WHERE s.mNo = :memberNo AND s.deleteStatus = 'N' and s.adminApproval = 'Y' ")
+    @Query("SELECT COUNT(s) FROM Service s WHERE s.memberNo = :memberNo AND s.deleteStatus = 'N' and s.adminApproval = 'Y' ")
     Integer countServiceBymNo(@Param("memberNo") int memberNo);
 
-    @Query("SELECT s FROM Service s Where s.mNo= :mNo AND s.adminApproval = 'Y' AND s.deleteStatus = 'N'")
-     Optional<List<Service>> selectApprovedServiceList(@Param("mNo") int mNo);
+    @Query("SELECT s FROM Service s Where s.memberNo= :memberNo AND s.adminApproval = 'Y' AND s.deleteStatus = 'N'")
+     Optional<List<Service>> selectApprovedServiceList(@Param("memberNo") int memberNo);
 
-    @Query("SELECT s FROM Service s Where s.mNo= :mNo AND s.adminApproval = 'N' AND s.deleteStatus = 'N'")
-    Optional<List<Service>> selectRejectedServiceList(@Param("mNo") int mNo);
+    @Query("SELECT s FROM Service s Where s.memberNo= :memberNo AND s.adminApproval = 'N' AND s.deleteStatus = 'N'")
+    Optional<List<Service>> selectRejectedServiceList(@Param("memberNo") int memberNo);
 
 }

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ServiceService {
     Integer selectFreelancerServiceCount(int memberNo);
-    void insertService(ServiceInsertDto join);
+    void insertService(ServiceInsertDto service);
     List<Service> selectOrderedServiceList(int mNo, String order);
 }

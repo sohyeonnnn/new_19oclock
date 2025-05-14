@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var object = 'pw';
 
         if (pwCheck1 === pwCheck2 && pwCheck2 !== '' && regCheck === 'true') {
-            $.post("/changePw", {
+            $.post("/updatePassword", {
                 memberId: mId,
                 memberPw: mPw,
                 data: pwCheck2,
@@ -112,7 +112,7 @@ function emailEdit(obj){
         $('#email-btn').html('저장');
     }else{
         $.ajax({
-            url : "/changeMypage",
+            url : "/updateInfo",
             type : "get",
             data : {"memberNo":mNo, "data":mEmail,"object":"email" },
             success : function(data){
@@ -143,7 +143,7 @@ function phoneEdit(obj){
         var reg = /^[0-9]{4}$/;
         if(reg.test(phone1) && reg.test(phone2)){
             $.ajax({
-                url : "/changeMypage",
+                url : "/updateInfo",
                 type : "get",
                 data : {"memberNo":mNo, "memberId":mId,"data":phone,"object":"phone" },
                 success : function(data){

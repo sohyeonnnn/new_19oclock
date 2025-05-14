@@ -39,18 +39,18 @@
 		<br> <br> <br> <br>
 		<div class="bottom">
 			<div class="inner2">
-				<form action="/serviceJoin" method="post" autocomplete="off" enctype="multipart/form-data" id="joinForm">
+				<form action="/insertService" method="post" autocomplete="off" enctype="multipart/form-data" id="joinForm">
 					<table  style="border-collapse: collapse;" class="table">
 						<tr>
 							<td class="table-title" style="border:0;"><p>*서비스 제목</p></td>
 							<td style="width: 800px;border:0;">
-                                <input type="text" name="sTitle" class="input-box" placeholder="제목을 입력하세요" maxlength="300" style="margin-left: 30px;width: 90%; height: 30px;float:left"  required="required">
+                                <input type="text" name="serviceTitle" class="input-box" placeholder="제목을 입력하세요" maxlength="300" style="margin-left: 30px;width: 90%; height: 30px;float:left"  required="required">
                             </td>
 						</tr>
 						<tr>
 							<td class="table-title"><p>*카테고리 선택</p></td>
 							<td style="width: 400px;">
-                                <input type="hidden" name="mNo" value="{{loginMember.MNo}}">
+                                <input type="hidden" name="memberNo" value="{{loginMember.memberNo}}">
                                 <input type="hidden" name="brandName" value="{{loginMember.brandName}}">
                                 <input type="hidden" name="adminApproval" value="N">
                                 <input type="hidden" name="deleteStatus" value="N">
@@ -73,7 +73,7 @@
 						<tr>
 							<td class="table-title"><p>*서비스 지역</p></td>
 							<td style="width: 400px;">
-							<select  class="input-box" name="sArea" style="width: 150px; float: left; margin-left: 30px; height: 30px;"  required="required">
+							<select  class="input-box" name="serviceArea" style="width: 150px; float: left; margin-left: 30px; height: 30px;"  required="required">
 									<option value='서울'>서울</option>
 									<option value='부산'>부산</option>
 									<option value='대구'>대구</option>
@@ -96,7 +96,7 @@
 						<tr>
 							<td class="table-title"><p>*서비스 가격</p></td>
 							<td style="width: 400px;">
-								<input type="text"  class="input-box" name="sPrice" style="float: left; margin-left: 30px; height: 30px; width: 150px;" placeholder="5,000원 이상 입력" maxlength="10"  required="required">
+								<input type="text"  class="input-box" name="servicePrice" style="float: left; margin-left: 30px; height: 30px; width: 150px;" placeholder="5,000원 이상 입력" maxlength="10"  required="required">
 								<h5 class="won" style="float: left; margin-left: 10px; margin-top: 20px;">원</h5>
 								<span style="float: left; color: gray; font-size: 13px; margin-left: 10px; margin-top: 18px;"></span>
 							</td>
@@ -104,7 +104,7 @@
 						<tr>
 							<td class="table-title"><p>*휴대폰 번호</p></td>
 							<td style="width: 400px;">
-								<input type="text" class="input-noLine" name="mPhone" style="width: 200px; height: 23px; float: left; margin-left: 30px; margin-top: 10px;" value="{{loginMember.MPhone}}" readonly="readonly">
+								<input type="text" class="input-noLine" name="phoneNo" style="width: 200px; height: 23px; float: left; margin-left: 30px; margin-top: 10px;" value="{{loginMember.phoneNo}}" readonly="readonly">
 							</td>
 						</tr>
 						<tr>
@@ -132,7 +132,7 @@
 						<tr>
 							<td colspan="2" style="border:0;" >
 								<div  style="margin-left:-13px;">
-									<textarea name="sContent" id="smartEditor" cols="50" rows="19"></textarea>
+									<textarea name="serviceContent" id="smartEditor" cols="50" rows="19"></textarea>
 								</div>
 								
 							</td>

@@ -12,16 +12,17 @@ import javax.persistence.*;
 @Entity
 public class Request {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int reqNo;			//의뢰 번호
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_seq_gen")
+	@SequenceGenerator(name = "request_seq_gen", sequenceName = "REQUEST_SEQ", allocationSize = 1)
+	private int requestNo;			//의뢰 번호
 	@Column
-	private String mId;			//의뢰 작성자 ID
+	private String memberId;			//의뢰 작성자 ID
 	@Column
-	private String reqTitle;	//의뢰 타이틀
+	private String requestTitle;	//의뢰 타이틀
 	@Column
-	private String reqContent;	//의뢰 내용
+	private String requestContent;	//의뢰 내용
 	@Column
-	private int reqStatus;		//의뢰 상태
+	private int requestStatus;		//의뢰 상태
 	@Column
 	private String filename;	//파일 이름
 	@Column
@@ -31,6 +32,6 @@ public class Request {
 	
 	//줄바꿈
 	public String getReqContentBr() {
-		return reqContent.replaceAll("\r\n", "<br>");
+		return requestContent.replaceAll("\r\n", "<br>");
 	}
 }

@@ -12,22 +12,14 @@ import javax.persistence.*;
 @Builder
 public class ServicePay {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int pNo;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_pay_seq_gen")
+	@SequenceGenerator(name = "service_pay_seq_gen", sequenceName = "SERVICE_PAY_SEQ", allocationSize = 1)
+	private Integer payNo;
 	@Column
-	private int tNo;
+	private int tradeNo;
 	@Column
-	private int pPrice;
+	private int payPrice;
 	@Column
-	private String pDate;
+	private String payDate;
 
-	@Override
-	public String toString() {
-		return "ServicePay{" +
-				"pNo=" + pNo +
-				", tNo=" + tNo +
-				", pPrice=" + pPrice +
-				", pDate='" + pDate + '\'' +
-				'}';
-	}
 }

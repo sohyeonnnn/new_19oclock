@@ -12,10 +12,11 @@ import javax.persistence.*;
 @Entity
 public class Chat {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int cNo;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "chat_seq_gen")
+	@SequenceGenerator(name = "chat_seq_gen", sequenceName = "CHAT_SEQ", allocationSize = 1)
+	private int chatNo;
 	@Column(nullable=false)
-	private int sNo;
+	private int serviceNo;
 	@Column(nullable=false)
 	private String userId;
 	@Column(nullable=false)

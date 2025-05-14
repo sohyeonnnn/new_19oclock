@@ -21,7 +21,7 @@ import java.util.Map;
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
-    @Override
+    /*@Override
     public List<MainCategoryDto> selectCategoryList() {
         List<Category> categoryList = categoryRepository.selectCategoryList();
         Map<Integer, MainCategoryDto> mainCategoryMap = new HashMap<>();
@@ -46,5 +46,5 @@ public class CategoryServiceImpl implements CategoryService {
             }
         }
         return  new ArrayList<>(mainCategoryMap.values());
-    }
+    }*/
 }

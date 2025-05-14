@@ -14,7 +14,8 @@ import javax.persistence.*;
 public class Member extends BaseEntity {
 	@Id
 	@Column(name = "MEMBER_NO")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_gen")
+	@SequenceGenerator(name = "member_seq_gen", sequenceName = "MEMBER_SEQ", allocationSize = 1)
 	private Integer memberNo;
 	@Column(nullable=false)
 	private String memberId;
@@ -48,6 +49,26 @@ public class Member extends BaseEntity {
 	// 줄바꿈
 	public String getIntroduceBr() {
 		return introduce.replaceAll("\r\n", "<br>");
+	}
+
+	@Override
+	public String toString() {
+		return "Member{" +
+				"memberNo=" + memberNo +
+				", memberId='" + memberId + '\'' +
+				", memberPw='" + memberPw + '\'' +
+				", memberName='" + memberName + '\'' +
+				", email='" + email + '\'' +
+				", phoneNo='" + phoneNo + '\'' +
+				", memberGrade=" + memberGrade +
+				", warningCount=" + warningCount +
+				", introduce='" + introduce + '\'' +
+				", enrollDate='" + enrollDate + '\'' +
+				", brandName='" + brandName + '\'' +
+				", contactTime='" + contactTime + '\'' +
+				", buyingCount=" + buyingCount +
+				", sellingCount=" + sellingCount +
+				'}';
 	}
 
 	@Builder

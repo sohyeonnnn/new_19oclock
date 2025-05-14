@@ -29,13 +29,10 @@ public class MemberServiceImpl implements MemberService {
     private final EmailService emailService;
 
     @Override
-    public Member loginMember(String id, String pw) {
-        return memberRepository.findByMemberId(id)
-                .filter(member -> encoder.matches(pw, member.getMemberPw()))
+    public Member loginMember(String memberId, String memberPw) {
+        return memberRepository.findByMemberId(memberId)
+                .filter(member -> encoder.matches(memberPw, member.getMemberPw()))
                 .map(member -> {
-                    /*if (member.getMGrade() != RoleEnum.ADMIN) {
-                        member.setGrade(RoleEnum.USER);
-                    }*/
                     member.setBuyingCount(selectBuyingCount(member.getMemberNo()));
                     member.setSellingCount(selectSellingCount(member.getMemberNo()));
                     return member;
@@ -52,12 +49,6 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member selectMemberByNo(Integer memberNo) {
-        return memberRepository.findByMemberNo(memberNo)
-                .orElseThrow(() -> new CustomException("사용자가 없습니다!", "/"));
-    }
-
-    @Override
     @Transactional
     public void registerMember(Member member) {
         member.setPw(encoder.encode(member.getMemberPw()));
@@ -69,8 +60,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean checkDupId(String id) {
-        return memberRepository.findByMemberId(id).isPresent();
+    public boolean checkDupId(String memberId) {
+        return memberRepository.findByMemberId(memberId).isPresent();
     }
 
     @Override
@@ -80,12 +71,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public String resetPw(Member m) {
+    public String resetPw(Member member) {
         String resetPw = generateTempPassword();
 
-        return memberRepository.searchIdPw(m)
-                .map(member -> {
-                    this.changePw(member, resetPw);
+        return memberRepository.searchIdPw(member)
+                .map(m -> {
+                    this.changePw(m, resetPw);
                     return resetPw;
                 })
                 .orElseThrow(() -> new CustomException(CommonEnum.NOT_VALID_USER.getVal(),"/",true));
@@ -106,9 +97,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void changePw(Member m, String newPw) {
-        m.setPw(encoder.encode(newPw));
-        int updated = memberRepository.changePw(m);
+    public void changePw(Member member, String newPw) {
+        member.setPw(encoder.encode(newPw));
+        int updated = memberRepository.changePw(member);
         if (updated < 1) {
             throw new CustomException(CommonEnum.FAIL_CHANGE_PW.getVal(), "/", true);
         }

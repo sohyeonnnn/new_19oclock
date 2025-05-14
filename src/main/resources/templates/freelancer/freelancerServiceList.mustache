@@ -22,7 +22,7 @@
 		<!-- 사이드메뉴 -->
         {{> freelancer/freelancer-side}}
 
-		<input type="hidden" value="{{loginMember.MId}}" class="memberId">
+		<input type="hidden" value="{{loginMember.memberId}}" class="memberId">
 		<div class="board-wrap">
 			<div class="board-box">
 				<span>서비스 내역</span>
@@ -37,11 +37,11 @@
                     {{#list}}
                         <div>
                             <div>
-                                <input type="hidden" value="{{SNo}}" id="sNo">
-                                <a href="/serviceView?sNo={{SNo}}&reqPage=1">
+                                <input type="hidden" value="{{serviceNo}}" id="sNo">
+                                <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1">
                                 <div class="title-img">
                                     <div class="back-img">
-                                        <img src="/img/icon/mypage_person.png" width="225px" height="133px">
+                                        <img src="{{serviceImg}}" width="225px" height="133px">
                                     </div>
                                 </div>
                                 </a>
@@ -51,13 +51,13 @@
                                 {{mainCategoryName}} / {{subCategoryName}}
                             </div>
                             <div class="title">
-                                <a href="/serviceView?sNo={{SNo}}&reqPage=1">
+                                <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1">
                                 {{STitle}}
                                 </a>
                             </div>
                             <a href="#">
                                 <div class="content" style="font-size: 12pt; float: right; width: 200px; text-align: right;">
-                                    {{SPrice}}원~
+                                    {{servicePrice}}원~
                                 </div>
                             </a>
                             <button class="del-btn" value="삭제하기" onclick="del();">삭제하기</button>

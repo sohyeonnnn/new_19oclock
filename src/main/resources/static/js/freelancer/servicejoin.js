@@ -95,7 +95,7 @@ $(document).ready(function () {
 		});
 
 		//금액 입력 유효성 검사(1. 숫자만 입력/2. 5000원 이상 입력)
-		$("input[name=sPrice]").focusout(function () {
+		$("input[name=servicePrice]").focusout(function () {
 			var price = $(this).val();
 			if (isNaN(price)) {
 				$(this).next().next().html("※숫자만 입력해주세요.").css({'color': 'red'});
@@ -119,12 +119,12 @@ $(document).ready(function () {
 		$("input[type=button]").click(function () {
 			oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
 			var mainCategory = $("#mainCategory").val();
-			var price = $("input[name=sPrice]").val();
+			var price = $("input[name=servicePrice]").val();
 			var day = $("input[name=workingDate]").val();
 			var content = document.getElementById("smartEditor").value;
-			if ($("input[name=sTitle]").val() == "") {
+			if ($("input[name=serviceTitle]").val() == "") {
 				alert('제목을 입력해주세요.');
-				$("input[name=sTitle]").focus();
+				$("input[name=serviceTitle]").focus();
 				return;
 			}
 			if (mainCategory == 0) {
@@ -133,8 +133,8 @@ $(document).ready(function () {
 				return;
 			}
 			if (isNaN(price) || price < 5000) {
-				$("input[name=sPrice]").next().next().html("※올바른 값으로 입력해주세요.").css({'color': 'red'});
-				$("input[name=sPrice]").focus();
+				$("input[name=servicePrice]").next().next().html("※올바른 값으로 입력해주세요.").css({'color': 'red'});
+				$("input[name=servicePrice]").focus();
 				return;
 			}
 			if (isNaN(day)) {

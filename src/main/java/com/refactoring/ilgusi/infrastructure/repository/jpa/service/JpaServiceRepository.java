@@ -28,6 +28,7 @@ public class JpaServiceRepository implements ServiceRepository {
         return jpaRepository.save(s);
     }
 
+
     @Override
     public Optional<List<Service>> selectServiceList(int mNo, String order) {
         System.out.println("order : "+order);
@@ -39,20 +40,12 @@ public class JpaServiceRepository implements ServiceRepository {
         return null;
     }
 
-    @Override
-    public List<ReviewDto> selectReviewList(String mId, int start, int end) {
-        return null;
-    }
 
     @Override
     public int selectServiceNo() {
         return 0;
     }
 
-    @Override
-    public int insertServiceFile(int serviceNo, String filename, String filepath) {
-        return 0;
-    }
 
     @Override
     public List<Service> serviceList(String mId) {
@@ -64,10 +57,6 @@ public class JpaServiceRepository implements ServiceRepository {
         return 0;
     }
 
-    @Override
-    public int serviceReviewInsert(ServiceReview sr) {
-        return 0;
-    }
 
     @Override
     public int serviceReviewSuccess(int tNo) {
@@ -79,15 +68,6 @@ public class JpaServiceRepository implements ServiceRepository {
         return null;
     }
 
-    @Override
-    public int serviceReviewUpdate(ServiceReview review) {
-        return 0;
-    }
-
-    @Override
-    public int serviceReviewDelete(int rNo) {
-        return 0;
-    }
 
     @Override
     public int serviceTradeStatusUpdate(int tNo) {
@@ -114,15 +94,6 @@ public class JpaServiceRepository implements ServiceRepository {
         return null;
     }
 
-    @Override
-    public ArrayList<ServiceReview> serviceViewReviewList(int sNo, int start, int end) {
-        return null;
-    }
-
-    @Override
-    public int totalReviewCount(int sNo) {
-        return 0;
-    }
 
     @Override
     public Member selectMemberName(String memberId) {
@@ -134,15 +105,6 @@ public class JpaServiceRepository implements ServiceRepository {
         return null;
     }
 
-    @Override
-    public ArrayList<ServiceFile> fileList(int sNo) {
-        return null;
-    }
-
-    @Override
-    public List<ServiceReview> reviewListSize(String mId) {
-        return null;
-    }
 
     @Override
     public float sRateAVG(String mId) {

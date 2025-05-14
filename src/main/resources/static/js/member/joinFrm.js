@@ -109,7 +109,7 @@ $(document).ready(function () {
             $("#phone_validation").hide();
             $(".phone-form input").removeAttr("style");
             let phoneStr = $("#phone1").val() + "-" + $("#phone2").val() + "-" + $("#phone3").val();
-            $("[name=mPhone]").val(phoneStr);
+            $("[name=phoneNo]").val(phoneStr);
         } else {
             $("#phone_validation").show();
             $(".phone-form input").css("border-color", "red");

@@ -14,7 +14,8 @@ import java.time.format.DateTimeFormatter;
 @Builder
 public class Notice extends BaseEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notice_seq_gen")
+	@SequenceGenerator(name = "notice_seq_gen", sequenceName = "NOTICE_SEQ", allocationSize = 1)
 	private Integer noticeNo;
 	@Column(nullable=false)
 	private String noticeTitle;

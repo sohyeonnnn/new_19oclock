@@ -23,7 +23,7 @@
 	     <div class="board-wrap">
 	        <div class="board-box">
 	            <span>찜한 서비스</span>
-	            <input type="text" style="display:none" value="{{loginMember.MNo}}" id="mNo">
+	            <input type="text" style="display:none" value="{{loginMember.memberNo}}" id="mNo">
 	            <input type="text" style="display:none" value="{{order}}" id="order">
 	            <select name="array" class="array" id="array-select">
 	                <option value="all">전체</option>
@@ -41,24 +41,24 @@
                 {{#list}}
                     <div>
                         <div>
-                            <a href="/serviceView?sNo={{SNo}}&reqPage=1&mNo={{loginMember.MNo}}">
+                            <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1&memberNo={{loginMember.memberNo}}">
                             <div class="title-img">
                                 <div class="back-img">
-                                    <img src="/upload/service/{{SImg}}" width="225x" height="133px">
+                                    <img src="/upload/service/{{serviceImg}}" width="225x" height="133px">
                                 </div>
                             </div>
                             </a>
                             <div class="title-img heart-btn">
                                 <img id="service1" src="/img/icon/heart_orange.png" width="31px" height="31px" onclick="heart_click(this)" value="fill">
-                                <input type="text" style="display:none" value="{{SNo}}">
-                                <input type="text" style="display:none" value="{{loginMember.MNo}}">
+                                <input type="text" style="display:none" value="{{serviceNo}}">
+                                <input type="text" style="display:none" value="{{loginMember.memberNo}}">
                             </div>
                         </div>
                         <div class="empty"></div>
                         <div class="title">{{brand}}</div>
-                        <a href="/serviceView?sNo={{SNo}}&reqPage=1&mNo={{loginMember.MNo}}" id="serviceContent">
-                        <div class="content">{{STitle}}</div>
-                        <div class="price">{{SPriceTxt}}</div>
+                        <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1&mNo={{loginMember.memberNo}}" id="serviceContent">
+                        <div class="content">{{serviceTitle}}</div>
+                        <div class="price">{{servicePrice}}</div>
                         <div class="rate">
                             <span>평점 </span><span>{{SRate}}</span><span>.0점</span><span>★★★★★</span>
                         </div>

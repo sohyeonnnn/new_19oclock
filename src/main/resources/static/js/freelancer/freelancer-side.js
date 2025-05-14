@@ -53,12 +53,12 @@ function isPossibleMakeService() {
         type: "post",
         url: "/isPossibleMakeService",
         data: {
-            mNo: mNo
+            memberNo: mNo
         },
         dataType: "json",
         success: function (response) {
             if (response.data < 5) {
-                location.href = "/serviceJoinFrm";//?MNo="+mNo;
+                location.href = "/serviceJoinFrm";
             } else {
                 alert('서비스를 생성할 수 있는 개수를 초과했습니다. \n현재 서비스 개수 : 5개');
             }

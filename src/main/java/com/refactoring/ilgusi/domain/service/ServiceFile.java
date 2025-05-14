@@ -12,10 +12,11 @@ import javax.persistence.*;
 @Builder
 public class ServiceFile {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int fileNo;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_file_seq_gen")
+	@SequenceGenerator(name = "service_file_seq_gen", sequenceName = "SERVICE_FILE_SEQ", allocationSize = 1)
+	private Integer fileNo;
 	@Column
-	private int sNo;
+	private int serviceNo;
 	@Column
 	private String filename;
 	@Column
@@ -25,7 +26,7 @@ public class ServiceFile {
 	public String toString() {
 		return "ServiceFile{" +
 				"fileNo=" + fileNo +
-				", sNo=" + sNo +
+				", serviceNo=" + serviceNo +
 				", filename='" + filename + '\'' +
 				", filepath='" + filepath + '\'' +
 				'}';

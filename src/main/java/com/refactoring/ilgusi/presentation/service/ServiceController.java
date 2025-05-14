@@ -1,9 +1,11 @@
 package com.refactoring.ilgusi.presentation.service;
 
+import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.service.Service;
+import com.refactoring.ilgusi.domain.service.ServiceFile;
 import com.refactoring.ilgusi.domain.service.dto.ServiceDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceViewDto;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -48,41 +51,60 @@ public class ServiceController {
         return "freelancer/servicejoin";
     }
 
-    @PostMapping("/serviceJoin")
-    public String serviceJoin(ServiceInsertDto join, Model model, MultipartFile[] ssImg, HttpServletRequest request) {
-       /* String root = request.getSession().getServletContext().getRealPath("/");
-        String path = root + "/upload/service/";
-        ArrayList<ServiceFile> fileList = new ArrayList<ServiceFile>();
+    @PostMapping("/insertService")
+    public String serviceJoin(@ModelAttribute ServiceInsertDto dto,
+                              @RequestParam("ssImg") MultipartFile[] files,
+                              HttpServletRequest request,
+                              Model model) {
 
-        for (MultipartFile file : ssImg) { // 파일이 여러개라 반복문으로 처리
-            String filename = file.getOriginalFilename();
-            System.out.println("파일 이름" + filename);
-            String filepath = CommonUtil.fileRename(path, filename);
-            try {
-                byte[] bytes = file.getBytes();
-                File upFile = new File(path + filepath);
-                FileOutputStream fos = new FileOutputStream(upFile);
-                BufferedOutputStream bos = new BufferedOutputStream(fos);
-                bos.write(bytes);
-                bos.close();
+        String uploadDir = request.getServletContext().getRealPath("/upload/service/");
 
-                ServiceFile f = new ServiceFile();
-                f.setFilename(filename);
-                f.setFilepath(filepath);
-                fileList.add(f); // 데이터베이스 처리를 위해 객체화 해서 list에 추가
-            } catch (IOException e) {
-                e.printStackTrace();
+        try {
+            List<ServiceFile> fileList = handleFileUpload(files, uploadDir);
+
+            if (fileList.isEmpty()) {
+                throw new IllegalStateException("업로드된 파일이 없습니다.");
             }
+
+            dto.setFileList(fileList);
+            dto.setServiceImg(fileList.get(0).getFilepath());
+
+            serviceService.insertService(dto);
+
+            model.addAttribute("msg", "서비스를 등록하였습니다.");
+            model.addAttribute("loc", "/freelancerServiceList?memberNo=" + dto.getMemberNo() + "&order=rejected");
+        } catch (Exception e) {
+            model.addAttribute("msg", "서비스 등록 중 오류가 발생했습니다: " + e.getMessage());
+            model.addAttribute("loc", "/");
         }
-        join.setFileList(fileList);
-        join.setSImg(fileList.get(0).getFilepath());*/
 
-        serviceService.insertService(join);
+        return "common/msg";
+    }
 
-        String msg = "서비스를 등록하였습니다";
-        String loc = "/freelancerServiceList?order=rejected";
+    private List<ServiceFile> handleFileUpload(MultipartFile[] files, String uploadDir) throws IOException {
+        List<ServiceFile> fileList = new ArrayList<>();
 
-        return MsgRedirectHelper.success(model,msg,loc);
+        File dir = new File(uploadDir);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        for (MultipartFile file : files) {
+            if (file.isEmpty()) continue;
+
+            String originalFilename = file.getOriginalFilename();
+            String renamedFilename = CommonUtil.fileRename(uploadDir, originalFilename);
+
+            File dest = new File(uploadDir, renamedFilename);
+            file.transferTo(dest);  // Spring 제공 간편 메서드
+
+            ServiceFile serviceFile = new ServiceFile();
+            serviceFile.setFilename(originalFilename);
+            serviceFile.setFilepath(renamedFilename);
+            fileList.add(serviceFile);
+        }
+
+        return fileList;
     }
 
     @GetMapping("/freelancerServiceList")
@@ -90,6 +112,7 @@ public class ServiceController {
         List<Service> list = serviceService.selectOrderedServiceList(m.getMemberNo(), order);
 
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println(" /freelancerServiceList - order : "+order);
         for (Service service : list ){
             System.out.println(service.toString());
         }
@@ -115,9 +138,9 @@ public class ServiceController {
     }
 
 
-    /*@RequestMapping("/introduceFrm.do")
+    @RequestMapping("/introduceFrm")
     public String introduceFrm(String mId, int reqPage, Model model) {
-        Join j = service.selectOneMember(mId);
+        /*Join j = service.selectOneMember(mId);
         // 승인된 서비스만 가져오기
         // 전체 서비스리스트
         List<Service> serviceList = service.serviceList(mId);
@@ -146,9 +169,9 @@ public class ServiceController {
         // System.out.println(list);
         // System.out.println("리뷰리스트" + join.getReviewList());
         model.addAttribute("pageNavi", join.getPageNavi());
-        model.addAttribute("j", j);
+        model.addAttribute("j", j);*/
         return "freelancer/introduce";
-    }*/
+    }
 
     /*// (영재) 리뷰갯수 구하기
     @RequestMapping("/reviewListSize.do")

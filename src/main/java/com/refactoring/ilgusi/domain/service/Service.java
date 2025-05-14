@@ -12,22 +12,23 @@ import javax.persistence.*;
 @Builder
 public class Service {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int sNo;			//서비스 번호
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_seq_gen")
+	@SequenceGenerator(name = "service_seq_gen", sequenceName = "SERVICE_SEQ", allocationSize = 1)
+	private Integer serviceNo;			//서비스 번호
 	@Column
-	private int mNo;			//회원 아이디(작성자
+	private int memberNo;			//회원 아이디(작성자
 	@Column
-	private String sTitle;		//서비스 제목
+	private String serviceTitle;		//서비스 제목
 	@Column
-	private int sPrice;			//서비스 가격
+	private int servicePrice;			//서비스 가격
 	@Column
-	private String sContent;	//서비스 내용
+	private String serviceContent;	//서비스 내용
 	@Column
-	private String sArea;		//서비스 지역
+	private String serviceArea;		//서비스 지역
 	@Column
-	private String sImg;		//섬네일 이미지
+	private String serviceImg;		//섬네일 이미지
 	@Column
-	private float sRate;			//서비스 평점
+	private float serviceRate;			//서비스 평점
 	@Column
 	private int mainCategory;	//메인카테고리 번호
 	@Column
@@ -42,46 +43,26 @@ public class Service {
 	private String deleteStatus;	//삭제 여부
 	@Column
 	private String adminApproval;	//승인 여부
-	
-	//(문정) 추가
-	@Column
-	private String mainCategoryName;
-	@Column
-	private String subCategoryName;
-	@Column
-	private String sPriceTxt;    //천원단위로 ,찍은 텍스트 저장
-	
-	//(다솜)추가
-	@Column
-	private String brandName;
-	
-	//줄바꿈
-	public String getSContentBr() {
-		return sContent.replaceAll("\r\n", "<br>");
-	}
+
 
 	@Override
 	public String toString() {
 		return "Service{" +
-				"sNo=" + sNo +
-				", mNo=" + mNo +
-				", sTitle='" + sTitle + '\'' +
-				", sPrice=" + sPrice +
-				", sContent='" + sContent + '\'' +
-				", sArea='" + sArea + '\'' +
-				", sImg='" + sImg + '\'' +
-				", sRate=" + sRate +
+				"serviceNo=" + serviceNo +
+				", memberNo=" + memberNo +
+				", serviceTitle='" + serviceTitle + '\'' +
+				", servicePrice=" + servicePrice +
+				", serviceContent='" + serviceContent + '\'' +
+				", serviceArea='" + serviceArea + '\'' +
+				", serviceImg='" + serviceImg + '\'' +
+				", serviceRate=" + serviceRate +
 				", mainCategory=" + mainCategory +
 				", subCategory=" + subCategory +
 				", workingDate=" + workingDate +
 				", workingCount=" + workingCount +
 				", writeDate='" + writeDate + '\'' +
-				", deleteStatus=" + deleteStatus +
-				", adminApproval=" + adminApproval +
-				", mainCategoryName='" + mainCategoryName + '\'' +
-				", subCategoryName='" + subCategoryName + '\'' +
-				", sPriceTxt='" + sPriceTxt + '\'' +
-				", brandName='" + brandName + '\'' +
+				", deleteStatus='" + deleteStatus + '\'' +
+				", adminApproval='" + adminApproval + '\'' +
 				'}';
 	}
 }

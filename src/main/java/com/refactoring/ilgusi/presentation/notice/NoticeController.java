@@ -60,7 +60,7 @@ public class NoticeController {
         // 파일 업로드
         String[] uploadResult = fileUpload(file, uploadDir);
 
-        noticeService.insertNotice(new NoticeInsertDto().builder()
+        noticeService.insertNotice(NoticeInsertDto.builder()
                 .noticeTitle(notice.getNoticeTitle())
                 .noticeContent(notice.getNoticeContent())
                 .filename(uploadResult[0])
@@ -73,6 +73,7 @@ public class NoticeController {
 
         return MsgRedirectHelper.success(model,msg,loc);
     }
+
 
     private String[] fileUpload(MultipartFile file, String uploadDir) {
         if (file == null || file.isEmpty()) {
@@ -98,6 +99,7 @@ public class NoticeController {
             return new String[]{null, null};
         }
     }
+
 
 
     //공지사항 내용 보기
