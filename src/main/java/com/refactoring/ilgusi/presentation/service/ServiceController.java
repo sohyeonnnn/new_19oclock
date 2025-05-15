@@ -1,14 +1,12 @@
 package com.refactoring.ilgusi.presentation.service;
 
 import com.refactoring.ilgusi.common.CommonUtil;
-import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.service.Service;
+import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.ServiceFile;
-import com.refactoring.ilgusi.domain.service.dto.ServiceDto;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
-import com.refactoring.ilgusi.domain.service.dto.ServiceViewDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -68,11 +60,10 @@ public class ServiceController {
 
             dto.setFileList(fileList);
             dto.setServiceImg(fileList.get(0).getFilepath());
-
             serviceService.insertService(dto);
 
             model.addAttribute("msg", "서비스를 등록하였습니다.");
-            model.addAttribute("loc", "/freelancerServiceList?memberNo=" + dto.getMemberNo() + "&order=rejected");
+            model.addAttribute("loc", "/freelancerServiceList?order=rejected");
         } catch (Exception e) {
             model.addAttribute("msg", "서비스 등록 중 오류가 발생했습니다: " + e.getMessage());
             model.addAttribute("loc", "/");
@@ -96,7 +87,7 @@ public class ServiceController {
             String renamedFilename = CommonUtil.fileRename(uploadDir, originalFilename);
 
             File dest = new File(uploadDir, renamedFilename);
-            file.transferTo(dest);  // Spring 제공 간편 메서드
+            file.transferTo(dest);
 
             ServiceFile serviceFile = new ServiceFile();
             serviceFile.setFilename(originalFilename);
@@ -109,14 +100,11 @@ public class ServiceController {
 
     @GetMapping("/freelancerServiceList")
     public String freelancerServiceList(@ModelAttribute("loginMember") Member m, Model model, String order) {
-        List<Service> list = serviceService.selectOrderedServiceList(m.getMemberNo(), order);
+        List<ServiceInfoDto> list = serviceService.selectOrderedServiceList(m.getMemberNo(), order);
 
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println(" /freelancerServiceList - order : "+order);
-        for (Service service : list ){
-            System.out.println(service.toString());
+        for (ServiceInfoDto serviceInfoDto : list ){
+            System.out.println(serviceInfoDto.toString());
         }
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
         /*DecimalFormat formatter = new DecimalFormat("###,###");
         for (int i = 0; i < list.size(); i++) {
@@ -124,16 +112,7 @@ public class ServiceController {
         }*/
 
         model.addAttribute("list", list);
-        //model.addAttribute("service", service);
-
-        /*
-
-        System.out.println("test" + j.getServiceList().size());
-        if (list.size() != 0) {
-            System.out.println("메인카테고리이름:" + list.get(0).getMainCategoryName());
-        }*/
-
-        //model.addAttribute("order", view.getOrder());
+        model.addAttribute("order", order);
         return "freelancer/freelancerServiceList";
     }
 

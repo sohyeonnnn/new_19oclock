@@ -23,6 +23,7 @@
         {{> freelancer/freelancer-side}}
 
 		<input type="hidden" value="{{loginMember.memberId}}" class="memberId">
+        <input type="hidden" value="{{order}}" id="order">
 		<div class="board-wrap">
 			<div class="board-box">
 				<span>서비스 내역</span>
@@ -41,7 +42,7 @@
                                 <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1">
                                 <div class="title-img">
                                     <div class="back-img">
-                                        <img src="{{serviceImg}}" width="225px" height="133px">
+                                        <img src="/upload/service/{{serviceImg}}" width="225px" height="133px">
                                     </div>
                                 </div>
                                 </a>
@@ -52,7 +53,7 @@
                             </div>
                             <div class="title">
                                 <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1">
-                                {{STitle}}
+                                {{serviceTitle}}
                                 </a>
                             </div>
                             <a href="#">

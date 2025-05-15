@@ -3,58 +3,81 @@ package com.refactoring.ilgusi.domain.service;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Builder
-public class Service {
+@Table(name = "service")
+public class ServiceItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_seq_gen")
 	@SequenceGenerator(name = "service_seq_gen", sequenceName = "SERVICE_SEQ", allocationSize = 1)
-	private Integer serviceNo;			//서비스 번호
-	@Column
-	private int memberNo;			//회원 아이디(작성자
-	@Column
-	private String serviceTitle;		//서비스 제목
-	@Column
-	private int servicePrice;			//서비스 가격
-	@Column
-	private String serviceContent;	//서비스 내용
-	@Column
-	private String serviceArea;		//서비스 지역
-	@Column
-	private String serviceImg;		//섬네일 이미지
-	@Column
-	private float serviceRate;			//서비스 평점
-	@Column
-	private int mainCategory;	//메인카테고리 번호
-	@Column
-	private int subCategory;	//서브카테고리 번호
-	@Column
-	private int workingDate;	//예상 작업일
-	@Column
-	private int workingCount;	//진행한 작업 수
-	@Column
-	private String writeDate;	//작성 날짜
-	@Column
-	private String deleteStatus;	//삭제 여부
-	@Column
-	private String adminApproval;	//승인 여부
+	private Integer serviceNo;
 
+	@Column
+	private int memberNo;
+
+	@Column
+	private String serviceTitle;
+
+	@Column
+	private int servicePrice;
+
+	@Column
+	private String serviceContent;
+
+	@Column
+	private String serviceArea;
+
+	@Column
+	private float serviceRate;
+
+	@Column
+	private int mainCategory;
+
+	@Column
+	private int subCategory;
+
+	@Column
+	private int workingDate;
+
+	@Column
+	private int workingCount;
+
+	@Column
+	private String writeDate;
+
+	@Column
+	private String deleteStatus;
+
+	@Column
+	private String adminApproval;
+
+	@Column
+	private String serviceImg;
+
+	@Builder.Default
+	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ServiceFile> fileList = new ArrayList<>();
+
+	public void addFile(ServiceFile file) {
+		fileList.add(file);
+		file.setService(this);
+	}
 
 	@Override
 	public String toString() {
-		return "Service{" +
+		return "ServiceItem{" +
 				"serviceNo=" + serviceNo +
 				", memberNo=" + memberNo +
 				", serviceTitle='" + serviceTitle + '\'' +
 				", servicePrice=" + servicePrice +
 				", serviceContent='" + serviceContent + '\'' +
 				", serviceArea='" + serviceArea + '\'' +
-				", serviceImg='" + serviceImg + '\'' +
 				", serviceRate=" + serviceRate +
 				", mainCategory=" + mainCategory +
 				", subCategory=" + subCategory +
@@ -63,6 +86,8 @@ public class Service {
 				", writeDate='" + writeDate + '\'' +
 				", deleteStatus='" + deleteStatus + '\'' +
 				", adminApproval='" + adminApproval + '\'' +
+				", serviceImg='" + serviceImg + '\'' +
+				", fileList=" + fileList +
 				'}';
 	}
 }

@@ -1,6 +1,6 @@
 package com.refactoring.ilgusi.domain.service.dto;
 
-import com.refactoring.ilgusi.domain.service.Service;
+import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.ServiceFile;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,7 +33,7 @@ public class ServiceDto {
 	private String enrollDate;
 	private String brandName;  //브랜드명
 	private String contactTime;//연락가능시간
-	private List<Service> serviceList;		 //list로 해준것은 introduce.jsp에서 <for each list로 받아야한다.
+	private List<ServiceItem> serviceItemList;		 //list로 해준것은 introduce.jsp에서 <for each list로 받아야한다.
 	private List<ReviewDto> reviewList;  //list로 해준것은 introduce.jsp에서 <for each list로 받아야한다.
 
 	private String pageNavi;				//페이징처리를위한 것
@@ -45,8 +45,8 @@ public class ServiceDto {
 		return introduce.replaceAll("\r\n", "<br>");
 	}
 
-	public Service toEntity() {
-		return Service.builder()
+	public ServiceItem toEntity() {
+		return ServiceItem.builder()
 				.memberNo(memberNo)
 				.mainCategory(mainCategory)
 				.subCategory(subCategory)
@@ -55,7 +55,6 @@ public class ServiceDto {
 				.serviceArea(serviceArea)
 				.servicePrice(servicePrice)
 				.workingDate(workingDate)
-				.serviceImg(serviceImg)
 				.serviceRate(serviceRate)
 				.adminApproval(adminApproval)
 				.deleteStatus(deleteStatus)

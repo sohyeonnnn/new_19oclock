@@ -1,5 +1,6 @@
 package com.refactoring.ilgusi.domain.service.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,10 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class ServiceInfoDto {
-
 	private int serviceNo; // 서비스 번호
-	private String mId; // 회원 아이디(작성자
 	private String serviceTitle; // 서비스 제목
 	private int servicePrice; // 서비스 가격
 	private String serviceContent; // 서비스 내용
@@ -25,9 +25,11 @@ public class ServiceInfoDto {
 	private String deleteStatus; // 삭제 여부
 	private String adminApproval; // 승인 여부
 
+	private String memberId;
 	private String brandName; // 브랜드이름
-	private String mCatName; //메인카테고리이름
-	private String sCatName; //서브카테고리이름
+	private String mainCategoryName; //메인카테고리이름
+	private String subCategoryName; //서브카테고리이름
+
 
 
 }

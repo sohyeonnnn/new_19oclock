@@ -11,24 +11,26 @@ import javax.persistence.*;
 @Entity
 @Builder
 public class ServiceFile {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_file_seq_gen")
-	@SequenceGenerator(name = "service_file_seq_gen", sequenceName = "SERVICE_FILE_SEQ", allocationSize = 1)
-	private Integer fileNo;
-	@Column
-	private int serviceNo;
-	@Column
-	private String filename;
-	@Column
-	private String filepath;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_file_seq_gen")
+    @SequenceGenerator(name = "service_file_seq_gen", sequenceName = "SERVICE_FILE_SEQ", allocationSize = 1)
+    private Integer fileNo;
 
-	@Override
-	public String toString() {
-		return "ServiceFile{" +
-				"fileNo=" + fileNo +
-				", serviceNo=" + serviceNo +
-				", filename='" + filename + '\'' +
-				", filepath='" + filepath + '\'' +
-				'}';
-	}
+    @Column
+    private String filename;
+    @Column
+    private String filepath;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "service_no")
+    private ServiceItem service;
+
+    @Override
+    public String toString() {
+        return "ServiceFile{" +
+                "fileNo=" + fileNo +
+                ", filename='" + filename + '\'' +
+                ", filepath='" + filepath + '\'' +
+                '}';
+    }
 }

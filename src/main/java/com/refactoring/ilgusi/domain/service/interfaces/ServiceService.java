@@ -1,7 +1,8 @@
 package com.refactoring.ilgusi.domain.service.interfaces;
 
 
-import com.refactoring.ilgusi.domain.service.Service;
+import com.refactoring.ilgusi.domain.service.ServiceItem;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
 
 import java.util.List;
@@ -9,5 +10,5 @@ import java.util.List;
 public interface ServiceService {
     Integer selectFreelancerServiceCount(int memberNo);
     void insertService(ServiceInsertDto service);
-    List<Service> selectOrderedServiceList(int mNo, String order);
+    List<ServiceInfoDto> selectOrderedServiceList(int memberNo, String order);
 }

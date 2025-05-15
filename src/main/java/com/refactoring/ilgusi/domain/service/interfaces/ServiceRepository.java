@@ -2,29 +2,25 @@ package com.refactoring.ilgusi.domain.service.interfaces;
 
 import com.refactoring.ilgusi.domain.category.Category;
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.service.Service;
-import com.refactoring.ilgusi.domain.service.ServiceFile;
+import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.ServicePay;
 import com.refactoring.ilgusi.domain.service.ServiceReview;
-import com.refactoring.ilgusi.domain.service.dto.ReviewDto;
-import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
-import org.hibernate.annotations.Sort;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 public interface ServiceRepository {
 
-    Service insertService(Service service);
+    void insertService(ServiceItem serviceItem);
 
-    Optional<List<Service>> selectServiceList(int memberNo, String order);
+    List<ServiceInfoDto> selectServiceList(int memberNo, String order);
 
 
     int selectServiceNo();
 
-    List<Service> serviceList(String mId);
+    List<ServiceItem> serviceList(String mId);
 
     int totalCount(String mId) ;
 
@@ -45,20 +41,20 @@ public interface ServiceRepository {
     ArrayList<Category> categoryList(int cNo) ;
 
     // 서비스 리스트 페이징
-    ArrayList<Service> selectServiceList(HashMap<String, Object> map);
+    ArrayList<ServiceItem> selectServiceList(HashMap<String, Object> map);
 
     // 서비스 토탈 카운트
     int serviceTotalCount(HashMap<String, Object> map) ;
 
     // 서비스 상세보기
-    Service selectServiceView(int sNo);
+    ServiceItem selectServiceView(int sNo);
 
 
     // 전문가 정보 불러오기
     Member selectMemberName(String memberId);
 
     // 다른 서비스 불러오기
-    ArrayList<Service> userService(String memberId) ;
+    ArrayList<ServiceItem> userService(String memberId) ;
 
 
 
@@ -71,7 +67,7 @@ public interface ServiceRepository {
     int updateTradeStatus(int tNo);
 
     // search service
-    List<Service> searchService(int begin, int end, String keyword) ;
+    List<ServiceItem> searchService(int begin, int end, String keyword) ;
 
     // search serviceCount
     int selectServiceCount(String keyword);
@@ -89,5 +85,5 @@ public interface ServiceRepository {
 
     void setDeleteStatusY(int memberNo);
 
-    void save(Service service);
+    void save(ServiceItem serviceItem);
 }

@@ -2,19 +2,15 @@ package com.refactoring.ilgusi.infrastructure.repository.jpa.service;
 
 import com.refactoring.ilgusi.domain.category.Category;
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.service.Service;
-import com.refactoring.ilgusi.domain.service.ServiceFile;
+import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.ServicePay;
 import com.refactoring.ilgusi.domain.service.ServiceReview;
-import com.refactoring.ilgusi.domain.service.dto.ReviewDto;
-import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
-import com.refactoring.ilgusi.exception.CustomException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 public class JpaServiceRepository implements ServiceRepository {
     private final SpringDataServiceRepository jpaRepository;
@@ -24,18 +20,17 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public Service insertService(Service s) {
-        return jpaRepository.save(s);
+    public void insertService(ServiceItem serviceItem) {
+        jpaRepository.save(serviceItem);
     }
 
 
     @Override
-    public Optional<List<Service>> selectServiceList(int mNo, String order) {
-        System.out.println("order : "+order);
+    public List<ServiceInfoDto> selectServiceList(int memberNo, String order) {
         if(order.equals("approved")){
-            return jpaRepository.selectApprovedServiceList(mNo);
+            return jpaRepository.selectApprovedServiceList(memberNo);
         }else if(order.equals("rejected")){
-            return jpaRepository.selectRejectedServiceList(mNo);
+            return jpaRepository.selectRejectedServiceList(memberNo);
         }
         return null;
     }
@@ -48,7 +43,7 @@ public class JpaServiceRepository implements ServiceRepository {
 
 
     @Override
-    public List<Service> serviceList(String mId) {
+    public List<ServiceItem> serviceList(String mId) {
         return null;
     }
 
@@ -80,7 +75,7 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public ArrayList<Service> selectServiceList(HashMap<String, Object> map) {
+    public ArrayList<ServiceItem> selectServiceList(HashMap<String, Object> map) {
         return null;
     }
 
@@ -90,7 +85,7 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public Service selectServiceView(int sNo) {
+    public ServiceItem selectServiceView(int sNo) {
         return null;
     }
 
@@ -101,7 +96,7 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public ArrayList<Service> userService(String memberId) {
+    public ArrayList<ServiceItem> userService(String memberId) {
         return null;
     }
 
@@ -122,7 +117,7 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public List<Service> searchService(int begin, int end, String keyword) {
+    public List<ServiceItem> searchService(int begin, int end, String keyword) {
         return null;
     }
 
@@ -152,7 +147,7 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public void save(Service s) {
+    public void save(ServiceItem s) {
         jpaRepository.save(s);
     }
 

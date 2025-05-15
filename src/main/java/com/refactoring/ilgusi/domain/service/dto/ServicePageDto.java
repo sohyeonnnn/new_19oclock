@@ -1,13 +1,13 @@
 package com.refactoring.ilgusi.domain.service.dto;
 
-import com.refactoring.ilgusi.domain.service.Service;
+import com.refactoring.ilgusi.domain.service.ServiceItem;
 import lombok.Data;
 
 import java.util.ArrayList;
 @Data
 public class ServicePageDto {
 	
-	private ArrayList<Service> list;
+	private ArrayList<ServiceItem> list;
 	private String pageNavi;
 	
 	private int end;
@@ -20,8 +20,8 @@ public class ServicePageDto {
 	
 	
 	
-	public ServicePageDto(ArrayList<Service> list, String pageNavi, int end, int start, int reqPage, int totalCount,
-						  String order, String keyword) {
+	public ServicePageDto(ArrayList<ServiceItem> list, String pageNavi, int end, int start, int reqPage, int totalCount,
+                          String order, String keyword) {
 		super();
 		this.list = list;
 		this.pageNavi = pageNavi;
