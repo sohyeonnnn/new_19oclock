@@ -1,6 +1,7 @@
 package com.refactoring.ilgusi.presentation.service;
 
 import com.refactoring.ilgusi.common.CommonUtil;
+import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.service.ServiceItem;
@@ -26,12 +27,6 @@ import java.util.List;
 public class ServiceController {
     private final ServiceService serviceService;
 
-    @GetMapping("/serviceList")
-    public String serviceList(){
-        //serviceRepository.searchService()
-        return "";
-    }
-
     @ResponseBody
     @PostMapping("/isPossibleMakeService")
     public ResponseEntity<?> isPossibleMakeService(@RequestParam("memberNo") int memberNo) {
@@ -49,7 +44,9 @@ public class ServiceController {
                               HttpServletRequest request,
                               Model model) {
 
-        String uploadDir = request.getServletContext().getRealPath("/upload/service/");
+        String msg = null;
+        String loc = "/";
+                String uploadDir = request.getServletContext().getRealPath("/upload/service/");
 
         try {
             List<ServiceFile> fileList = handleFileUpload(files, uploadDir);
@@ -62,14 +59,13 @@ public class ServiceController {
             dto.setServiceImg(fileList.get(0).getFilepath());
             serviceService.insertService(dto);
 
-            model.addAttribute("msg", "서비스를 등록하였습니다.");
-            model.addAttribute("loc", "/freelancerServiceList?order=rejected");
+            msg =  "서비스를 등록하였습니다.";
+            loc =  "/freelancerServiceList?order=rejected";
         } catch (Exception e) {
-            model.addAttribute("msg", "서비스 등록 중 오류가 발생했습니다: " + e.getMessage());
-            model.addAttribute("loc", "/");
+            msg = "서비스 등록 중 오류가 발생했습니다: " + e.getMessage();
         }
 
-        return "common/msg";
+        return MsgRedirectHelper.success(model,msg,loc);
     }
 
     private List<ServiceFile> handleFileUpload(MultipartFile[] files, String uploadDir) throws IOException {
@@ -102,10 +98,6 @@ public class ServiceController {
     public String freelancerServiceList(@ModelAttribute("loginMember") Member m, Model model, String order) {
         List<ServiceInfoDto> list = serviceService.selectOrderedServiceList(m.getMemberNo(), order);
 
-        for (ServiceInfoDto serviceInfoDto : list ){
-            System.out.println(serviceInfoDto.toString());
-        }
-
         /*DecimalFormat formatter = new DecimalFormat("###,###");
         for (int i = 0; i < list.size(); i++) {
             list.get(i).setSPriceTxt(formatter.format(list.get(i).getSPrice()));
@@ -116,40 +108,21 @@ public class ServiceController {
         return "freelancer/freelancerServiceList";
     }
 
+    // 프리랜서 마이페이지 - 서비스 삭제하기
+    @RequestMapping("/delService")
+    public String deleteService(int serviceNo, Model model, String mId) {
+        serviceService.deleteService(serviceNo);
 
-    @RequestMapping("/introduceFrm")
-    public String introduceFrm(String mId, int reqPage, Model model) {
-        /*Join j = service.selectOneMember(mId);
-        // 승인된 서비스만 가져오기
-        // 전체 서비스리스트
-        List<Service> serviceList = service.serviceList(mId);
-        // 승인된 서비스 리스트
-        List<Service> approvedList = new ArrayList<Service>();
-        for (int i = 0; i < serviceList.size(); i++) {
-            char approval = serviceList.get(i).getAdminApproval();
-            char deleted = serviceList.get(i).getDeleteStatus();
+        String msg =  "서비스가 삭제되었습니다.";
+        String loc =  "/freelancerServiceList?order=approved";
 
-            if (approval == 'y' && deleted == 'n') {
-                approvedList.add(serviceList.get(i));
-            }
-        }
-        j.setServiceList(approvedList);
-        // 후기리스트
+        return MsgRedirectHelper.success(model,msg,loc);
+    }
 
-        Join join = new Join();
-        if (service.selectReviewList(mId, reqPage) != null) {
-            join = service.selectReviewList(mId, reqPage);
-            j.setReviewList(join.getReviewList());
-        }
-
-        float avg = service.sRateAVG(mId);
-        model.addAttribute("avg", avg);
-
-        // System.out.println(list);
-        // System.out.println("리뷰리스트" + join.getReviewList());
-        model.addAttribute("pageNavi", join.getPageNavi());
-        model.addAttribute("j", j);*/
-        return "freelancer/introduce";
+    @GetMapping("/serviceList")
+    public String serviceList(){
+        //serviceRepository.searchService()
+        return "";
     }
 
     /*// (영재) 리뷰갯수 구하기
@@ -161,16 +134,7 @@ public class ServiceController {
         System.out.println("list>>>>>>평점" + list);
     }*/
 
-    /*// 프리랜서 마이페이지 - 서비스 삭제하기
-    @RequestMapping("/delService.do")
-    public String deleteService(int sNo, Model model, String mId) {
-        int result = service.deleteService(sNo);
-        if (result != 0) {
-            model.addAttribute("msg", "서비스가 삭제되었습니다.");
-        }
-        model.addAttribute("loc", "/freelancerServiceList.do?mId="+mId+"&order=agree");
-        return "common/msg";
-    }
+    /*
 
     // (문정)사용자 마이페이지 - 거래후기 쓰기
     @RequestMapping("/serviceReviewWrite.do")
@@ -519,12 +483,6 @@ public class ServiceController {
         }
         return "/service/serviceAllList";
     }
-
-    @ResponseBody
-    @RequestMapping
-    public int isPossibleMakeService(String mId) {
-        int count = service.selectFreeServiceCount(mId);
-        return count;
-    }*/
+*/
 
 }

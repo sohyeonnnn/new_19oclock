@@ -139,7 +139,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     public void setDeleteStatusY(Integer memberNo) {
-        serviceRepository.setDeleteStatusY(memberNo);
+        serviceRepository.setMemberServiceDeleteStatusY(memberNo);
     }
 
     public void tradeStatus(int memberNo) {

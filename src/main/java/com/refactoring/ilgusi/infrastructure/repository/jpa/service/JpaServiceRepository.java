@@ -20,10 +20,14 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
+    public int selectFreeServiceCount(int mNo) {
+        return jpaRepository.countServiceBymNo(mNo);
+    }
+
+    @Override
     public void insertService(ServiceItem serviceItem) {
         jpaRepository.save(serviceItem);
     }
-
 
     @Override
     public List<ServiceInfoDto> selectServiceList(int memberNo, String order) {
@@ -35,6 +39,15 @@ public class JpaServiceRepository implements ServiceRepository {
         return null;
     }
 
+    @Override
+    public void setMemberServiceDeleteStatusY(int memberNo) {
+        jpaRepository.setMemberServiceDeleteStatusY(memberNo);
+    }
+
+    @Override
+    public void setServiceDeleteStatusY(int serviceNo) {
+        jpaRepository.setServiceDeleteStatusY(serviceNo);
+    }
 
     @Override
     public int selectServiceNo() {
@@ -42,16 +55,15 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
 
+
+
+
+
+
     @Override
     public List<ServiceItem> serviceList(String mId) {
         return null;
     }
-
-    @Override
-    public int totalCount(String mId) {
-        return 0;
-    }
-
 
     @Override
     public int serviceReviewSuccess(int tNo) {
@@ -136,20 +148,6 @@ public class JpaServiceRepository implements ServiceRepository {
         return 0;
     }
 
-    @Override
-    public Integer selectFreeServiceCount(int mNo) {
-        return jpaRepository.countServiceBymNo(mNo);
-    }
-
-    @Override
-    public void setDeleteStatusY(int mNo) {
-
-    }
-
-    @Override
-    public void save(ServiceItem s) {
-        jpaRepository.save(s);
-    }
 
 
 }

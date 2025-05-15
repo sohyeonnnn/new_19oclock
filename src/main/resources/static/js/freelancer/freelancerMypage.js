@@ -10,8 +10,7 @@
 
 		//소개글로 이동
 		$(".introduce-btn").click(function(){
-			var mId = $("#mId").val();
-			location.href = "/introduceFrm?mId="+mId+"&reqPage=1";
+			location.href = "/introduceFrm?reqPage=1";
 		});
 
 	});

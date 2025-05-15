@@ -64,10 +64,20 @@ public class ServiceItem {
 	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ServiceFile> fileList = new ArrayList<>();
 
+	/*@Builder.Default
+	@OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ServiceReview> reviewList = new ArrayList<>();
+*/
 	public void addFile(ServiceFile file) {
 		fileList.add(file);
 		file.setService(this);
 	}
+
+	/*public void addReview(ServiceReview review) {
+		reviewList.add(review);
+		review.setService(this);
+	}
+*/
 
 	@Override
 	public String toString() {

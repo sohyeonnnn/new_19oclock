@@ -2,6 +2,7 @@ package com.refactoring.ilgusi.infrastructure.repository.jpa.member;
 
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
+import com.refactoring.ilgusi.domain.member.dto.FreelancerIntroduceDto;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 
 import java.util.Optional;
@@ -67,8 +68,12 @@ public class JpaMemberRepository implements MemberRepository {
 
     @Override
     public Optional<Member> updateFreelancer(Member member) {
-        System.out.println(member.toString());
         jpaRepository.updateFreelancer(member.getMemberNo(), member.getBrandName(), member.getContactTime(), member.getIntroduce());
         return findByMemberNo(member.getMemberNo());
     }
+
+ /*   @Override
+    public FreelancerIntroduceDto selectFreelancerIntroduce(int memberNo) {
+        return jpaRepository.selectFreelancerIntroduce(memberNo);
+    }*/
 }

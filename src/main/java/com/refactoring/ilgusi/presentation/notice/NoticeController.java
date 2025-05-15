@@ -60,13 +60,10 @@ public class NoticeController {
         // 파일 업로드
         String[] uploadResult = fileUpload(file, uploadDir);
 
-        noticeService.insertNotice(NoticeInsertDto.builder()
-                .noticeTitle(notice.getNoticeTitle())
-                .noticeContent(notice.getNoticeContent())
-                .filename(uploadResult[0])
-                .filepath(uploadResult[1])
-                .build()
-                .toEntity());
+        notice.setFilename(uploadResult[0]);
+        notice.setFilepath(uploadResult[1]);
+
+        noticeService.insertNotice(notice);
 
         String msg = CommonEnum.NOTICE_INSERT.getVal();
         String loc = "/noticeListPage";

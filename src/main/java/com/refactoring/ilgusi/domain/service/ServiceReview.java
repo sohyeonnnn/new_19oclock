@@ -18,17 +18,18 @@ public class ServiceReview {
 	@Column
 	private int tradeNo;			//거래 번호
 	@Column
-	private int serviceNo;			//서비스 번호
-	@Column
-	private int memberNo;            //멤버번호
-	@Column
 	private String reviewContent;	//리뷰내용
 	@Column
 	private int reviewRate;			//점수
 	@Column
 	private String writeDate;	//작성날짜
-	@Column
+	@Transient
 	private int rNum;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "service_no")
+	private ServiceItem service;
+
 
 	//줄바꿈
 	public String getRContentBr() {

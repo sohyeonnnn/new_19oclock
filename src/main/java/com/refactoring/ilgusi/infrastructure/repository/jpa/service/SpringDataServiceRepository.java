@@ -14,14 +14,18 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
 
     @Modifying
     @Query("UPDATE ServiceItem s SET s.deleteStatus = 'Y', s.serviceTitle = CONCAT('(삭제)', s.serviceTitle) WHERE s.memberNo = :memberNo AND s.deleteStatus = 'N'")
-    void setDeleteStatusY(@Param("memberNo") int memberNo);
+    void setMemberServiceDeleteStatusY(@Param("memberNo") int memberNo);
+
+    @Modifying
+    @Query("UPDATE ServiceItem s SET s.deleteStatus = 'Y', s.serviceTitle = CONCAT('(삭제)', s.serviceTitle) WHERE s.serviceNo = :serviceNo AND s.deleteStatus = 'N'")
+    void setServiceDeleteStatusY(@Param("serviceNo") int serviceNo);
 
     @Query("SELECT COUNT(s) FROM ServiceItem s WHERE s.memberNo = :memberNo AND s.deleteStatus = 'N' and s.adminApproval = 'Y' ")
     Integer countServiceBymNo(@Param("memberNo") int memberNo);
 
     @Query(
             "SELECT new com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto(" +
-                    "s.serviceNo, s.serviceTitle, s.servicePrice, s.serviceContent, s.serviceArea, " +
+                    "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
                     "mem.memberId, mem.brandName, mainCat.categoryName, subCat.categoryName) " +
@@ -37,7 +41,7 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
 
     @Query(
             "SELECT new com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto(" +
-                    "s.serviceNo, s.serviceTitle, s.servicePrice, s.serviceContent, s.serviceArea, " +
+                    "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
                     "mem.memberId, mem.brandName, mainCat.categoryName, subCat.categoryName) " +

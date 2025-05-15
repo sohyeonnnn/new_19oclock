@@ -2,6 +2,7 @@ package com.refactoring.ilgusi.application.notice;
 
 import com.refactoring.ilgusi.common.CommonEnum;
 import com.refactoring.ilgusi.domain.notice.Notice;
+import com.refactoring.ilgusi.domain.notice.dto.NoticeInsertDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticePageDto;
 import com.refactoring.ilgusi.domain.notice.dto.NoticeViewDto;
 import com.refactoring.ilgusi.domain.notice.interfaces.NoticeRepository;
@@ -78,8 +79,8 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public void insertNotice(Notice notice) {
-        noticeRepository.insertNotice(notice);
+    public void insertNotice(NoticeInsertDto notice) {
+        noticeRepository.insertNotice(notice.toEntity());
     }
 
     @Override

@@ -52,5 +52,10 @@ public class ServiceServiceImpl implements ServiceService {
                 .orElseThrow(() -> new CustomException("서비스 없음", "freelancer/freelancerMypage"));
     }
 
+    @Override
+    public void deleteService(int serviceNo){
+        serviceRepository.setServiceDeleteStatusY(serviceNo);
+    }
+
 
 }

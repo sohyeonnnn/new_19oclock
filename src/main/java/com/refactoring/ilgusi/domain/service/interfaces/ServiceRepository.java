@@ -13,17 +13,16 @@ import java.util.List;
 
 public interface ServiceRepository {
 
+    int selectFreeServiceCount(int memberNo);
     void insertService(ServiceItem serviceItem);
-
     List<ServiceInfoDto> selectServiceList(int memberNo, String order);
+    void setMemberServiceDeleteStatusY(int memberNo);
+    void setServiceDeleteStatusY(int memberNo);
 
 
     int selectServiceNo();
 
     List<ServiceItem> serviceList(String mId);
-
-    int totalCount(String mId) ;
-
 
 
     // 마이페이지에서 후기 등록하면 tStatus 바꿔줌(리뷰 작성완료로 : 3)
@@ -80,10 +79,4 @@ public interface ServiceRepository {
     // 리뷰 작성하면 서비스테이블 s_rate에 평점 넣어줌
     int serviceUpdateSRate(int serviceNo);
 
-    // 프리랜서가 등록한 총 서비스 개수
-    Integer selectFreeServiceCount(int memberNo);
-
-    void setDeleteStatusY(int memberNo);
-
-    void save(ServiceItem serviceItem);
 }

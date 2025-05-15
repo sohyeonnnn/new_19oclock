@@ -35,15 +35,13 @@ $(document).ready(function () {
             $(".sumPrice:eq(0)").empty
             console.log(response["sump"]);
             $(".sumPrice:eq(0)").text(response[0].sumPrice + "원");
-            $(".free-id:eq(0)").append("<a href='/introduceFrm?mId=" + response[0].mId +
-                "&reqPage=1'>" +
+            $(".free-id:eq(0)").append("<a href='/introduceFrm?reqPage=1'>" +
                 response[0].mId + "</a>");
             for (let i = 1; i < response.length; i++) {
                 $(".rank-list:eq(0)").find(".rank-col-2:eq(" + (i-1) + ")").text(response[i]
                     .sumPrice + "원");
                 $(".rank-list:eq(0) .rank-col-3:eq(" + (i-1) + ")").append(
-                    "<a href='/introduceFrm?mId=" + response[i].mId +
-                    "&reqPage=1'>" +
+                    "<a href='/introduceFrm?reqPage=1'>" +
                     response[i].mId + "</a>");
             }
         }
@@ -61,15 +59,13 @@ $(document).ready(function () {
             $(".sumPrice:eq(1)").empty
             console.log(response["sump"]);
             $(".sumPrice:eq(1)").text(response[0].sumPrice + "원");
-            $(".free-id:eq(1)").append("<a href='/introduceFrm?mId=" + response[0].mId +
-                "&reqPage=1'>" +
+            $(".free-id:eq(1)").append("<a href='/introduceFrm?reqPage=1'>" +
                 response[0].mId + "</a>");
             for (let i = 1; i < response.length; i++) {
                 $(".rank-list:eq(1)").find(".rank-col-2:eq(" + (i-1) + ")").text(response[i]
                     .sumPrice + "원");
                 $(".rank-list:eq(1) .rank-col-3:eq(" + (i-1) + ")").append(
-                    "<a href='/introduceFrm?mId=" + response[i].mId +
-                    "&reqPage=1'>" +
+                    "<a href='/introduceFrm?reqPage=1'>" +
                     response[i].mId + "</a>");
             }
         }
@@ -87,15 +83,13 @@ $(document).ready(function () {
             $(".sumPrice:eq(2)").empty
             console.log(response["sump"]);
             $(".sumPrice:eq(2)").text(response[0].sumPrice + "원");
-            $(".free-id:eq(2)").append("<a href='/introduceFrm?mId=" + response[0].mId +
-                "&reqPage=1'>" +
+            $(".free-id:eq(2)").append("<a href='/introduceFrm?reqPage=1'>" +
                 response[0].mId + "</a>");
             for (let i = 1; i < response.length; i++) {
                 $(".rank-list:eq(2)").find(".rank-col-2:eq(" + (i-1) + ")").text(response[i]
                     .sumPrice + "원");
                 $(".rank-list:eq(2) .rank-col-3:eq(" + (i-1) + ")").append(
-                    "<a href='/introduceFrm?mId=" + response[i].mId +
-                    "&reqPage=1'>" +
+                    "<a href='/introduceFrm?reqPage=1'>" +
                     response[i].mId + "</a>");
             }
         }

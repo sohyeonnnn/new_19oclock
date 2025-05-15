@@ -2,23 +2,27 @@ package com.refactoring.ilgusi.presentation.member;
 
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.domain.member.Member;
+import com.refactoring.ilgusi.domain.member.dto.FreelancerIntroduceDto;
 import com.refactoring.ilgusi.domain.member.dto.FreelancerUpdateDto;
+import com.refactoring.ilgusi.domain.member.interfaces.FreelancerService;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
+import com.refactoring.ilgusi.domain.service.interfaces.ServiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @RequiredArgsConstructor
 @Controller
 public class FreelancerController {
     private final MemberService memberService;
+    private final FreelancerService freelancerService;
+    private final ServiceService serviceService;
 
     @RequestMapping("/freelancerMypage")
     public String selectFreelancerMypage(@ModelAttribute("loginMember")Member member, Model model) {
@@ -36,6 +40,27 @@ public class FreelancerController {
         return "redirect:/freelancerMypage";
     }
 
+    @GetMapping("/introduceFrm")
+    public String introduceFrm(@ModelAttribute("loginMember") Member m, int reqPage, Model model) {
+        /*FreelancerIntroduceDto introduce = freelancerService.selectFreelancerIntroduce(m.getMemberNo());
+        System.out.println(introduce.toString());
+*/
+        /*
+        j.setServiceList(approvedList);
+        // 후기리스트
+
+        Join join = new Join();
+        if (service.selectReviewList(mId, reqPage) != null) {
+            join = service.selectReviewList(mId, reqPage);
+            j.setReviewList(join.getReviewList());
+        }
+
+        float avg = service.sRateAVG(mId);
+        model.addAttribute("avg", avg);
+        model.addAttribute("pageNavi", join.getPageNavi());
+        model.addAttribute("j", j);*/
+        return "freelancer/introduce";
+    }
     
 }
 

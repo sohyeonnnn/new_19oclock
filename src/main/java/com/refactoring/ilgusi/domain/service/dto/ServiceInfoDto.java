@@ -1,9 +1,12 @@
 package com.refactoring.ilgusi.domain.service.dto;
 
+import com.refactoring.ilgusi.domain.service.ServiceReview;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,8 +15,8 @@ import lombok.Setter;
 public class ServiceInfoDto {
 	private int serviceNo; // 서비스 번호
 	private String serviceTitle; // 서비스 제목
-	private int servicePrice; // 서비스 가격
 	private String serviceContent; // 서비스 내용
+	private int servicePrice; // 서비스 가격
 	private String serviceArea; // 서비스 지역
 	private String serviceImg; // 섬네일 이미지
 	private float serviceRate; // 서비스 평점
@@ -30,6 +33,6 @@ public class ServiceInfoDto {
 	private String mainCategoryName; //메인카테고리이름
 	private String subCategoryName; //서브카테고리이름
 
-
+	//private List<ServiceReview> reviewList;
 
 }
