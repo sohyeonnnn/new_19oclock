@@ -1,0 +1,314 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>19시 :: 서비스 상세보기</title>
+
+	<!--아이콘 부트스트랩-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link href="https://fontservice.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- 캐러셀 부트스트랩-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    	<!-- favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+
+    <link rel="stylesheet" href="/css/service/serviceView.css">
+    <script type="text/javascript" src="/js/service/serviceView.js"></script>
+
+</head>
+<body>
+{{>common/header}}
+	 <div class="contentWrap">
+        <div class="crumb">
+            <div>홈 > 서비스 > 서비스 상세보기</div>
+        </div>
+        <div class="serviceContent">
+            <div class="leftContent">
+            
+            <!-- 캐러셀 시작  -->
+                <div id="demo" class="carousel slide" data-ride="carousel">
+
+                    <!-- Indicators -->
+                     <ul class="carousel-indicators">
+                    	<c:forEach items="${fileList }" varStatus="status" >
+                    		<c:if test="${status.index == 0 }">
+                    			<li data-target="#demo" class="active" data-slide-to="${status.index }" ></li>
+                    		</c:if>
+                    		<c:if test="${status.index != 0 }">
+                    			<li data-target="#demo" data-slide-to="${status.index }"></li>
+                    		</c:if>
+                    	</c:forEach>
+
+                    </ul>
+
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+                    	<c:forEach items="${fileList }" var="sf" varStatus="status">
+                    		<c:if test="${status.index == 0 }">
+                    			<div class="carousel-item active">
+                           		 	<img src="upload/service/${sf.filepath }" alt="test${status.index+1 }">
+                        		</div>
+                    		</c:if>
+                    		<c:if test="${status.index != 0 }">
+                    			<div class="carousel-item">
+                           		 	<img src="upload/service/${sf.filepath }" alt="test${status.index+1 }">
+                        		</div>
+                    		</c:if>
+
+
+                    	</c:forEach>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+                <!-- 캐러셀 끝  -->
+
+
+                <br><br><br>
+
+                <!-- 서비스 설명 탭 -->
+                <div class="outer">
+                    <ul>
+                        <li class="tab">서비스설명</li>
+                        <li class="tab">가격정보</li>
+                        <li class="tab">취소ㆍ환불규정</li>
+                        <li class="tab">서비스평가</li>
+                        <li class="tab">다른서비스보기</li>
+                    </ul>
+                </div>
+
+                <div class="tabContentWrap">
+                    <div class="tabcontent sIntro" style=" font-family: 'Arita-dotum-Medium';">
+
+                        <h2>서비스 설명</h2>
+                        <hr>
+                        <pre class="conView" style=" font-family: 'Arita-dotum-Medium';">{{service.serviceContent}}</pre>
+                    </div>
+                    <div class="tabcontent">
+
+                        <h2>가격정보</h2>
+                        <div class="priceInfo">
+                            <div class="priceContent">
+                                <p class="bold-font">서비스종류</p>
+                                <span>{{service.mainCategoryName}}</span> <span> > </span> <span>{{service.subCategoryName}}</span>
+
+                            </div>
+                            <div class="priceContent">
+                                <p class="bold-font">서비스지역</p>
+                                <span>{{service.serviceArea }}</span>
+
+                            </div>
+                            <div class="priceContent">
+                                <p class="bold-font">예상작업일</p>
+                                <span> <i class='far fa-calendar-alt'></i> {{service.workingDate }}일</span>
+
+                            </div>
+                            <div class="realPrice">
+                                <p class=" bold-font">{{service.servicePrice}}원~</p>
+                                <span>(VAT포함가)</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="tabcontent">
+
+                        <h2>취소ㆍ환불규정</h2>
+                        <hr>
+                        <p>
+                            가. 기본 환불 규정<br>
+                            1. 전문가와 의뢰인의 상호 협의하에 청약 철회 및 환불이
+                            가능합니다.<br>
+                            2. 작업이 완료된 이후 또는 자료, 프로그램 등 서비스가 제공된 이후에는 환불이 <br>
+                            불가합니다.( 소비자보호법 17조 2항의 5조. 용역 또는 「문화산업진흥 기본법」 <br>
+                            제2조 제5호의 디지털콘텐츠의 제공이 개시된 경우에 해당)
+                            <br><br>
+                            나. 전문가 책임 사유<br>
+                            1. 전문가의 귀책사유로 당초 약정했던 서비스 미이행 혹은 보편적인 관점에서 <br>
+                            심각하게 잘못 이행한 경우 결제 금액 전체 환불이 가능합니다.
+                            <br><br>
+                            다. 의뢰인 책임 사유<br>
+                            1. 서비스 진행 도중 의뢰인의 귀책사유로 인해 환불을 요청할 경우, 사용 금액을<br>
+                            아래와 같이 계산 후 총 금액의 10%를 공제하여 환불합니다.<br><br>
+                            총 작업량의 1/3 경과 전 : 이미 납부한 요금의 2/3해당액<br>
+                            총 작업량의 1/2 경과 전 : 이미 납부한 요금의 1/2해당액<br>
+                            총 작업량의 1/2 경과 후 : 반환하지 않음<br>
+                        </p>
+
+                    </div>
+                    <div class="tabcontent">
+                        <h2>서비스 평가 (평균 {{service.serviceRate}}점)</h2>
+                        <hr>
+
+                        <c:forEach items="${reviewList }" var="review">
+                              <div class="reviewBox">
+                                  <div class="profile-img">
+                                      <img src="/img/test/icon_userProfile.svg" width="100px;">
+                                  </div>
+                                  <div class="reviewCon">
+                                      <p class="date">${review.writeDate }</p>
+                                      <p class="score star">
+                                      <c:choose>
+                                      	<c:when test="${review.RRate == 0}">
+                                      		☆☆☆☆☆
+                                      	</c:when>
+                                      	<c:when test="${review.RRate == 1}">
+                                      		☆☆☆☆★
+                                      	</c:when>
+                                      	<c:when test="${review.RRate == 2}">
+                                      		☆☆☆★★
+                                      	</c:when>
+                                      	<c:when test="${review.RRate == 3}">
+                                      		☆☆★★★
+                                      	</c:when>
+                                      	<c:when test="${review.RRate == 4}">
+                                      		☆★★★★
+                                      	</c:when>
+                                      	<c:when test="${review.RRate == 5}">
+                                      		★★★★★
+                                      	</c:when>
+
+                                      </c:choose>
+										<span style="font-size: 9pt; color: gray;">${review.RRate }.0점</span>
+                                      </p>
+                                      <p class="reviewText">${review.RContent }</p>
+                                      <p class="userId">${review.memberId }</p>
+                                  </div>
+                              </div>
+                        </c:forEach>
+
+                            	<div style="text-align: center;">
+                            		 ${pageNavi }
+                            	</div>
+
+
+
+
+                    </div>
+                    <div class="tabcontent">
+                        <h2>다른서비스보기</h2>
+                        <hr>
+                        <c:forEach items="${sList }" var="ser" begin="0" end="4">
+                        	<div class="anotherService">
+	                        	<img class="anoImg" src="/upload/service/${ser.SImg }" width="180px;" style="margin: 0 auto;">
+	                        	<div class="anoCon" style="margin-top: 10px; margin-bottom:10px; height: 80px;">
+	                        	<input type="hidden" value="${ser.serviceNo }" id="serviceNo">
+	                        	<c:if test="${loginMember != null }">
+	                        		<a class="anoTitle" style="font-size: 10pt; height: 75px;" href="/serviceView.do?serviceNo=${ser.serviceNo}&reqPage=1&memberNo=${loginMember.memberNo }"> ${ser.STitle } </a>
+	                        	</c:if>
+	                        	<c:if test="${loginMember == null }">
+	                        		<a class="anoTitle" style="font-size: 10pt; height: 75px;" href="/serviceView2?serviceNo=${ser.serviceNo}&reqPage=1"> ${ser.STitle } </a>
+	                        	</c:if>
+
+	                        		<br>
+	                        		<span>{{service.mainCategoryName}} / {{service.subCategoryName }} </span>
+	                        	</div>
+                        </div>
+                        </c:forEach>
+
+
+
+
+                    </div>
+                </div>
+                <!-- 서비스 설명 탭 끝-->
+            </div>
+			 <div class="rightContent">
+                <div class="titleWrap">
+                    <div class="contentTitle bold-font">{{service.serviceTitle}}</div>
+                    <p class="titlePrice">{{service.servicePrice}}원~</p>
+                    <div class="heart">
+                        <input type="hidden" value="{{favoriteCheck}}" id="favoriteCheck">
+                            {{#loginMember}}
+                        		<input type="hidden" value="{{loginMember.memberNo}}" id="m_no">
+                        		<c:if test="${loginMember.memberId == service.memberId }">
+                        			<a href="javascript:like_func_error();" style="color: gray;"><i class="full-heart far fa-heart"></i> 이 서비스 찜하기</a>
+                        		</c:if>
+                        		<c:if test="${loginMember.memberId != service.memberId }">
+                        			<a href="javascript:like_func();" style="color: gray;"><i class="full-heart far fa-heart"></i> 이 서비스 찜하기</a>
+                        		</c:if>
+                            {{/loginMember}}
+                            {{^loginMember}}
+                        		<a href="javascript: login_need();" style="color: gray;"><i class="full-heart far fa-heart"></i> 이 서비스 찜하기 </a>
+                            {{/loginMember}}
+
+                    </div>
+                </div>
+                <div class="rightInfo">
+                    <div class="Infocon conFirst">
+                        <p>서비스 종류</p>
+                        <input type="hidden" value="${service.serviceNo }" id="s_no">
+                        <span>{{service.mainCategoryName }}</span> <span> > </span> <span>${{service.subCategoryName}}</span>
+                    </div>
+                    <div class="Infocon othercon">
+                        <p>예상 작업일</p>
+                        <span> <i class='far fa-calendar-alt'></i> {{service.workingDate}}일</span>
+                    </div>
+                    <div class="Infocon othercon">
+                        <p>서비스 지역</p>
+                        <span>{{service.serviceArea}}</span>
+
+                    </div>
+                    <br>
+                    <c:if test="${service.deleteStatus ne 'y'.charAt(0) }">
+                    <c:if test="${empty loginMember }">
+               		 <button class="centerBtn">로그인 후 문의하세요</button>
+               		</c:if>
+                    <c:if test="${loginMember.memberRole eq 1 }">
+                    <button class="centerBtn" onclick="startChat('${service.serviceNo }','${sessionScope.loginMember.memberId }','${service.memberId}','${sessionScope.loginMember.memberNo }','${sessionScope.loginMember.memberRole}');">전문가에게 문의하기</button>
+               		</c:if>
+               		<c:if test="${loginMember.memberRole eq 2 }">
+               		 <button class="centerBtn">일반회원으로 전환후 문의하세요</button>
+               		</c:if>
+               		</c:if>
+               		<c:if test="${service.deleteStatus eq 'y'.charAt(0) }">
+               		 <button class="centerBtn">삭제된 서비스입니다</button>
+               		</c:if>
+                </div>
+                <br>
+                <div class="secu">
+                    <i class="material-icons" style="font-size: 13pt;">security</i>
+                    일.구.시를 통해 결제하면 거래완료시까지 결제 대금을 안전하게 보호받을 수 있습니다.
+                </div>
+                <br>
+                <div class="preIntro">
+                    <div class="pre-profile">
+                        <img src="/img/test/icon_profile.svg" width="100px;">
+                        <p class="brandName bold-font">{{service.brandName }}</p>
+						<c:if test="${not empty m.brandName }">
+                        	<button class="emptyBtn" onclick="location.href='/introduceFrm?memberId=${m.memberId}&reqPage=1'">[{{service.brandName }}]의 프로필 보기</button>
+                        </c:if>
+                        <c:if test="${empty m.brandName }">
+                        	<button class="emptyBtn" >탈퇴한 회원입니다</button>
+                        </c:if>
+                    </div>
+
+                    <hr>
+                    <div class="Intro-detail">
+                        <p class="introTitle bold-font">전문가 소개</p>
+                        <Pre style="white-space: pre-line; padding: 20px;  font-family: 'Arita-dotum-Medium';" > {{service.introduce}} </Pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{{>common/footer}}
+
+</body>
+</html>

@@ -11,5 +11,6 @@ public interface ServiceService {
     Integer selectFreelancerServiceCount(int memberNo);
     void insertService(ServiceInsertDto service);
     List<ServiceInfoDto> selectOrderedServiceList(int memberNo, String order);
+    ServiceInfoDto selectServiceView(int serviceNo);
     void deleteService(int serviceNo);
 }

@@ -10,12 +10,14 @@ import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public interface ServiceRepository {
 
     int selectFreeServiceCount(int memberNo);
     void insertService(ServiceItem serviceItem);
     List<ServiceInfoDto> selectServiceList(int memberNo, String order);
+    Optional<ServiceInfoDto> selectServiceView(int serviceNo);
     void setMemberServiceDeleteStatusY(int memberNo);
     void setServiceDeleteStatusY(int memberNo);
 
@@ -46,7 +48,7 @@ public interface ServiceRepository {
     int serviceTotalCount(HashMap<String, Object> map) ;
 
     // 서비스 상세보기
-    ServiceItem selectServiceView(int sNo);
+    ServiceItem selectServiceView2(int sNo);
 
 
     // 전문가 정보 불러오기

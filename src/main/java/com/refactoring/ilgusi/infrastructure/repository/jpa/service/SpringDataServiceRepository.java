@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, Integer> {
 
@@ -54,5 +55,21 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
                     "AND s.deleteStatus = 'N'"
     )
     List<ServiceInfoDto> selectRejectedServiceList(@Param("memberNo") int memberNo);
+
+    @Query(
+            "SELECT new com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto(" +
+                    "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
+                    "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
+                    "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
+                    "mem.memberId, mem.brandName, mainCat.categoryName, subCat.categoryName) " +
+                    "FROM ServiceItem s " +
+                    "LEFT JOIN Member mem ON s.memberNo = mem.memberNo " +
+                    "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
+                    "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
+                    "WHERE s.serviceNo = :serviceNo " +
+                    "AND s.adminApproval = 'Y' " +
+                    "AND s.deleteStatus = 'N'"
+    )
+    Optional<ServiceInfoDto> selectServiceView(@Param("serviceNo") int serviceNo);
 
 }

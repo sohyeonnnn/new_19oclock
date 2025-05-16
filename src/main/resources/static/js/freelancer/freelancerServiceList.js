@@ -16,11 +16,12 @@ $(document).ready(function () {
         location.href = "/freelancerServiceList?order=" + order;
     });
 
-    // 삭제 함수 정의 (현재 사용되지 않는 듯?)
-    function del() {
-        var sNo = $("#sNo").val();
-        if (confirm("해당 서비스를 삭제할까요?")) {
-            location.href = "/delService?serviceNo=" + sNo;
-        }
-    }
 });
+
+// 삭제 함수 정의
+function del() {
+    var sNo = $("#sNo").val();
+    if (confirm("해당 서비스를 삭제할까요?")) {
+        location.href = "/delService?serviceNo=" + sNo;
+    }
+}

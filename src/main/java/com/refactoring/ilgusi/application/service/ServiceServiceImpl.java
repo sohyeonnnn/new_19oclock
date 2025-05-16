@@ -53,6 +53,11 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
+    public ServiceInfoDto selectServiceView(int serviceNo) {
+        return serviceRepository.selectServiceView(serviceNo).orElseThrow(()-> new CustomException("NULL"));
+    }
+
+    @Override
     public void deleteService(int serviceNo){
         serviceRepository.setServiceDeleteStatusY(serviceNo);
     }

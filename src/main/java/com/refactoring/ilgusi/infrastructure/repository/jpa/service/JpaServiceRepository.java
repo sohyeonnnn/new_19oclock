@@ -7,10 +7,12 @@ import com.refactoring.ilgusi.domain.service.ServicePay;
 import com.refactoring.ilgusi.domain.service.ServiceReview;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
+import com.refactoring.ilgusi.exception.CustomException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class JpaServiceRepository implements ServiceRepository {
     private final SpringDataServiceRepository jpaRepository;
@@ -37,6 +39,13 @@ public class JpaServiceRepository implements ServiceRepository {
             return jpaRepository.selectRejectedServiceList(memberNo);
         }
         return null;
+    }
+
+    @Override
+    public Optional<ServiceInfoDto> selectServiceView(int serviceNo) {
+        return Optional.ofNullable(jpaRepository.selectServiceView(serviceNo))
+                .orElseThrow(()-> new CustomException("없음"));
+
     }
 
     @Override
@@ -97,7 +106,7 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public ServiceItem selectServiceView(int sNo) {
+    public ServiceItem selectServiceView2(int sNo) {
         return null;
     }
 
