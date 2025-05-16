@@ -130,7 +130,7 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public void unregisterMember(int memberNo) {
         tradeStatus(memberNo);
-        setDeleteStatusY(memberNo);
+        setServiceDeleteStatusY(memberNo);
         deleteMember(memberNo);
     }
 
@@ -138,7 +138,7 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.deleteMember(memberNo);
     }
 
-    public void setDeleteStatusY(Integer memberNo) {
+    public void setServiceDeleteStatusY(Integer memberNo) {
         serviceRepository.setMemberServiceDeleteStatusY(memberNo);
     }
 

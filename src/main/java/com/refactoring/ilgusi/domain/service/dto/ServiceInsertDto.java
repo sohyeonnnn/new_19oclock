@@ -24,7 +24,7 @@ public class ServiceInsertDto {
 	private String serviceImg;
 	private int serviceRate;
 	private String brandName;  //브랜드명
-	private List<ServiceFile> fileList = new ArrayList<>(); //list로 해준것은 introduce.jsp에서 <for each list로 받아야한다.
+	//private List<ServiceFile> fileList = new ArrayList<>(); //list로 해준것은 introduce.jsp에서 <for each list로 받아야한다.
 	private String deleteStatus;
 	private String adminApproval;
 
@@ -59,7 +59,7 @@ public class ServiceInsertDto {
 				", serviceImg='" + serviceImg + '\'' +
 				", serviceRate=" + serviceRate +
 				", brandName='" + brandName + '\'' +
-				", fileList=" + fileList.toString() +
+				//", fileList=" + fileList.toString() +
 				", deleteStatus='" + deleteStatus + '\'' +
 				", adminApproval='" + adminApproval + '\'' +
 				'}';

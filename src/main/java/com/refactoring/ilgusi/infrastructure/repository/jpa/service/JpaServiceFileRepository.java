@@ -19,7 +19,7 @@ public class JpaServiceFileRepository implements ServiceFileRepository {
     }
 
     @Override
-    public List<ServiceFile> fileList(int sNo) {
-        return null;
+    public List<ServiceFile> selectServiceFileList(int serviceNo) {
+        return jpaRepository.selectServiceFileList(serviceNo);
     }
 }

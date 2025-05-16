@@ -26,24 +26,25 @@ public class ServiceServiceImpl implements ServiceService {
     private final ServiceRepository serviceRepository;
     private final ServiceFileRepository serviceFileRepository;
 
-    public Integer selectFreelancerServiceCount(int memberNo) {
+    public int selectFreelancerServiceCount(int memberNo) {
         return serviceRepository.selectFreeServiceCount(memberNo);
     }
 
     @Override
-    public void insertService(ServiceInsertDto dto) {
+    public void insertService(ServiceInsertDto dto, List<ServiceFile> fileList) {
         ServiceItem serviceItem = dto.toEntity();
+        serviceRepository.insertService(serviceItem);
 
         // 파일 추가
-        if (dto.getFileList() != null) {
-            for (ServiceFile file : dto.getFileList()) {
+        if (fileList != null) {
+            for (ServiceFile file : fileList) {
                 ServiceFile serviceFile = new ServiceFile();
                 serviceFile.setFilename(file.getFilename());
                 serviceFile.setFilepath(file.getFilepath());
-                serviceItem.addFile(serviceFile);
+                serviceFile.setService(dto.toEntity());
+                serviceFileRepository.insertServiceFile(serviceFile);
             }
         }
-        serviceRepository.insertService(serviceItem);
     }
 
     @Override
@@ -60,6 +61,12 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public void deleteService(int serviceNo){
         serviceRepository.setServiceDeleteStatusY(serviceNo);
+    }
+
+    @Override
+    public List<ServiceFile> selectServiceFileList(int serviceNo){
+        return Optional.ofNullable(serviceFileRepository.selectServiceFileList(serviceNo))
+                .orElseThrow(() -> new CustomException("서비스 없음", "freelancer/freelancerMypage"));
     }
 
 

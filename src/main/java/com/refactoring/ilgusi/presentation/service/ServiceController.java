@@ -3,6 +3,8 @@ package com.refactoring.ilgusi.presentation.service;
 import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
+import com.refactoring.ilgusi.domain.favorite.Favorite;
+import com.refactoring.ilgusi.domain.favorite.interfaces.FavoriteService;
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.ServiceFile;
@@ -20,12 +22,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
 public class ServiceController {
     private final ServiceService serviceService;
+    private final FavoriteService favoriteService;
 
     @ResponseBody
     @PostMapping("/isPossibleMakeService")
@@ -55,9 +60,10 @@ public class ServiceController {
                 throw new IllegalStateException("업로드된 파일이 없습니다.");
             }
 
-            dto.setFileList(fileList);
+           /* dto.setFileList(fileList);*/
             dto.setServiceImg(fileList.get(0).getFilepath());
-            serviceService.insertService(dto);
+            serviceService.insertService(dto, fileList);
+            //serviceService.insertServiceFile(fileList);
 
             msg =  "서비스를 등록하였습니다.";
             loc =  "/freelancerServiceList?order=rejected";
@@ -97,12 +103,6 @@ public class ServiceController {
     @GetMapping("/freelancerServiceList")
     public String freelancerServiceList(@ModelAttribute("loginMember") Member m, Model model, String order) {
         List<ServiceInfoDto> list = serviceService.selectOrderedServiceList(m.getMemberNo(), order);
-
-        /*DecimalFormat formatter = new DecimalFormat("###,###");
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).setSPriceTxt(formatter.format(list.get(i).getSPrice()));
-        }*/
-
         model.addAttribute("list", list);
         model.addAttribute("order", order);
         return "freelancer/freelancerServiceList";
@@ -121,29 +121,28 @@ public class ServiceController {
 
     // serviceView 페이지 이동
     @RequestMapping("/serviceView")
-    public String serviceView(int serviceNo, Model model/*, int reqPage*/) {
+    public String serviceView(@ModelAttribute("loginMember") Member member, int serviceNo, Model model/*, int reqPage*/) {
         ServiceInfoDto serviceInfo = serviceService.selectServiceView(serviceNo);
         model.addAttribute("service", serviceInfo);
-        /*Service s = service.selectServiceView(serviceNo);
 
-        DecimalFormat formatter = new DecimalFormat("###,###");
-        s.setSPriceTxt(formatter.format(s.getSPrice()));
-
-        if (s != null) {
-            model.addAttribute("s", serviceInfo);
+        List<ServiceFile> fileList = serviceService.selectServiceFileList(serviceNo);
+        List<Map<String, Object>> fileListForView = new ArrayList<>();
+        for (int i = 0; i < fileList.size(); i++) {
+            ServiceFile file = fileList.get(i);
+            Map<String, Object> fileMap = new HashMap<>();
+            fileMap.put("index", i);
+            fileMap.put("isFirst", i == 0);
+            fileMap.put("indexPlusOne", i + 1);
+            fileMap.put("filepath", file.getFilepath());
+            fileListForView.add(fileMap);
         }
+        model.addAttribute("fileList", fileListForView);
 
-        // 브랜드 정보 불러오기
-        String memberId = s.getMId();*/
+       // boolean isFavoriteChecked = favoriteService.isFavoriteChecked(member.getMemberNo(), serviceNo);
+        model.addAttribute("favoriteCheck","false"); //isFavoriteChecked);
 
-        /*Member m = service.selectMemberName(memberId);
-        model.addAttribute("m", m);
 
-        // 서비스 파일 불러오기
-        ArrayList<ServiceFile> fileList = service.fileList(sNo);
-        System.out.println("fileList 사이즈 :" + fileList.size());
-        System.out.println("fileList값:" + fileList.get(0));
-        model.addAttribute("fileList", fileList);
+        /*
 
         // 해당 유저가 등록한 다른서비스 불러오기
         ArrayList<Service> sList = service.userService(memberId);
@@ -162,17 +161,7 @@ public class ServiceController {
         model.addAttribute("reviewList", rpd.getList());
         model.addAttribute("pageNavi", rpd.getPageNavi());
 
-        // 찜한내역 확인하기
-
-        Favorite f = service.searchFavorite(mNo, serviceNo);
-        if (f != null) {
-            System.out.println("찜하기 있음 ");
-            model.addAttribute("favoriteCheck", true);
-        } else {
-            System.out.println("찜하기 없음");
-            model.addAttribute("favoriteCheck", false);
-        }*/
-        model.addAttribute("favoriteCheck", false);
+*/
         return "/service/serviceView";
     }
 

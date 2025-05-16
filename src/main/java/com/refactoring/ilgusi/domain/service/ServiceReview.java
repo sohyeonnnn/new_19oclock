@@ -30,6 +30,9 @@ public class ServiceReview {
 	@JoinColumn(name = "service_no")
 	private ServiceItem service;
 
+	public void setService(ServiceItem service) {
+		this.service = service;
+	}
 
 	//줄바꿈
 	public String getRContentBr() {

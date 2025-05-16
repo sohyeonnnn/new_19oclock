@@ -1,12 +1,13 @@
 package com.refactoring.ilgusi.domain.service.dto;
 
+import com.refactoring.ilgusi.domain.service.ServiceFile;
 import com.refactoring.ilgusi.domain.service.ServiceReview;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.text.NumberFormat;
 
 @Getter
 @Setter
@@ -30,8 +31,15 @@ public class ServiceInfoDto {
 
 	private String memberId;
 	private String brandName; // 브랜드이름
+	private String introduce;
 	private String mainCategoryName; //메인카테고리이름
 	private String subCategoryName; //서브카테고리이름
+
+	public String getServicePriceTxt() {
+		return NumberFormat.getInstance().format(servicePrice);
+	}
+
+	//private List<ServiceFile> fileList = new ArrayList<>();
 
 	//private List<ServiceReview> reviewList;
 

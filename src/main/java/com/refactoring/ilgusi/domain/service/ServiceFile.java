@@ -25,6 +25,10 @@ public class ServiceFile {
     @JoinColumn(name = "service_no")
     private ServiceItem service;
 
+    public void setService(ServiceItem service) {
+        this.service = service;
+    }
+
     @Override
     public String toString() {
         return "ServiceFile{" +

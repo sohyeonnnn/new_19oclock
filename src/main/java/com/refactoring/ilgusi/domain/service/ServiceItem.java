@@ -60,18 +60,18 @@ public class ServiceItem {
 	@Column
 	private String serviceImg;
 
-	@Builder.Default
+/*	@Builder.Default
 	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<ServiceFile> fileList = new ArrayList<>();
+	private List<ServiceFile> fileList = new ArrayList<>();*/
 
 	/*@Builder.Default
 	@OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ServiceReview> reviewList = new ArrayList<>();
 */
-	public void addFile(ServiceFile file) {
+/*	public void addFile(ServiceFile file) {
 		fileList.add(file);
 		file.setService(this);
-	}
+	}*/
 
 	/*public void addReview(ServiceReview review) {
 		reviewList.add(review);
@@ -97,7 +97,7 @@ public class ServiceItem {
 				", deleteStatus='" + deleteStatus + '\'' +
 				", adminApproval='" + adminApproval + '\'' +
 				", serviceImg='" + serviceImg + '\'' +
-				", fileList=" + fileList +
+				//", fileList=" + fileList +
 				'}';
 	}
 }

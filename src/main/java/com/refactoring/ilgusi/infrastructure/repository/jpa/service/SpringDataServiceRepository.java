@@ -29,9 +29,9 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
                     "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-                    "mem.memberId, mem.brandName, mainCat.categoryName, subCat.categoryName) " +
+                    "m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
                     "FROM ServiceItem s " +
-                    "LEFT JOIN Member mem ON s.memberNo = mem.memberNo " +
+                    "LEFT JOIN Member m ON s.memberNo = m.memberNo " +
                     "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
                     "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
                     "WHERE s.memberNo = :memberNo " +
@@ -45,9 +45,9 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
                     "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-                    "mem.memberId, mem.brandName, mainCat.categoryName, subCat.categoryName) " +
+                    "m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
                     "FROM ServiceItem s " +
-                    "LEFT JOIN Member mem ON s.memberNo = mem.memberNo " +
+                    "LEFT JOIN Member m ON s.memberNo = m.memberNo " +
                     "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
                     "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
                     "WHERE s.memberNo = :memberNo " +
@@ -61,9 +61,9 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
                     "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-                    "mem.memberId, mem.brandName, mainCat.categoryName, subCat.categoryName) " +
+                    "m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
                     "FROM ServiceItem s " +
-                    "LEFT JOIN Member mem ON s.memberNo = mem.memberNo " +
+                    "LEFT JOIN Member m ON s.memberNo = m.memberNo " +
                     "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
                     "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
                     "WHERE s.serviceNo = :serviceNo " +

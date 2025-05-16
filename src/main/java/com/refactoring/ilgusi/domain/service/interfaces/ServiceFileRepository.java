@@ -9,7 +9,7 @@ public interface ServiceFileRepository {
     ServiceFile insertServiceFile(ServiceFile file);
 
     // 서비스파일 리스트
-    List<ServiceFile> fileList(int sNo) ;
+    List<ServiceFile> selectServiceFileList(int serviceNo) ;
 
 
 }
