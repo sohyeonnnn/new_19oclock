@@ -2,7 +2,6 @@ package com.refactoring.ilgusi.domain.member.interfaces;
 
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
-import com.refactoring.ilgusi.domain.member.dto.FreelancerIntroduceDto;
 
 import java.util.Optional;
 

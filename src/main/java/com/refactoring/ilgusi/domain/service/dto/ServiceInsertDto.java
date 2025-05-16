@@ -1,11 +1,7 @@
 package com.refactoring.ilgusi.domain.service.dto;
 
 import com.refactoring.ilgusi.domain.service.ServiceItem;
-import com.refactoring.ilgusi.domain.service.ServiceFile;
 import lombok.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

@@ -1,6 +1,5 @@
 package com.refactoring.ilgusi.domain.service.interfaces;
 
-import com.refactoring.ilgusi.domain.service.ServiceFile;
 import com.refactoring.ilgusi.domain.service.ServiceReview;
 import com.refactoring.ilgusi.domain.service.dto.ReviewDto;
 

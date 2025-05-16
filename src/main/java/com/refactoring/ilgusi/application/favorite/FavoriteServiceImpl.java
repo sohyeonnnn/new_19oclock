@@ -1,7 +1,7 @@
-package com.refactoring.ilgusi.application.member;
+package com.refactoring.ilgusi.application.favorite;
 
 
-import com.refactoring.ilgusi.domain.member.interfaces.FreelancerService;
+import com.refactoring.ilgusi.domain.favorite.interfaces.FavoriteService;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
@@ -13,17 +13,13 @@ import javax.transaction.Transactional;
 @Transactional
 @RequiredArgsConstructor
 @Service
-public class FreelancerServiceImpl implements FreelancerService {
+public class FavoriteServiceImpl implements FavoriteService {
     private final MemberRepository memberRepository;
     private final ServiceTradeRepository serviceTradeRepository;
     private final ServiceRepository serviceRepository;
 
-
- /*   @Override
-    public FreelancerIntroduceDto selectFreelancerIntroduce(int memberNo) {
-        return Optional.ofNullable(memberRepository*//**//*.selectFreelancerIntroduce(memberNo))
-                .orElseThrow(() -> new CustomException("소개 없음", "/"));
-    }*/
-
-
+    @Override
+    public boolean isFavoriteChecked(int memberNo, int serviceNo) {
+        return false;
+    }
 }

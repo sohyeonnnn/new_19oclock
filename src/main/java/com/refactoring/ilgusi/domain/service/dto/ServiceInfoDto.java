@@ -1,7 +1,5 @@
 package com.refactoring.ilgusi.domain.service.dto;
 
-import com.refactoring.ilgusi.domain.service.ServiceFile;
-import com.refactoring.ilgusi.domain.service.ServiceReview;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

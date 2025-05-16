@@ -1,19 +1,12 @@
 package com.refactoring.ilgusi.application.category;
 
 
-import com.refactoring.ilgusi.domain.category.Category;
-import com.refactoring.ilgusi.domain.category.dto.MainCategoryDto;
-import com.refactoring.ilgusi.domain.category.dto.SubCategoryDto;
 import com.refactoring.ilgusi.domain.category.interfaces.CategoryRepository;
 import com.refactoring.ilgusi.domain.category.interfaces.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Transactional
 @RequiredArgsConstructor

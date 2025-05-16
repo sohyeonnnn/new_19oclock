@@ -1,15 +1,11 @@
 package com.refactoring.ilgusi.domain.member.dto;
 
-import com.refactoring.ilgusi.domain.service.ServiceFile;
-import com.refactoring.ilgusi.domain.service.ServiceItem;
-import com.refactoring.ilgusi.domain.service.dto.ReviewDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
