@@ -10,7 +10,6 @@ import java.util.List;
 public interface ServiceService {
     int selectFreelancerServiceCount(int memberNo);
     void insertService(ServiceInsertDto dto, List<ServiceFile> fileList);
-   // void insertServiceFile(List<ServiceFile> fileList);
     List<ServiceInfoDto> selectOrderedServiceList(int memberNo, String order);
     ServiceInfoDto selectServiceView(int serviceNo);
     void deleteService(int serviceNo);

@@ -26,7 +26,6 @@ public class ServiceInsertDto {
 
 	public ServiceItem toEntity() {
 		return ServiceItem.builder()
-				.memberNo(memberNo)
 				.serviceTitle(serviceTitle)
 				.serviceContent(serviceContent)
 				.serviceArea(serviceArea)
@@ -40,7 +39,7 @@ public class ServiceInsertDto {
 				.adminApproval(adminApproval)
 				.build();
 	}
-
+/*
 	@Override
 	public String toString() {
 		return "ServiceInsertDto{" +
@@ -59,5 +58,5 @@ public class ServiceInsertDto {
 				", deleteStatus='" + deleteStatus + '\'' +
 				", adminApproval='" + adminApproval + '\'' +
 				'}';
-	}
+	}*/
 }

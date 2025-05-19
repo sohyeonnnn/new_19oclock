@@ -1,6 +1,7 @@
 package com.refactoring.ilgusi.presentation.member;
 
 import com.refactoring.ilgusi.domain.member.Member;
+import com.refactoring.ilgusi.domain.member.dto.FreelancerIntroduceDto;
 import com.refactoring.ilgusi.domain.member.dto.FreelancerUpdateDto;
 import com.refactoring.ilgusi.domain.member.interfaces.FreelancerService;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
@@ -40,10 +41,10 @@ public class FreelancerController {
     }
 
     @GetMapping("/introduceFrm")
-    public String introduceFrm(@ModelAttribute("loginMember") Member m, int reqPage, Model model) {
-        /*FreelancerIntroduceDto introduce = freelancerService.selectFreelancerIntroduce(m.getMemberNo());
-        System.out.println(introduce.toString());
-*/
+    public String introduceFrm(int memberNo, int reqPage, Model model) {
+        FreelancerIntroduceDto introduce = freelancerService.selectFreelancerIntroduce(memberNo);
+        model.addAttribute("introduce", introduce);
+
         /*
         j.setServiceList(approvedList);
         // 후기리스트

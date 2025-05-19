@@ -58,13 +58,11 @@ public class ServiceController {
                 throw new IllegalStateException("업로드된 파일이 없습니다.");
             }
 
-           /* dto.setFileList(fileList);*/
             dto.setServiceImg(fileList.get(0).getFilepath());
             serviceService.insertService(dto, fileList);
-            //serviceService.insertServiceFile(fileList);
 
             msg =  "서비스를 등록하였습니다.";
-            loc =  "/freelancerServiceList?order=rejected";
+            loc =  "redirect:/freelancerServiceList?order=rejected";
         } catch (Exception e) {
             msg = "서비스 등록 중 오류가 발생했습니다: " + e.getMessage();
         }
@@ -99,7 +97,7 @@ public class ServiceController {
     }
 
     @GetMapping("/freelancerServiceList")
-    public String freelancerServiceList(@ModelAttribute("loginMember") Member m, Model model, String order) {
+    public String freelancerServiceList(@ModelAttribute("loginMember") Member m, Model model, @RequestParam("order") String order) {
         List<ServiceInfoDto> list = serviceService.selectOrderedServiceList(m.getMemberNo(), order);
         model.addAttribute("list", list);
         model.addAttribute("order", order);
@@ -108,7 +106,7 @@ public class ServiceController {
 
     // 프리랜서 마이페이지 - 서비스 삭제하기
     @RequestMapping("/delService")
-    public String deleteService(int serviceNo, Model model, String mId) {
+    public String deleteService(int serviceNo, Model model) {
         serviceService.deleteService(serviceNo);
 
         String msg =  "서비스가 삭제되었습니다.";
@@ -148,9 +146,6 @@ public class ServiceController {
         model.addAttribute("serviceList", serviceList);
 
         /*
-
-
-
         // 리뷰 리스트 불러오기 + 페이징
         ReviewPageData rpd = service.selectReviewList(sNo, reqPage,mNo);
         if (rpd.getList().size() == 0) {

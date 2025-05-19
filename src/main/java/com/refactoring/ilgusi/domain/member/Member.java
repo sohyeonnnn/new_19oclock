@@ -1,16 +1,22 @@
 package com.refactoring.ilgusi.domain.member;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.refactoring.ilgusi.common.BaseEntity;
+import com.refactoring.ilgusi.domain.service.ServiceItem;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @Entity
+@ToString(exclude = "serviceList")
 public class Member extends BaseEntity {
 	@Id
 	@Column(name = "MEMBER_NO")
@@ -45,6 +51,15 @@ public class Member extends BaseEntity {
 	private Integer buyingCount;
 	@Column
 	private Integer sellingCount;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ServiceItem> serviceList = new ArrayList<>();
+
+
+
+
+
 
 	// 줄바꿈
 	public String getIntroduceBr() {

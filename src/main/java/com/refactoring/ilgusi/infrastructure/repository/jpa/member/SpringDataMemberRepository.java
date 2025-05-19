@@ -2,6 +2,7 @@ package com.refactoring.ilgusi.infrastructure.repository.jpa.member;
 
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.member.RoleEnum;
+import com.refactoring.ilgusi.domain.member.dto.FreelancerIntroduceDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -55,5 +56,6 @@ public interface SpringDataMemberRepository extends JpaRepository<Member, Intege
                     @Param("contactTime") String contactTime,
                     @Param("introduce") String introduce);
 
-
+    @Query("SELECT m FROM Member m LEFT JOIN FETCH m.serviceList WHERE m.memberNo = :memberNo")
+    Optional<Member> selectFreelancerIntroduce(int memberNo);
 }

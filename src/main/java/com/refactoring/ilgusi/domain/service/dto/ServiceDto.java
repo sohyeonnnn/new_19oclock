@@ -47,7 +47,6 @@ public class ServiceDto {
 
 	public ServiceItem toEntity() {
 		return ServiceItem.builder()
-				.memberNo(memberNo)
 				.mainCategory(mainCategory)
 				.subCategory(subCategory)
 				.serviceTitle(serviceTitle)

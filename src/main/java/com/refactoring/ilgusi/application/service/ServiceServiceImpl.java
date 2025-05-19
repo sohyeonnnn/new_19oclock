@@ -1,5 +1,6 @@
 package com.refactoring.ilgusi.application.service;
 
+import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
 import com.refactoring.ilgusi.domain.service.ServiceFile;
 import com.refactoring.ilgusi.domain.service.ServiceItem;
@@ -32,7 +33,13 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public void insertService(ServiceInsertDto dto, List<ServiceFile> fileList) {
+
+        Member member = memberRepository.findByMemberNo(dto.getMemberNo())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
         ServiceItem serviceItem = dto.toEntity();
+        serviceItem.setMember(member);
+        member.getServiceList().add(serviceItem);
+
         serviceRepository.insertService(serviceItem);
 
         // 파일 추가
@@ -41,7 +48,7 @@ public class ServiceServiceImpl implements ServiceService {
                 ServiceFile serviceFile = new ServiceFile();
                 serviceFile.setFilename(file.getFilename());
                 serviceFile.setFilepath(file.getFilepath());
-                serviceFile.setService(dto.toEntity());
+                serviceFile.setService(serviceItem);
                 serviceFileRepository.insertServiceFile(serviceFile);
             }
         }
@@ -50,7 +57,7 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public List<ServiceInfoDto> selectOrderedServiceList(int memberNo, String order) {
         return Optional.ofNullable(serviceRepository.selectServiceList(memberNo, order))
-                .orElseThrow(() -> new CustomException("서비스 없음", "freelancer/freelancerMypage"));
+                .orElseThrow(() -> new CustomException("서비스 없음", "redirect:/freelancerServiceList?order=rejected"));
     }
 
     @Override
@@ -66,7 +73,7 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public List<ServiceFile> selectServiceFileList(int serviceNo){
         return Optional.ofNullable(serviceFileRepository.selectServiceFileList(serviceNo))
-                .orElseThrow(() -> new CustomException("서비스 없음", "freelancer/freelancerMypage"));
+                .orElseThrow(() -> new CustomException("서비스파일 없음", "redirect:/freelancerServiceList?order=rejected"));
     }
 
 
