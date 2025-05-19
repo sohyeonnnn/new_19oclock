@@ -188,27 +188,19 @@
                     <div class="tabcontent">
                         <h2>다른서비스보기</h2>
                         <hr>
-                        <c:forEach items="${sList }" var="ser" begin="0" end="4">
-                        	<div class="anotherService">
-	                        	<img class="anoImg" src="/upload/service/${ser.SImg }" width="180px;" style="margin: 0 auto;">
-	                        	<div class="anoCon" style="margin-top: 10px; margin-bottom:10px; height: 80px;">
-	                        	<input type="hidden" value="${ser.serviceNo }" id="serviceNo">
-	                        	<c:if test="${loginMember != null }">
-	                        		<a class="anoTitle" style="font-size: 10pt; height: 75px;" href="/serviceView.do?serviceNo=${ser.serviceNo}&reqPage=1&memberNo=${loginMember.memberNo }"> ${ser.STitle } </a>
-	                        	</c:if>
-	                        	<c:if test="${loginMember == null }">
-	                        		<a class="anoTitle" style="font-size: 10pt; height: 75px;" href="/serviceView2?serviceNo=${ser.serviceNo}&reqPage=1"> ${ser.STitle } </a>
-	                        	</c:if>
-
-	                        		<br>
-	                        		<span>{{service.mainCategoryName}} / {{service.subCategoryName }} </span>
-	                        	</div>
-                        </div>
-                        </c:forEach>
-
-
-
-
+                        {{#serviceList}}
+                            <div class="anotherService">
+                                <img class="anoImg" src="/upload/service/{{serviceImg}}" width="180px;" style="margin: 0 auto;">
+                                <div class="anoCon" style="margin-top: 10px; margin-bottom:10px; height: 80px;">
+                                    <input type="hidden" value="{{serviceNo}}" id="serviceNo">
+                                        <a class="anoTitle" style="font-size: 10pt; height: 75px;" href="/serviceView?serviceNo={{serviceNo}}&reqPage=1&">
+                                        {{serviceTitle}}
+                                        </a>
+                                    <br>
+                                    <span>{{mainCategoryName}} / {{subCategoryName}}</span>
+                                </div>
+                            </div>
+                        {{/serviceList}}
                     </div>
                 </div>
                 <!-- 서비스 설명 탭 끝-->
@@ -252,18 +244,20 @@
                     <br>
                     <c:if test="${service.deleteStatus ne 'y'.charAt(0) }">
                     {{^loginMember}}
-               		 <button class="centerBtn">로그인 후 문의하세요</button>
+               		    <button class="centerBtn">로그인 후 문의하세요</button>
                     {{/loginMember}}
-                    <c:if test="${loginMember.memberRole eq 1 }">
-                    <button class="centerBtn" onclick="startChat('${service.serviceNo }','${sessionScope.loginMember.memberId }','${service.memberId}','${sessionScope.loginMember.memberNo }','${sessionScope.loginMember.memberRole}');">전문가에게 문의하기</button>
-               		</c:if>
-               		<c:if test="${loginMember.memberRole eq 2 }">
-               		 <button class="centerBtn">일반회원으로 전환후 문의하세요</button>
-               		</c:if>
-               		</c:if>
-               		<c:if test="${service.deleteStatus eq 'y'.charAt(0) }">
-               		 <button class="centerBtn">삭제된 서비스입니다</button>
-               		</c:if>
+                    {{#loginMember}}
+                        {{#isUser}}
+                        <button class="centerBtn" onclick="startChat('${service.serviceNo }','${sessionScope.loginMember.memberId }','${service.memberId}','${sessionScope.loginMember.memberNo }','${sessionScope.loginMember.memberRole}');">전문가에게 문의하기</button>
+                        {{/isUser}}
+                        {{#isFreelancer}}
+                         <button class="centerBtn">일반회원으로 전환후 문의하세요</button>
+                        {{/isFreelancer}}
+                        </c:if>
+                        <c:if test="${service.deleteStatus eq 'y'.charAt(0) }">
+                         <button class="centerBtn">삭제된 서비스입니다</button>
+                        </c:if>
+                    {{/loginMember}}
                 </div>
                 <br>
                 <div class="secu">
@@ -276,7 +270,7 @@
                         <img src="/img/test/icon_profile.svg" width="100px;">
                         <p class="brandName bold-font">{{service.brandName }}</p>
                         {{#service.brandName }}
-                        	<button class="emptyBtn" onclick="location.href='/introduceFrm?memberId=${m.memberId}&reqPage=1'">[{{service.brandName }}]의 프로필 보기</button>
+                        	<button class="emptyBtn" onclick="location.href='/introduceFrm?memberNo={{service.freeNo}}&reqPage=1'">[{{service.brandName }}]의 프로필 보기</button>
                         {{/service.brandName}}
                         {{#service.brandName}}
                         	<button class="emptyBtn" >탈퇴한 회원입니다</button>

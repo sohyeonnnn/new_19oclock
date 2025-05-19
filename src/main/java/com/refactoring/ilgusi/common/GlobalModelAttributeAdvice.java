@@ -20,6 +20,8 @@ public class GlobalModelAttributeAdvice {
                 .ifPresent(member -> {
                     model.addAttribute("loginMember", member);
                     model.addAttribute("isAdmin", member.isAdmin());
+                    model.addAttribute("isUser", member.isUser());
+                    model.addAttribute("isFreelancer", member.isFreelancer());
                 });
     }
 }

@@ -136,16 +136,20 @@ public class ServiceController {
         }
         model.addAttribute("fileList", fileListForView);
 
-       // boolean isFavoriteChecked = favoriteService.isFavoriteChecked(member.getMemberNo(), serviceNo);
-        model.addAttribute("favoriteCheck","false"); //isFavoriteChecked);
+        boolean isFavoriteChecked = false;
+        if(member == null){
+            isFavoriteChecked = favoriteService.isFavoriteChecked(member.getMemberNo(), serviceNo);
+        }
+        model.addAttribute("favoriteCheck",isFavoriteChecked); //isFavoriteChecked);
 
+
+        // 해당 유저가 등록한 다른서비스 불러오기
+        List<ServiceInfoDto> serviceList = serviceService.selectOrderedServiceList(serviceInfo.getFreeNo(), "approved");
+        model.addAttribute("serviceList", serviceList);
 
         /*
 
-        // 해당 유저가 등록한 다른서비스 불러오기
-        ArrayList<Service> sList = service.userService(memberId);
 
-        model.addAttribute("sList", sList);
 
         // 리뷰 리스트 불러오기 + 페이징
         ReviewPageData rpd = service.selectReviewList(sNo, reqPage,mNo);

@@ -54,10 +54,6 @@ public interface ServiceRepository {
     // 전문가 정보 불러오기
     Member selectMemberName(String memberId);
 
-    // 다른 서비스 불러오기
-    ArrayList<ServiceItem> userService(String memberId) ;
-
-
 
     float sRateAVG(String mId) ;
 

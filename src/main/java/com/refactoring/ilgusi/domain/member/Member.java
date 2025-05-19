@@ -105,6 +105,14 @@ public class Member extends BaseEntity {
 	public boolean isAdmin(){
 		return memberGrade.equals(RoleEnum.ADMIN);
 	}
+
+	public boolean isFreelancer(){
+		return memberGrade.equals(RoleEnum.FREELANCER);
+	}
+
+	public boolean isUser(){
+		return memberGrade.equals(RoleEnum.USER);
+	}
 	//jpa사용시 - 엔티티 객체가 persist(저장)되기 전에 자동으로 실행
 	/*@PrePersist
 	public void setDefault() {

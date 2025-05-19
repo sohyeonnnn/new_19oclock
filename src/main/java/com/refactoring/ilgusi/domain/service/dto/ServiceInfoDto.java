@@ -27,7 +27,8 @@ public class ServiceInfoDto {
 	private String deleteStatus; // 삭제 여부
 	private String adminApproval; // 승인 여부
 
-	private String memberId;
+	private int freeNo;
+	private String freeId;
 	private String brandName; // 브랜드이름
 	private String introduce;
 	private String mainCategoryName; //메인카테고리이름

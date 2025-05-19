@@ -24,12 +24,13 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
     @Query("SELECT COUNT(s) FROM ServiceItem s WHERE s.memberNo = :memberNo AND s.deleteStatus = 'N' and s.adminApproval = 'Y' ")
     Integer countServiceBymNo(@Param("memberNo") int memberNo);
 
+/*
     @Query(
             "SELECT new com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto(" +
                     "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-                    "m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
+                    "s.memberNo, m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
                     "FROM ServiceItem s " +
                     "LEFT JOIN Member m ON s.memberNo = m.memberNo " +
                     "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
@@ -39,37 +40,38 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
                     "AND s.deleteStatus = 'N'"
     )
     List<ServiceInfoDto> selectApprovedServiceList(@Param("memberNo") int memberNo);
+*/
 
     @Query(
             "SELECT new com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto(" +
                     "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-                    "m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
+                    "s.memberNo, m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
                     "FROM ServiceItem s " +
                     "LEFT JOIN Member m ON s.memberNo = m.memberNo " +
                     "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
                     "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
                     "WHERE s.memberNo = :memberNo " +
-                    "AND s.adminApproval = 'N' " +
-                    "AND s.deleteStatus = 'N'"
+                    "AND s.adminApproval = :isApproved " +
+                    "AND s.deleteStatus = :isDeleted"
     )
-    List<ServiceInfoDto> selectRejectedServiceList(@Param("memberNo") int memberNo);
+    List<ServiceInfoDto> selectSelectedServiceList(@Param("memberNo") int memberNo, @Param("isApproved") String isApproved, @Param("isDeleted") String isDeleted);
 
     @Query(
             "SELECT new com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto(" +
                     "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-                    "m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
+                    "s.memberNo, m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
                     "FROM ServiceItem s " +
                     "LEFT JOIN Member m ON s.memberNo = m.memberNo " +
                     "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
                     "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
                     "WHERE s.serviceNo = :serviceNo " +
-                    "AND s.adminApproval = 'Y' " +
-                    "AND s.deleteStatus = 'N'"
+                    "AND s.adminApproval = :isApproved " +
+                    "AND s.deleteStatus = :isDeleted "
     )
-    Optional<ServiceInfoDto> selectServiceView(@Param("serviceNo") int serviceNo);
+    Optional<ServiceInfoDto> selectServiceView(@Param("serviceNo") int serviceNo, @Param("isApproved") String isApproved, @Param("isDeleted") String isDeleted);
 
 }

@@ -34,16 +34,16 @@ public class JpaServiceRepository implements ServiceRepository {
     @Override
     public List<ServiceInfoDto> selectServiceList(int memberNo, String order) {
         if(order.equals("approved")){
-            return jpaRepository.selectApprovedServiceList(memberNo);
+            return jpaRepository.selectSelectedServiceList(memberNo, "Y", "N");
         }else if(order.equals("rejected")){
-            return jpaRepository.selectRejectedServiceList(memberNo);
+            return jpaRepository.selectSelectedServiceList(memberNo, "N", "N");
         }
         return null;
     }
 
     @Override
     public Optional<ServiceInfoDto> selectServiceView(int serviceNo) {
-        return Optional.ofNullable(jpaRepository.selectServiceView(serviceNo))
+        return Optional.ofNullable(jpaRepository.selectServiceView(serviceNo, "Y", "N"))
                 .orElseThrow(()-> new CustomException("없음"));
 
     }
@@ -57,6 +57,7 @@ public class JpaServiceRepository implements ServiceRepository {
     public void setServiceDeleteStatusY(int serviceNo) {
         jpaRepository.setServiceDeleteStatusY(serviceNo);
     }
+
 
     @Override
     public int selectServiceNo() {
@@ -116,10 +117,7 @@ public class JpaServiceRepository implements ServiceRepository {
         return null;
     }
 
-    @Override
-    public ArrayList<ServiceItem> userService(String memberId) {
-        return null;
-    }
+
 
 
     @Override
