@@ -2,6 +2,8 @@ package com.refactoring.ilgusi.domain.member;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.refactoring.ilgusi.common.BaseEntity;
+import com.refactoring.ilgusi.domain.chat.Chat;
+import com.refactoring.ilgusi.domain.favorite.Favorite;
 import com.refactoring.ilgusi.domain.service.ServiceItem;
 import lombok.Builder;
 import lombok.Getter;
@@ -55,6 +57,16 @@ public class Member extends BaseEntity {
 	@JsonIgnore
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ServiceItem> serviceList = new ArrayList<>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Favorite> favoriteList = new ArrayList<>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Chat> chatList = new ArrayList<>();
+
+
 
 
 

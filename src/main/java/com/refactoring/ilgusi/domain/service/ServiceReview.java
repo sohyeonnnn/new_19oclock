@@ -16,8 +16,6 @@ public class ServiceReview {
 	@SequenceGenerator(name = "service_review_seq_gen", sequenceName = "SERVICE_REVIEW_SEQ", allocationSize = 1)
 	private Integer reviewNo;			//리뷰 고유 번호
 	@Column
-	private int tradeNo;			//거래 번호
-	@Column
 	private String reviewContent;	//리뷰내용
 	@Column
 	private int reviewRate;			//점수
@@ -29,9 +27,15 @@ public class ServiceReview {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "service_no")
 	private ServiceItem service;
-
 	public void setService(ServiceItem service) {
 		this.service = service;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "trade_no")
+	private ServiceTrade serviceTrade;
+	public void setServiceTrade(ServiceTrade serviceTrade) {
+		this.serviceTrade = serviceTrade;
 	}
 
 	//줄바꿈

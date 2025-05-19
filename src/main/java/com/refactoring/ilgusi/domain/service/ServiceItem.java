@@ -1,5 +1,7 @@
 package com.refactoring.ilgusi.domain.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.refactoring.ilgusi.domain.favorite.Favorite;
 import com.refactoring.ilgusi.domain.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -58,6 +62,11 @@ public class ServiceItem {
 
 	@Column
 	private String serviceImg;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ServiceReview> reviewList = new ArrayList<>();
+
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "member_no")

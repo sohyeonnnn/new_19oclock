@@ -1,5 +1,6 @@
 package com.refactoring.ilgusi.domain.question;
 
+import com.refactoring.ilgusi.domain.member.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,10 +17,6 @@ public class Question {
 	@SequenceGenerator(name = "question_seq_gen", sequenceName = "QUESTION_SEQ", allocationSize = 1)
 	private int questionNo;				//문의번호
 	@Column
-	private int memberNo;				//회원 번호(작성자)
-	@Column
-	private String memberId;				//회원 아이디(작성자)
-	@Column
 	private String questionTitle;			//문의 제목
 	@Column
 	private String questionContent;		//문의 내용
@@ -35,7 +32,13 @@ public class Question {
 	private String answerDate;		//답변 날짜
 	@Column
 	private String filePath;		//파일이름(물리적)
-	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "memberNo")
+	private Member member;				//회원 번호(작성자)
+	public void setMember(Member member) {this.member = member;}
+
+
 	//줄바꿈
 	public String getQContentBr() {
 		return questionContent.replaceAll("\r\n", "<br>");
