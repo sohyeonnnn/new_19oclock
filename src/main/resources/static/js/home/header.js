@@ -6,18 +6,20 @@ $(document).ready(function () {
         success: function (data) {
             let $navUl = $(".nav>ul");
 
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].cNo == data[i].cDivisionNo ) {
-                    $navUl.append("<li><a href='/serviceList?cNo=" + data[i].cNo +
-                        "&reqPage=1&order=new&keyword='>" + data[i].cName +
-                        "</a> <ul></ul></li>")
+            data.forEach(function (mainCategory) {
+                let mainList = $("<li>");
+                mainList.append("<a href='/serviceList?categoryCd=" + mainCategory.parentCategoryCd +
+                    "&reqPage=1&order=new&keyword='>" + mainCategory.categoryNm + "</a>");
 
-                }else{
-                    $(".nav>ul>li:eq(" + (parseInt(data[i].cNo / 10) - 1) + ")>ul").append(
-                        "<li><a href='/serviceList?cNo=" + data[i].cNo +
-                        "&reqPage=1&order=new&keyword='>" + data[i].cName + "</a></li>")
-                }
-            }
+                let subList = $("<ul>");
+                mainCategory.subCategoryList.forEach(function (subCategory) {
+                    subList.append("<li><a href='/serviceList?categoryCd=" + subCategory.categoryCd +
+                        "&reqPage=1&order=new&keyword='>" + subCategory.categoryNm + "</a></li>");
+                });
+
+                mainList.append(subList);
+                $navUl.append(mainList);
+            });
         }
     })
     //스크롤 막기 true : 막기 , false : 풀기

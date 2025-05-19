@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class SubCategoryDto {
-    private final int cNo;
-    private final String cName;
+    private final int categoryCd;
+    private final String categoryNm;
     private final String imgUrl;
 }

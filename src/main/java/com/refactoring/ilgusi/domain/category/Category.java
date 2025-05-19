@@ -23,4 +23,13 @@ public class Category {
 	@Column(name = "IMG_URL")
 	private String imgUrl;
 
+	@Override
+	public String toString() {
+		return "Category{" +
+				"categoryCd=" + categoryCd +
+				", categoryNm='" + categoryName + '\'' +
+				", ParentCategoryCd=" + ParentCategoryCd +
+				", imgUrl='" + imgUrl + '\'' +
+				'}';
+	}
 }

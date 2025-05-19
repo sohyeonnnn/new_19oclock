@@ -10,16 +10,8 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 public class MainCategoryDto {
-    private final int cDivisionNo;
-    private final String cDivisionName;
+    private final int ParentCategoryCd;
+    private final String categoryNm;
     private final List<SubCategoryDto> subCategoryList;
 
-    @Override
-    public String toString() {
-        return "MainCategoryDto{" +
-                "cDivisionNo=" + cDivisionNo +
-                ", cDivisionName='" + cDivisionName + '\'' +
-                ", subCategoryList=" + subCategoryList +
-                '}';
-    }
 }
