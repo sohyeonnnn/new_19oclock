@@ -1,7 +1,5 @@
 package com.refactoring.ilgusi.domain.chat;
 
-import com.refactoring.ilgusi.domain.member.Member;
-import jdk.nashorn.internal.runtime.regexp.joni.encoding.CharacterType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

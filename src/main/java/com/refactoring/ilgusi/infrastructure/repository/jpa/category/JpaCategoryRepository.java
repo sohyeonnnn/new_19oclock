@@ -20,6 +20,11 @@ public class JpaCategoryRepository implements CategoryRepository {
     }
 
     @Override
+    public List<Category> selectMainCategoryList(int mainCategoryCd) {
+        return jpaRepository.selectMainCategoryList(mainCategoryCd);
+    }
+
+    @Override
     public List<CategoryRank> selectCategoryRankList(int cNo) {
         return List.of();
     }

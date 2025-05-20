@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-@ToString(exclude = "serviceList")
+/*@ToString(exclude = "serviceList")*/
 public class Member extends BaseEntity {
 	@Id
 	@Column(name = "MEMBER_NO")
@@ -62,9 +62,9 @@ public class Member extends BaseEntity {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Favorite> favoriteList = new ArrayList<>();
 
-	@JsonIgnore
+/*	@JsonIgnore
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Chat> chatList = new ArrayList<>();
+	private List<Chat> chatList = new ArrayList<>();*/
 
 
 
@@ -140,15 +140,6 @@ public class Member extends BaseEntity {
 	public boolean isUser(){
 		return memberGrade.equals(RoleEnum.USER);
 	}
-	//jpa사용시 - 엔티티 객체가 persist(저장)되기 전에 자동으로 실행
-	/*@PrePersist
-	public void setDefault() {
-		// 비밀번호 암호화
-		this.mPw = CommonUtil.encrypt(this.mPw);
-		// 기본 등급 설정
-		if (this.mGrade == null) {
-			this.mGrade = RoleEnum.USER;
-		}
-	}*/
+
 
 }

@@ -3,11 +3,16 @@ package com.refactoring.ilgusi.presentation.service;
 import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
+import com.refactoring.ilgusi.domain.category.Category;
+import com.refactoring.ilgusi.domain.category.dto.MainCategoryDto;
+import com.refactoring.ilgusi.domain.category.interfaces.CategoryService;
 import com.refactoring.ilgusi.domain.favorite.interfaces.FavoriteService;
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.service.ServiceFile;
+import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
+import com.refactoring.ilgusi.domain.service.dto.ServicePageDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +34,7 @@ import java.util.Map;
 public class ServiceController {
     private final ServiceService serviceService;
     private final FavoriteService favoriteService;
+    private final CategoryService categoryService;
 
     @ResponseBody
     @PostMapping("/isPossibleMakeService")
@@ -162,11 +168,72 @@ public class ServiceController {
         return "/service/serviceView";
     }
 
-    @GetMapping("/serviceList")
-    public String serviceList(){
-        //serviceRepository.searchService()
-        return "";
+    @RequestMapping("/serviceList")
+    public String serviceList(int mainCategoryCd, int categoryCd, int reqPage, String order, String keyword, Model model) {
+        List<MainCategoryDto> categoryList = categoryService.selectMainCategoryList(mainCategoryCd);
+        model.addAttribute("categoryList", categoryList);
+
+        model.addAttribute("order", order);
+        model.addAttribute("keyword", keyword);
+
+        List<ServiceInfoDto> serviceList = new ArrayList<>();
+
+        model.addAttribute("serviceList", serviceList);
+
+        ServicePageDto spd = new ServicePageDto();
+
+/*
+
+        int numPerPage = 12;
+        int end = reqPage * numPerPage;
+        int start = end - numPerPage + 1;
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        map.put("start", start);
+        map.put("end", end);
+        map.put("reqPage", reqPage);
+        map.put("cNo", cNo);
+
+
+
+        s.setMainCategory(maincateNum);
+        s.setSubCategory(subNo);
+
+        // 카테고리 리스트 불러오기
+        List<Category> catList = service.categoryList(maincateNum);
+
+        // 서비스 리스트 불러오기
+
+        ServicePageDto spd = new ServicePageDto();
+        spd.setEnd(end);
+        spd.setKeyword(keyword);
+        spd.setReqPage(reqPage);
+        spd.setStart(start);
+        spd.setCNo(cNo);
+
+        // 서비스 리스트 불러오기+페이징
+        spd = service.servicePageList(map, reqPage, cNo, order);
+        List<ServiceItem> serList = spd.getList();
+
+        // 맵 확인용 ArrayList
+        ArrayList<HashMap<String, Object>> mapList = new ArrayList<HashMap<String, Object>>();
+        mapList.add(map);
+
+
+
+        if (serList.size() > 0) {
+            model.addAttribute("serviceList", spd.getList());
+
+        }
+
+        model.addAttribute("catList", catList);
+        model.addAttribute("pageNavi", spd.getPageNavi());
+*/
+
+        return "/service/serviceList";
     }
+
 
     /*// (영재) 리뷰갯수 구하기
     @RequestMapping("/reviewListSize.do")

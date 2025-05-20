@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface CategoryService {
     List<MainCategoryDto> selectCategoryList();
-
-
+    List<MainCategoryDto> selectMainCategoryList(int mainCategoryCd);
 }

@@ -18,8 +18,8 @@ public class Category {
 	private Integer categoryCd;
 	@Column(name = "CATEGORY_NAME")
 	private String categoryName;
-	@Column(name = "PARENT_CATEGORY_CD")
-	private Integer ParentCategoryCd;
+	@Column(name = "MAIN_CATEGORY_CD")
+	private Integer mainCategoryCd;
 	@Column(name = "IMG_URL")
 	private String imgUrl;
 
@@ -28,7 +28,7 @@ public class Category {
 		return "Category{" +
 				"categoryCd=" + categoryCd +
 				", categoryNm='" + categoryName + '\'' +
-				", ParentCategoryCd=" + ParentCategoryCd +
+				", mainCategoryCd=" + mainCategoryCd +
 				", imgUrl='" + imgUrl + '\'' +
 				'}';
 	}

@@ -38,7 +38,7 @@ public class NoticeController {
         return "notice/noticeList";
     }
 
-    //공지사항 목록으로 이동
+    //공지사항 목록
     @GetMapping("/noticeList")
     @ResponseBody
     public ResponseEntity<NoticePageDto> noticeListApi (Integer reqPage, String keyword) {

@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 public class MainCategoryDto {
-    private final int ParentCategoryCd;
+    private final int mainCategoryCd;
     private final String categoryNm;
     private final List<SubCategoryDto> subCategoryList;
 

@@ -22,15 +22,24 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<MainCategoryDto> selectCategoryList() {
         List<Category> categoryList = categoryRepository.selectCategoryList();
+        return mapToDto(categoryList);
+    }
 
-        List<Category> parentCategories = categoryList.stream()
-                .filter(c -> c.getCategoryCd().equals(c.getParentCategoryCd()))
+    @Override
+    public List<MainCategoryDto> selectMainCategoryList(int mainCategoryCd) {
+        List<Category> categoryList = categoryRepository.selectMainCategoryList(mainCategoryCd);
+        return mapToDto(categoryList);
+    }
+
+    private List<MainCategoryDto> mapToDto(List<Category> categoryList) {
+        List<Category> mainCategories = categoryList.stream()
+                .filter(c -> c.getCategoryCd().equals(c.getMainCategoryCd()))
                 .collect(Collectors.toList());
 
-        List<MainCategoryDto> result = parentCategories.stream().map(parent -> {
+        return mainCategories.stream().map(parent -> {
             List<SubCategoryDto> subList = categoryList.stream()
-                    .filter(c -> !c.getCategoryCd().equals(c.getParentCategoryCd()))
-                    .filter(c -> c.getParentCategoryCd().equals(parent.getCategoryCd()))
+                    .filter(c -> !c.getCategoryCd().equals(c.getMainCategoryCd()))
+                    .filter(c -> c.getMainCategoryCd().equals(parent.getCategoryCd()))
                     .map(sub -> SubCategoryDto.builder()
                             .categoryCd(sub.getCategoryCd())
                             .categoryNm(sub.getCategoryName())
@@ -39,12 +48,11 @@ public class CategoryServiceImpl implements CategoryService {
                     .collect(Collectors.toList());
 
             return MainCategoryDto.builder()
-                    .ParentCategoryCd(parent.getCategoryCd())
+                    .mainCategoryCd(parent.getCategoryCd())
                     .categoryNm(parent.getCategoryName())
                     .subCategoryList(subList)
                     .build();
         }).collect(Collectors.toList());
-
-        return result;
     }
+
 }

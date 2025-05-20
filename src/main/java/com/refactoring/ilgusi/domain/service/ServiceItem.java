@@ -64,6 +64,7 @@ public class ServiceItem {
 	private String serviceImg;
 
 	@JsonIgnore
+	@Builder.Default
 	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ServiceReview> reviewList = new ArrayList<>();
 
@@ -76,5 +77,13 @@ public class ServiceItem {
 		this.member = member;
 	}
 
+
+	private String getStarString(double rate) {
+		int fullStars = (int) rate;
+		StringBuilder stars = new StringBuilder();
+		for (int i = 0; i < fullStars; i++) stars.append("★");
+		for (int i = fullStars; i < 5; i++) stars.append("☆");
+		return stars.toString();
+	}
 
 }
