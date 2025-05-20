@@ -8,6 +8,7 @@ import com.refactoring.ilgusi.domain.service.ServiceReview;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.exception.CustomException;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +59,11 @@ public class JpaServiceRepository implements ServiceRepository {
         jpaRepository.setServiceDeleteStatusY(serviceNo);
     }
 
+    @Override
+    public List<ServiceItem> selectCategoryServiceList(int offset, int limit, String keyword, int categoryCd) {
+        return jpaRepository.findByKeywordWithRange(offset, limit, keyword, categoryCd);
+    }
+
 
     @Override
     public int selectServiceNo() {
@@ -70,10 +76,7 @@ public class JpaServiceRepository implements ServiceRepository {
 
 
 
-    @Override
-    public List<ServiceItem> serviceList(String mId) {
-        return null;
-    }
+
 
     @Override
     public int serviceReviewSuccess(int tNo) {

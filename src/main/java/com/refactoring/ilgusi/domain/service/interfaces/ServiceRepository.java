@@ -2,6 +2,7 @@ package com.refactoring.ilgusi.domain.service.interfaces;
 
 import com.refactoring.ilgusi.domain.category.Category;
 import com.refactoring.ilgusi.domain.member.Member;
+import com.refactoring.ilgusi.domain.notice.Notice;
 import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.ServicePay;
 import com.refactoring.ilgusi.domain.service.ServiceReview;
@@ -21,10 +22,11 @@ public interface ServiceRepository {
     void setMemberServiceDeleteStatusY(int memberNo);
     void setServiceDeleteStatusY(int memberNo);
 
+    List<ServiceItem> selectCategoryServiceList(int offset, int limit, String keyword, int categoryCd);
+
 
     int selectServiceNo();
 
-    List<ServiceItem> serviceList(String mId);
 
 
     // 마이페이지에서 후기 등록하면 tStatus 바꿔줌(리뷰 작성완료로 : 3)

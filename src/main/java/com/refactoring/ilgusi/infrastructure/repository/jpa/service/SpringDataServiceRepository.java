@@ -1,5 +1,6 @@
 package com.refactoring.ilgusi.infrastructure.repository.jpa.service;
 
+import com.refactoring.ilgusi.domain.notice.Notice;
 import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -55,5 +56,12 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
                     "AND s.deleteStatus = :isDeleted "
     )
     Optional<ServiceInfoDto> selectServiceView(@Param("serviceNo") int serviceNo, @Param("isApproved") String isApproved, @Param("isDeleted") String isDeleted);
+
+    @Query(value = "SELECT * FROM serviceItem WHERE subCategory = :categoryCd AND (:keyword IS NULL OR service_title LIKE %:keyword%) ORDER BY service_no DESC LIMIT :limit OFFSET :offset", nativeQuery = true)
+    List<ServiceItem> findByKeywordWithRange(
+            @Param("offset") int offset,
+            @Param("limit") int limit,
+            @Param("keyword") String keyword,
+            @Param("categoryCd") int categoryCd);
 
 }

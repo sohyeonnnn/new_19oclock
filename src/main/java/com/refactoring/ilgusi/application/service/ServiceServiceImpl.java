@@ -76,5 +76,23 @@ public class ServiceServiceImpl implements ServiceService {
                 .orElseThrow(() -> new CustomException("서비스파일 없음", "redirect:/freelancerServiceList?order=rejected"));
     }
 
+    @Override
+    public List<ServiceInfoDto> selectCategoryServiceList(int reqPage, String keyword, int categoryCd) {
+
+        int limit = 12;
+        int offset = (reqPage - 1) * limit;
+
+       /* List<ServiceItem> serviceList = serviceRepository.selectCategoryServiceList(offset, limit, keyword, categoryCd);
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println(serviceList.toString());
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");*/
+
+        return null;
+    }
+
 
 }

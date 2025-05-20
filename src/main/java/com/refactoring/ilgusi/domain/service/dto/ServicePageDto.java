@@ -26,11 +26,4 @@ public class ServicePageDto {
 	private String order;
 	private String keyword;
 
-	private int mainCategoryCd;
-	private int categoryCd;
-	private String mainCategoryNm;
-	private String categoryNm;
-
-
-	
 }

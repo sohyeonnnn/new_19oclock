@@ -16,4 +16,5 @@ public interface ServiceService {
 
     List<ServiceFile> selectServiceFileList(int serviceNo);
 
+    List<ServiceInfoDto> selectCategoryServiceList(int reqPage, String keyword, int categoryCd);
 }
