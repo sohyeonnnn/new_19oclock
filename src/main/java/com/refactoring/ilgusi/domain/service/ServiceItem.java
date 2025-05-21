@@ -1,12 +1,14 @@
 package com.refactoring.ilgusi.domain.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.refactoring.ilgusi.common.BaseEntity;
 import com.refactoring.ilgusi.domain.favorite.Favorite;
 import com.refactoring.ilgusi.domain.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import java.util.List;
 @Entity
 @Builder
 @Table(name = "service")
-public class ServiceItem {
+public class ServiceItem extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_seq_gen")
 	@SequenceGenerator(name = "service_seq_gen", sequenceName = "SERVICE_SEQ", allocationSize = 1)
@@ -52,6 +54,7 @@ public class ServiceItem {
 	private int workingCount;
 
 	@Column
+	@CreatedDate
 	private String writeDate;
 
 	@Column

@@ -11,7 +11,7 @@ import java.text.NumberFormat;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ServiceInfoDto {
+public class ServiceListDto {
 	private int serviceNo; // 서비스 번호
 	private String serviceTitle; // 서비스 제목
 	private String serviceContent; // 서비스 내용
@@ -36,32 +36,6 @@ public class ServiceInfoDto {
 
 	public String getServicePriceTxt() {
 		return NumberFormat.getInstance().format(servicePrice);
-	}
-
-	@Override
-	public String toString() {
-		return "ServiceInfoDto{" +
-				"serviceNo=" + serviceNo +
-				", serviceTitle='" + serviceTitle + '\'' +
-				", serviceContent='" + serviceContent + '\'' +
-				", servicePrice=" + servicePrice +
-				", serviceArea='" + serviceArea + '\'' +
-				", serviceImg='" + serviceImg + '\'' +
-				", serviceRate=" + serviceRate +
-				", mainCategory=" + mainCategory +
-				", subCategory=" + subCategory +
-				", workingDate=" + workingDate +
-				", workingCount=" + workingCount +
-				", writeDate='" + writeDate + '\'' +
-				", deleteStatus='" + deleteStatus + '\'' +
-				", adminApproval='" + adminApproval + '\'' +
-				", freeNo=" + freeNo +
-				", freeId='" + freeId + '\'' +
-				", brandName='" + brandName + '\'' +
-				", introduce='" + introduce + '\'' +
-				", mainCategoryName='" + mainCategoryName + '\'' +
-				", subCategoryName='" + subCategoryName + '\'' +
-				'}';
 	}
 
 	//private List<ServiceFile> fileList = new ArrayList<>();

@@ -8,7 +8,8 @@ import com.refactoring.ilgusi.domain.service.ServiceReview;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.exception.CustomException;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,8 +61,20 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
-    public List<ServiceItem> selectCategoryServiceList(int offset, int limit, String keyword, int categoryCd) {
-        return jpaRepository.findByKeywordWithRange(offset, limit, keyword, categoryCd);
+    public Page<ServiceInfoDto> selectCategoryServiceList(Pageable pageable, int mainCategoryCd, int categoryCd, String order, String keyword) {
+        if(order.equals("new")){
+            return jpaRepository.findByKeywordWithRangeOrderByNew(pageable, mainCategoryCd, categoryCd, keyword);
+        }else if(order.equals("new")){
+            return jpaRepository.findByKeywordWithRangeOrderByRate(pageable, mainCategoryCd, categoryCd, keyword);
+        }
+        else if(order.equals("new")){
+            return jpaRepository.findByKeywordWithRangeOrderByReview(pageable, mainCategoryCd, categoryCd, keyword);
+        }
+        else if(order.equals("new")){
+            return jpaRepository.findByKeywordWithRangeOrderByPrice(pageable, mainCategoryCd, categoryCd, keyword);
+        }else {
+            throw new IllegalArgumentException("error : " + order);
+        }
     }
 
 

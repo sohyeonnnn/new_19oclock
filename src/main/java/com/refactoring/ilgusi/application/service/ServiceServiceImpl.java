@@ -2,16 +2,22 @@ package com.refactoring.ilgusi.application.service;
 
 import com.refactoring.ilgusi.domain.member.Member;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberRepository;
+import com.refactoring.ilgusi.domain.notice.Notice;
+import com.refactoring.ilgusi.domain.notice.dto.NoticePageDto;
 import com.refactoring.ilgusi.domain.service.ServiceFile;
 import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
+import com.refactoring.ilgusi.domain.service.dto.ServicePageDto;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceFileRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceRepository;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceService;
 import com.refactoring.ilgusi.domain.service.interfaces.ServiceTradeRepository;
 import com.refactoring.ilgusi.exception.CustomException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -79,19 +85,61 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public List<ServiceInfoDto> selectCategoryServiceList(int reqPage, String keyword, int categoryCd) {
 
+
+        return null;
+    }
+
+    @Override
+    public ServicePageDto selectServiceListApi(int mainCategoryCd, int categoryCd, int reqPage, String order, String keyword) {
         int limit = 12;
         int offset = (reqPage - 1) * limit;
 
-       /* List<ServiceItem> serviceList = serviceRepository.selectCategoryServiceList(offset, limit, keyword, categoryCd);
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println(serviceList.toString());
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");*/
+        Pageable pageable = PageRequest.of(offset / limit, limit);
+        Page<ServiceInfoDto> page = serviceRepository.selectCategoryServiceList(pageable, mainCategoryCd, categoryCd, order, keyword);
 
-        return null;
+        int totalCount = (int) page.getTotalElements();
+        int totalPage = page.getTotalPages();
+        List<ServiceInfoDto> serviceList = page.getContent();
+        String pageNavi = generateServicePageNavi(reqPage, keyword, totalPage, totalCount, limit);
+
+        return ServicePageDto.builder()
+                .serviceList(serviceList)
+                .reqPage(reqPage)
+                .totalCount(totalCount)
+                .totalPage(totalPage)
+                .pageNavi(pageNavi)
+                .build();
+    }
+
+    public String generateServicePageNavi(int reqPage, String keyword, int totalPage, int totalCount, int limit) {
+        int pageNaviSize = 5;
+        int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+        StringBuilder pageNavi = new StringBuilder();
+
+        pageNavi.append("<ul class='pagination justify-content-center'>");
+
+        if (pageNo != 1) {
+            pageNavi.append("<li class='page-item'><a class='page-link' href='javascript:void(0)' data-page='")
+                    .append(pageNo - 1).append("'>pre</a></li>");
+        }
+
+        for (int i = 0; i < pageNaviSize && pageNo <= totalPage; i++) {
+            if (reqPage == pageNo) {
+                pageNavi.append("<li class='page-item'><span class='page-link selected'>").append(pageNo).append("</span></li>");
+            } else {
+                pageNavi.append("<li class='page-item'><a class='page-link' href='javascript:void(0)' data-page='")
+                        .append(pageNo).append("'>").append(pageNo).append("</a></li>");
+            }
+            pageNo++;
+        }
+
+        if (pageNo <= totalPage) {
+            pageNavi.append("<li class='page-item'><a class='page-link' href='javascript:void(0)' data-page='")
+                    .append(pageNo).append("'>next</a></li>");
+        }
+
+        pageNavi.append("</ul>");
+        return pageNavi.toString();
     }
 
 

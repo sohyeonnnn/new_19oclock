@@ -8,6 +8,7 @@ import com.refactoring.ilgusi.domain.category.dto.MainCategoryDto;
 import com.refactoring.ilgusi.domain.category.interfaces.CategoryService;
 import com.refactoring.ilgusi.domain.favorite.interfaces.FavoriteService;
 import com.refactoring.ilgusi.domain.member.Member;
+import com.refactoring.ilgusi.domain.notice.dto.NoticePageDto;
 import com.refactoring.ilgusi.domain.service.ServiceFile;
 import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
@@ -168,20 +169,27 @@ public class ServiceController {
         return "/service/serviceView";
     }
 
-    @RequestMapping("/serviceList")
-    public String serviceList(int mainCategoryCd, int categoryCd, int reqPage, String order, String keyword, Model model) {
+    @GetMapping("/serviceListPage")
+    public String serviceListPage(int mainCategoryCd, int categoryCd, int reqPage, String order, String keyword, Model model) {
         List<MainCategoryDto> categoryList = categoryService.selectMainCategoryList(mainCategoryCd);
-        List<ServiceInfoDto> serviceList = serviceService.selectCategoryServiceList(reqPage, keyword, categoryCd);
-        ServicePageDto spd = new ServicePageDto();
 
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("order", order);
         model.addAttribute("keyword", keyword);
-        model.addAttribute("serviceList", serviceList);
-        model.addAttribute("pageNavi", spd.getPageNavi());
+        model.addAttribute("mainCategoryCd", mainCategoryCd);
+        model.addAttribute("categoryCd", categoryCd);/*
+        model.addAttribute("reqPage", reqPage);
+        */
 
         return "/service/serviceList";
     }
+
+    @GetMapping("/serviceList")
+    public ResponseEntity<ServicePageDto> serviceList(int mainCategoryCd, int categoryCd, int reqPage, String order, String keyword) {
+        ServicePageDto servicePageDto = serviceService.selectServiceListApi(mainCategoryCd, categoryCd, reqPage, order, keyword);
+        return ResponseEntity.ok(servicePageDto);
+    }
+
 
 
     /*// (영재) 리뷰갯수 구하기

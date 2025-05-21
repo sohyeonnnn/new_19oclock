@@ -8,12 +8,12 @@ $(document).ready(function () {
 
             data.forEach(function (mainCategory) {
                 let mainList = $("<li>");
-                mainList.append("<a href='/serviceList?categoryCd=0&mainCategoryCd="+mainCategory.mainCategoryCd+
+                mainList.append("<a href='/serviceListPage?categoryCd=0&mainCategoryCd="+mainCategory.mainCategoryCd+
                     "&reqPage=1&order=new&keyword='>" + mainCategory.categoryNm + "</a>");
 
                 let subList = $("<ul>");
                 mainCategory.subCategoryList.forEach(function (subCategory) {
-                    subList.append("<li><a href='/serviceList?categoryCd=" + subCategory.categoryCd + "&mainCategoryCd="+mainCategory.mainCategoryCd+
+                    subList.append("<li><a href='/serviceListPage?categoryCd=" + subCategory.categoryCd + "&mainCategoryCd="+mainCategory.mainCategoryCd+
                         "&reqPage=1&order=new&keyword='>" + subCategory.categoryNm + "</a></li>");
                 });
 

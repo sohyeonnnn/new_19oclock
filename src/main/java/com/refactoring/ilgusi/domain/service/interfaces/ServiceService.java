@@ -4,6 +4,7 @@ package com.refactoring.ilgusi.domain.service.interfaces;
 import com.refactoring.ilgusi.domain.service.ServiceFile;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
+import com.refactoring.ilgusi.domain.service.dto.ServicePageDto;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface ServiceService {
     List<ServiceFile> selectServiceFileList(int serviceNo);
 
     List<ServiceInfoDto> selectCategoryServiceList(int reqPage, String keyword, int categoryCd);
+
+    ServicePageDto selectServiceListApi(int mainCategoryCd, int categoryCd, int reqPage, String order, String keyword);
 }

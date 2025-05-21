@@ -7,6 +7,8 @@ import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.ServicePay;
 import com.refactoring.ilgusi.domain.service.ServiceReview;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +24,7 @@ public interface ServiceRepository {
     void setMemberServiceDeleteStatusY(int memberNo);
     void setServiceDeleteStatusY(int memberNo);
 
-    List<ServiceItem> selectCategoryServiceList(int offset, int limit, String keyword, int categoryCd);
+    Page<ServiceInfoDto> selectCategoryServiceList(Pageable pageable, int mainCategoryCd, int categoryCd, String order, String keyword);
 
 
     int selectServiceNo();
