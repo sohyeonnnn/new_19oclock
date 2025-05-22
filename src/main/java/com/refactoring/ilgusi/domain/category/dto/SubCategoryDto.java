@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class SubCategoryDto {
+    private final int mainCategoryCd;
     private final int categoryCd;
     private final String categoryNm;
     private final String imgUrl;

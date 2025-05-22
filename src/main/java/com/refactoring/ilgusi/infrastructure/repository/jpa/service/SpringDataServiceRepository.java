@@ -69,7 +69,7 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
             "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
             "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
             "WHERE s.mainCategory = :mainCategoryCd " +
-            "AND s.subCategory = :categoryCd " +
+            "AND (:categoryCd = 0 OR s.subCategory = :categoryCd) " +
             "AND s.adminApproval = 'Y' " +
             "AND s.deleteStatus = 'N' " +
             "AND (:keyword IS NULL OR s.serviceTitle LIKE CONCAT('%', :keyword, '%'))")

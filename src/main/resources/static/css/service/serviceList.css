@@ -23,8 +23,8 @@
 }
 
 .serviceList {
-	width: 980px;
-	float: left;
+	display: flex;
+	flex-direction: column;
 }
 
 .naviTitle {
@@ -98,6 +98,8 @@ a:hover {
 
 .tableContainer {
 	margin: 0 auto;
+	width: 100%;
+	display: block;
 }
 
 .serviceBox {
@@ -170,9 +172,9 @@ a:hover {
 }
 
 .pageNaviBox {
-	width: 1000px;
-	height: 40px;
-	margin: 0 auto;
+	display: block;
+	width: 100%;
+	margin-top: 20px;
 	text-align: center;
 }
 
@@ -187,4 +189,20 @@ a:hover {
 
 .pagination>li>span {
 	color: transparent;
+}
+
+.selected-category {
+	text-decoration: underline;
+	font-weight: bold;
+	font-size: 13pt;
+	color: rgb(255, 143, 63);
+}
+
+.noService {
+	font-weight: bold;
+	font-size: 15pt;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }

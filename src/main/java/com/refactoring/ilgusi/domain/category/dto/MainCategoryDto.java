@@ -12,6 +12,7 @@ import java.util.List;
 public class MainCategoryDto {
     private final int mainCategoryCd;
     private final String categoryNm;
+    private final String imgUrl;
     private final List<SubCategoryDto> subCategoryList;
 
 }

@@ -172,15 +172,11 @@ public class ServiceController {
     @GetMapping("/serviceListPage")
     public String serviceListPage(int mainCategoryCd, int categoryCd, int reqPage, String order, String keyword, Model model) {
         List<MainCategoryDto> categoryList = categoryService.selectMainCategoryList(mainCategoryCd);
-
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("order", order);
         model.addAttribute("keyword", keyword);
         model.addAttribute("mainCategoryCd", mainCategoryCd);
-        model.addAttribute("categoryCd", categoryCd);/*
-        model.addAttribute("reqPage", reqPage);
-        */
-
+        model.addAttribute("categoryCd", categoryCd);
         return "/service/serviceList";
     }
 

@@ -1,6 +1,7 @@
 package com.refactoring.ilgusi.presentation.home;
 
 
+import com.refactoring.ilgusi.domain.category.dto.MainCategoryDto;
 import com.refactoring.ilgusi.domain.category.interfaces.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,9 +24,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(Model model){
-        /*List<MainCategoryDto> categoryList = categoryService.selectCategoryList();
-        model.addAttribute("categoryList", categoryList);*/
-
+        List<MainCategoryDto> categoryList = categoryService.selectCategoryList();
+        model.addAttribute("categoryList", categoryList);
 
         return "home";
     }

@@ -63,174 +63,33 @@
         </div>
     {{/loginMember}}
 
+    {{#categoryList}}{{#imgUrl}}
+        <div class="slider-container">
+            <div class="famous-category-slider">
+                <div class="slider-top">
+                    <div class="slider-title">
+                        <span>{{categoryNm}} </span>카테고리 에서 인기있어요!
+                    </div>
+                    <div class="arrowSlider">
+                        <span class="prev" id="arrow1_prev">&lt;</span>
+                        <span class="next" id="arrow1_next">&gt;</span>
+                    </div>
+                </div>
+                <div class="famous-category-list">
+                    {{#subCategoryList}}
+                        <div class="category-item">
+                            <a href="/serviceListPage?categoryCd={{categoryCd}}&mainCategoryCd={{mainCategoryCd}}&reqPage=1&order=new&keyword=">
+                                <img src="{{imgUrl}}" alt="">
+                                <div class="category-title-background"></div>
+                                <div class="category-title">{{categoryNm}}</div>
+                            </a>
+                        </div>
+                    {{/subCategoryList}}
+                </div>
+            </div>
+        </div>
+        {{/imgUrl}}{{/categoryList}}
 
-    <div class="slider-container">
-        <div class="famous-category-slider">
-            <div class="slider-top">
-                <div class="slider-title">
-                    <span>디자인 카테고리</span>에서 인기있어요!
-                </div>
-                <div class="arrowSlider">
-                    <span class="prev" id="arrow1_prev">&lt;</span>
-                    <span class="next" id="arrow1_next">&gt;</span>
-                </div>
-            </div>
-            <div class="famous-category-list">
-                <div class="category-item">
-                    <a href="/serviceList?cNo=11&reqPage=1">
-                        <img src="img/index/carousel/category-11.png" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">로고·브랜딩</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=13&reqPage=1">
-                        <img src="img/index/carousel/category-13.png" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">캘리그라피·폰트</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=14&reqPage=1">
-                        <img src="img/index/carousel/category-14.png" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">일러스트·캐리커쳐</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=16&reqPage=1">
-                        <img src="img/index/carousel/category-16.png" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">이벤트·상세 페이지</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=15&reqPage=1">
-                        <img src="img/index/carousel/category-15.png" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">간판·시공</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=12&reqPage=1">
-                        <img src="img/index/carousel/category-12.png" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">인쇄·홍보물·배너</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="famous-category-slider">
-            <div class="slider-top">
-                <div class="slider-title">
-                    <span>IT·프로그래밍 카테고리</span>에서 인기있어요!
-                </div>
-                <div class="arrowSlider">
-                    <span class="prev" id="arrow2_prev">&lt;</span>
-                    <span class="next" id="arrow2_next">&gt;</span>
-                </div>
-            </div>
-            <div class="famous-category-list">
-                <div class="category-item">
-                    <a href="/serviceList?cNo=21&reqPage=1">
-                        <img src="img/index/carousel/category-21.png" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">워드프레스</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=22&reqPage=1">
-                        <img src="img/index/carousel/category-22.png" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">웹사이트개발</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=23&reqPage=1">
-                        <img src="img/index/carousel/category-23.jpg" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">프로그램개발</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=24&reqPage=1">
-                        <img src="img/index/carousel/category-24.png" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">데이터베이스</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=25&reqPage=1">
-                        <img src="img/index/carousel/category-25.png" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">게임개발</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=27&reqPage=1">
-                        <img src="img/index/carousel/category-27.jpg" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">파일변환</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="famous-category-slider">
-            <div class="slider-top">
-                <div class="slider-title">
-                    <span>비즈니스컨설팅 카테고리</span>에서 인기있어요!
-                </div>
-                <div class="arrowSlider">
-                    <span class="prev" id="arrow3_prev">&lt;</span>
-                    <span class="next" id="arrow3_next">&gt;</span>
-                </div>
-            </div>
-            <div class="famous-category-list">
-                <div class="category-item">
-                    <a href="/serviceList?cNo=61&reqPage=1">
-                        <img src="img/index/carousel/category-61.jpg" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">사업계획서·투자제안서</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=62&reqPage=1">
-                        <img src="img/index/carousel/category-62.jpg" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">인사·노무</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=63&reqPage=1">
-                        <img src="img/index/carousel/category-63.jpg" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">창업컨설팅</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=64&reqPage=1">
-                        <img src="img/index/carousel/category-64.jpg" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">법률법무</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=65&reqPage=1">
-                        <img src="img/index/carousel/category-65.jpg" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">업무지원·cs</div>
-                    </a>
-                </div>
-                <div class="category-item">
-                    <a href="/serviceList?cNo=60&reqPage=1">
-                        <img src="img/index/carousel/category-60.jpg" alt="">
-                        <div class="category-title-background"></div>
-                        <div class="category-title">컨설팅</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="single-banner1">
         <img src="img/index/banner/banner4.png" alt="">
     </div>

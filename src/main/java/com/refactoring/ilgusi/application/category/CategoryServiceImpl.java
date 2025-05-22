@@ -41,6 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
                     .filter(c -> !c.getCategoryCd().equals(c.getMainCategoryCd()))
                     .filter(c -> c.getMainCategoryCd().equals(parent.getCategoryCd()))
                     .map(sub -> SubCategoryDto.builder()
+                            .mainCategoryCd(sub.getMainCategoryCd())
                             .categoryCd(sub.getCategoryCd())
                             .categoryNm(sub.getCategoryName())
                             .imgUrl(sub.getImgUrl())
@@ -50,6 +51,7 @@ public class CategoryServiceImpl implements CategoryService {
             return MainCategoryDto.builder()
                     .mainCategoryCd(parent.getCategoryCd())
                     .categoryNm(parent.getCategoryName())
+                    .imgUrl(parent.getImgUrl())
                     .subCategoryList(subList)
                     .build();
         }).collect(Collectors.toList());
