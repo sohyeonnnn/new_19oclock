@@ -72,72 +72,8 @@ public interface SpringDataServiceRepository extends JpaRepository<ServiceItem, 
             "AND s.subCategory = :categoryCd " +
             "AND s.adminApproval = 'Y' " +
             "AND s.deleteStatus = 'N' " +
-            "AND (:keyword IS NULL OR s.serviceTitle LIKE CONCAT('%', :keyword, '%'))" +
-            "ORDER BY s.writeDate DESC")
-    Page<ServiceInfoDto> findByKeywordWithRangeOrderByNew(
-            Pageable pageable,
-            @Param("mainCategoryCd") int mainCategoryCd,
-            @Param("categoryCd") int categoryCd,
-            @Param("keyword") String keyword);
-
-    @Query("SELECT new com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto(" +
-            "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
-            "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
-            "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-            "s.member.memberNo, m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
-            "FROM ServiceItem s " +
-            "LEFT JOIN Member m ON s.member.memberNo = m.memberNo " +
-            "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
-            "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
-            "WHERE s.mainCategory = :mainCategoryCd " +
-            "AND s.subCategory = :categoryCd " +
-            "AND s.adminApproval = 'Y' " +
-            "AND s.deleteStatus = 'N' " +
-            "AND (:keyword IS NULL OR s.serviceTitle LIKE CONCAT('%', :keyword, '%'))" +
-            "ORDER BY s.serviceRate DESC")
-    Page<ServiceInfoDto> findByKeywordWithRangeOrderByRate(
-            Pageable pageable,
-            @Param("mainCategoryCd") int mainCategoryCd,
-            @Param("categoryCd") int categoryCd,
-            @Param("keyword") String keyword);
-
-    @Query("SELECT new com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto(" +
-            "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
-            "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
-            "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-            "s.member.memberNo, m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
-            "FROM ServiceItem s " +
-            "LEFT JOIN Member m ON s.member.memberNo = m.memberNo " +
-            "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
-            "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
-            "WHERE s.mainCategory = :mainCategoryCd " +
-            "AND s.subCategory = :categoryCd " +
-            "AND s.adminApproval = 'Y' " +
-            "AND s.deleteStatus = 'N' " +
-            "AND (:keyword IS NULL OR s.serviceTitle LIKE CONCAT('%', :keyword, '%'))" +
-            "")
-    Page<ServiceInfoDto> findByKeywordWithRangeOrderByReview(
-            Pageable pageable,
-            @Param("mainCategoryCd") int mainCategoryCd,
-            @Param("categoryCd") int categoryCd,
-            @Param("keyword") String keyword);
-
-    @Query("SELECT new com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto(" +
-            "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
-            "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
-            "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-            "s.member.memberNo, m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
-            "FROM ServiceItem s " +
-            "LEFT JOIN Member m ON s.member.memberNo = m.memberNo " +
-            "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
-            "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
-            "WHERE s.mainCategory = :mainCategoryCd " +
-            "AND s.subCategory = :categoryCd " +
-            "AND s.adminApproval = 'Y' " +
-            "AND s.deleteStatus = 'N' " +
-            "AND (:keyword IS NULL OR s.serviceTitle LIKE CONCAT('%', :keyword, '%'))" +
-            "ORDER BY s.servicePrice")
-    Page<ServiceInfoDto> findByKeywordWithRangeOrderByPrice(
+            "AND (:keyword IS NULL OR s.serviceTitle LIKE CONCAT('%', :keyword, '%'))")
+    Page<ServiceInfoDto> findByKeywordWithRangeOrderBy(
             Pageable pageable,
             @Param("mainCategoryCd") int mainCategoryCd,
             @Param("categoryCd") int categoryCd,

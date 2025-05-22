@@ -62,19 +62,7 @@ public class JpaServiceRepository implements ServiceRepository {
 
     @Override
     public Page<ServiceInfoDto> selectCategoryServiceList(Pageable pageable, int mainCategoryCd, int categoryCd, String order, String keyword) {
-        if(order.equals("new")){
-            return jpaRepository.findByKeywordWithRangeOrderByNew(pageable, mainCategoryCd, categoryCd, keyword);
-        }else if(order.equals("new")){
-            return jpaRepository.findByKeywordWithRangeOrderByRate(pageable, mainCategoryCd, categoryCd, keyword);
-        }
-        else if(order.equals("new")){
-            return jpaRepository.findByKeywordWithRangeOrderByReview(pageable, mainCategoryCd, categoryCd, keyword);
-        }
-        else if(order.equals("new")){
-            return jpaRepository.findByKeywordWithRangeOrderByPrice(pageable, mainCategoryCd, categoryCd, keyword);
-        }else {
-            throw new IllegalArgumentException("error : " + order);
-        }
+        return jpaRepository.findByKeywordWithRangeOrderBy(pageable, mainCategoryCd, categoryCd, keyword);
     }
 
 

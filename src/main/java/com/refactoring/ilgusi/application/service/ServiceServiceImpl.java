@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -93,8 +94,19 @@ public class ServiceServiceImpl implements ServiceService {
     public ServicePageDto selectServiceListApi(int mainCategoryCd, int categoryCd, int reqPage, String order, String keyword) {
         int limit = 12;
         int offset = (reqPage - 1) * limit;
+        Sort sort = null;
 
-        Pageable pageable = PageRequest.of(offset / limit, limit);
+        if(order.equals("new")){
+            sort =  Sort.by(Sort.Direction.DESC, "createdDate");
+        }else if(order.equals("popular")){
+            sort =  Sort.by(Sort.Direction.DESC, "workingCount");
+        }else if(order.equals("review")){
+            sort =  Sort.by(Sort.Direction.DESC, "serviceRate");
+        }else if(order.equals("lowPrice")){
+            sort =  Sort.by(Sort.Direction.ASC, "servicePrice");
+        }
+
+        Pageable pageable = PageRequest.of(offset / limit, limit, sort);
         Page<ServiceInfoDto> page = serviceRepository.selectCategoryServiceList(pageable, mainCategoryCd, categoryCd, order, keyword);
 
         int totalCount = (int) page.getTotalElements();

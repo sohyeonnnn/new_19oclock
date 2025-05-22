@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>19시 :: 서비스</title>
+</head>
+<body>
+{{#serviceList}}
+    <div class="serviceBox">
+        <div class="imgBox">
+            <img src="/upload/service/{{serviceImg}}" onclick="location.href='/serviceView?serviceNo={{serviceNo}}&reqPage=1'" />
+        </div>
+        <br/>
+        <span class="preName">{{brandName}}</span>
+        <p class="serviceCon" style="height: 30px;">
+            <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1">{{serviceTitle}}</a>
+        </p>
+        <p class="price">{{servicePriceTxt}}원~</p>
+        <p class="score">평점 {{serviceRate}}</p>
+    </div>
+{{/serviceList}}
+</body>
+</html>
