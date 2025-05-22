@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>19시 :: [${param.keyword}] 검색결과</title>
+	<!-- favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+	<link rel="stylesheet" href="/css/service/serviceAllList.css">
+
+</head>
+
+<body>
+{{>common/header}}
+	<section class="search-section">
+		<div class="search-container">
+			<div class="search-description">
+				<span id="keyword">'${param.keyword}'</span>에 대한 검색결과 <span id="count">${maxListCount}개</span>
+			</div>
+			<div class="search-list">
+				<c:if test="${not empty list}">
+					<c:forEach var="item" items="${list}">
+						<a href="/serviceView2.do?serviceNo=${item.serviceNo}&reqPage=1">
+							<div class="list-item">
+								<div class="item-img">
+									<img src="upload/service/${item.SImg}" alt="">
+								</div>
+								<div class="item-freeid">
+									${item.memberId}
+								</div>
+								<div class="item-title">
+									${item.STitle}
+								</div>
+								<div class="item-price">
+									${item.SPriceTxt}원
+								</div>
+								<div class="item-rate">
+									${item.SRate}점
+									<c:choose>
+										<c:when test="${item.SRate == 5}">
+											<span class="star"> ★★★★★ </span>
+										</c:when>
+
+										<c:when test="${item.SRate gt 3.9}">
+											<span class="star"> ☆★★★★ </span>
+										</c:when>
+										<c:when test="${item.SRate gt 2.9}">
+											<span class="star"> ☆☆★★★ </span>
+										</c:when>
+										<c:when test="${item.SRate gt 1.9}">
+											<span class="star"> ☆☆☆★★ </span>
+										</c:when>
+										<c:when test="${item.SRate gt 0.9}">
+											<span class="star"> ☆☆☆☆★ </span>
+										</c:when>
+										<c:when test="${item.SRate == 0}">
+											<span class="star"> ☆☆☆☆☆ </span>
+										</c:when>
+									</c:choose>
+								</div>
+							</div>
+						</a>
+					</c:forEach>
+				</c:if>
+			</div>
+			<div class="paging">
+				<c:if test="${begin != 1}">
+					<a class="page-prev"
+						href="?page=${begin-1}${not empty param.keyword ? '&keyword='+=param.keyword : ''}">이전</a>
+				</c:if>
+				<c:forEach var="i" begin="${not empty param.page ?  begin : 1}" end="${end}" step="1">
+					<a class="page-num ${param.page==i || (empty param.page && i == 1) ? 'page-selected' : ''}"
+						href="?page=${i}${not empty param.keyword ? '&keyword='+=param.keyword : ''}">${i}</a>
+				</c:forEach>
+				<c:if test="${end < maxPageCount}">
+					<a class="page-next"
+						href="?page=${end+1}${not empty param.keyword ? '&keyword='+=param.keyword : ''}">다음</a>
+				</c:if>
+			</div>
+		</div>
+	</section>
+{{>common/footer}}
+</body>
+
+</html>

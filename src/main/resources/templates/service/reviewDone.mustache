@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>19시::확인</title>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="stylesheet" href="/css/service/reviewDone.css">
+</head>
+
+<body>
+<h2>${msg }</h2>
+<button id="cancel-btn">창 닫기</button>
+<script>
+	$("#cancel-btn").click(function(){
+		//현재 창 닫고 부모 창 새로고침
+		opener.document.location.reload();
+		self.close();
+	});
+</script>
+</body>
+</html>

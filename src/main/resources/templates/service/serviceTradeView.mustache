@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>19시 :: 거래 내용 확인</title>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+
+	<link rel="stylesheet" href="/css/service/serviceTradeView.css">
+
+</head>
+
+<body>
+	<div class="wrap">
+		<h2>거래 확인</h2>
+		<div id="gray-text">프리랜서와 협의한 거래 내용을 확인해보세요.</div>
+		<hr>
+		<div class="sContent">
+			<div><img src="/upload/service/${ service.SImg}" width="100%" height="80px" style="border-radius:5px;" alt="${sImg }"></div>
+			<div><a href="javascript:goServiceView(${trade.serviceNo },${loginMember.memberNo })">${service.STitle }</a></div>
+		</div>
+		<div class="sub-title">서비스 가격</div>
+		<div class="text-box">
+			<div id="price">${trade.TPriceTxt }</div>
+		</div>
+		<div class="sub-title">작업 시작 날짜</div>
+		<div class="text-box">
+			<div>${trade.startDate }</div>
+		</div>
+		<div class="sub-title">작업 마감 날짜</div>
+		<div class="text-box">
+			<div>${trade.endDate }</div>
+		</div>
+		<div class="btn-wrap">
+        	<button class="btn2 delete" id="close_btn">닫기</button>
+        </div>
+		
+	</div>
+	
+	<script>
+		$("#close_btn").click(function(){
+			window.close();
+	    });
+		
+		//부모창에서 서비스 상세보기 뜸
+		function goServiceView(serviceNo,memberNo){
+			opener.parent.gotoServiceView(serviceNo,memberNo);
+		}
+		
+	</script>
+</body>
+</html>
