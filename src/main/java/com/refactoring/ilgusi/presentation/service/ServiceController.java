@@ -3,14 +3,11 @@ package com.refactoring.ilgusi.presentation.service;
 import com.refactoring.ilgusi.common.CommonUtil;
 import com.refactoring.ilgusi.common.MsgRedirectHelper;
 import com.refactoring.ilgusi.common.ResultData;
-import com.refactoring.ilgusi.domain.category.Category;
 import com.refactoring.ilgusi.domain.category.dto.MainCategoryDto;
 import com.refactoring.ilgusi.domain.category.interfaces.CategoryService;
 import com.refactoring.ilgusi.domain.favorite.interfaces.FavoriteService;
 import com.refactoring.ilgusi.domain.member.Member;
-import com.refactoring.ilgusi.domain.notice.dto.NoticePageDto;
 import com.refactoring.ilgusi.domain.service.ServiceFile;
-import com.refactoring.ilgusi.domain.service.ServiceItem;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
 import com.refactoring.ilgusi.domain.service.dto.ServiceInsertDto;
 import com.refactoring.ilgusi.domain.service.dto.ServicePageDto;
@@ -124,7 +121,7 @@ public class ServiceController {
 
     // serviceView 페이지 이동
     @RequestMapping("/serviceView")
-    public String serviceView(@ModelAttribute("loginMember") Member member, int serviceNo, Model model/*, int reqPage*/) {
+    public String serviceView(@SessionAttribute(value = "loginMember", required = false) Member member, int serviceNo, Model model/*, int reqPage*/) {
         ServiceInfoDto serviceInfo = serviceService.selectServiceView(serviceNo);
         model.addAttribute("service", serviceInfo);
 
@@ -141,11 +138,11 @@ public class ServiceController {
         }
         model.addAttribute("fileList", fileListForView);
 
-        boolean isFavoriteChecked = false;
+        /*boolean isFavoriteChecked = false;
         if(member == null){
             isFavoriteChecked = favoriteService.isFavoriteChecked(member.getMemberNo(), serviceNo);
-        }
-        model.addAttribute("favoriteCheck",isFavoriteChecked); //isFavoriteChecked);
+        }*/
+        model.addAttribute("favoriteCheck",false); //isFavoriteChecked);
 
 
         // 해당 유저가 등록한 다른서비스 불러오기

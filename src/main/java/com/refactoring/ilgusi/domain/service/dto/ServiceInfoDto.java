@@ -38,6 +38,14 @@ public class ServiceInfoDto {
 		return NumberFormat.getInstance().format(servicePrice);
 	}
 
+	public String getStarString() {
+		int fullStars = (int) serviceRate;
+		StringBuilder stars = new StringBuilder();
+		for (int i = 0; i < fullStars; i++) stars.append("★");
+		for (int i = fullStars; i < 5; i++) stars.append("☆");
+		return stars.toString();
+	}
+
 	@Override
 	public String toString() {
 		return "ServiceInfoDto{" +

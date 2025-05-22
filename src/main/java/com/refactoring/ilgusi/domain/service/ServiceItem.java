@@ -81,12 +81,5 @@ public class ServiceItem extends BaseEntity {
 	}
 
 
-	private String getStarString(double rate) {
-		int fullStars = (int) rate;
-		StringBuilder stars = new StringBuilder();
-		for (int i = 0; i < fullStars; i++) stars.append("★");
-		for (int i = fullStars; i < 5; i++) stars.append("☆");
-		return stars.toString();
-	}
 
 }
