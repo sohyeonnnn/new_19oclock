@@ -15,4 +15,11 @@ public class JpaFavoriteRepository implements FavoriteRepository {
     public Favorite searchFavorite(int memberNo, int serviceNo) {
         return null;
     }
+
+    @Override
+    public void insertFavorite(Favorite favorite) {
+        jpaRepository.save(favorite);
+    }
+
+
 }

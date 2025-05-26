@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     $("#pw-current").keyup(function(){
-        console.log("key up!!!");
         var mNo = $('#mNo').val();
         var mId = $('#mId').val();
         var mPw_input = $('#pw-current').val();
@@ -52,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
             data: { memberId: mId, memberPw: mPw_input, memberNo : mNo },
             success: function (result) {
                 if (result.success) {
-                    console.log("성공!!!");
                     // 서버에서 비밀번호 인증 성공 시
                     $('#pw-current').attr('readonly', true).css({'background-color': 'rgba(224, 224, 224, 0.4)'});
                     $('#pw-current').next().children().css({'color':'#008000'}).html('확인되셨습니다. 변경할 비밀번호를 입력해주세요').fadeIn(1000).delay(1000).fadeOut(1000);
@@ -121,7 +119,6 @@ function emailEdit(obj){
                 $('#email-check').fadeIn(1000).delay(1000).fadeOut(1000);
             },
             error : function(){
-                console.log("실패");
             }
         });
     }
@@ -153,7 +150,6 @@ function phoneEdit(obj){
                     $('#phone-check').html('정상적으로 수정되었습니다').css({'color':'#008000'}).fadeIn(1000).delay(1000).fadeOut(1000);
                 },
                 error : function(){
-                    console.log("실패");
                 }
             });
         }else{

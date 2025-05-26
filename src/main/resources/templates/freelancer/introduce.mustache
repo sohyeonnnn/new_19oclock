@@ -178,7 +178,7 @@
 
 			<div class="middle2right"></div>
 			<br> <br>
-			<div class="middle3"">
+			<div class="middle3">
 				<br> <br>
 				<div id="three">
 					<br>
@@ -186,51 +186,22 @@
 				</div>
 				<br> 
 				<div class="tabContent" style=";">
-                    {{^serviceList}}
+                    {{^introduce.serviceList}}
                         <div class="noList" style="width: 800px">등록된 서비스가 없습니다.</div>
-                    {{/serviceList}}
-                    {{#serviceList}}
+                    {{/introduce.serviceList}}
+                    {{#introduce.serviceList}}
                             <div class="serviceBox">
-                                <img src="/upload/service/${r.SImg}" alt="없는이미지"
-                                    style="width: 150px; height: 150px;"><br> <span
-                                    class="preName">[<b>${r.STitle }</b>]
-                                </span><br>
-                                <p class="serviceCon" style="float: right;">${r.SPrice }원~</p>
+                                <img src="/upload/service/{{serviceImg}}" alt="없는이미지"
+                                    style="width: 150px; height: 150px;"><br>
+                                <span class="preName">[<b>{{serviceTitle}}</b>]</span>
+                                <br>
+                                <p class="serviceCon" style="float: right;">{{servicePriceTxt}}원~</p>
                                 <br>
                                 <span style="float: right;">
-                                <c:when test="${r.SRate gt 4.9}">
-                                    <p class="score">
-                                        평점 ${r.SRate}점<span class="star"> ★★★★★</span>
-                                    </p>
-                                </c:when>
-                                <c:when test="${r.SRate gt 3.9}">
-                                    <p class="score">
-                                        평점 ${r.SRate}점<span class="star"> ★★★★☆</span>
-                                    </p>
-                                </c:when>
-                                <c:when test="${r.SRate gt 2.9}">
-                                    <p class="score">
-                                        평점 ${r.SRate}점<span class="star"> ★★★☆☆</span>
-                                    </p>
-                                </c:when>
-                                <c:when test="${r.SRate gt 1.9}">
-                                    <p class="score">
-                                        평점 ${r.SRate}점<span class="star"> ★★☆☆☆</span>
-                                    </p>
-                                </c:when>
-                                <c:when test="${r.SRate gt 0.9}">
-                                    <p class="score">
-                                        평점 ${r.SRate}점<span class="star"> ★☆☆☆☆</span>
-                                    </p>
-                                </c:when>
-                                <c:when test="${r.SRate ==0}">
-                                    <p class="score">
-                                        평점 ${r.SRate}점<span class="star"> ☆☆☆☆☆</span>
-                                    </p>
-                                </c:when>
+                                    <p class="score">평점 {{serviceRate}}<span class="star">{{starString}}</span></p>
                                 </span>
                             </div>
-                    {{/serviceList}}
+                    {{/introduce.serviceList}}
 				</div>
 			</div>
 		</div>

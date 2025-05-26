@@ -24,6 +24,11 @@ public class JpaServiceRepository implements ServiceRepository {
     }
 
     @Override
+    public Optional<ServiceItem> findById(int serviceNo) {
+        return jpaRepository.findById(serviceNo);
+    }
+
+    @Override
     public int selectFreeServiceCount(int mNo) {
         return jpaRepository.countServiceBymNo(mNo);
     }
@@ -115,15 +120,6 @@ public class JpaServiceRepository implements ServiceRepository {
         return null;
     }
 
-
-    @Override
-    public Member selectMemberName(String memberId) {
-        return null;
-    }
-
-
-
-
     @Override
     public float sRateAVG(String mId) {
         return 0;
@@ -158,7 +154,5 @@ public class JpaServiceRepository implements ServiceRepository {
     public int serviceUpdateSRate(int sNo) {
         return 0;
     }
-
-
 
 }

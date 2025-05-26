@@ -211,14 +211,10 @@
                     <p class="titlePrice">{{service.servicePriceTxt}}원~</p>
                     <div class="heart">
                         <input type="hidden" value="{{favoriteCheck}}" id="favoriteCheck">
+                        <input type="hidden" value="{{service.freeNo}}" id="free_no">
                             {{#loginMember}}
-                        		<input type="hidden" value="{{loginMember.memberNo}}" id="m_no">
-                        		<c:if test="${loginMember.memberId == service.memberId }">
-                        			<a href="javascript:like_func_error();" style="color: gray;"><i class="full-heart far fa-heart"></i> 이 서비스 찜하기</a>
-                        		</c:if>
-                        		<c:if test="${loginMember.memberId != service.memberId }">
-                        			<a href="javascript:like_func();" style="color: gray;"><i class="full-heart far fa-heart"></i> 이 서비스 찜하기</a>
-                        		</c:if>
+                        		<input type="hidden" value="{{loginMember.memberNo}}" id="user_no">
+                                <a href="javascript:like_func();" style="color: gray;"><i class="full-heart far fa-heart"></i> 이 서비스 찜하기</a>
                             {{/loginMember}}
                             {{^loginMember}}
                         		<a href="javascript: login_need();" style="color: gray;"><i class="full-heart far fa-heart"></i> 이 서비스 찜하기 </a>
@@ -229,8 +225,8 @@
                 <div class="rightInfo">
                     <div class="Infocon conFirst">
                         <p>서비스 종류</p>
-                        <input type="hidden" value="${service.serviceNo }" id="s_no">
-                        <span>{{service.mainCategoryName }}</span> <span> > </span> <span>${{service.subCategoryName}}</span>
+                        <input type="hidden" value="{{service.serviceNo}}" id="s_no">
+                        <span>{{service.mainCategoryName}}</span> <span> > </span> <span>{{service.subCategoryName}}</span>
                     </div>
                     <div class="Infocon othercon">
                         <p>예상 작업일</p>
@@ -242,22 +238,22 @@
 
                     </div>
                     <br>
-                    <c:if test="${service.deleteStatus ne 'y'.charAt(0) }">
-                    {{^loginMember}}
-               		    <button class="centerBtn">로그인 후 문의하세요</button>
-                    {{/loginMember}}
-                    {{#loginMember}}
-                        {{#isUser}}
-                        <button class="centerBtn" onclick="startChat('${service.serviceNo }','${sessionScope.loginMember.memberId }','${service.memberId}','${sessionScope.loginMember.memberNo }','${sessionScope.loginMember.memberRole}');">전문가에게 문의하기</button>
-                        {{/isUser}}
-                        {{#isFreelancer}}
-                         <button class="centerBtn">일반회원으로 전환후 문의하세요</button>
-                        {{/isFreelancer}}
-                        </c:if>
-                        <c:if test="${service.deleteStatus eq 'y'.charAt(0) }">
+                    {{^deletedService}}
+                        {{^loginMember}}
+                            <button class="centerBtn">로그인 후 문의하세요</button>
+                        {{/loginMember}}
+                        {{#loginMember}}
+                            {{#isUser}}
+                                <button class="centerBtn" onclick="startChat('${service.serviceNo }','${sessionScope.loginMember.memberId }','${service.memberId}','${sessionScope.loginMember.memberNo }','${sessionScope.loginMember.memberRole}');">전문가에게 문의하기</button>
+                            {{/isUser}}
+                            {{#isFreelancer}}
+                                <button class="centerBtn">일반회원으로 전환후 문의하세요</button>
+                            {{/isFreelancer}}
+                        {{/loginMember}}
+                    {{/deletedService}}
+                    {{#deletedService}}
                          <button class="centerBtn">삭제된 서비스입니다</button>
-                        </c:if>
-                    {{/loginMember}}
+                    {{/deletedService}}
                 </div>
                 <br>
                 <div class="secu">

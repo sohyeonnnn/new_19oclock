@@ -54,11 +54,6 @@ public interface ServiceRepository {
     // 서비스 상세보기
     ServiceItem selectServiceView2(int sNo);
 
-
-    // 전문가 정보 불러오기
-    Member selectMemberName(String memberId);
-
-
     float sRateAVG(String mId) ;
 
     // 결제 진행
@@ -81,4 +76,5 @@ public interface ServiceRepository {
     // 리뷰 작성하면 서비스테이블 s_rate에 평점 넣어줌
     int serviceUpdateSRate(int serviceNo);
 
+    Optional<ServiceItem> findById(int serviceNo);
 }
