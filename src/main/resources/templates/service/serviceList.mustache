@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>19시 :: 서비스</title>
+
+    <!-- jQuery & Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Mustache -->
+    <script src="https://cdn.jsdelivr.net/npm/mustache@4.2.0/mustache.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/service/serviceList.css">
+
+
+</head>
+<body>
+
+{{>common/header}}
+
+<div class="contentWrap">
+    <div class="crumb">
+        <div>홈 > 서비스</div>
+    </div>
+
+    <div class="sideNavi menu">
+        <input type="hidden" value="{{mainCategoryCd}}" name="mainCategoryCd" id="mainCategoryCd">
+        <input type="hidden" value="{{categoryCd}}" name="categoryCd" id="categoryCd">
+        {{#categoryList}}
+            <p class="naviTitle">{{categoryNm}}</p>
+            {{#subCategoryList}}
+                <ul>
+                    <li class="navi-item"><a href="#" class="category-link"
+                                             data-main="{{mainCategoryCd}}"
+                                             data-category="{{categoryCd}}">
+                        {{categoryNm}}
+                    </a></li>
+                </ul>
+            {{/subCategoryList}}
+        {{/categoryList}}
+    </div>
+
+    <div class="serviceList">
+        <div class="searchDiv">
+            <div class="searchBox">
+                <select class="form-control array" id="sort" style="width: 120px; float: left; margin-right: 10px;">
+                    <option value="new">최신순</option>
+                    <option value="popular">인기순</option>
+                    <option value="review">평점순</option>
+                    <option value="lowPrice">낮은 가격순</option>
+                </select>
+                <input type="text" class="form-control" id="keyword" style="width: 200px; float: left; margin-right: 10px;" placeholder="검색어">
+                <button class="btn btn-primary search-btn">검색</button>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div id="service-container" class="tableContainer">
+        </div>
+
+        <div id="pagination" class="pageNaviBox">
+        </div>
+    </div>
+</div>
+
+{{>common/footer}}
+
+<script id="no-service-template" type="text/template">
+    <p class="noService">등록된 서비스가 없습니다.</p>
+</script>
+
+<script type="text/javascript" src="/js/service/serviceList.js"></script>
+</body>
+</html>

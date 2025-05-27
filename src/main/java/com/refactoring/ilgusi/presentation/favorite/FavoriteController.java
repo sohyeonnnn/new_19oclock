@@ -22,13 +22,13 @@ public class FavoriteController {
         System.out.println("controller");
         System.out.println("serviceNo >> " + serviceNo);
         System.out.println("memberNo >> " + memberNo);
-        favoriteService.insertHeart(serviceNo, memberNo);
+        //favoriteService.insertHeart(serviceNo, memberNo);
     }
 
     @ResponseBody
     @PostMapping("/deleteHeart")
     public void deleteHeart(int serviceNo, int memberNo){
-        favoriteService.deleteHeart(serviceNo, memberNo);
+        //favoriteService.deleteHeart(serviceNo, memberNo);
 
     }
 

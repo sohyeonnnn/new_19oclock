@@ -139,9 +139,9 @@ public class ServiceController {
         model.addAttribute("fileList", fileListForView);
 
         boolean isFavoriteChecked = false;
-        if(member == null){
+       /* if(member == null){
             isFavoriteChecked = favoriteService.isFavoriteChecked(member.getMemberNo(), serviceNo);
-        }
+        }*/
         model.addAttribute("favoriteCheck",isFavoriteChecked);
 
 

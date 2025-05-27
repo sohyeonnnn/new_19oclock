@@ -46,9 +46,9 @@ public class ServiceInfoDto {
 		return stars.toString();
 	}
 
-	public boolean getDeletedService() {
+/*	public boolean getDeletedService() {
 		return deleteStatus.equals("Y") ? true : null;
-	}
+	}*/
 
 	@Override
 	public String toString() {

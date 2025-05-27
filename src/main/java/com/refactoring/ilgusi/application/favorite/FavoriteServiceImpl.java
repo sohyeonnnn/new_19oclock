@@ -29,13 +29,13 @@ public class FavoriteServiceImpl implements FavoriteService {
 
     @Override
     public void insertHeart(int serviceNo, int memberNo) {
-        Member member = memberRepository.findByMemberNo(memberNo).orElseThrow();
+   /*     Member member = memberRepository.findByMemberNo(memberNo).orElseThrow();
         ServiceItem service = serviceRepository.findById(serviceNo).orElseThrow();
 
         Favorite favorite = new Favorite();
         favorite.setMember(member);
         favorite.setService(service);
-        favoriteRepository.insertFavorite(favorite);
+        favoriteRepository.insertFavorite(favorite);*/
     }
 
     @Override
