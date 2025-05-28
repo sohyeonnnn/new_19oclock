@@ -1,5 +1,6 @@
 package com.refactoring.ilgusi.domain.service.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,6 @@ import java.text.NumberFormat;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class ServiceInfoDto {
 	private int serviceNo; // 서비스 번호
 	private String serviceTitle; // 서비스 제목
@@ -49,6 +49,32 @@ public class ServiceInfoDto {
 /*	public boolean getDeletedService() {
 		return deleteStatus.equals("Y") ? true : null;
 	}*/
+
+
+	@QueryProjection
+	public ServiceInfoDto(int serviceNo, String serviceTitle, String serviceContent, int servicePrice, String serviceArea, String serviceImg, float serviceRate, int mainCategory, int subCategory, int workingDate, int workingCount, String writeDate, String deleteStatus, String adminApproval, int freeNo, String freeId, String brandName, String introduce, String mainCategoryName, String subCategoryName) {
+		this.serviceNo = serviceNo;
+		this.serviceTitle = serviceTitle;
+		this.serviceContent = serviceContent;
+		this.servicePrice = servicePrice;
+		this.serviceArea = serviceArea;
+		this.serviceImg = serviceImg;
+		this.serviceRate = serviceRate;
+		this.mainCategory = mainCategory;
+		this.subCategory = subCategory;
+		this.workingDate = workingDate;
+		this.workingCount = workingCount;
+		this.writeDate = writeDate;
+		this.deleteStatus = deleteStatus;
+		this.adminApproval = adminApproval;
+		this.freeNo = freeNo;
+		this.freeId = freeId;
+		this.brandName = brandName;
+		this.introduce = introduce;
+		this.mainCategoryName = mainCategoryName;
+		this.subCategoryName = subCategoryName;
+	}
+
 
 	@Override
 	public String toString() {

@@ -1,5 +1,6 @@
 package com.refactoring.ilgusi.config;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.refactoring.ilgusi.domain.category.interfaces.CategoryRepository;
 import com.refactoring.ilgusi.domain.chat.interfaces.ChatRepository;
 import com.refactoring.ilgusi.domain.favorite.interfaces.FavoriteRepository;
@@ -33,10 +34,22 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Configuration
 @EnableJpaAuditing
 //@MapperScan(basePackages = "com.refactoring.infrastructure.repository.mybatis")
 public class RepositoryConfig {
+    //querydsl
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Bean
+    public JPAQueryFactory jpaQueryFactory() {
+        return new JPAQueryFactory(entityManager);
+    }
+
 
     @Bean
     @Profile("jpa")

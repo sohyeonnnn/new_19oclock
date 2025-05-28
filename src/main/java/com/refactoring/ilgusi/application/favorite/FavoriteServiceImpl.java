@@ -2,6 +2,7 @@ package com.refactoring.ilgusi.application.favorite;
 
 
 import com.refactoring.ilgusi.domain.favorite.Favorite;
+import com.refactoring.ilgusi.domain.favorite.interfaces.FavoriteQRepository;
 import com.refactoring.ilgusi.domain.favorite.interfaces.FavoriteRepository;
 import com.refactoring.ilgusi.domain.favorite.interfaces.FavoriteService;
 import com.refactoring.ilgusi.domain.member.Member;
@@ -24,6 +25,7 @@ import java.util.Optional;
 @Service
 public class FavoriteServiceImpl implements FavoriteService {
     private final FavoriteRepository favoriteRepository;
+    private final FavoriteQRepository favoriteQRepository;
     private final MemberRepository memberRepository;
     private final ServiceRepository serviceRepository;
 
@@ -57,6 +59,9 @@ public class FavoriteServiceImpl implements FavoriteService {
 
     @Override
     public List<ServiceInfoDto> selectHeartList(int memberNo, String order) {
-        return favoriteRepository.selectHeartList(memberNo, order);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println(favoriteQRepository.selectFavoriteList(memberNo, order).toString());
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        return favoriteQRepository.selectFavoriteList(memberNo, order);
     }
 }
