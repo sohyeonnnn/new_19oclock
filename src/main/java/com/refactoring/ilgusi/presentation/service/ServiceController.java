@@ -139,10 +139,10 @@ public class ServiceController {
         model.addAttribute("fileList", fileListForView);
 
         boolean isFavoriteChecked = false;
-       /* if(member == null){
+        if(member == null){
             isFavoriteChecked = favoriteService.isFavoriteChecked(member.getMemberNo(), serviceNo);
-        }*/
-        model.addAttribute("favoriteCheck",isFavoriteChecked);
+        }
+        model.addAttribute("favoriteCheck", isFavoriteChecked);
 
 
         // 해당 유저가 등록한 다른서비스 불러오기

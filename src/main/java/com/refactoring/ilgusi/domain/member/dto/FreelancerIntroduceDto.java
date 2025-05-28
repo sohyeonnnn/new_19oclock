@@ -38,6 +38,18 @@ public class FreelancerIntroduceDto {
 		);
 	}
 
+	public int getServiceCount() {
+		return serviceList.size();
+	}
+
+	public double getServiceRateAvg() {
+		double sum = 0;
+		for (ServiceItem item : serviceList){
+			sum+=item.getServiceRate();
+		}
+		return sum/getServiceCount();
+	}
+
 
 /*
 	private String mainCategoryName;

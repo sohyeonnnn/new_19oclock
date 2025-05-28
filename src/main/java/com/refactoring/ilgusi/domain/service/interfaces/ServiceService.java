@@ -20,4 +20,5 @@ public interface ServiceService {
     List<ServiceInfoDto> selectCategoryServiceList(int reqPage, String keyword, int categoryCd);
 
     ServicePageDto selectServiceListApi(int mainCategoryCd, int categoryCd, int reqPage, String order, String keyword);
+
 }

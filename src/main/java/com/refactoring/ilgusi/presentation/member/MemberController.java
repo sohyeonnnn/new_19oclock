@@ -10,6 +10,8 @@ import com.refactoring.ilgusi.domain.member.dto.MemberLoginDto;
 import com.refactoring.ilgusi.domain.member.dto.MemberSearchIdPwDto;
 import com.refactoring.ilgusi.domain.member.dto.MemberUpdateDto;
 import com.refactoring.ilgusi.domain.member.interfaces.MemberService;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
+import com.refactoring.ilgusi.domain.service.interfaces.ServiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,12 +20,16 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RequiredArgsConstructor
 @Controller
 public class MemberController {
     private final MemberService memberService;
+    private final ServiceService serviceService;
 
     // 회원가입 페이지 이동
     @GetMapping("/join")
@@ -164,9 +170,6 @@ public class MemberController {
         memberService.loginMember(memberId, memberPw);
         return ResponseEntity.ok(ResultData.builder().isSuccess(true).build());
     }
-
-
-
 
 
 

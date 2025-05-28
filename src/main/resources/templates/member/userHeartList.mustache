@@ -26,7 +26,6 @@
 	            <input type="text" style="display:none" value="{{loginMember.memberNo}}" id="mNo">
 	            <input type="text" style="display:none" value="{{order}}" id="order">
 	            <select name="array" class="array" id="array-select">
-	                <option value="all">전체</option>
 	                <option value="priceDown">가격낮은순</option>
 	                <option value="priceUp">가격높은순</option>
 	                <option value="new">서비스최신순</option>
@@ -41,7 +40,7 @@
                 {{#list}}
                     <div>
                         <div>
-                            <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1&memberNo={{loginMember.memberNo}}">
+                            <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1">
                             <div class="title-img">
                                 <div class="back-img">
                                     <img src="/upload/service/{{serviceImg}}" width="225x" height="133px">
@@ -56,11 +55,11 @@
                         </div>
                         <div class="empty"></div>
                         <div class="title">{{brand}}</div>
-                        <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1&mNo={{loginMember.memberNo}}" id="serviceContent">
+                        <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1" id="serviceContent">
                         <div class="content">{{serviceTitle}}</div>
-                        <div class="price">{{servicePrice}}</div>
+                        <div class="price">{{servicePriceTxt}}</div>
                         <div class="rate">
-                            <span>평점 </span><span>{{SRate}}</span><span>.0점</span><span>★★★★★</span>
+                            <span>평점 </span><span>{{serviceRate}}</span><span>.0점</span><span>★★★★★</span>
                         </div>
                         </a>
                     </div>

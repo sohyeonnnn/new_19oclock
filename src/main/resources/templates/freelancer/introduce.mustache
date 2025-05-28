@@ -27,7 +27,7 @@
 			<div class="title"><br><br><br><br><br><br>
 				<p class="tt"><h1>{{introduce.brandName}}<span style="font-size:30px;">({{introduce.memberId}})</span></h1></p>
 				<p class="tt" id="listSize"></p>
-				<p class="tt" id="sRate">평균 평점 : ${avg }</p>
+				<p class="tt" id="sRate">평균 평점 : {{introduce.serviceRateAvg}}</p>
 
 			</div>
 			<div class="menu">
@@ -55,10 +55,10 @@
 
 				<h2>활동정보</h2>
 				<br> <span style="float: left;"><b>등록된 서비스</b></span> <span
-					style="float: right; padding-right: 40px;"><b>${j.serviceList.size()}</b>개</span>
+					style="float: right; padding-right: 40px;"><b>{{introduce.serviceCount}}</b>개</span>
 
 				<br> <br> <span style="float: left;"><b>평균 평점</b></span> <span
-					style="float: right; padding-right: 40px;">${avg }</span> <br>
+					style="float: right; padding-right: 40px;">{{introduce.serviceRateAvg}}</span> <br>
 				<br>
 				<h2>전문가 정보</h2>
 
@@ -182,7 +182,7 @@
 				<br> <br>
 				<div id="three">
 					<br>
-					<h2>서비스(${j.serviceList.size()}개)</h2>
+					<h2>서비스({{introduce.serviceCount}}개)</h2>
 				</div>
 				<br> 
 				<div class="tabContent" style=";">
@@ -201,11 +201,12 @@
                                     <p class="score">평점 {{serviceRate}}<span class="star">{{starString}}</span></p>
                                 </span>
                             </div>
+                        <input type="hidden" id="haha" value="{{introduce.memberNo}}">
                     {{/introduce.serviceList}}
 				</div>
 			</div>
 		</div>
-		<input type="hidden" id="haha" value="${j.MId}">
+
 	</div>
 	<a id="topBtn" href="#"
 		style="width: 50px; height: 50px; line-height: 50px; background-color: orange; border-radius: 25%; text-decoration: none; text-align: center;">

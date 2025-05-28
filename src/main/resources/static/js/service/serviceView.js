@@ -1,7 +1,6 @@
 
 $(document).ready (function () {
     var fCheck = $("#favoriteCheck").val();
-    console.log("favorite:"+fCheck);
 
     if(fCheck == true){
         $(".full-heart").addClass("fas");
@@ -44,7 +43,7 @@ $(document).ready (function () {
 
 // 좋아요 클릭시 찜하기 insert
 function like_func() {
-    var m_no = $("#m_no").val();
+    var m_no = $("#user_no").val();
     var s_no = $("#s_no").val();
     var fCheck = $("#favoriteCheck").val();
     console.log("m_no:"+m_no+"s_no:"+s_no);

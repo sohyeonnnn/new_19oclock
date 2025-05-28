@@ -18,5 +18,8 @@ public class ServicePageDto {
 	private int totalPage;
 	private String pageNavi;
 
+	public int getServiceCount() {
+		return serviceList.size();
+	}
 
 }

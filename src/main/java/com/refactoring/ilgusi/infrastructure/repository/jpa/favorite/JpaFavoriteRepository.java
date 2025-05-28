@@ -3,6 +3,10 @@ package com.refactoring.ilgusi.infrastructure.repository.jpa.favorite;
 
 import com.refactoring.ilgusi.domain.favorite.Favorite;
 import com.refactoring.ilgusi.domain.favorite.interfaces.FavoriteRepository;
+import com.refactoring.ilgusi.domain.service.dto.ServiceInfoDto;
+
+import java.util.List;
+import java.util.Optional;
 
 public class JpaFavoriteRepository implements FavoriteRepository {
     private final SpringDataFavoriteRepository jpaRepository;
@@ -12,7 +16,7 @@ public class JpaFavoriteRepository implements FavoriteRepository {
     }
 
     @Override
-    public Favorite searchFavorite(int memberNo, int serviceNo) {
+    public Optional<Favorite> searchFavorite(int memberNo, int serviceNo) {
         return null;
     }
 
@@ -21,5 +25,20 @@ public class JpaFavoriteRepository implements FavoriteRepository {
         jpaRepository.save(favorite);
     }
 
+    @Override
+    public void deleteHeart(Favorite favorite) {
+        jpaRepository.delete(favorite);
+    }
 
+    @Override
+    public List<ServiceInfoDto> selectHeartList(int memberNo, String order) {
+        if(order.equals("new")){
+            return jpaRepository.selectFavoriteByMemberNoOrderByDate(memberNo, "Y");
+        }else if(order.equals("priceDown")){
+            return jpaRepository.selectFavoriteByMemberNoOrderByPriceAsc(memberNo, "Y");
+        }else if(order.equals("priceUp")) {
+            return jpaRepository.selectFavoriteByMemberNoOrderByPriceDesc(memberNo, "Y");
+        }
+        return null;
+    }
 }
