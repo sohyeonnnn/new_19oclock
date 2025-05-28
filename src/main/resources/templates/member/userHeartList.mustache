@@ -8,6 +8,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+
 	<link rel="stylesheet" href="/css/member/userHeartList.css">
 	<script type="text/javascript" src="/js/member/userHeartList.js"></script>
 
@@ -38,6 +42,7 @@
                 {{/list}}
 
                 {{#list}}
+                    <input type="text" style="display:none" value="{{serviceNo}}" id="sNo">
                     <div>
                         <div>
                             <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1">
@@ -54,12 +59,12 @@
                             </div>
                         </div>
                         <div class="empty"></div>
-                        <div class="title">{{brand}}</div>
+                        <div class="title">{{brandName}}</div>
                         <a href="/serviceView?serviceNo={{serviceNo}}&reqPage=1" id="serviceContent">
                         <div class="content">{{serviceTitle}}</div>
                         <div class="price">{{servicePriceTxt}}</div>
                         <div class="rate">
-                            <span>평점 </span><span>{{serviceRate}}</span><span>.0점</span><span>★★★★★</span>
+                            <span>평점 </span><span>{{serviceRate}}</span><span>{{starString}}</span>
                         </div>
                         </a>
                     </div>

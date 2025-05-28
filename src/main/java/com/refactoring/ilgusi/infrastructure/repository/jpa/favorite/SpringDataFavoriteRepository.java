@@ -15,10 +15,11 @@ public interface SpringDataFavoriteRepository extends JpaRepository<Favorite, In
                     "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-                    "s.member.memberNo, m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
+                    "s.member.memberNo, free.memberId, free.brandName, free.introduce, mainCat.categoryName, subCat.categoryName) " +
                     "FROM ServiceItem s " +
                     "LEFT JOIN Favorite f ON s.serviceNo = f.service.serviceNo " +
-                    "LEFT JOIN Member m ON f.member.memberNo = m.memberNo " +
+                    "LEFT JOIN Member user ON f.member.memberNo = user.memberNo " +
+                    "LEFT JOIN Member free ON s.member.memberNo = free.memberNo " +
                     "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
                     "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
                     "WHERE f.member.memberNo = :memberNo " +
@@ -32,10 +33,11 @@ public interface SpringDataFavoriteRepository extends JpaRepository<Favorite, In
                     "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-                    "s.member.memberNo, m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
+                    "s.member.memberNo, free.memberId, free.brandName, free.introduce, mainCat.categoryName, subCat.categoryName) " +
                     "FROM ServiceItem s " +
                     "LEFT JOIN Favorite f ON s.serviceNo = f.service.serviceNo " +
-                    "LEFT JOIN Member m ON f.member.memberNo = m.memberNo " +
+                    "LEFT JOIN Member user ON f.member.memberNo = user.memberNo " +
+                    "LEFT JOIN Member free ON s.member.memberNo = free.memberNo " +
                     "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
                     "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
                     "WHERE f.member.memberNo = :memberNo " +
@@ -49,10 +51,11 @@ public interface SpringDataFavoriteRepository extends JpaRepository<Favorite, In
                     "s.serviceNo, s.serviceTitle, s.serviceContent, s.servicePrice, s.serviceArea, " +
                     "s.serviceImg, s.serviceRate, s.mainCategory, s.subCategory, s.workingDate, " +
                     "s.workingCount, s.writeDate, s.deleteStatus, s.adminApproval, " +
-                    "s.member.memberNo, m.memberId, m.brandName, m.introduce, mainCat.categoryName, subCat.categoryName) " +
+                    "s.member.memberNo, free.memberId, free.brandName, free.introduce, mainCat.categoryName, subCat.categoryName) " +
                     "FROM ServiceItem s " +
                     "LEFT JOIN Favorite f ON s.serviceNo = f.service.serviceNo " +
-                    "LEFT JOIN Member m ON f.member.memberNo = m.memberNo " +
+                    "LEFT JOIN Member user ON f.member.memberNo = user.memberNo " +
+                    "LEFT JOIN Member free ON s.member.memberNo = free.memberNo " +
                     "LEFT JOIN Category mainCat ON s.mainCategory = mainCat.categoryCd " +
                     "LEFT JOIN Category subCat ON s.subCategory = subCat.categoryCd " +
                     "WHERE f.member.memberNo = :memberNo " +

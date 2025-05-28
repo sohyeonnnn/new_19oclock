@@ -23,9 +23,6 @@ public class FavoriteController {
     @ResponseBody
     @PostMapping("/insertHeart")
     public void insertHeart(int serviceNo, int memberNo){
-        System.out.println("controller");
-        System.out.println("serviceNo >> " + serviceNo);
-        System.out.println("memberNo >> " + memberNo);
         favoriteService.insertHeart(serviceNo, memberNo);
     }
 
@@ -33,7 +30,6 @@ public class FavoriteController {
     @PostMapping("/deleteHeart")
     public void deleteHeart(int serviceNo, int memberNo){
         favoriteService.deleteHeart(serviceNo, memberNo);
-
     }
 
     @GetMapping("/userHeartList")
