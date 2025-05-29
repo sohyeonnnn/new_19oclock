@@ -95,8 +95,8 @@ function login_need() {
     alert("로그인이 필요합니다.");
 }
 
-function startChat(serviceNo, userId, freeId, memberNo, memberRole) {
-    if(userId == freeId){
+function startChat(serviceNo, userNo, freeNo, memberNo, memberRole) {
+    if(userNo == freeNo){
         alert("본인의 서비스는 문의할 수 없습니다.");
     }else{
         $.ajax({
@@ -105,16 +105,13 @@ function startChat(serviceNo, userId, freeId, memberNo, memberRole) {
             async : false,
             data : {
                 serviceNo : serviceNo,
-                userId : userId,
-                freeId : freeId,
+                userNo : userNo,
+                freeNo : freeNo,
                 memberNo : memberNo,
                 memberRole : memberRole
             },
             success : function(data) {
-                /* location.href = "/enterRoom.do?cNo=-1&serviceNo=" + serviceNo
-                        + "&myId=" + userId + "&yourId=" + freeId
-                        + "&memberRole=" + memberRole */
-                var loc="/enterRoom?chatNo=-1&serviceNo=" + serviceNo + "&myId="+ userId + "&yourId=" + freeId+"&memberRole="+memberRole
+                var loc="/enterRoom?chatNo=-1&serviceNo=" + serviceNo + "&myNo="+ userNo + "&yourNo=" + freeNo+"&memberRole="+memberRole
                 var _left = Math.ceil(( window.screen.width - 530 )/2);
                 window.open(loc, '', 'width=530, height=630, left='+_left+', top=50, location=no,scrollbars=no,location=no, resizable=no');
             },

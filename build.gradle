@@ -53,16 +53,16 @@ def querydslDir = "$buildDir/generated/querydsl"
 sourceSets {
     main {
         java {
-            if (!srcDirs.contains(file(querydslDir))) {
-                srcDirs += file(querydslDir)
-            }
+            srcDirs += file(querydslDir)
         }
     }
 }
 
+clean {
+    delete file(querydslDir)
+}
+
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
-    options.compilerArgs += [
-            "-s", querydslDir.toString()
-    ]
+    options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
 }

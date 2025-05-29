@@ -244,7 +244,7 @@
                         {{/loginMember}}
                         {{#loginMember}}
                             {{#isUser}}
-                                <button class="centerBtn" onclick="startChat('${service.serviceNo }','${sessionScope.loginMember.memberId }','${service.memberId}','${sessionScope.loginMember.memberNo }','${sessionScope.loginMember.memberRole}');">전문가에게 문의하기</button>
+                                <button class="centerBtn" onclick="startChat('{{service.serviceNo}}','{{loginMember.memberNo}}','{{service.freeNo}}','{{loginMember.memberNo}}','{{loginMember.memberGrade}}');">전문가에게 문의하기</button>
                             {{/isUser}}
                             {{#isFreelancer}}
                                 <button class="centerBtn">일반회원으로 전환후 문의하세요</button>

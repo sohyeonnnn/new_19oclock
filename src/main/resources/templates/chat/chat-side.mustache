@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="/css/chat/chat-side.css">
+    <script type="text/javascript" src="/js/chat/chat-side.js"></script>
+
+</head>
+
+<body>
+	<div id="side">
+		<div id="side-profile">
+			<div class="wrap">
+				<img src="/img/logo/logo-chat_navy.png" width="120px">
+
+				<ul id="account">
+					<li><a href="#" onclick="switchAccount();">
+                        {{#loginMember.isUser}}일반회원{{/loginMember.isUser}}
+                        {{#loginMember.isFreelancer}}프리랜서{{/loginMember.isFreelancer}}
+					</a></li>
+				</ul>
+                {{#loginMember.isUser}}<b>{{loginMember.memberName}}</b>{{/loginMember.isUser}}
+                {{#loginMember.isFreelancer}}<b>{{loginMember.brandName}}</b>{{/loginMember.isFreelancer}}
+			</div>
+		</div>
+		<div id="side-menu">
+			<ul>
+
+				<li>
+                    <a href="/enterRoom?chatNo=-1&serviceNo=0&yourNo=0&myNo={{loginMember.memberNo}}">
+						<img src="/img/icon/notification_white.png" width="40px;"><br>알림
+				    </a>
+                </li>
+
+				<li>
+                    <a href="/chatList?memberGrade={{loginMember.memberGrade}}&mNo={{loginMember.memberNo}}">
+						<img src="/img/icon/chat_white.png" width="40px;"><br>문의
+				    </a>
+                </li>
+				<!-- 일반 회원일때  -->
+                {{#loginMember.isUser}}
+					<li><a href="/chatHeartList?mNo={{loginMember.memberNo}}">
+                        <img src="/img/icon/heart_white.png" width="40px;"><br>찜
+                        </a>
+                    </li>
+                {{/loginMember.isUser}}
+
+			</ul>
+		</div>
+		<div id="side-bottom">
+			<button id="mypageBtn" onclick="mypage();">mypage</button>
+			<button id="closeBtn" onclick="window.close();">닫기</button>
+		</div>
+	</div>
+
+</body>
+</html>
